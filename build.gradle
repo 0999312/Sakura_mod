@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "http://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+
+version = "V1.0.0-MC1.12.2"
+group = "cn.mcmod.sakura" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "Sakura"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2768"
+    runDir = "run"
+    mappings = "snapshot_20171003"
+    replace "@version@", project.version
+
+}
+
+repositories {
+    maven {
+	url 'https://maven.blamejared.com' 
+	}
+	maven {
+    // location of the maven that hosts JEI files
+    name = "Progwml6 maven"
+    url = "http://dvs1.progwml6.com/files/maven"
+	}
+
+	maven {
+    // location of a maven mirror for JEI files, as a fallback
+    name = "ModMaven"
+    url = "modmaven.k-4u.nl"
+	}
+}
+dependencies {
+    compile "vazkii.patchouli:Patchouli:1.0-10.51"
+	// compile against the JEI API but do not include it at runtime
+    deobfProvided "mezz.jei:jei_1.12.2:4.14.3.238:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_1.12.2:4.14.3.238"
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+                
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
