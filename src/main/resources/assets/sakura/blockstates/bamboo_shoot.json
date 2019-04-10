@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "cross": "sakura:blocks/bamboo_shoot",
+      "layer0": "sakura:blocks/bamboo_shoot",
+      "transform": "forge:default-item"
+    }
+  },
+  "variants": {
+    "age=0": {
+      "model": "minecraft:cross"
+    },
+    "age=1": {
+      "model": "minecraft:cross"
+    },
+    "age=2": {
+      "model": "minecraft:cross"
+    },
+    "age=3": {
+      "model": "minecraft:cross"
+    },
+    "age=4": {
+      "model": "minecraft:cross"
+    },
+    "age=5": {
+      "model": "minecraft:cross"
+    },
+    "age=6": {
+      "model": "minecraft:cross"
+    },
+    "age=7": {
+      "model": "minecraft:cross"
+    },
+    "age=8": {
+      "model": "minecraft:cross"
+    },
+    "inventory": {
+      "model": "builtin/generated"
+    }
+  }
+}

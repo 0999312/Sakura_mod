@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "sakura:blocks/bamboo"
+    }
+  },
+  "variants": {
+    "age=0": {
+      "model": "sakura:bamboo"
+    },
+    "age=1": {
+      "model": "sakura:bamboo"
+    },
+    "age=2": {
+      "model": "sakura:bamboo"
+    },
+    "age=3": {
+      "model": "sakura:bamboo"
+    },
+    "age=4": {
+      "model": "sakura:bamboo"
+    },
+    "age=5": {
+      "model": "sakura:bamboo"
+    },
+    "inventory": {
+      "model": "sakura:bamboo"
+    }
+  }
+}
