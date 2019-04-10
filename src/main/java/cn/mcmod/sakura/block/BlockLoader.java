@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
@@ -17,8 +18,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.GameData;
 
 public class BlockLoader {
+
+	public static Block BAMBOO = new BlockBamboo();
+	public static Block BAMBOOSHOOT = new BlockBambooShoot();
+
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
+		register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
+		register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
+
+		registerRender(BAMBOO);
+		registerRender(BAMBOOSHOOT);
 	}
 
 	private static void register(Block block, Item itemBlock, String string) {
