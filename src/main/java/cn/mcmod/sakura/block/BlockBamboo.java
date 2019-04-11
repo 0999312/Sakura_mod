@@ -7,7 +7,6 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -24,64 +23,64 @@ import java.util.Random;
 public class BlockBamboo extends Block implements IPlantable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 5);
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 1.0D, 0.7D);
+
     public BlockBamboo() {
         super(Material.WOOD);
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
+        this.setHardness(1.0F);
+        this.setResistance(4.0F);
     }
 
     @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent growing cactus from loading unloaded chunks with block update
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        if (!worldIn.isAreaLoaded(pos, 1))
+            return; // Forge: prevent growing cactus from loading unloaded chunks with block update
         BlockPos blockpos = pos.up();
 
-        if (worldIn.isAirBlock(blockpos))
-        {
+        if (worldIn.isAirBlock(blockpos)) {
             int i;
 
-            for (i = 1; worldIn.getBlockState(pos.down(i)).getBlock() == this; ++i)
-            {
+            for (i = 1; worldIn.getBlockState(pos.down(i)).getBlock() == this; ++i) {
             }
 
-            if (i < 18)
-            {
+            if (i < 18) {
                 int j = state.getValue(AGE).intValue();
 
-                if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true))
-                {
-                    if (j == 5)
-                    {
+                if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
+                    if (j == 5) {
                         worldIn.setBlockState(blockpos, this.getDefaultState());
                         IBlockState iblockstate = state.withProperty(AGE, Integer.valueOf(0));
                         worldIn.setBlockState(pos, iblockstate, 4);
                         iblockstate.neighborChanged(worldIn, blockpos, this, pos);
-                    }
-                    else
-                    {
+                    } else {
                         worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
                     }
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
                 }
-            }else {
+            }
+        } else {
+            int i;
+
+            for (i = 1; worldIn.getBlockState(pos.up(i)).getBlock() == this; ++i) {
+            }
+
+            if (i >= 18) {
                 int j = state.getValue(AGE).intValue();
 
-                if(rand.nextInt(6) == 0){
-                    pos = pos.add(rand.nextInt(3) - 1, 0, rand.nextInt(3) - 1);
+                if (rand.nextInt(4) == 0) {
+                    BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
 
-                    if (worldIn.isAirBlock(pos.down(17)) && worldIn.getBlockState(pos.down(18)).getBlock() == Blocks.GRASS)
-                    {
-                        worldIn.setBlockState(pos.down(17),BlockLoader.BAMBOOSHOOT.getDefaultState());
+                    if (worldIn.isAirBlock(blockpos1) && BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos1) && worldIn.getBlockState(blockpos1) != BlockLoader.BAMBOO) {
+                        worldIn.setBlockState(blockpos1, BlockLoader.BAMBOOSHOOT.getDefaultState());
                     }
-
                 }
             }
         }
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return BAMBOO_AABB;
     }
 
@@ -92,8 +91,7 @@ public class BlockBamboo extends Block implements IPlantable {
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
-    {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -101,34 +99,24 @@ public class BlockBamboo extends Block implements IPlantable {
      * Used to determine ambient occlusion and culling when rebuilding chunks for render
      */
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        IBlockState state = worldIn.getBlockState(pos.down());
-
-        if (this.canBlockStay(worldIn, pos) && state.getBlock() != BlockLoader.BAMBOO) {
-
-            return super.canPlaceBlockAt(worldIn, pos);
-        }else {
-            return false;
-        }
+        return false;
     }
 
+
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-        if (!this.canBlockStay(worldIn, pos))
-        {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (!this.canBlockStay(worldIn, pos)) {
             worldIn.destroyBlock(pos, true);
         }
     }
 
-    public boolean canBlockStay(World worldIn, BlockPos pos)
-    {
+    public boolean canBlockStay(World worldIn, BlockPos pos) {
 
         IBlockState state = worldIn.getBlockState(pos.down());
         return state.getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, this) && !worldIn.getBlockState(pos.up()).getMaterial().isLiquid();
@@ -141,21 +129,19 @@ public class BlockBamboo extends Block implements IPlantable {
 
         if (plant.getBlock() == BlockLoader.BAMBOO) {
             return this == BlockLoader.BAMBOO;
-        }else {
-            return super.canSustainPlant(state,world,pos,direction,plantable);
+        } else {
+            return super.canSustainPlant(state, world, pos, direction, plantable);
         }
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getBlockLayer()
-    {
+    public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -171,20 +157,18 @@ public class BlockBamboo extends Block implements IPlantable {
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
-    {
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, AGE);
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(AGE).intValue();
     }
 
     @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         return BlockFaceShape.UNDEFINED;
     }
+
 }

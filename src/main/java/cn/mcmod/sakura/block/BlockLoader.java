@@ -20,15 +20,12 @@ import net.minecraftforge.registries.GameData;
 public class BlockLoader {
 
 	public static Block BAMBOO = new BlockBamboo();
-	public static Block BAMBOOSHOOT = new BlockBambooShoot();
+	public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
 
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 		register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
 		register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
-
-		registerRender(BAMBOO);
-		registerRender(BAMBOOSHOOT);
 	}
 
 	private static void register(Block block, Item itemBlock, String string) {
@@ -54,6 +51,8 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(BAMBOO);
+		registerRender(BAMBOOSHOOT);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
