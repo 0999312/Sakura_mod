@@ -1,14 +1,20 @@
 package cn.mcmod.sakura;
 
-import net.minecraft.init.Blocks;
+import cn.mcmod.sakura.world.biome.SakuraBiomes;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod(modid = SakuraMain.MODID, name = SakuraMain.NAME, version = SakuraMain.VERSION)
 public class SakuraMain {
@@ -21,6 +27,21 @@ public class SakuraMain {
 
     @SidedProxy(clientSide = "cn.mcmod.sakura.ClientProxy", serverSide = "cn.mcmod.sakura.CommonProxy")
     public static CommonProxy proxy;
+
+    @EventHandler
+    public void construct(FMLConstructionEvent event) {
+        MinecraftForge.EVENT_BUS.register(this);
+
+        FluidRegistry.enableUniversalBucket();
+    }
+
+    @SubscribeEvent
+    public void registerBiomes(RegistryEvent.Register<Biome> event) {
+        IForgeRegistry<Biome> registry = event.getRegistry();
+
+        SakuraBiomes.register(registry);
+
+    }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

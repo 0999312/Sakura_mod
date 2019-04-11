@@ -35,7 +35,7 @@ public class BlockBamboo extends Block implements IPlantable {
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         if (!worldIn.isAreaLoaded(pos, 1))
-            return; // Forge: prevent growing cactus from loading unloaded chunks with block update
+            return;
         BlockPos blockpos = pos.up();
 
         if (worldIn.isAirBlock(blockpos)) {
@@ -68,10 +68,10 @@ public class BlockBamboo extends Block implements IPlantable {
             if (i >= 18) {
                 int j = state.getValue(AGE).intValue();
 
-                if (rand.nextInt(4) == 0) {
+                if (worldIn.isRaining() || worldIn.rand.nextFloat() < 0.15) {
                     BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
 
-                    if (worldIn.isAirBlock(blockpos1) && BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos1) && worldIn.getBlockState(blockpos1) != BlockLoader.BAMBOO) {
+                    if (worldIn.isAirBlock(blockpos1) && BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos1)) {
                         worldIn.setBlockState(blockpos1, BlockLoader.BAMBOOSHOOT.getDefaultState());
                     }
                 }

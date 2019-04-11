@@ -31,7 +31,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
 
     public BlockBambooShoot() {
-        super(Material.WOOD);
+        super(Material.PLANTS);
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
         this.setResistance(2.0F);
