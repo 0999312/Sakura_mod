@@ -22,6 +22,7 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.util.JSON_Creator;
 
 public class ItemLoader {
+	
 	public ItemLoader(FMLPreInitializationEvent event) {
 		
 	}

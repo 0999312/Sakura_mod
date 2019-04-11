@@ -24,11 +24,11 @@ public class BlockLoader {
 
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
+//		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 		register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
 		register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
 
-		registerRender(BAMBOO);
-		registerRender(BAMBOOSHOOT);
+
 	}
 
 	private static void register(Block block, Item itemBlock, String string) {
@@ -54,6 +54,8 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(BAMBOO);
+		registerRender(BAMBOOSHOOT);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
