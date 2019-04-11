@@ -21,11 +21,13 @@ public class BlockLoader {
 
 	public static Block BAMBOO = new BlockBamboo();
 	public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
+	public static Block BAMBOOLANTERN = new BlockBambooLantern();
 
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 		register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
 		register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
+		register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
 	}
 
 	private static void register(Block block, Item itemBlock, String string) {
@@ -53,6 +55,7 @@ public class BlockLoader {
 //		please register blocks' renders in THIS void!
 		registerRender(BAMBOO);
 		registerRender(BAMBOOSHOOT);
+		registerRender(BAMBOOLANTERN);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
