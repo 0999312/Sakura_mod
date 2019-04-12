@@ -13,7 +13,7 @@ public class SakuraBiomes {
     public static void register(IForgeRegistry<Biome> registry) {
         registry.register(BAMBOOFOREST.setRegistryName("bamboo_forest"));
 
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM,new BiomeManager.BiomeEntry(BAMBOOFOREST, 20));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM,new BiomeManager.BiomeEntry(BAMBOOFOREST, 10));
 
         BiomeDictionary.addTypes(BAMBOOFOREST, HOT, WET, DENSE, JUNGLE);
     }

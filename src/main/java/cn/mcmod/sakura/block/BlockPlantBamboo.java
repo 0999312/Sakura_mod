@@ -20,11 +20,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockBamboo extends Block implements IPlantable {
+public class BlockPlantBamboo extends Block implements IPlantable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 5);
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 1.0D, 0.7D);
 
-    public BlockBamboo() {
+    public BlockPlantBamboo() {
         super(Material.WOOD);
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);

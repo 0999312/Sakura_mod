@@ -2,3 +2,7 @@
 tile.sakura.bamboo.name=Bamboo
 tile.sakura.bamboo_shoot.name=Bamboo Shoot
 tile.sakura.bamboo_lantern.name=Bamboo Lantern
+tile.sakura.bamboo_block.name=Bamboo Block
+tile.sakura.bamboo_slab.name=Bamboo Slab
+#Item
+item.sakura.bamboo_door.name=Bamboo Door

@@ -25,7 +25,7 @@ public class BlockBambooLantern extends Block {
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
         this.setHardness(1.0F);
-        this.setResistance(4.0F);
+        this.setResistance(5.0F);
         this.setLightLevel(0.9F);
     }
 

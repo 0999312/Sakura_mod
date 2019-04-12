@@ -2,3 +2,7 @@
 tile.sakura.bamboo.name=竹
 tile.sakura.bamboo_shoot.name=タケノコ
 tile.sakura.bamboo_lantern.name=竹の照明
+tile.sakura.bamboo_block.name=竹ブロック
+tile.sakura.bamboo_slab.name=竹のハーフブロック
+#Item
+item.sakura.bamboo_door.name=竹のドア
