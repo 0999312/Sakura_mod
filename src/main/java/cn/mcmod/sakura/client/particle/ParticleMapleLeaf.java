@@ -1,0 +1,96 @@
+package cn.mcmod.sakura.client.particle;
+
+import cn.mcmod.sakura.ClientProxy;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class ParticleMapleLeaf extends Particle {
+
+    public ParticleMapleLeaf(World world, double xCoordIn, double yCoordIn, double zCoordIn, double motionXIn, double motionYIn, double motionZIn) {
+        super(world, xCoordIn, yCoordIn, zCoordIn, motionXIn, motionYIn, motionZIn);
+        this.particleTextureIndexX = 0;
+        this.particleTextureIndexY = 0;
+
+        this.motionX *= 0.10000000149011612D;
+        this.motionY *= 0.1D;
+        this.motionZ *= 0.10000000149011612D;
+
+        this.motionX += motionXIn;
+        this.motionY += motionYIn;
+        this.motionZ += motionZIn;
+
+        this.particleScale = 0.96F + 0.02F * world.rand.nextInt(8);
+
+        this.particleMaxAge = world.rand.nextInt(30) + 120;
+
+        this.particleAlpha = 1.0F;
+        this.particleGravity = 0.02F;
+        this.canCollide = true;
+    }
+
+    @Override
+    public int getFXLayer() {
+        return 2;
+    }
+
+    @Override
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rotX, float rotXZ, float rotZ, float rotYZ, float rotXY) {
+        // EffectRenderer will by default bind the vanilla particles texture, override with our own
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(ClientProxy.leafTexture);
+
+        GlStateManager.depthMask(false);
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(770, 1);
+
+        super.renderParticle(buffer, entity, partialTicks, rotX, rotXZ, rotZ, rotYZ, rotXY);
+
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+    }
+
+    @Override
+    public void move(double x, double y, double z)
+    {
+        this.setBoundingBox(this.getBoundingBox().offset(x, y, z));
+        this.resetPositionToBB();
+    }
+
+    @Override
+    public void onUpdate() {
+
+        prevPosX = posX;
+        prevPosY = posY;
+        prevPosZ = posZ;
+
+        if (particleAge++ >= particleMaxAge) {
+            this.setExpired();
+        }
+
+        this.move(motionX, motionY, motionZ);
+
+        if (posY == prevPosY) {
+            motionX *= 1.1D;
+            motionZ *= 1.1D;
+        }
+
+        motionX *= 0.93D;
+        motionY *= 1.0D;
+        motionZ *= 0.93D;
+
+        if (onGround) {
+            motionX *= 0.0D;
+            motionZ *= 0.0D;
+        }
+    }
+}

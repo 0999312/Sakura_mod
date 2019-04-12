@@ -29,6 +29,7 @@ public class BlockLoader {
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
     public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
+	public static Block MAPLE_LEAVE = new BlockMapleLeave();
 
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
@@ -38,6 +39,7 @@ public class BlockLoader {
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
+		register(MAPLE_LEAVE, new ItemBlock(MAPLE_LEAVE), "maple_leave");
         registerNoItem(BAMBOODOOR, "bamboo_door");
     }
 
@@ -70,6 +72,7 @@ public class BlockLoader {
         registerRender(BAMBOODOOR);
         registerRender(BAMBOO_BLOCK);
         registerRender(BAMBOO_SLAB);
+		registerRender(MAPLE_LEAVE);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
