@@ -1,8 +1,13 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.block.door.BlockDoorBase;
+import cn.mcmod.sakura.block.slab.BlockBambooSlab;
+import cn.mcmod.sakura.block.slab.BlockSlabBase;
+import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
@@ -18,18 +23,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.GameData;
 
 public class BlockLoader {
+    public static Block BAMBOO = new BlockPlantBamboo();
+    public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
+    public static Block BAMBOO_BLOCK = new BlockBase(Material.WOOD).setHardness(1.6F).setResistance(6.0F);
+    public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
+    public static Block BAMBOOLANTERN = new BlockBambooLantern();
+    public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
 
-	public static Block BAMBOO = new BlockBamboo();
-	public static Block BAMBOOSHOOT = new BlockBambooShoot();
-
-	public BlockLoader(FMLPreInitializationEvent event) {
+    public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
-		register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
-		register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
-
-
-	}
+        register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
+        register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
+        register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
+        register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
+        register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
+        registerNoItem(BAMBOODOOR, "bamboo_door");
+    }
 
 	private static void register(Block block, Item itemBlock, String string) {
 		block.setRegistryName(string);
@@ -56,6 +66,10 @@ public class BlockLoader {
 //		please register blocks' renders in THIS void!
 		registerRender(BAMBOO);
 		registerRender(BAMBOOSHOOT);
+        registerRender(BAMBOOLANTERN);
+        registerRender(BAMBOODOOR);
+        registerRender(BAMBOO_BLOCK);
+        registerRender(BAMBOO_SLAB);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {

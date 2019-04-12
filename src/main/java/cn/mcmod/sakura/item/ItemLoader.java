@@ -1,4 +1,5 @@
 package cn.mcmod.sakura.item;
+import cn.mcmod.sakura.block.BlockLoader;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -22,14 +23,15 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.util.JSON_Creator;
 
 public class ItemLoader {
+    public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
 	
 	public ItemLoader(FMLPreInitializationEvent event) {
-		
+        register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID+"."+"bamboo_door"));
 	}
 	@SideOnly(Side.CLIENT)
     public static void registerRenders()
     {
-	
+        registerRender(BAMBOO_DOOR);
     }
 
 	private static void register(Item item)

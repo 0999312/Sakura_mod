@@ -8,6 +8,10 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -19,6 +23,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
@@ -26,9 +31,10 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
 
     public BlockBambooShoot() {
-        super(Material.WOOD);
+        super(Material.PLANTS);
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
+        this.setResistance(2.0F);
     }
 
     @Override
@@ -107,6 +113,12 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
         return state.getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, this) && !worldIn.getBlockState(pos.up()).getMaterial().isLiquid();
     }
 
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        if (!worldIn.isRemote && stack.getItem() instanceof ItemHoe) {
+            super.harvestBlock(worldIn,player,pos,state,te,stack);
+        }
+    }
+
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
@@ -152,7 +164,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return true;
+        return (double)worldIn.rand.nextFloat() < 0.45D;
     }
 
     @Override

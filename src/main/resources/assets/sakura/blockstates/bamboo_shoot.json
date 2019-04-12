@@ -3,8 +3,7 @@
   "defaults": {
     "textures": {
       "cross": "sakura:blocks/bamboo_shoot",
-      "layer0": "sakura:blocks/bamboo_shoot",
-      "transform": "forge:default-item"
+      "layer0": "sakura:blocks/bamboo_shoot"
     }
   },
   "variants": {
