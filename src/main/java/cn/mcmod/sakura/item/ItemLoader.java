@@ -1,24 +1,32 @@
 package cn.mcmod.sakura.item;
-
-import cn.mcmod.sakura.CommonProxy;
-import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDoor;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.*;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.EnumMap;
+
+import cn.mcmod.sakura.CommonProxy;
+import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.util.JSON_Creator;
+
 public class ItemLoader {
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
-
+	
 	public ItemLoader(FMLPreInitializationEvent event) {
-		register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID+"."+"bamboo_door"));
+        register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID+"."+"bamboo_door"));
 	}
 	@SideOnly(Side.CLIENT)
     public static void registerRenders()
