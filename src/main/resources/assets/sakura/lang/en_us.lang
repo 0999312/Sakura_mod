@@ -4,5 +4,10 @@ tile.sakura.bamboo_shoot.name=Bamboo Shoot
 tile.sakura.bamboo_lantern.name=Bamboo Lantern
 tile.sakura.bamboo_block.name=Bamboo Block
 tile.sakura.bamboo_slab.name=Bamboo Slab
+tile.sakura.maple_leaves_red.name=MapleLeaves Red
+tile.sakura.maple_log.name=Maple Log
+tile.sakura.maple_log_sap.name=Maple SapLog
 #Item
 item.sakura.bamboo_door.name=Bamboo Door
+
+itemGroup.sakura_tabs=Sakura

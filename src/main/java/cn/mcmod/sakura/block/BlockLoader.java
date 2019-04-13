@@ -2,6 +2,10 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
+import cn.mcmod.sakura.block.maple.BlockMapleLeaveRed;
+import cn.mcmod.sakura.block.maple.BlockMapleLog;
+import cn.mcmod.sakura.block.maple.BlockMapleSapLog;
+import cn.mcmod.sakura.block.maple.BlockMapleSaplingRed;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
 import cn.mcmod.sakura.item.ItemSlabBase;
@@ -29,6 +33,10 @@ public class BlockLoader {
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
     public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
+	public static Block MAPLE_SAPLING_RED = new BlockMapleSaplingRed();
+	public static Block MAPLE_LEAVE_RED = new BlockMapleLeaveRed();
+	public static Block MAPLE_LOG = new BlockMapleLog();
+	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
 
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
@@ -38,7 +46,11 @@ public class BlockLoader {
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
-        registerNoItem(BAMBOODOOR, "bamboo_door");
+		registerNoItem(BAMBOODOOR, "bamboo_door");
+		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
+		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
+		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
+		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
     }
 
 	private static void register(Block block, Item itemBlock, String string) {
@@ -70,6 +82,10 @@ public class BlockLoader {
         registerRender(BAMBOODOOR);
         registerRender(BAMBOO_BLOCK);
         registerRender(BAMBOO_SLAB);
+		registerRender(MAPLE_SAPLING_RED);
+		registerRender(MAPLE_LEAVE_RED);
+		registerRender(MAPLE_LOG);
+		registerRender(MAPLE_LOG_SAP);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {

@@ -19,7 +19,7 @@ public class BiomeBambooForest extends Biome {
     }
 
     public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
-        if (rand.nextInt(16) == 0) {
+        if (rand.nextInt(20) == 0) {
             return BIG_TREE_FEATURE;
         } else {
             return new WorldGenBamboo(false);

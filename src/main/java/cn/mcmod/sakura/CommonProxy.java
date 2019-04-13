@@ -1,12 +1,14 @@
 package cn.mcmod.sakura;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.event.SakuraEventLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -41,5 +43,12 @@ public class CommonProxy {
 
     }
 
+    public World getClientWorld() {
+        return null;
+    }
+
+    public void spawnParticle(World world, SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
+
+    }
 
 }
