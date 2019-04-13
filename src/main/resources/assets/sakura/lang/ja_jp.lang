@@ -4,5 +4,10 @@ tile.sakura.bamboo_shoot.name=タケノコ
 tile.sakura.bamboo_lantern.name=竹の照明
 tile.sakura.bamboo_block.name=竹ブロック
 tile.sakura.bamboo_slab.name=竹のハーフブロック
+tile.sakura.maple_leaves_red.name=紅葉の葉（赤）
+tile.sakura.maple_log.name=紅葉の原木
+tile.sakura.maple_log_sap.name=紅葉の樹液が詰まった原木
 #Item
 item.sakura.bamboo_door.name=竹のドア
+
+itemGroup.sakura_tabs=Sakura

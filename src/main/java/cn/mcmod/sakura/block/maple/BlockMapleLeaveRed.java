@@ -1,7 +1,8 @@
-package cn.mcmod.sakura.block;
+package cn.mcmod.sakura.block.maple;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -26,9 +27,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockMapleLeave extends BlockLeaves {
+public class BlockMapleLeaveRed extends BlockLeaves {
 
-    public BlockMapleLeave() {
+    public BlockMapleLeaveRed() {
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setCreativeTab(CommonProxy.tab);
@@ -38,7 +39,7 @@ public class BlockMapleLeave extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        if (rand.nextInt(10) == 0) {
+        if (rand.nextInt(30) == 0) {
             int j = rand.nextInt(2) * 2 - 1;
             int k = rand.nextInt(2) * 2 - 1;
 
@@ -49,7 +50,7 @@ public class BlockMapleLeave extends BlockLeaves {
             double d4 = (((double) rand.nextFloat()) * 0.055D) + 0.015D;
             double d5 = (double) (rand.nextFloat() * (float) k) * 0.1D;
 
-            SakuraMain.proxy.spawnParticle(worldIn,SakuraParticleType.MAPLE, d0, d1, d2, d3, -d4, d5);
+            SakuraMain.proxy.spawnParticle(worldIn,SakuraParticleType.MAPLERED, d0, d1, d2, d3, -d4, d5);
         }
     }
 
@@ -86,8 +87,7 @@ public class BlockMapleLeave extends BlockLeaves {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        //return Item.getItemFromBlock(BlockLoader.TOFU_SAPLING);
-        return null;
+        return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_RED);
     }
 
     @Override

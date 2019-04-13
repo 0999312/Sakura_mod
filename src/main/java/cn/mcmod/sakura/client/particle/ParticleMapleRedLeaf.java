@@ -15,9 +15,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ParticleMapleLeaf extends Particle {
+public class ParticleMapleRedLeaf extends Particle {
 
-    public ParticleMapleLeaf(World world, double xCoordIn, double yCoordIn, double zCoordIn, double motionXIn, double motionYIn, double motionZIn) {
+    public ParticleMapleRedLeaf(World world, double xCoordIn, double yCoordIn, double zCoordIn, double motionXIn, double motionYIn, double motionZIn) {
         super(world, xCoordIn, yCoordIn, zCoordIn, motionXIn, motionYIn, motionZIn);
         this.particleTextureIndexX = 0;
         this.particleTextureIndexY = 0;
@@ -60,13 +60,6 @@ public class ParticleMapleLeaf extends Particle {
     }
 
     @Override
-    public void move(double x, double y, double z)
-    {
-        this.setBoundingBox(this.getBoundingBox().offset(x, y, z));
-        this.resetPositionToBB();
-    }
-
-    @Override
     public void onUpdate() {
 
         prevPosX = posX;
@@ -77,16 +70,9 @@ public class ParticleMapleLeaf extends Particle {
             this.setExpired();
         }
 
-        this.move(motionX, motionY, motionZ);
-
-        if (posY == prevPosY) {
-            motionX *= 1.1D;
-            motionZ *= 1.1D;
-        }
-
-        motionX *= 0.93D;
-        motionY *= 1.0D;
-        motionZ *= 0.93D;
+        this.move(this.motionX, this.motionY, this.motionZ);
+        this.motionY -= 0.003000000026077032D;
+        this.motionY = Math.max(this.motionY, -0.14000000059604645D);
 
         if (onGround) {
             motionX *= 0.0D;
