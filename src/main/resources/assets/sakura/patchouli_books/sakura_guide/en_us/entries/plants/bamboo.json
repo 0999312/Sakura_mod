@@ -1,0 +1,15 @@
+{
+  "name": "Bamboo",
+  "icon": "sakura:bamboo",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/bamboo",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "Bamboo",
+      "item": "sakura:bamboo",
+      "text": "A plant that can be seen in the Bamboo Forest biome. It can be used for building etc."
+    }
+  ]
+}

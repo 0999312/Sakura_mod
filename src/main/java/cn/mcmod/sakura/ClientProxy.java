@@ -50,15 +50,18 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnParticle(World world, SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
+    public void spawnParticle(SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
 
         Minecraft mc = Minecraft.getMinecraft();
-        Entity entity = mc.getRenderViewEntity();
+        World world = mc.world;
 
-        // ignore the passed-in world, since on SP we get the integrated server world, which is not really what we want
-        world = this.getClientWorld();
+        if (world == null) {
 
-        if (entity != null && mc.effectRenderer != null) {
+            return;
+
+        }
+
+        if (mc.effectRenderer != null) {
 
             int i = mc.gameSettings.particleSetting;
 
@@ -68,27 +71,19 @@ public class ClientProxy extends CommonProxy {
 
             }
 
-            double d0 = entity.posX - x;
+            Particle particle = null;
 
-            double d1 = entity.posY - y;
+            switch (particleType) {
+                case MAPLERED:
+                    particle = new ParticleMapleRedLeaf(world, x, y, z, velX, velY, velZ);
+                    break;
 
-            double d2 = entity.posZ - z;
-
-            if (d0 * d0 + d1 * d1 + d2 * d2 <= 1024D && i <= 1) {
-
-                Particle particle = null;
-
-                switch (particleType) {
-                    case MAPLERED:
-                        particle = new ParticleMapleRedLeaf(world, x, y, z, velX, velY, velZ);
-                        break;
-
-                }
-
-                if (particle != null) {
-                    mc.effectRenderer.addEffect(particle);
-                }
             }
+
+            if (particle != null) {
+                mc.effectRenderer.addEffect(particle);
+            }
+
         }
     }
 }

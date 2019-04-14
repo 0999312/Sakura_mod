@@ -1,0 +1,15 @@
+{
+  "name": "MapleSapling",
+  "icon": "sakura:maple_sapling_red",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/maple_sapling",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "MapleSapling",
+      "item": "sakura:maple_sapling_red",
+      "text": "Plants that can be recovered by Maple Forest biome. It is also possible to grow into a tree from which sap can be obtained."
+    }
+  ]
+}

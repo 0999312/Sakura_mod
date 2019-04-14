@@ -7,7 +7,15 @@ tile.sakura.bamboo_slab.name=竹のハーフブロック
 tile.sakura.maple_leaves_red.name=紅葉の葉（赤）
 tile.sakura.maple_log.name=紅葉の原木
 tile.sakura.maple_log_sap.name=紅葉の樹液が詰まった原木
+tile.sakura.maple_sapling_red.name=赤の紅葉の苗木
+tile.sakura.campfire_idle.name=キャンプファイヤー
+tile.sakura.campfire_lit.name=キャンプファイヤー
 #Item
 item.sakura.bamboo_door.name=竹のドア
+item.sakura.maple_syrup.name=メイプルシロップ
+item.sakura.maple_cookie.name=メイプルクッキー
+item.sakura:sakura_guide.name=ハーベスターガイドブック
+
+guide.sakura_guide.landing_text=この世界にはたくさんの植物がいっぱいある。この本では主にタケノコやハーベスター必見のことが書かれている
 
 itemGroup.sakura_tabs=Sakura

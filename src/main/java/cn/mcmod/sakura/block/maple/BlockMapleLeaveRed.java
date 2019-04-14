@@ -50,7 +50,7 @@ public class BlockMapleLeaveRed extends BlockLeaves {
             double d4 = (((double) rand.nextFloat()) * 0.055D) + 0.015D;
             double d5 = (double) (rand.nextFloat() * (float) k) * 0.1D;
 
-            SakuraMain.proxy.spawnParticle(worldIn,SakuraParticleType.MAPLERED, d0, d1, d2, d3, -d4, d5);
+            SakuraMain.proxy.spawnParticle(SakuraParticleType.MAPLERED, d0, d1, d2, d3, -d4, d5);
         }
     }
 

@@ -1,0 +1,15 @@
+{
+  "name": "MapleLog",
+  "icon": "sakura:maple_log",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/maple_sapling",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "紅葉の原木",
+      "item": "sakura:maple_log",
+      "text": "この原木は、Maple Forest Biomeで見かけることができる。建築などに使える"
+    }
+  ]
+}
