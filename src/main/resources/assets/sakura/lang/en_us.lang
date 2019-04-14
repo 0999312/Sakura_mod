@@ -7,7 +7,15 @@ tile.sakura.bamboo_slab.name=Bamboo Slab
 tile.sakura.maple_leaves_red.name=MapleLeaves Red
 tile.sakura.maple_log.name=Maple Log
 tile.sakura.maple_log_sap.name=Maple SapLog
+tile.sakura.maple_sapling_red.name=Red MapleSapling
+tile.sakura.campfire_idle.name=Campfire
+tile.sakura.campfire_lit.name=Campfire
 #Item
 item.sakura.bamboo_door.name=Bamboo Door
+item.sakura.maple_syrup.name=Maple Syrup
+item.sakura.maple_cookie.name=Maple Cookie
+item.sakura:sakura_guide.name=Harvester Guide
+
+guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
 itemGroup.sakura_tabs=Sakura

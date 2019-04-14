@@ -1,0 +1,15 @@
+{
+  "name": "BambooShoot",
+  "icon": "sakura:bamboo_shoot",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/bamboo",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "BambooShoot",
+      "item": "sakura:bamboo_shoot",
+      "text": "A plant that can be seen in the Bamboo Forest biome.Growth speed is a little faster"
+    }
+  ]
+}

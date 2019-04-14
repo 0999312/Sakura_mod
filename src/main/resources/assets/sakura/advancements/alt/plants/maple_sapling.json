@@ -1,0 +1,6 @@
+{
+  "parent": "sakura:alt/root",
+  "criteria": {
+    "bamboo": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "item": "sakura:maple_sapling_red" }]}}
+  }
+}

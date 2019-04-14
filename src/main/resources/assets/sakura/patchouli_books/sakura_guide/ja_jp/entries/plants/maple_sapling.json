@@ -1,0 +1,15 @@
+{
+  "name": "MapleSapling",
+  "icon": "sakura:maple_sapling_red",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/maple_sapling",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "紅葉の苗木",
+      "item": "sakura:maple_sapling_red",
+      "text": "Maple Forest biome(紅葉の森)で見ることができる植物。 樹液が手に入る木に成長することも"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 0,
+    "count": 3
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "item": "sakura:maple_syrup",
+      "data": 32767
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

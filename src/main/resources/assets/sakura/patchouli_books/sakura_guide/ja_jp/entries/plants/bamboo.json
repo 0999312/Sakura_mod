@@ -1,0 +1,15 @@
+{
+  "name": "Bamboo",
+  "icon": "sakura:bamboo",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/bamboo",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "竹",
+      "item": "sakura:bamboo",
+      "text": "BambooForest biome(竹林バイオーム）に生えている植物。建築などに使えるが生えすぎに注意"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "MapleLog",
+  "icon": "sakura:maple_log",
+  "category": "plants",
+  "advancement": "sakura:alt/plants/maple_sapling",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "MapleLog",
+      "item": "sakura:maple_log",
+      "text": "This log can be found in Maple Forest Biome.It can be used for building etc."
+    }
+  ]
+}

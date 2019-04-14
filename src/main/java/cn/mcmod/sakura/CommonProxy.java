@@ -47,7 +47,7 @@ public class CommonProxy {
         return null;
     }
 
-    public void spawnParticle(World world, SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
+    public void spawnParticle(SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
 
     }
 
