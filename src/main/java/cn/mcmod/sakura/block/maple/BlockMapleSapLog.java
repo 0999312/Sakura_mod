@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.block.maple;
 
 import cn.mcmod.sakura.CommonProxy;
+import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.stats.StatList;
@@ -21,6 +23,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockMapleSapLog extends Block {
     public static final PropertyInteger SAP_AGE = PropertyInteger.create("sap_age", 0, 5);
@@ -65,9 +69,13 @@ public class BlockMapleSapLog extends Block {
 
                 return true;
             }
-
+            return true;
         }
-        return false;
+    }
+
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(BlockLoader.MAPLE_LOG);
     }
 
     @Override

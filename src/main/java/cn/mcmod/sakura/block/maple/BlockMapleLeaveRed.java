@@ -39,7 +39,7 @@ public class BlockMapleLeaveRed extends BlockLeaves {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 
-        if (rand.nextInt(30) == 0) {
+        if (rand.nextInt(40) == 0) {
             int j = rand.nextInt(2) * 2 - 1;
             int k = rand.nextInt(2) * 2 - 1;
 
@@ -88,6 +88,12 @@ public class BlockMapleLeaveRed extends BlockLeaves {
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
         return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_RED);
+    }
+
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    {
+        return new ItemStack(this);
     }
 
     @Override

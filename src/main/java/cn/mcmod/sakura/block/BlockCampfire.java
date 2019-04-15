@@ -137,8 +137,9 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
                     }
                 }
             }
+
+            return true;
         }
-        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.world.biome;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.entity.EntityDeer;
 import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -17,12 +18,17 @@ public class BiomeMapleForest extends Biome {
         super(mapleForest);
         this.decorator.treesPerChunk = 10;
         this.decorator.grassPerChunk = 2;
+
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityDeer.class,10,3,4));
     }
 
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-
-        return (WorldGenAbstractTree) RED_MAPLETREE;
+        if(rand.nextInt(8) ==0){
+            return (WorldGenAbstractTree)RED_MAPLETREE_SAP;
+        }else {
+            return (WorldGenAbstractTree) RED_MAPLETREE;
+        }
 
     }
 }
