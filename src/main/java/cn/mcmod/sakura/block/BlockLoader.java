@@ -39,6 +39,7 @@ public class BlockLoader {
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
 	public static Block CAMPFIRE_IDLE = new BlockCampfire(false);
 	public static Block CAMPFIRE_LIT = new BlockCampfire(true);
+	public static Block RICECROP = new BlockRiceCrop();
 
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
@@ -55,6 +56,7 @@ public class BlockLoader {
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
+		registerNoItem(RICECROP, "ricecrop");
     }
 
 	private static void register(Block block, Item itemBlock, String string) {
@@ -92,6 +94,7 @@ public class BlockLoader {
 		registerRender(MAPLE_LOG_SAP);
 		registerRender(CAMPFIRE_IDLE);
 		registerRender(CAMPFIRE_LIT);
+		registerRender(RICECROP);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
