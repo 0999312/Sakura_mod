@@ -12,8 +12,10 @@
       }
     },
     "sap_age=1": {
+      "model": "cube_column",
       "textures": {
-        "model": "cube_column"
+        "end": "sakura:blocks/maple_log_top",
+        "side": "sakura:blocks/maple_log_sap"
       }
     },
     "sap_age=2": {

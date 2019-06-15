@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block.maple;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -14,7 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 
@@ -32,7 +32,7 @@ public class BlockMapleSaplingRed extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = new WorldGenTrees(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(),false);
+        WorldGenerator treeGenerator = (WorldGenerator)(rand.nextInt(8) == 0 ? new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(),true) : new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(),false));
 
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

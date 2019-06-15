@@ -27,6 +27,11 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
         protected void onContentsChanged(int slot) {
             TileEntityCampfire.this.markDirty();
         }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 16;
+        }
     };
 
 

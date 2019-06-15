@@ -111,19 +111,41 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
                 if (tile instanceof TileEntityCampfire) {
                     TileEntityCampfire tileEntityCampfire = (TileEntityCampfire) tile;
 
+                    if(tileEntityCampfire.getInventory().isItemValid(0,stack)&& tileEntityCampfire.getInventory().getStackInSlot(0).getCount() < 16){
+                        ItemStack campfireStack=new ItemStack(stack.getItem(),1);
+
+                        stack.shrink(1);
+
+                        tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
+                        return true;
+                    }
+
                     if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO)) {
                         if (!playerIn.isCreative()) {
                             stack.shrink(1);
                         }
-                        if (worldIn.rand.nextInt(10) == 0) {
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 200 + worldIn.rand.nextInt(100));
+                        if (worldIn.rand.nextInt(8) == 0) {
+                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 1000 + worldIn.rand.nextInt(400));
                         }
+                        return true;
+                    }
+
+                    if (stack.getItem() == Items.FLINT_AND_STEEL) {
+                        tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 1200 + worldIn.rand.nextInt(400));
+
+                        return true;
+                    }
+
+                    if(stack.isEmpty()){
+                        Block.spawnAsEntity(worldIn, pos, ((TileEntityCampfire) tile).getInventory().getStackInSlot(0));
+                        ((TileEntityCampfire) tile).getInventory().setStackInSlot(0, ItemStack.EMPTY);
                         return true;
                     }
                 }
             }
+
+            return true;
         }
-        return false;
     }
 
     @Override

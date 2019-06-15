@@ -1,7 +1,7 @@
 {
   "variants": {
     "normal": {
-      "model": "sakura:campfire"
+      "model": "sakura:campfire_lit"
     }
   }
 }
