@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -21,7 +22,7 @@ public class BlockBambooLantern extends Block {
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.5D, 0.7D);
 
     public BlockBambooLantern() {
-        super(Material.CIRCUITS);
+        super(Material.CIRCUITS, MapColor.GREEN);
         this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
         this.setHardness(1.0F);

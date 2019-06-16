@@ -125,13 +125,13 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
                             stack.shrink(1);
                         }
                         if (worldIn.rand.nextInt(8) == 0) {
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 1000 + worldIn.rand.nextInt(400));
+                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 2000 + worldIn.rand.nextInt(400));
                         }
                         return true;
                     }
 
-                    if (stack.getItem() == Items.FLINT_AND_STEEL) {
-                        tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 1200 + worldIn.rand.nextInt(400));
+                    if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
+                        tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000 + worldIn.rand.nextInt(800));
 
                         return true;
                     }
