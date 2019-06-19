@@ -26,6 +26,8 @@ public class ItemLoader {
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
 
     public ItemLoader(FMLPreInitializationEvent event) {
+
+        register(RICE);
         register(RICE_SEEDS);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(MAPLE_SYRUP.setUnlocalizedName(SakuraMain.MODID + "." + "maple_syrup"));
@@ -34,6 +36,8 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+
+        registerRender(RICE);
         registerRender(RICE_SEEDS);
         registerRender(BAMBOO_DOOR);
         registerRender(MAPLE_SYRUP);
