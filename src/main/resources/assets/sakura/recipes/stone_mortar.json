@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "#",
+    "#"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "#": {
+      "item": "minecraft:stone_slab",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "sakura:bamboo_slab",
+    "count": 6
+  }
+}

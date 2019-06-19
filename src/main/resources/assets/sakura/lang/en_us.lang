@@ -10,13 +10,15 @@ tile.sakura.maple_log_sap.name=Maple SapLog
 tile.sakura.maple_sapling_red.name=Red MapleSapling
 tile.sakura.campfire_idle.name=Campfire
 tile.sakura.campfire_lit.name=Campfire
+tile.sakura.stone_mortar.name=StoneMortar
 tile.sakura.ricecrop.name=RiceCrop
 #Item
 item.sakura.bamboo_door.name=Bamboo Door
 item.sakura.maple_syrup.name=Maple Syrup
 item.sakura.maple_cookie.name=Maple Cookie
 item.sakura:sakura_guide.name=Harvester Guide
-item.sakura.riceseeds.name=RiceSeeds
+item.sakura.rice_seeds.name=RiceSeeds
+item.sakura.rice.name=Rice
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
