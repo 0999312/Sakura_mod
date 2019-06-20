@@ -29,18 +29,12 @@ public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEnti
             ItemStack itemstack = new ItemStack(te.getInventory().getStackInSlot(0).getItem(), te.getInventory().getStackInSlot(0).getCount(), te.getInventory().getStackInSlot(0).getMetadata());
 
             if (itemstack == ItemStack.EMPTY) {
-
                 return;
-
             }
-
-
             if (itemstack != renderItemStack) {
                 renderItemStack = itemstack;
                 renderItemEntity = new EntityItem(te.getWorld());
                 renderItemEntity.setItem(itemstack.copy());
-
-                //これを設定しないとEntityItemがあらぶる
                 renderItemEntity.hoverStart = 0;
             }
 

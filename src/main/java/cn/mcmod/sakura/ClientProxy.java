@@ -2,7 +2,10 @@ package cn.mcmod.sakura;
 
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
+import cn.mcmod.sakura.client.particle.ParticleMapleGreenLeaf;
+import cn.mcmod.sakura.client.particle.ParticleMapleOrangeLeaf;
 import cn.mcmod.sakura.client.particle.ParticleMapleRedLeaf;
+import cn.mcmod.sakura.client.particle.ParticleMapleYellowLeaf;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
@@ -77,9 +80,20 @@ public class ClientProxy extends CommonProxy {
             Particle particle = null;
 
             switch (particleType) {
-                case MAPLERED:
-                    particle = new ParticleMapleRedLeaf(world, x, y, z, velX, velY, velZ);
-                    break;
+            case MAPLERED:
+                particle = new ParticleMapleRedLeaf(world, x, y, z, velX, velY, velZ);
+                break;
+			case MAPLEGREEN:
+				particle = new ParticleMapleGreenLeaf(world, x, y, z, velX, velY, velZ);
+				break;
+			case MAPLEORANGE:
+				particle = new ParticleMapleOrangeLeaf(world, x, y, z, velX, velY, velZ);
+				break;
+			case MAPLEYELLOW:
+				particle = new ParticleMapleYellowLeaf(world, x, y, z, velX, velY, velZ);
+				break;
+			default:
+				break;
 
             }
 

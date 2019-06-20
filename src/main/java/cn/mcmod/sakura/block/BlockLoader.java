@@ -2,10 +2,16 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
+import cn.mcmod.sakura.block.maple.BlockMapleLeaveGreen;
+import cn.mcmod.sakura.block.maple.BlockMapleLeaveOrange;
 import cn.mcmod.sakura.block.maple.BlockMapleLeaveRed;
+import cn.mcmod.sakura.block.maple.BlockMapleLeaveYellow;
 import cn.mcmod.sakura.block.maple.BlockMapleLog;
 import cn.mcmod.sakura.block.maple.BlockMapleSapLog;
+import cn.mcmod.sakura.block.maple.BlockMapleSaplingGreen;
+import cn.mcmod.sakura.block.maple.BlockMapleSaplingOrange;
 import cn.mcmod.sakura.block.maple.BlockMapleSaplingRed;
+import cn.mcmod.sakura.block.maple.BlockMapleSaplingYellow;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
 import cn.mcmod.sakura.item.ItemLoader;
@@ -34,8 +40,16 @@ public class BlockLoader {
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
     public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
+    
 	public static Block MAPLE_SAPLING_RED = new BlockMapleSaplingRed();
 	public static Block MAPLE_LEAVE_RED = new BlockMapleLeaveRed();
+	public static Block MAPLE_SAPLING_YELLOW = new BlockMapleSaplingYellow();
+	public static Block MAPLE_LEAVE_YELLOW = new BlockMapleLeaveYellow();
+	public static Block MAPLE_SAPLING_ORANGE = new BlockMapleSaplingOrange();
+	public static Block MAPLE_LEAVE_ORANGE = new BlockMapleLeaveOrange();
+	public static Block MAPLE_SAPLING_GREEN = new BlockMapleSaplingGreen();
+	public static Block MAPLE_LEAVE_GREEN = new BlockMapleLeaveGreen();
+	
 	public static Block MAPLE_LOG = new BlockMapleLog();
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
 	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
@@ -58,8 +72,16 @@ public class BlockLoader {
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
 		registerNoItem(BAMBOODOOR, "bamboo_door");
+		
 		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
 		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
+		register(MAPLE_SAPLING_YELLOW, new ItemBlock(MAPLE_SAPLING_YELLOW), "maple_sapling_yellow");
+		register(MAPLE_LEAVE_YELLOW, new ItemBlock(MAPLE_LEAVE_YELLOW), "maple_leaves_yellow");
+		register(MAPLE_SAPLING_ORANGE, new ItemBlock(MAPLE_SAPLING_ORANGE), "maple_sapling_orange");
+		register(MAPLE_LEAVE_ORANGE, new ItemBlock(MAPLE_LEAVE_ORANGE), "maple_leaves_orange");
+		register(MAPLE_SAPLING_GREEN, new ItemBlock(MAPLE_SAPLING_GREEN), "maple_sapling_green");
+		register(MAPLE_LEAVE_GREEN, new ItemBlock(MAPLE_LEAVE_GREEN), "maple_leaves_green");
+		
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
@@ -106,6 +128,12 @@ public class BlockLoader {
         registerRender(BAMBOO_SLAB);
 		registerRender(MAPLE_SAPLING_RED);
 		registerRender(MAPLE_LEAVE_RED);
+		registerRender(MAPLE_SAPLING_YELLOW);
+		registerRender(MAPLE_LEAVE_YELLOW);
+		registerRender(MAPLE_SAPLING_ORANGE);
+		registerRender(MAPLE_LEAVE_ORANGE);
+		registerRender(MAPLE_SAPLING_GREEN);
+		registerRender(MAPLE_LEAVE_GREEN);
 		registerRender(MAPLE_LOG);
 		registerRender(MAPLE_LOG_SAP);
 		registerRender(MAPLE_SYRUP_CAUDRON);
