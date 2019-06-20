@@ -7,56 +7,56 @@
     "age=0": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_4"
+          "crop": "sakura:blocks/rice_0"
         }
       }
     ],
     "age=1": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_5"
+          "crop": "sakura:blocks/rice_1"
         }
       }
     ],
     "age=2": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_6"
+          "crop": "sakura:blocks/rice_2"
         }
       }
     ],
     "age=3": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_7"
+          "crop": "sakura:blocks/rice_3"
         }
       }
     ],
     "age=4": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_0"
+          "crop": "sakura:blocks/rice_4"
         }
       }
     ],
     "age=5": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_1"
+          "crop": "sakura:blocks/rice_5"
         }
       }
     ],
     "age=6": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_2"
+          "crop": "sakura:blocks/rice_6"
         }
       }
     ],
     "age=7": [
       {
         "textures": {
-          "crop": "sakura:blocks/rice_3"
+          "crop": "sakura:blocks/rice_7"
         }
       }
     ]

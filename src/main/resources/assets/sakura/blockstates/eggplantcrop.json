@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "age=0": { "model": "sakura:eggplant_0" },
+    "age=1": { "model": "sakura:eggplant_1" },
+    "age=2": { "model": "sakura:eggplant_2" },
+    "age=3": { "model": "sakura:eggplant_3" },
+    "age=4": { "model": "sakura:eggplant_3" },
+    "age=5": { "model": "sakura:eggplant_4" },
+    "age=6": { "model": "sakura:eggplant_5" },
+    "age=7": {
+      "model": "sakura:eggplant_6"
+    },
+    "inventory": {
+      "model": "sakura:eggplant_6"
+    }
+  }
+}

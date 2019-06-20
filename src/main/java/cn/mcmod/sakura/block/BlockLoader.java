@@ -8,6 +8,7 @@ import cn.mcmod.sakura.block.maple.BlockMapleSapLog;
 import cn.mcmod.sakura.block.maple.BlockMapleSaplingRed;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
+import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.block.Block;
@@ -42,6 +43,8 @@ public class BlockLoader {
 	public static Block CAMPFIRE_LIT = new BlockCampfire(true);
 	public static Block RICECROP = new BlockRiceCrop();
 	public static Block STONEMORTAR = new BlockStoneMortar();
+	public static Block TOMATOCROP = new BlockTomatoCrop();
+	public static Block EGGPLANTCROP = new BlockEggplantCrop();
 
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
@@ -60,6 +63,8 @@ public class BlockLoader {
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(RICECROP, "ricecrop");
+		registerNoItem(TOMATOCROP, "tomatocrop");
+		registerNoItem(EGGPLANTCROP, "eggplantcrop");
 		registerNoItem(MAPLE_SYRUP_CAUDRON, "maple_syrup_caudron");
     }
 
@@ -101,6 +106,8 @@ public class BlockLoader {
 		registerRender(CAMPFIRE_IDLE);
 		registerRender(CAMPFIRE_LIT);
 		registerRender(RICECROP);
+		registerRender(TOMATOCROP);
+		registerRender(EGGPLANTCROP);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
