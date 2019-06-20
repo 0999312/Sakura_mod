@@ -18,43 +18,77 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemLoader {
-    public static Item RICE = new Item().setUnlocalizedName(SakuraMain.MODID + "." + "rice");
     public static Item RICE_SEEDS = new ItemRiceSeeds();
     public static Item TOMATO = new ItemFood(2,false).setUnlocalizedName(SakuraMain.MODID + "." + "tomato");
     public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "tomato_seeds");
     public static Item EGGPLANT = new ItemFood(2,false).setUnlocalizedName(SakuraMain.MODID + "." + "eggplant");
     public static Item EGGPLANT_SEEDS = new ItemSeeds(BlockLoader.EGGPLANTCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "eggplant_seeds");
+    public static Item CABBAGE = new ItemFood(2,false).setUnlocalizedName(SakuraMain.MODID + "." + "cabbage");
+    public static Item CABBAGE_SEEDS = new ItemSeeds(BlockLoader.CABBAGECROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "cabbage_seeds");
+    public static Item RADISH = new ItemFood(2,false).setUnlocalizedName(SakuraMain.MODID + "." + "radish");
+    public static Item RADISH_SEEDS = new ItemSeeds(BlockLoader.RADISHCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "radish_seeds");
+    public static Item RED_BEAN = new ItemSeeds(BlockLoader.REDBEANCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "red_bean");
+    public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "buckwheat");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-            new int[]{3},
+              new int[]{3},
             new float[]{0.22F},
             new String[]{SakuraMain.MODID+"."+"maple_cookie"
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
-
+    public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
+    		SakuraMain.MODID + "." + "straw",
+    		SakuraMain.MODID + "." + "rice",
+    		SakuraMain.MODID + "." + "salt",
+    		SakuraMain.MODID + "." + "curry_powder",
+    		SakuraMain.MODID + "." + "flour",
+    		SakuraMain.MODID + "." + "flour_buckwheat",
+    		SakuraMain.MODID + "." + "dough",
+    		SakuraMain.MODID + "." + "dough_buckwheat",
+    		SakuraMain.MODID + "." + "ramen_raw",
+    		SakuraMain.MODID + "." + "udon_raw",
+    		SakuraMain.MODID + "." + "soba_raw",
+    		SakuraMain.MODID + "." + "curry_sauce",
+    		SakuraMain.MODID + "." + "tomato_sauce",
+    		SakuraMain.MODID + "." + "white_sauce",
+    		SakuraMain.MODID + "." + "tempura_batter"
+    });
     public ItemLoader(FMLPreInitializationEvent event) {
+        register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(TOMATO);
         register(TOMATO_SEEDS);
         register(EGGPLANT);
         register(EGGPLANT_SEEDS);
-        register(RICE);
+        register(CABBAGE);
+        register(CABBAGE_SEEDS);
         register(RICE_SEEDS);
-        register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
+        register(RADISH);
+        register(RADISH_SEEDS);
+        register(RED_BEAN);
+        register(BUCKWHEAT);
         register(MAPLE_SYRUP);
+        register(MATERIAL);
         register(FOODSET);
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(CABBAGE);
+        registerRender(CABBAGE_SEEDS);
     	registerRender(TOMATO);
         registerRender(TOMATO_SEEDS);
         registerRender(EGGPLANT);
         registerRender(EGGPLANT_SEEDS);
-        registerRender(RICE);
+        registerRender(RADISH);
+        registerRender(RADISH_SEEDS);
+        registerRender(BUCKWHEAT);
+        registerRender(MATERIAL);
         registerRender(RICE_SEEDS);
+        registerRender(RED_BEAN);
         registerRender(BAMBOO_DOOR);
         registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
+        
     }
 
     private static void register(Item item) {

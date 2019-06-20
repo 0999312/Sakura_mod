@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "age=0": { "model": "sakura:cabbage_0" },
+    "age=1": { "model": "sakura:cabbage_1" },
+    "age=2": { "model": "sakura:cabbage_2" },
+    "age=3": { "model": "sakura:cabbage_3" },
+    "age=4": { "model": "sakura:cabbage_4" },
+    "age=5": { "model": "sakura:cabbage_5" },
+    "age=6": { "model": "sakura:cabbage_6" },
+    "age=7": {
+      "model": "sakura:cabbage_7"
+    },
+    "inventory": {
+      "model": "sakura:cabbage"
+    }
+  }
+}

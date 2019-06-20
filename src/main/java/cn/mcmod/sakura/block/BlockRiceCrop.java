@@ -141,7 +141,7 @@ public class BlockRiceCrop extends BlockCrops {
      */
     @Override
     protected Item getCrop() {
-        return ItemLoader.RICE_SEEDS;
+        return ItemLoader.MATERIAL;
     }
 
 }

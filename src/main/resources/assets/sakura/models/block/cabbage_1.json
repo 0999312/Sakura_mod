@@ -1,0 +1,26 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "sakura:blocks/cabbage_bottom",
+		"2": "sakura:blocks/cabbage_side1",
+		"3": "sakura:blocks/cabbage_side2",
+		"4": "sakura:blocks/cabbage_side3",
+		"5": "sakura:blocks/cabbage_side4",
+		"6": "sakura:blocks/cabbage_top",
+		"particle": "sakura:blocks/cabbage_bottom"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#6"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

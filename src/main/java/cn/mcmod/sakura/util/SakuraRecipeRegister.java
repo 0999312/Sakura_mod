@@ -7,8 +7,7 @@ import net.minecraft.item.ItemStack;
 public class SakuraRecipeRegister {
     public static void mortarRegister() {
         TileEntityStoneMortar.MortarRecipes recipes = new TileEntityStoneMortar.MortarRecipes(
-                new ItemStack(ItemLoader.RICE)
-                , new ItemStack(ItemLoader.RICE_SEEDS));
+                new ItemStack(ItemLoader.MATERIAL,1,1), new ItemStack(ItemLoader.RICE_SEEDS));
         TileEntityStoneMortar.MortarRecipes.addMortarRecipe(recipes);
     }
 }
