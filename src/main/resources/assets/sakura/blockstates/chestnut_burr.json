@@ -1,0 +1,36 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "minecraft:cross"
+   },
+   "variants" : {
+      "age=0" : [
+         {
+            "textures" : {
+               "cross" : "sakura:blocks/chestnut_burr_0"
+            }
+         }
+      ],
+      "age=1" : [
+         {
+            "textures" : {
+               "cross" : "sakura:blocks/chestnut_burrs_1"
+            }
+         }
+      ],
+      "age=2" : [
+         {
+            "textures" : {
+               "cross" : "sakura:blocks/chestnut_burrs_2"
+            }
+         }
+      ],
+      "age=3" : [
+         {
+            "textures" : {
+               "cross" : "sakura:blocks/chestnut_burrs_3"
+            }
+         }
+      ]
+   }
+}

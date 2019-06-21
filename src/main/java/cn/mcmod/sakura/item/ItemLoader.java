@@ -37,8 +37,8 @@ public class ItemLoader {
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
-    		SakuraMain.MODID + "." + "straw",
-    		SakuraMain.MODID + "." + "rice",
+    		SakuraMain.MODID + "." + "straw",//0
+    		SakuraMain.MODID + "." + "rice",//1
     		SakuraMain.MODID + "." + "salt",
     		SakuraMain.MODID + "." + "curry_powder",
     		SakuraMain.MODID + "." + "flour",
@@ -51,7 +51,8 @@ public class ItemLoader {
     		SakuraMain.MODID + "." + "curry_sauce",
     		SakuraMain.MODID + "." + "tomato_sauce",
     		SakuraMain.MODID + "." + "white_sauce",
-    		SakuraMain.MODID + "." + "tempura_batter"
+    		SakuraMain.MODID + "." + "tempura_batter",
+    		SakuraMain.MODID + "." + "chestnut_burrs"
     });
     public ItemLoader(FMLPreInitializationEvent event) {
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));

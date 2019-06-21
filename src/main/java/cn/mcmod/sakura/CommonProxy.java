@@ -9,6 +9,7 @@ import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @EventBusSubscriber
 public class CommonProxy {
     public static CreativeTabs tab;
+
 
     public void preInit(FMLPreInitializationEvent event) {
         tab = new CreativeTabsSakura();

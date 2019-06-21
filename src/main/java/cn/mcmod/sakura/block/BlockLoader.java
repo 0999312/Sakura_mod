@@ -63,6 +63,8 @@ public class BlockLoader {
 	public static Block RADISHCROP = new BlockRadishCrop();
 	public static Block REDBEANCROP = new BlockRedBeanCrop();
 	public static Block BUCKWHEATCROP = new BlockBuckwheatCrop();
+	
+	public static Block CHESTNUTBURR = new BlockChestnut();
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -88,6 +90,7 @@ public class BlockLoader {
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(RICECROP, "ricecrop");
+		registerNoItem(CHESTNUTBURR, "chestnut_burr");
 		registerNoItem(TOMATOCROP, "tomatocrop");
 		registerNoItem(EGGPLANTCROP, "eggplantcrop");
 		registerNoItem(CABBAGECROP, "cabbagecrop");
@@ -146,6 +149,7 @@ public class BlockLoader {
 		registerRender(RADISHCROP);
 		registerRender(REDBEANCROP);
 		registerRender(BUCKWHEATCROP);
+		registerRender(CHESTNUTBURR);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {

@@ -50,32 +50,18 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public World getClientWorld() {
-
         return FMLClientHandler.instance().getClient().world;
-
     }
 
     @Override
     public void spawnParticle(SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
-
         Minecraft mc = Minecraft.getMinecraft();
         World world = mc.world;
-
-        if (world == null) {
-
-            return;
-
-        }
-
+        if (world == null) return;
+        
         if (mc.effectRenderer != null) {
-
             int i = mc.gameSettings.particleSetting;
-
-            if (i == 1 && world.rand.nextInt(3) == 0) {
-
-                i = 2;
-
-            }
+            if (i == 1 && world.rand.nextInt(3) == 0) i = 2;
 
             Particle particle = null;
 

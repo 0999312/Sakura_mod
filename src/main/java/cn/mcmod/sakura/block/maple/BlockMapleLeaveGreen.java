@@ -87,7 +87,7 @@ public class BlockMapleLeaveGreen extends BlockLeaves {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(BlockLoader.MAPLE_LEAVE_GREEN);
+        return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_GREEN);
     }
 
     @Override
