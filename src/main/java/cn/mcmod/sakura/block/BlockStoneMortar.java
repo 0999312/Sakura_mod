@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.block;
 
+import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.gui.SakuraGuiHandler;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
@@ -29,6 +30,7 @@ public class BlockStoneMortar extends BlockContainer implements ITileEntityProvi
         this.setHardness(2.0F);
         this.setResistance(11.0F);
         this.setSoundType(SoundType.STONE);
+        this.setCreativeTab(CommonProxy.tab);
     }
 
     @Override

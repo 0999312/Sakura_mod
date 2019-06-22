@@ -2,19 +2,9 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
-import cn.mcmod.sakura.block.maple.BlockMapleLeaveGreen;
-import cn.mcmod.sakura.block.maple.BlockMapleLeaveOrange;
-import cn.mcmod.sakura.block.maple.BlockMapleLeaveRed;
-import cn.mcmod.sakura.block.maple.BlockMapleLeaveYellow;
-import cn.mcmod.sakura.block.maple.BlockMapleLog;
-import cn.mcmod.sakura.block.maple.BlockMapleSapLog;
-import cn.mcmod.sakura.block.maple.BlockMapleSaplingGreen;
-import cn.mcmod.sakura.block.maple.BlockMapleSaplingOrange;
-import cn.mcmod.sakura.block.maple.BlockMapleSaplingRed;
-import cn.mcmod.sakura.block.maple.BlockMapleSaplingYellow;
+import cn.mcmod.sakura.block.maple.*;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
-import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.block.Block;
@@ -55,6 +45,8 @@ public class BlockLoader {
 	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
 	public static Block CAMPFIRE_IDLE = new BlockCampfire(false);
 	public static Block CAMPFIRE_LIT = new BlockCampfire(true);
+    public static Block CAMPFIRE_POT_IDLE = new BlockCampfirePot(false);
+    public static Block CAMPFIRE_POT_LIT = new BlockCampfirePot(true);
 	public static Block RICECROP = new BlockRiceCrop();
 	public static Block STONEMORTAR = new BlockStoneMortar();
 	public static Block TOMATOCROP = new BlockTomatoCrop();
@@ -89,6 +81,8 @@ public class BlockLoader {
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
+        registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
+        registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
 		registerNoItem(RICECROP, "ricecrop");
 		registerNoItem(CHESTNUTBURR, "chestnut_burr");
 		registerNoItem(TOMATOCROP, "tomatocrop");
@@ -143,6 +137,8 @@ public class BlockLoader {
 		registerRender(STONEMORTAR);
 		registerRender(CAMPFIRE_IDLE);
 		registerRender(CAMPFIRE_LIT);
+        registerRender(CAMPFIRE_POT_IDLE);
+        registerRender(CAMPFIRE_POT_LIT);
 		registerRender(RICECROP);
 		registerRender(TOMATOCROP);
 		registerRender(EGGPLANTCROP);
