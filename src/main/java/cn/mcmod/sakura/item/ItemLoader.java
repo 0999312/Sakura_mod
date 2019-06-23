@@ -57,7 +57,9 @@ public class ItemLoader {
     		SakuraMain.MODID + "." + "tempura_batter",
     		SakuraMain.MODID + "." + "chestnut_burrs"
     });
+    public static Item POT = new ItemPot();
     public ItemLoader(FMLPreInitializationEvent event) {
+        register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(TOMATO);
         register(TOMATO_SEEDS);
@@ -77,6 +79,7 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(POT);
     	registerRender(CABBAGE);
         registerRender(CABBAGE_SEEDS);
     	registerRender(TOMATO);

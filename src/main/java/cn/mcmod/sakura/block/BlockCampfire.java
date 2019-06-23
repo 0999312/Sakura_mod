@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
+import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfire;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -119,7 +120,13 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
                         tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
                         return true;
                     }
-
+                    if(stack.getItem()==ItemLoader.POT){
+        			worldIn.setBlockToAir(pos);
+        			worldIn.removeTileEntity(pos);
+        			worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
+        			stack.shrink(1);
+                    return true;
+                    }
                     if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO)) {
                         if (!playerIn.isCreative()) {
                             stack.shrink(1);

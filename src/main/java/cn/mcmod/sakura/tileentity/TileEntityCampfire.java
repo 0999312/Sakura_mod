@@ -48,9 +48,6 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 
 //    public void readFromNBT(NBTTagCompound compound) {
 //        super.readFromNBT(compound);
-//        this.burnTime = compound.getInteger("BurnTime");
-//        this.cookTime = compound.getInteger("CookTime");
-//        this.isFinishedCook = compound.getBoolean("FinishCook");
 
 //
 //    }
@@ -206,6 +203,9 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 	}
 
 	public void readPacketNBT(NBTTagCompound cmp) {
+        this.burnTime = cmp.getInteger("BurnTime");
+        this.cookTime = cmp.getInteger("CookTime");
+        this.isFinishedCook = cmp.getBoolean("FinishCook");
         inventory.deserializeNBT(cmp.getCompoundTag("Inventory"));
 	}
 

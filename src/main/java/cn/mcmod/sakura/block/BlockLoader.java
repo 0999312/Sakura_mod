@@ -81,7 +81,7 @@ public class BlockLoader {
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
-        register(CAMPFIRE_POT_IDLE,new ItemBlock(CAMPFIRE_POT_IDLE), "campfire_pot_idle");
+		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
 		registerNoItem(RICECROP, "ricecrop");
 		registerNoItem(CHESTNUTBURR, "chestnut_burr");
