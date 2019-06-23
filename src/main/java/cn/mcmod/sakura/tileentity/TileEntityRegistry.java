@@ -12,9 +12,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityRegistry {
-    private static final TileEntityRenderHelper TEISR = new TileEntityRenderHelper();
 
     public static void init() {
         registerTileEntity(TileEntityCampfire.class, "campfire");
@@ -22,11 +23,12 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
     }
 
+    @SideOnly(Side.CLIENT)
     public static void render() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new RenderTileEntityCampfire());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
-        Item.getItemFromBlock(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(TEISR);
+        Item.getItemFromBlock(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
