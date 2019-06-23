@@ -25,8 +25,7 @@ public class CommonProxy {
         tab = new CreativeTabsSakura();
         new BlockLoader(event);
         new ItemLoader(event);
-        SakuraRecipeRegister.mortarRegister();
-        SakuraRecipeRegister.potRegister();
+
         SakuraEntityRegister.entityRegister();
 
         MinecraftForge.EVENT_BUS.register(new SakuraEventLoader());
@@ -36,6 +35,8 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
         TileEntityRegistry.init();
+        SakuraRecipeRegister.mortarRegister();
+        SakuraRecipeRegister.potRegister();
 //        VillagerTofu1.registerVillager();
 //        NetworkRegistry.INSTANCE.registerGuiHandler(TofuMain.instance, new TofuGuiHandler());
     }

@@ -45,7 +45,6 @@ public class ClientUtils {
         TextureAtlasSprite sprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill(fluid).toString());
 
         if (sprite != null) {
-
             int col = fluid.getFluid().getColor(fluid);
 
             GlStateManager.color((col >> 16 & 255) / 255.0f, (col >> 8 & 255) / 255.0f, (col & 255) / 255.0f, 1);

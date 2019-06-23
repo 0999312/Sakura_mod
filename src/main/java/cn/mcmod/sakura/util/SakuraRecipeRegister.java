@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.util;
 
+import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
@@ -15,5 +16,12 @@ public class SakuraRecipeRegister {
 
     public static void potRegister() {
         TileEntityCampfirePot.PotRecipes.addPotRecipe(new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 1), new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+        		new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 2),
+        		new ItemStack(ItemLoader.MATERIAL, 1, 1),
+        		new ItemStack[]{
+        				new ItemStack(BlockLoader.BAMBOOSHOOT,1)
+        		},
+        		new FluidStack(FluidRegistry.WATER, 200)));
     }
 }

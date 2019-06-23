@@ -32,13 +32,7 @@ public class GuiCampfirePot extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-
-        String s = this.tilePot.hasCustomName() ? this.tilePot.getName() : I18n.format(this.tilePot.getName());
-
-        this.fontRenderer.drawString(s, this.xSize / 2 - this.fontRenderer.getStringWidth(s) / 2, 6, 4210752);
-
         this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
-
     }
 
     @Override
@@ -58,23 +52,17 @@ public class GuiCampfirePot extends GuiContainer {
         if (this.tilePot.isBurning()) {
             var7 = this.tilePot.getBurnTimeRemainingScaled(12);
 
-            this.drawTexturedModalRect(k + 32, l + 36 + 12 + 19 - var7, 176, 12 - var7, 14, var7 + 2);
+            this.drawTexturedModalRect(k + 100, l + 47 + 12 + 19 - var7, 176, 12 - var7, 14, var7 + 2);
         }
 
         int l2 = this.getCookProgressScaled(24);
-        this.drawTexturedModalRect(k + 79, l + 34, 176, 14, l2 + 1, 16);
-
+        this.drawTexturedModalRect(k + 93, l + 45, 176, 14, l2 + 1, 16);
+        
         if (this.tilePot.getTank().getFluid() != null) {
-
             FluidTank fluidTank = this.tilePot.getTank();
-
-            int heightInd = (int) (35 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
-
+            int heightInd = (int) (72 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
-
-                int time = (int) this.mc.world.getWorldTime() % 64 / 2;
-
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 114, l + 64 - heightInd, 0.0f, 16 * time);
+                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167- heightInd, l + 11 , heightInd, 16f);
             }
 
         }

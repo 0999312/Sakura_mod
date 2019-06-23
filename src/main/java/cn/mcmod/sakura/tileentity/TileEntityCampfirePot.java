@@ -8,18 +8,23 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
@@ -43,43 +48,13 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     private int cookTime;
     private int maxCookTimer = 200;
 
-
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        this.inventory =
-                NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.inventory);
-
-        this.burnTime = compound.getInteger("BurnTime");
-        this.cookTime = compound.getInteger("CookTime");
-
-        this.tank.readFromNBT(compound.getCompoundTag("Tank"));
-    }
-
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        ItemStackHelper.saveAllItems(compound, this.inventory);
-
-        compound.setInteger("BurnTime", (short) this.burnTime);
-        compound.setInteger("CookTime", (short) this.cookTime);
-
-        NBTTagCompound tankTag = this.tank.writeToNBT(new NBTTagCompound());
-
-        compound.setTag("Tank", tankTag);
-
-        if (tank.getFluid() != null) {
-            liquidForRendering = tank.getFluid().copy();
-        }
-
-        return compound;
-    }
-
     @SideOnly(Side.CLIENT)
     public FluidTank getTank() {
         return this.tank;
     }
 
     //Render only
+    @SideOnly(Side.CLIENT)
     public FluidStack getFluidForRendering(float partialTicks) {
         final FluidStack actual = tank.getFluid();
 
@@ -169,18 +144,14 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             }
 
             if (cookTime >= maxCookTimer) {
-
                 cookTime = 0;
-
-
                 ItemStack processStack = this.inventory.get(0);
-                ItemStack itemstack = this.inventory.get(5);
+                ItemStack itemstack = this.inventory.get(9);
                 ItemStack result = getRecipesResult().getResultItemStack();
                 FluidStack fluidStack = getRecipesResult().getResultFluid();
 
-
                 if (itemstack.isEmpty()) {
-                    this.inventory.set(5, result.copy());
+                    this.inventory.set(9, result.copy());
                 } else if (itemstack.getItem() == result.getItem()) {
                     itemstack.grow(result.getCount());
                 }
@@ -199,6 +170,14 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 this.decrStackSize(3, 1);
 
                 this.decrStackSize(4, 1);
+                
+                this.decrStackSize(5, 1);
+
+                this.decrStackSize(6, 1);
+
+                this.decrStackSize(7, 1);
+
+                this.decrStackSize(8, 1);
 
             }
 
@@ -240,7 +219,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
     @Override
     public int getSizeInventory() {
-        return 6;
+        return 10;
     }
 
     @Override
@@ -323,16 +302,12 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         switch (id) {
 
             case 0:
-
                 return this.burnTime;
             case 1:
-
                 return this.cookTime;
             case 2:
-
                 return this.maxCookTimer;
             default:
-
                 return 0;
 
         }
@@ -368,26 +343,15 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         return inventory;
     }
 
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
-        this.readFromNBT(tag);
-    }
-
-    @Override
-    @Nullable
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(this.pos, 0, this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public void onDataPacket(net.minecraft.network.NetworkManager net, net.minecraft.network.play.server.SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
+//    @Override
+//    public NBTTagCompound getUpdateTag() {
+//        return this.writeToNBT(new NBTTagCompound());
+//    }
+//
+//    @Override
+//    public void handleUpdateTag(NBTTagCompound tag) {
+//        this.readFromNBT(tag);
+//    }
 
     public static ArrayList<PotRecipes> potRecipesList = new ArrayList<PotRecipes>();
 
@@ -417,58 +381,24 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         public PotRecipes() {
         }
 
-
         public PotRecipes(ItemStack result, ItemStack main, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, fluidStack);
+            this.setPotRecipes(result, main, new ItemStack[]{ItemStack.EMPTY}, fluidStack);
         }
-
-        public PotRecipes(ItemStack result, ItemStack main, ItemStack main2, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, main2, ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, fluidStack);
+        
+        public PotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
+            this.setPotRecipes(result, main, subList, fluidStack);
         }
-
-        public PotRecipes(ItemStack result, ItemStack main, ItemStack main2, ItemStack main3, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, main2, main3, ItemStack.EMPTY, ItemStack.EMPTY, fluidStack);
-        }
-
-        public PotRecipes(ItemStack result, ItemStack main, ItemStack main2, ItemStack main3, ItemStack main4, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, main2, main3, main4, ItemStack.EMPTY, fluidStack);
-        }
-
-        public PotRecipes(ItemStack result, ItemStack main, ItemStack main2, ItemStack main3, ItemStack main4, ItemStack main5, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, main2, main3, main4, main5, fluidStack);
-        }
-
+        
         public static PotRecipes instance() {
             return POT_RECIPES_BASE;
         }
 
-        public void setPotRecipes(ItemStack result, ItemStack main, ItemStack main2, ItemStack main3, ItemStack main4, ItemStack main5, FluidStack fluidStack) {
+        public void setPotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
             this.clear();
             mainItem = main;
-
-            if (!main2.isEmpty()) {
-
-                subItems.add(main2);
-
-            }
-
-            if (!main3.isEmpty()) {
-
-                subItems.add(main3);
-
-            }
-
-            if (!main4.isEmpty()) {
-
-                subItems.add(main4);
-
-            }
-            if (!main5.isEmpty()) {
-
-                subItems.add(main5);
-
-            }
-
+            for (int i = 0; i < subList.length; i++) 
+				if(!subList[i].isEmpty()) subItems.add(subList[i]);
+			
             resultItem = result;
             fluid = fluidStack;
         }
@@ -490,7 +420,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         public FluidStack getResultFluid() {
             return fluid.copy();
         }
-
 
         public FluidStack getResultFluid(FluidStack fluidStack) {
             if (fluidStack.isFluidEqual(fluid)) {
@@ -516,7 +445,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             }
 
             ArrayList<ItemStack> inventoryList = new ArrayList<ItemStack>();
-            for (int i = 1; i < 5; i++) {
+            for (int i = 1; i < 9; i++) {
                 if (!inventory.getStackInSlot(i).isEmpty()) {
                     inventoryList.add(inventory.getStackInSlot(i).copy());
                 }
@@ -582,13 +511,16 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (this.getStackInSlot(0).isEmpty()) {
             return null;
         }
+        if (this.getTank().getFluid()==null) {
+            return null;
+        }
         for (PotRecipes recipes : potRecipesList) {
 
             ItemStack stack = recipes.getResult(this);
 
             FluidStack fluidStack = recipes.getResultFluid(this.getTank().getFluid());
 
-            if ((fluidStack != null || recipes.getResultFluid() == null) && !stack.isEmpty()) {
+            if ((fluidStack != null || recipes.getResultFluid() != this.getTank().getFluid()) && !stack.isEmpty()) {
                 return recipes;
             }
         }
@@ -612,4 +544,68 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         return super.getCapability(capability, facing);
 
     }
+    
+	@Override
+	public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState, @Nonnull IBlockState newState) {
+		return oldState.getBlock() != newState.getBlock();
+	}
+
+	@Nonnull
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
+		NBTTagCompound ret = super.writeToNBT(par1nbtTagCompound);
+		writePacketNBT(ret);
+		return ret;
+	}
+
+	@Nonnull
+	@Override
+	public final NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+		super.readFromNBT(par1nbtTagCompound);
+		readPacketNBT(par1nbtTagCompound);
+	}
+
+	public void writePacketNBT(NBTTagCompound cmp) {
+        ItemStackHelper.saveAllItems(cmp, this.inventory);
+        cmp.setInteger("BurnTime", (short) this.burnTime);
+        cmp.setInteger("CookTime", (short) this.cookTime);
+
+        NBTTagCompound tankTag = this.tank.writeToNBT(new NBTTagCompound());
+
+        cmp.setTag("Tank", tankTag);
+
+        if (tank.getFluid() != null) {
+            liquidForRendering = tank.getFluid().copy();
+        }
+	}
+
+	public void readPacketNBT(NBTTagCompound cmp) {
+        this.inventory =
+                NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(cmp, this.inventory);
+
+        this.burnTime = cmp.getInteger("BurnTime");
+        this.cookTime = cmp.getInteger("CookTime");
+
+        this.tank.readFromNBT(cmp.getCompoundTag("Tank"));
+	}
+
+	@Override
+	public final SPacketUpdateTileEntity getUpdatePacket() {
+		NBTTagCompound tag = new NBTTagCompound();
+		writePacketNBT(tag);
+		return new SPacketUpdateTileEntity(pos, -999, tag);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+		super.onDataPacket(net, packet);
+		readPacketNBT(packet.getNbtCompound());
+	}
+
 }
