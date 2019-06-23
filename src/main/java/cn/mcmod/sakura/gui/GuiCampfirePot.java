@@ -2,11 +2,13 @@ package cn.mcmod.sakura.gui;
 
 import cn.mcmod.sakura.inventory.ContainerCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
+import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
@@ -61,6 +63,21 @@ public class GuiCampfirePot extends GuiContainer {
 
         int l2 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, l2 + 1, 16);
+
+        if (this.tilePot.getTank().getFluid() != null) {
+
+            FluidTank fluidTank = this.tilePot.getTank();
+
+            int heightInd = (int) (35 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
+
+            if (heightInd > 0) {
+
+                int time = (int) this.mc.world.getWorldTime() % 64 / 2;
+
+                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 114, l + 64 - heightInd, 0.0f, 16 * time);
+            }
+
+        }
     }
 
     private int getCookProgressScaled(int pixels) {

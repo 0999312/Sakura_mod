@@ -23,10 +23,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Random;
 
@@ -109,6 +113,14 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                 if (tile instanceof TileEntityCampfirePot) {
                     TileEntityCampfirePot tileEntityCampfire = (TileEntityCampfirePot) tile;
 
+                    IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
+
+                    if (handler != null) {
+
+                        FluidUtil.interactWithFluidHandler(playerIn, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing));
+
+                        return true;
+                    }
 
                     if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO) && !isBurning) {
                         if (!playerIn.isCreative()) {

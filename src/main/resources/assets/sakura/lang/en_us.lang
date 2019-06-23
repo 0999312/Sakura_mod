@@ -21,6 +21,9 @@ item.sakura.maple_cookie.name=Maple Cookie
 item.sakura:sakura_guide.name=Harvester Guide
 item.sakura.rice_seeds.name=RiceSeeds
 item.sakura.rice.name=Rice
+item.sakura.rice_cooked.name=Cooked Rice
+item.sakura.rice_bamboo.name=Bamboo Rice
+item.sakura.rice_fish.name=Cooked Fish Rice
 #Container
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot

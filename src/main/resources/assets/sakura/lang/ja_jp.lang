@@ -19,6 +19,9 @@ item.sakura.maple_cookie.name=メイプルクッキー
 item.sakura:sakura_guide.name=ハーベスターガイドブック
 item.sakura.rice_seeds.name=米の種
 item.sakura.rice.name=米
+item.sakura.rice_cooked.name=ご飯
+item.sakura.rice_bamboo.name=たけのこご飯
+item.sakura.rice_fish.name=焼き魚のご飯
 #Container
 container.sakura.stonemortar=石臼
 container.sakura.campfirepot=ポット付きキャンプファイヤー
