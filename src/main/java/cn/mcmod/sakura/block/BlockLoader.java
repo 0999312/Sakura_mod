@@ -159,6 +159,7 @@ public class BlockLoader {
 		return fluidBlock;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public static void registerFluidBlockRendering(Block block, String name) {
 		final ModelResourceLocation fluidLocation = new ModelResourceLocation(SakuraMain.MODID.toLowerCase() + ":fluids", name);
 		ModelLoader.setCustomStateMapper(block, new StateMapperBase() {

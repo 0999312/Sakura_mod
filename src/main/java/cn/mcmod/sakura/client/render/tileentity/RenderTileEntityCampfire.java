@@ -11,48 +11,34 @@ public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEnti
 
     @Override
     public void render(TileEntityCampfire te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-        GlStateManager.pushMatrix();
-        GlStateManager.translate((float) x + 0.5F, (float) y, (float) z + 0.5F);
+    	if(!te.getItemBurning().isEmpty()){
+    	GlStateManager.pushMatrix();
+        GlStateManager.translate((float) x + 0.5F, (float) y-0.25F, (float) z + 0.5F);
         renderItem(te, x, y, z, partialTicks);
         GlStateManager.popMatrix();
+    	}
     }
-
-    protected ItemStack renderItemStack = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity = null;
+    
+    public RenderTileEntityCampfire() {
+	}
 
     /**
      * Render the item.
      */
     protected void renderItem(TileEntityCampfire te, double posX, double posY, double posZ, float partialTicks) {
+        	EntityItem renderItemEntity = null;
 
-        if (te != null) {
-            ItemStack itemstack = new ItemStack(te.getInventory().getStackInSlot(0).getItem(), te.getInventory().getStackInSlot(0).getCount(), te.getInventory().getStackInSlot(0).getMetadata());
-
-            if (itemstack == ItemStack.EMPTY) {
-                return;
-            }
-            if (itemstack != renderItemStack) {
-                renderItemStack = itemstack;
-                renderItemEntity = new EntityItem(te.getWorld());
-                renderItemEntity.setItem(itemstack.copy());
-                renderItemEntity.hoverStart = 0;
-            }
-
-            float scale = 1.0F;
-
-            GlStateManager.scale(scale, scale, scale);
-
-
+            renderItemEntity = new EntityItem(te.getWorld());
+            renderItemEntity.setItem(te.getItemBurning().copy());
+            renderItemEntity.hoverStart = 0;
+        	
+            GlStateManager.scale(1.0F, 1.0F, 1.0F);
             GlStateManager.translate(0.0F, 0.4F, 0.0F);
 
             float rot = te.getWorld().getTotalWorldTime() % 360;
             rot = rot * 2;
-
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
-
-            partialTicks = 0;
-
             Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
-        }
+
     }
 }
