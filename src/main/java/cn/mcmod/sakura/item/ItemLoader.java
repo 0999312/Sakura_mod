@@ -31,9 +31,12 @@ public class ItemLoader {
     public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "buckwheat");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-              new int[]{3},
-            new float[]{0.22F},
-            new String[]{SakuraMain.MODID+"."+"maple_cookie"
+            new int[]{3, 4, 5, 5},
+            new float[]{0.22F, 0.3F, 0.5F, 0.52F},
+            new String[]{SakuraMain.MODID + "." + "maple_cookie",
+                    SakuraMain.MODID + "." + "rice_cooked",
+                    SakuraMain.MODID + "." + "rice_bamboo",
+                    SakuraMain.MODID + "." + "rice_fish",
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{

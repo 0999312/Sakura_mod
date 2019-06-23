@@ -9,7 +9,6 @@ import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -27,6 +26,7 @@ public class CommonProxy {
         new BlockLoader(event);
         new ItemLoader(event);
         SakuraRecipeRegister.mortarRegister();
+        SakuraRecipeRegister.potRegister();
         SakuraEntityRegister.entityRegister();
 
         MinecraftForge.EVENT_BUS.register(new SakuraEventLoader());

@@ -4,6 +4,7 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.TileEntityRenderHelper;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityCampfire;
+import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityCampfirePot;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityStoneMortar;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -18,6 +19,7 @@ public class TileEntityRegistry {
 
     public static void init() {
         registerTileEntity(TileEntityCampfire.class, "campfire");
+        registerTileEntity(TileEntityCampfirePot.class, "campfirepot");
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
     }
 
@@ -25,6 +27,7 @@ public class TileEntityRegistry {
     public static void render() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new RenderTileEntityCampfire());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
         Item.getItemFromBlock(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 

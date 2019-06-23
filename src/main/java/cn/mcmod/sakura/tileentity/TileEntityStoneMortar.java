@@ -261,18 +261,11 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
         return itemstack;
     }
 
-    /**
-     * 指定したスロットからItemStackを取得する
-     * 取得先のスロットは空になる
-     */
     @Override
     public ItemStack removeStackFromSlot(int index) {
         return ItemStackHelper.getAndRemove(inventorySlotItemStack, index);
     }
 
-    /**
-     * 指定したスロットにアイテムスタックをセットする
-     */
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
 

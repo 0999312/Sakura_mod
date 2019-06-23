@@ -1,6 +1,6 @@
 package cn.mcmod.sakura.inventory;
 
-import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
+import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -10,15 +10,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerStoneMortar extends Container {
-    private TileEntityStoneMortar tileCampfire;
+public class ContainerCampfirePot extends Container {
+    private TileEntityCampfirePot tileCampfire;
     private int processTime;
     private int maxProcessTime;
+    private int burnTime;
 
-    public ContainerStoneMortar(InventoryPlayer inventory, TileEntityStoneMortar tile) {
+    public ContainerCampfirePot(InventoryPlayer inventory, TileEntityCampfirePot tile) {
         tileCampfire = tile;
         addSlotToContainer(new Slot(tile, 0, 58, 36));
-        addSlotToContainer(new Slot(tile, 1, 116, 36) {
+        addSlotToContainer(new Slot(tile, 1, 40, 36));
+        addSlotToContainer(new Slot(tile, 2, 22, 36));
+        addSlotToContainer(new Slot(tile, 3, 4, 36));
+        addSlotToContainer(new Slot(tile, 4, 32, 20));
+        addSlotToContainer(new Slot(tile, 5, 116, 36) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return false;
@@ -47,17 +52,22 @@ public class ContainerStoneMortar extends Container {
         for (int i = 0; i < this.listeners.size(); ++i) {
             IContainerListener icontainerlistener = this.listeners.get(i);
 
-            if (this.processTime != this.tileCampfire.getField(0)) {
+            if (this.burnTime != this.tileCampfire.getField(0)) {
                 icontainerlistener.sendWindowProperty(this, 0, this.tileCampfire.getField(0));
             }
 
-            if (this.maxProcessTime != this.tileCampfire.getField(1)) {
+            if (this.processTime != this.tileCampfire.getField(1)) {
                 icontainerlistener.sendWindowProperty(this, 1, this.tileCampfire.getField(1));
+            }
+
+            if (this.maxProcessTime != this.tileCampfire.getField(2)) {
+                icontainerlistener.sendWindowProperty(this, 2, this.tileCampfire.getField(2));
             }
         }
 
-        this.processTime = this.tileCampfire.getField(0);
-        this.maxProcessTime = this.tileCampfire.getField(1);
+        this.burnTime = this.tileCampfire.getField(0);
+        this.processTime = this.tileCampfire.getField(1);
+        this.maxProcessTime = this.tileCampfire.getField(2);
     }
 
     @Override
@@ -81,20 +91,38 @@ public class ContainerStoneMortar extends Container {
             itemstack = itemstack1.copy();
 
             if (slotIndex == 0) {
-                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (slotIndex == 1) {
-                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slotIndex == 2) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slotIndex == 3) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slotIndex == 4) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (slotIndex == 5) {
+                if (!this.mergeItemStack(itemstack1, 6, 41, true)) {
                     return ItemStack.EMPTY;
                 }
             } else {
-                if (!this.mergeItemStack(itemstack1, 0, 0, true)) {
+                if (!this.mergeItemStack(itemstack1, 0, 5, false)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
+
+
             if (itemstack1.getCount() == 0)
                 slot.putStack(ItemStack.EMPTY);
             else
