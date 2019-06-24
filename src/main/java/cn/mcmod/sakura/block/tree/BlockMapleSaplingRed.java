@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block.maple;
+package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.block.BlockLoader;
@@ -20,11 +20,11 @@ import net.minecraftforge.common.EnumPlantType;
 
 import java.util.Random;
 
-public class BlockMapleSaplingOrange extends BlockBush implements IGrowable {
+public class BlockMapleSaplingRed extends BlockBush implements IGrowable {
 
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    public BlockMapleSaplingOrange() {
+    public BlockMapleSaplingRed() {
         super();
         setCreativeTab(CommonProxy.tab);
         this.setSoundType(SoundType.PLANT);
@@ -32,7 +32,7 @@ public class BlockMapleSaplingOrange extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = (WorldGenerator)(rand.nextInt(8) == 0 ? new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(),true) : new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(),false));
+        WorldGenerator treeGenerator = (WorldGenerator)(rand.nextInt(8) == 0 ? new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(),true) : new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(),false));
 
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

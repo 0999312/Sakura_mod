@@ -2,9 +2,9 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
-import cn.mcmod.sakura.block.maple.*;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
+import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.block.Block;
@@ -57,6 +57,9 @@ public class BlockLoader {
 	public static Block BUCKWHEATCROP = new BlockBuckwheatCrop();
 	
 	public static Block CHESTNUTBURR = new BlockChestnut();
+	public static Block SAKURA_LOG = new BlockMapleLog();
+	public static Block SAKURA_LEAVES = new BlockSakuraLeave();
+	public static Block SAKURA_SAPLING = new BlockSakuraSapling();
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -78,6 +81,9 @@ public class BlockLoader {
 		
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
+		register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
+		register(SAKURA_SAPLING, new ItemBlock(SAKURA_SAPLING), "sakura_sapling");
+		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
@@ -123,6 +129,9 @@ public class BlockLoader {
         registerRender(BAMBOODOOR);
         registerRender(BAMBOO_BLOCK);
         registerRender(BAMBOO_SLAB);
+		registerRender(SAKURA_LEAVES);
+		registerRender(SAKURA_LOG);
+		registerRender(SAKURA_SAPLING);
 		registerRender(MAPLE_SAPLING_RED);
 		registerRender(MAPLE_LEAVE_RED);
 		registerRender(MAPLE_SAPLING_YELLOW);

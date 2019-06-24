@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block.maple;
+package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
@@ -27,9 +27,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockMapleLeaveOrange extends BlockLeaves {
+public class BlockMapleLeaveGreen extends BlockLeaves {
 
-    public BlockMapleLeaveOrange() {
+    public BlockMapleLeaveGreen() {
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setCreativeTab(CommonProxy.tab);
@@ -50,7 +50,7 @@ public class BlockMapleLeaveOrange extends BlockLeaves {
             double d4 = (((double) rand.nextFloat()) * 0.055D) + 0.015D;
             double d5 = (double) (rand.nextFloat() * (float) k) * 0.1D;
 
-            SakuraMain.proxy.spawnParticle(SakuraParticleType.MAPLEORANGE, d0, d1, d2, d3, -d4, d5);
+            SakuraMain.proxy.spawnParticle(SakuraParticleType.MAPLEGREEN, d0, d1, d2, d3, -d4, d5);
         }
     }
 
@@ -87,7 +87,7 @@ public class BlockMapleLeaveOrange extends BlockLeaves {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_ORANGE);
+        return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_GREEN);
     }
 
     @Override

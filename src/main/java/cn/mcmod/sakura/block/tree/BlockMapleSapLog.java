@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block.maple;
+package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.block.BlockLoader;

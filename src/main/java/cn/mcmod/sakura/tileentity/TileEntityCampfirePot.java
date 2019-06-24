@@ -2,6 +2,7 @@ package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.block.BlockCampfirePot;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -371,10 +372,10 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
     public static class PotRecipes {
 
-        public ItemStack resultItem = null;
-        public ItemStack mainItem = null;
+        public ItemStack resultItem = ItemStack.EMPTY;
+        public ItemStack mainItem = ItemStack.EMPTY;
         public FluidStack fluid = null;
-        public ArrayList<ItemStack> subItems = new ArrayList<ItemStack>();
+        public ArrayList<Object> subItems = new ArrayList<Object>();
         public boolean enchantment = false;
         private static final PotRecipes POT_RECIPES_BASE = new PotRecipes();
 
@@ -382,20 +383,20 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         public PotRecipes(ItemStack result, ItemStack main, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, new ItemStack[]{ItemStack.EMPTY}, fluidStack);
+            this.setPotRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
         }
 
-        public PotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
+        public PotRecipes(ItemStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
             this.setPotRecipes(result, main, subList, fluidStack);
 
         }
 
         public PotRecipes(ItemStack result, String main, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, new ItemStack[]{ItemStack.EMPTY}, fluidStack);
+            this.setPotRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
 
         }
 
-        public PotRecipes(ItemStack result, String main, ItemStack[] subList, FluidStack fluidStack) {
+        public PotRecipes(ItemStack result, String main, Object[] subList, FluidStack fluidStack) {
             this.setPotRecipes(result, main, subList, fluidStack);
 
         }
@@ -410,49 +411,35 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             return POT_RECIPES_BASE;
         }
 
-        public void setPotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
+        public void setPotRecipes(ItemStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
             this.clear();
-            mainItem = main;
-            for (int i = 0; i < subList.length; i++)
-                if (!subList[i].isEmpty()) subItems.add(subList[i]);
-
-            resultItem = result;
-            fluid = fluidStack;
+            mainItem = main.copy();
+        	for (Object o : subList) {
+    			if(o instanceof ItemStack||o instanceof String)
+    				subItems.add(o);
+    			else throw new IllegalArgumentException("Not a itemStack or od name");
+            }
+            resultItem = result.copy();
+            fluid = fluidStack.copy();
         }
 
-        public void setPotRecipes(ItemStack result, String mainOreName, ItemStack[] subList, FluidStack fluidStack) {
-            for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
+        public void setPotRecipes(ItemStack result, String mainOreName, Object[] subList, FluidStack fluidStack) {
+            if(!OreDictionary.getOres(mainOreName).isEmpty()){
+        	for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
                 this.clear();
-
-                mainItem = OreDictionary.getOres(mainOreName).get(i2);
-                for (int i = 0; i < subList.length; i++)
-                    if (!subList[i].isEmpty()) subItems.add(subList[i]);
+                mainItem = OreDictionary.getOres(mainOreName).get(i2).copy();
+                	for (Object o : subList) {
+            			if(o instanceof ItemStack||o instanceof String)
+            				subItems.add(o);
+            			else throw new IllegalArgumentException("Not a itemStack or od name");
+                    }
 
                 resultItem = result;
                 fluid = fluidStack;
             }
+            }else throw new IllegalArgumentException("Invalid Main Ore Dictionary");
         }
 
-        //still WIP
-    /*    public void setPotRecipes(ItemStack result, String mainOreName, String[] subListOreName, FluidStack fluidStack) {
-            for (NonNullList<String> string : subListOreName) {
-
-                for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
-                    this.clear();
-
-                    mainItem = OreDictionary.getOres(mainOreName).get(i2);
-                    for (int i = 0; i < subListOreName.length; i++)
-                        if (!string.isEmpty())
-                            subItems.add(OreDictionary.getOres(subListOreName[i]).get(subListOreName.length));
-
-
-                    resultItem = result;
-                    fluid = fluidStack;
-
-                }
-            }
-        }
-*/
         /**
          * 初期化
          */
@@ -460,7 +447,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             resultItem = ItemStack.EMPTY;
             mainItem = ItemStack.EMPTY;
             fluid = null;
-            subItems = new ArrayList<ItemStack>();
+            subItems = new ArrayList<Object>();
         }
 
         public ItemStack getResultItemStack() {
@@ -482,8 +469,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         public ItemStack getResult(IInventory inventory) {
 
             ItemStack retStack = ItemStack.EMPTY;
-
-
             if (!ItemStack.areItemsEqual(mainItem, inventory.getStackInSlot(0))) {
                 return retStack;
             }
@@ -506,14 +491,27 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             }
 
             boolean flg1 = true;
-            for (ItemStack stack1 : subItems) {
+            for (Object obj1 : subItems) {
 
                 boolean flg2 = false;
                 for (int i = 0; i < inventoryList.size(); i++) {
+                	if(obj1 instanceof ItemStack){
+                		ItemStack stack1 = (ItemStack) obj1;
                     if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
                         inventoryList.remove(i);
                         flg2 = true;
                         break;
+                    }
+                    }else if(obj1 instanceof String){
+                    	String dict = (String) obj1;
+                    	ItemStack result = inventoryList.get(i);
+                    	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
+                    	if(ore.isEmpty())return retStack;
+                    	if (OreDictionary.containsMatch(true, ore, result)) {
+                            inventoryList.remove(i);
+                            flg2 = true;
+                            break;
+                        }
                     }
                 }
                 if (!flg2) {

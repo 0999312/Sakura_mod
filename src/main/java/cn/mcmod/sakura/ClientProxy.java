@@ -6,6 +6,7 @@ import cn.mcmod.sakura.client.particle.ParticleMapleGreenLeaf;
 import cn.mcmod.sakura.client.particle.ParticleMapleOrangeLeaf;
 import cn.mcmod.sakura.client.particle.ParticleMapleRedLeaf;
 import cn.mcmod.sakura.client.particle.ParticleMapleYellowLeaf;
+import cn.mcmod.sakura.client.particle.ParticleSakuraLeaf;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
@@ -77,6 +78,9 @@ public class ClientProxy extends CommonProxy {
 				break;
 			case MAPLEYELLOW:
 				particle = new ParticleMapleYellowLeaf(world, x, y, z, velX, velY, velZ);
+				break;
+			case LEAVESSAKURA:
+				particle = new ParticleSakuraLeaf(world, x, y, z, velX, velY, velZ);
 				break;
 			default:
 				break;
