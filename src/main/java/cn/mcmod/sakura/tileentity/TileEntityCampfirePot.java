@@ -17,12 +17,12 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -170,7 +170,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 this.decrStackSize(3, 1);
 
                 this.decrStackSize(4, 1);
-                
+
                 this.decrStackSize(5, 1);
 
                 this.decrStackSize(6, 1);
@@ -384,11 +384,28 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         public PotRecipes(ItemStack result, ItemStack main, FluidStack fluidStack) {
             this.setPotRecipes(result, main, new ItemStack[]{ItemStack.EMPTY}, fluidStack);
         }
-        
+
         public PotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
             this.setPotRecipes(result, main, subList, fluidStack);
+
         }
-        
+
+        public PotRecipes(ItemStack result, String main, FluidStack fluidStack) {
+            this.setPotRecipes(result, main, new ItemStack[]{ItemStack.EMPTY}, fluidStack);
+
+        }
+
+        public PotRecipes(ItemStack result, String main, ItemStack[] subList, FluidStack fluidStack) {
+            this.setPotRecipes(result, main, subList, fluidStack);
+
+        }
+
+        //still WIP
+       /* public PotRecipes(ItemStack result, String main, String[] subList, FluidStack fluidStack) {
+            this.setPotRecipes(result, main, subList, fluidStack);
+
+        }*/
+
         public static PotRecipes instance() {
             return POT_RECIPES_BASE;
         }
@@ -396,13 +413,46 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         public void setPotRecipes(ItemStack result, ItemStack main, ItemStack[] subList, FluidStack fluidStack) {
             this.clear();
             mainItem = main;
-            for (int i = 0; i < subList.length; i++) 
-				if(!subList[i].isEmpty()) subItems.add(subList[i]);
-			
+            for (int i = 0; i < subList.length; i++)
+                if (!subList[i].isEmpty()) subItems.add(subList[i]);
+
             resultItem = result;
             fluid = fluidStack;
         }
 
+        public void setPotRecipes(ItemStack result, String mainOreName, ItemStack[] subList, FluidStack fluidStack) {
+            for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
+                this.clear();
+
+                mainItem = OreDictionary.getOres(mainOreName).get(i2);
+                for (int i = 0; i < subList.length; i++)
+                    if (!subList[i].isEmpty()) subItems.add(subList[i]);
+
+                resultItem = result;
+                fluid = fluidStack;
+            }
+        }
+
+        //still WIP
+    /*    public void setPotRecipes(ItemStack result, String mainOreName, String[] subListOreName, FluidStack fluidStack) {
+            for (NonNullList<String> string : subListOreName) {
+
+                for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
+                    this.clear();
+
+                    mainItem = OreDictionary.getOres(mainOreName).get(i2);
+                    for (int i = 0; i < subListOreName.length; i++)
+                        if (!string.isEmpty())
+                            subItems.add(OreDictionary.getOres(subListOreName[i]).get(subListOreName.length));
+
+
+                    resultItem = result;
+                    fluid = fluidStack;
+
+                }
+            }
+        }
+*/
         /**
          * 初期化
          */
@@ -511,7 +561,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (this.getStackInSlot(0).isEmpty()) {
             return null;
         }
-        if (this.getTank().getFluid()==null) {
+        if (this.getTank().getFluid() == null) {
             return null;
         }
         for (PotRecipes recipes : potRecipesList) {
@@ -544,33 +594,33 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         return super.getCapability(capability, facing);
 
     }
-    
-	@Override
-	public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState, @Nonnull IBlockState newState) {
-		return oldState.getBlock() != newState.getBlock();
-	}
 
-	@Nonnull
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
-		NBTTagCompound ret = super.writeToNBT(par1nbtTagCompound);
-		writePacketNBT(ret);
-		return ret;
-	}
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState, @Nonnull IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
+    }
 
-	@Nonnull
-	@Override
-	public final NBTTagCompound getUpdateTag() {
-		return writeToNBT(new NBTTagCompound());
-	}
+    @Nonnull
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
+        NBTTagCompound ret = super.writeToNBT(par1nbtTagCompound);
+        writePacketNBT(ret);
+        return ret;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
-		super.readFromNBT(par1nbtTagCompound);
-		readPacketNBT(par1nbtTagCompound);
-	}
+    @Nonnull
+    @Override
+    public final NBTTagCompound getUpdateTag() {
+        return writeToNBT(new NBTTagCompound());
+    }
 
-	public void writePacketNBT(NBTTagCompound cmp) {
+    @Override
+    public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+        super.readFromNBT(par1nbtTagCompound);
+        readPacketNBT(par1nbtTagCompound);
+    }
+
+    public void writePacketNBT(NBTTagCompound cmp) {
         ItemStackHelper.saveAllItems(cmp, this.inventory);
         cmp.setInteger("BurnTime", (short) this.burnTime);
         cmp.setInteger("CookTime", (short) this.cookTime);
@@ -582,9 +632,9 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (tank.getFluid() != null) {
             liquidForRendering = tank.getFluid().copy();
         }
-	}
+    }
 
-	public void readPacketNBT(NBTTagCompound cmp) {
+    public void readPacketNBT(NBTTagCompound cmp) {
         this.inventory =
                 NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(cmp, this.inventory);
@@ -593,19 +643,19 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         this.cookTime = cmp.getInteger("CookTime");
 
         this.tank.readFromNBT(cmp.getCompoundTag("Tank"));
-	}
+    }
 
-	@Override
-	public final SPacketUpdateTileEntity getUpdatePacket() {
-		NBTTagCompound tag = new NBTTagCompound();
-		writePacketNBT(tag);
-		return new SPacketUpdateTileEntity(pos, -999, tag);
-	}
+    @Override
+    public final SPacketUpdateTileEntity getUpdatePacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        writePacketNBT(tag);
+        return new SPacketUpdateTileEntity(pos, -999, tag);
+    }
 
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-		super.onDataPacket(net, packet);
-		readPacketNBT(packet.getNbtCompound());
-	}
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        super.onDataPacket(net, packet);
+        readPacketNBT(packet.getNbtCompound());
+    }
 
 }

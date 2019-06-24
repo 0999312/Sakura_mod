@@ -23,5 +23,11 @@ public class SakuraRecipeRegister {
         				new ItemStack(BlockLoader.BAMBOOSHOOT,1)
         		},
         		new FluidStack(FluidRegistry.WATER, 200)));
+
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 1),
+                        "cropRice",
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        
     }
 }
