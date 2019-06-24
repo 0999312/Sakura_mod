@@ -6,12 +6,10 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemDoor;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -75,6 +73,11 @@ public class ItemLoader {
         register(MAPLE_SYRUP);
         register(MATERIAL);
         register(FOODSET);
+        MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(RICE_SEEDS), 3);
     }
 
     @SideOnly(Side.CLIENT)
