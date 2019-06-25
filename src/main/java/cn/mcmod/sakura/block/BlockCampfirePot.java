@@ -126,22 +126,21 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                         if (!playerIn.isCreative()) {
                             stack.shrink(1);
                         }
-                        if (worldIn.rand.nextInt(8) == 0) {
+                        if (worldIn.rand.nextInt(8) == 0){
                             tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 12000 + worldIn.rand.nextInt(400));
+                            setState(true, worldIn, pos);
+                            return true;
                         }
-                        return true;
                     }
 
                     if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
                         tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 12000 + worldIn.rand.nextInt(800));
-
+                        setState(true, worldIn, pos);
                         return true;
                     }
 
                     if (stack.isEmpty() || !isBurning) {
                         playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
-
-
                         return true;
                     }
                 }
@@ -164,7 +163,9 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
 
         if (active) {
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
+            worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
         } else {
+        	worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
         }
 

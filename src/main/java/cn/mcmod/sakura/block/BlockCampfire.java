@@ -133,6 +133,7 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
                         }
                         if (worldIn.rand.nextInt(8) == 0) {
                             tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 2000 + worldIn.rand.nextInt(400));
+                            
                         }
                         return true;
                     }

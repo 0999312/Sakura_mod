@@ -115,7 +115,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
             IBlockState state = world.getBlockState(pos);
 
-            world.markAndNotifyBlock(pos, null, state, state, 11);
+            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
 
         }
     }
@@ -124,10 +124,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     public void update() {
         ItemStack cookstack;
         boolean flag = this.isBurning();
-
         boolean flag1 = false;
-
-
         //check can cook
         if (!isRecipes()) {
             cookTime = 0;
@@ -138,7 +135,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         if (!world.isRemote) {
-
             if (this.isBurning()) {
                 --this.burnTime;
                 flag1 = true;
@@ -156,34 +152,22 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 } else if (itemstack.getItem() == result.getItem()) {
                     itemstack.grow(result.getCount());
                 }
-
+                
                 //If pot is a recipe that uses a liquid, it consumes only that amount of liquid
                 if (fluidStack != null) {
                     this.tank.drain(fluidStack, true);
                 }
 
                 processStack.shrink(1);
-
                 this.decrStackSize(1, 1);
-
                 this.decrStackSize(2, 1);
-
                 this.decrStackSize(3, 1);
-
                 this.decrStackSize(4, 1);
-
                 this.decrStackSize(5, 1);
-
                 this.decrStackSize(6, 1);
-
                 this.decrStackSize(7, 1);
-
                 this.decrStackSize(8, 1);
 
-            }
-
-            if (flag) {
-                BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
             }
 
             if (flag != this.isBurning()) {
@@ -343,16 +327,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     public NonNullList<ItemStack> getInventory() {
         return inventory;
     }
-
-//    @Override
-//    public NBTTagCompound getUpdateTag() {
-//        return this.writeToNBT(new NBTTagCompound());
-//    }
-//
-//    @Override
-//    public void handleUpdateTag(NBTTagCompound tag) {
-//        this.readFromNBT(tag);
-//    }
 
     public static ArrayList<PotRecipes> potRecipesList = new ArrayList<PotRecipes>();
 
@@ -565,10 +539,11 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         for (PotRecipes recipes : potRecipesList) {
 
             ItemStack stack = recipes.getResult(this);
+            FluidStack tankStack = this.getTank().getFluid();
+            
+            FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;
 
-            FluidStack fluidStack = recipes.getResultFluid(this.getTank().getFluid());
-
-            if ((fluidStack != null || recipes.getResultFluid() != this.getTank().getFluid()) && !stack.isEmpty()) {
+            if ((fluidStack != null || recipes.getResultFluid() != tankStack) && !stack.isEmpty()) {
                 return recipes;
             }
         }
