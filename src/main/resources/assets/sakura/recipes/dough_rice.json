@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 17,
+    "count": 1
+  },
+  "ingredients": [
+    {
+      "item": "sakura:materials",
+      "data": 16
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

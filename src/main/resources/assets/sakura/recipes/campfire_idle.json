@@ -1,0 +1,17 @@
+{
+  "pattern": [
+    " # ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    }
+  },
+  "result": {
+    "item": "sakura:campfire_idle",
+    "count": 1
+  },
+  "type": "forge:ore_shaped"
+}
