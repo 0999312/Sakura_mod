@@ -37,6 +37,7 @@ public class CommonProxy {
         TileEntityRegistry.init();
         SakuraRecipeRegister.mortarRegister();
         SakuraRecipeRegister.potRegister();
+        SakuraRecipeRegister.furnaceRegister();
 //        VillagerTofu1.registerVillager();
 //        NetworkRegistry.INSTANCE.registerGuiHandler(TofuMain.instance, new TofuGuiHandler());
     }

@@ -29,12 +29,14 @@ public class ItemLoader {
     public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "buckwheat");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-            new int[]{3, 4, 5, 5},
-            new float[]{0.22F, 0.3F, 0.5F, 0.52F},
+            new int[]{3, 4, 5, 7, 9, 5},
+            new float[]{0.22F, 0.3F, 0.5F, 0.68F, 0.88F, 0.6F},
             new String[]{SakuraMain.MODID + "." + "maple_cookie",
                     SakuraMain.MODID + "." + "rice_cooked",
                     SakuraMain.MODID + "." + "rice_bamboo",
                     SakuraMain.MODID + "." + "rice_fish",
+                    SakuraMain.MODID + "." + "rice_beef",
+                    SakuraMain.MODID + "." + "rice_bread",
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
@@ -48,12 +50,14 @@ public class ItemLoader {
     		SakuraMain.MODID + "." + "dough_buckwheat",
     		SakuraMain.MODID + "." + "ramen_raw",
     		SakuraMain.MODID + "." + "udon_raw",
-    		SakuraMain.MODID + "." + "soba_raw",
+            SakuraMain.MODID + "." + "soba_raw",//10
     		SakuraMain.MODID + "." + "curry_sauce",
     		SakuraMain.MODID + "." + "tomato_sauce",
     		SakuraMain.MODID + "." + "white_sauce",
     		SakuraMain.MODID + "." + "tempura_batter",
-    		SakuraMain.MODID + "." + "chestnut_burrs"
+            SakuraMain.MODID + "." + "chestnut_burrs",//15
+            SakuraMain.MODID + "." + "flour_rice",
+            SakuraMain.MODID + "." + "dough_rice",
     });
     public static Item POT = new ItemPot();
     public ItemLoader(FMLPreInitializationEvent event) {
