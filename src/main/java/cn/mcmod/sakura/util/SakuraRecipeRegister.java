@@ -48,7 +48,7 @@ public class SakuraRecipeRegister {
                         "cropRice",
                         new FluidStack(FluidRegistry.WATER, 200)));
 		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 1),
+				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 2),
 						"cropRice",
 						new ItemStack[]{
 								new ItemStack(Item.getItemFromBlock(BlockLoader.BAMBOOSHOOT))
