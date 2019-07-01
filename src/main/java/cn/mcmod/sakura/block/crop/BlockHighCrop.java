@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block;
+package cn.mcmod.sakura.block.crop;
 
 import java.util.Random;
 

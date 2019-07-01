@@ -1,0 +1,26 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sakura:shoji"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [
+      {
+        "model": "sakura:item/shoji"
+      }
+    ],
+    "facing": {
+      "north": {},
+      "south": {},
+      "west": {},
+      "east": {},
+      "up": {},
+      "down": {}
+    },
+    "open": {
+      "true": {},
+      "false": {}
+    }
+  }
+}

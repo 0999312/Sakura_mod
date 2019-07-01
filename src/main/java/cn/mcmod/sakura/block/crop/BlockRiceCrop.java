@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block;
+package cn.mcmod.sakura.block.crop;
 
 import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;

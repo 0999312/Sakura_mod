@@ -27,11 +27,14 @@ public class ItemLoader {
     public static Item RADISH_SEEDS = new ItemSeeds(BlockLoader.RADISHCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "radish_seeds");
     public static Item RED_BEAN = new ItemSeeds(BlockLoader.REDBEANCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "red_bean");
     public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "buckwheat");
+    public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "rapeseeds");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-            new int[]{3, 4, 5, 7, 9, 5},
-            new float[]{0.22F, 0.3F, 0.5F, 0.68F, 0.88F, 0.6F},
-            new String[]{SakuraMain.MODID + "." + "maple_cookie",
+            new int[]{1,3, 4, 5, 7, 9, 5},
+            new float[]{0.05f,0.22F, 0.3F, 0.5F, 0.68F, 0.88F, 0.6F},
+            new String[]{
+            		SakuraMain.MODID + "." + "grape",
+            		SakuraMain.MODID + "." + "maple_cookie",
                     SakuraMain.MODID + "." + "rice_cooked",
                     SakuraMain.MODID + "." + "rice_bamboo",
                     SakuraMain.MODID + "." + "rice_fish",
@@ -57,7 +60,13 @@ public class ItemLoader {
     		SakuraMain.MODID + "." + "tempura_batter",
             SakuraMain.MODID + "." + "chestnut_burrs",//15
             SakuraMain.MODID + "." + "flour_rice",
-            SakuraMain.MODID + "." + "dough_rice",
+            SakuraMain.MODID + "." + "dough_rice",//17
+            SakuraMain.MODID + "." + "peppercorn_green",
+            SakuraMain.MODID + "." + "peppercorn_red",//19
+            SakuraMain.MODID + "." + "vanilla_seeds",
+            SakuraMain.MODID + "." + "vanilla",//21
+            SakuraMain.MODID + "." + "vanilla_roast",
+            SakuraMain.MODID + "." + "grape_seeds",//23
     });
     public static Item POT = new ItemPot();
     public ItemLoader(FMLPreInitializationEvent event) {
@@ -74,6 +83,7 @@ public class ItemLoader {
         register(RADISH_SEEDS);
         register(RED_BEAN);
         register(BUCKWHEAT);
+        register(RAPESEED);
         register(MAPLE_SYRUP);
         register(MATERIAL);
         register(FOODSET);
@@ -97,12 +107,13 @@ public class ItemLoader {
         registerRender(RADISH_SEEDS);
         registerRender(BUCKWHEAT);
         registerRender(MATERIAL);
+        registerRender(RAPESEED);
         registerRender(RICE_SEEDS);
         registerRender(RED_BEAN);
         registerRender(BAMBOO_DOOR);
         registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
-        
+
     }
 
     private static void register(Item item) {

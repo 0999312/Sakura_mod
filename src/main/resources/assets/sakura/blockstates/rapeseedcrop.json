@@ -1,0 +1,64 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:crop"
+  },
+  "variants": {
+    "age=0": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_0"
+        }
+      }
+    ],
+    "age=1": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_1"
+        }
+      }
+    ],
+    "age=2": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_2"
+        }
+      }
+    ],
+    "age=3": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_3"
+        }
+      }
+    ],
+    "age=4": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_4"
+        }
+      }
+    ],
+    "age=5": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_5"
+        }
+      }
+    ],
+    "age=6": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_6"
+        }
+      }
+    ],
+    "age=7": [
+      {
+        "textures": {
+          "crop": "sakura:blocks/rapeseed_7"
+        }
+      }
+    ]
+  }
+}

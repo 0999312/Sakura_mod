@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block;
+package cn.mcmod.sakura.block.crop;
 
 import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.BlockCrops;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockRadishCrop extends BlockCrops {
+public class BlockCabbageCrop extends BlockCrops {
     private static final AxisAlignedBB[] CABBAGE_AABB = new AxisAlignedBB[] {
     		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D),
     		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D),
@@ -17,7 +17,8 @@ public class BlockRadishCrop extends BlockCrops {
     		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.28125D, 1.0D),
     		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D),
     		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.46875D, 1.0D),
-    		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.46875D, 1.0D)};
+    		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.46875D, 1.0D)
+    		};
 	@Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
@@ -25,10 +26,10 @@ public class BlockRadishCrop extends BlockCrops {
     }
 	@Override
 	protected Item getCrop() {
-		return ItemLoader.RADISH;
+		return ItemLoader.CABBAGE;
 	}
 	@Override
 	protected Item getSeed() {
-		return ItemLoader.RADISH_SEEDS;
+		return ItemLoader.CABBAGE_SEEDS;
 	}
 }

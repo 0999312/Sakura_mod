@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "age=0": { "model": "sakura:pepper_0" },
+    "age=1": { "model": "sakura:pepper_1" },
+    "age=2": { "model": "sakura:pepper_2" },
+    "age=3": { "model": "sakura:pepper_3" },
+    "age=4": { "model": "sakura:pepper_4" },
+    "age=5": { "model": "sakura:pepper_5" },
+    "age=6": { "model": "sakura:pepper_6" },
+    "age=7": { "model": "sakura:pepper_7" },
+    "inventory": {
+      "model": "sakura:pepper_7"
+    }
+  }
+}

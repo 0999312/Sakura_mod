@@ -1,7 +1,26 @@
 package cn.mcmod.sakura.block;
 
+import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.block.crop.BlockBuckwheatCrop;
+import cn.mcmod.sakura.block.crop.BlockCabbageCrop;
+import cn.mcmod.sakura.block.crop.BlockEggplantCrop;
+import cn.mcmod.sakura.block.crop.BlockGrapeLeaves;
+import cn.mcmod.sakura.block.crop.BlockGrapeSplint;
+import cn.mcmod.sakura.block.crop.BlockGrapeSplintStand;
+import cn.mcmod.sakura.block.crop.BlockGrapeVine;
+import cn.mcmod.sakura.block.crop.BlockPepperCrop;
+import cn.mcmod.sakura.block.crop.BlockPepperSplint;
+import cn.mcmod.sakura.block.crop.BlockRadishCrop;
+import cn.mcmod.sakura.block.crop.BlockRapeseedCrop;
+import cn.mcmod.sakura.block.crop.BlockRedBeanCrop;
+import cn.mcmod.sakura.block.crop.BlockRiceCrop;
+import cn.mcmod.sakura.block.crop.BlockTomatoCrop;
+import cn.mcmod.sakura.block.crop.BlockVanillaCrop;
+import cn.mcmod.sakura.block.crop.BlockVanillaSplint;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
+import cn.mcmod.sakura.block.fluid.BlockFoodOil;
+import cn.mcmod.sakura.block.fluid.FoodOilFluid;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
 import cn.mcmod.sakura.block.tree.*;
@@ -17,6 +36,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,21 +75,39 @@ public class BlockLoader {
 	public static Block RADISHCROP = new BlockRadishCrop();
 	public static Block REDBEANCROP = new BlockRedBeanCrop();
 	public static Block BUCKWHEATCROP = new BlockBuckwheatCrop();
+	public static Block RAPESEEDCROP = new BlockRapeseedCrop();
 	
 	public static Block CHESTNUTBURR = new BlockChestnut();
 	public static Block SAKURA_LOG = new BlockMapleLog();
 	public static Block SAKURA_LEAVES = new BlockSakuraLeave();
 	public static Block SAKURA_SAPLING = new BlockSakuraSapling();
+	
+	public static Block PEPPER_SPLINT = new BlockPepperSplint();
+	public static Block PEPPERCROP = new BlockPepperCrop();
+	public static Block VANILLA_SPLINT = new BlockVanillaSplint();
+	public static Block VANILLACROP = new BlockVanillaCrop();
+	
+	public static Block GRAPE_SPLINT_STAND = new BlockGrapeSplintStand();
+	public static Block GRAPE_VINE = new BlockGrapeVine();
+	public static Block GRAPE_SPLINT = new BlockGrapeSplint();
+	public static BlockGrapeLeaves GRAPE_LEAVES = new BlockGrapeLeaves();
+	
+	public static Block SHOJI =new BlockShoji();
+	public static Block ANDON =new BlockAndon();
+
+	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
+	public static Block FOODOIL;
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
+		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
+		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFoodOil(FOODOIL_FLUID), "foodoil");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
 		registerNoItem(BAMBOODOOR, "bamboo_door");
-		
 		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
 		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
 		register(MAPLE_SAPLING_YELLOW, new ItemBlock(MAPLE_SAPLING_YELLOW), "maple_sapling_yellow");
@@ -78,7 +116,6 @@ public class BlockLoader {
 		register(MAPLE_LEAVE_ORANGE, new ItemBlock(MAPLE_LEAVE_ORANGE), "maple_leaves_orange");
 		register(MAPLE_SAPLING_GREEN, new ItemBlock(MAPLE_SAPLING_GREEN), "maple_sapling_green");
 		register(MAPLE_LEAVE_GREEN, new ItemBlock(MAPLE_LEAVE_GREEN), "maple_leaves_green");
-		
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
 		register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
@@ -86,10 +123,17 @@ public class BlockLoader {
 		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
+		register(PEPPER_SPLINT, new ItemBlock(PEPPER_SPLINT), "pepper_splint");
+		register(VANILLA_SPLINT, new ItemBlock(VANILLA_SPLINT), "vanilla_splint");
+		register(GRAPE_SPLINT_STAND, new ItemBlock(GRAPE_SPLINT_STAND), "grape_splint_stand");
+		register(GRAPE_SPLINT, new ItemBlock(GRAPE_SPLINT), "grape_splint");
+		register(SHOJI, new ItemBlock(SHOJI), "shoji");
+		register(ANDON, new ItemBlock(ANDON), "andon");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
 		registerNoItem(RICECROP, "ricecrop");
+		registerNoItem(RAPESEEDCROP, "rapeseedcrop");
 		registerNoItem(CHESTNUTBURR, "chestnut_burr");
 		registerNoItem(TOMATOCROP, "tomatocrop");
 		registerNoItem(EGGPLANTCROP, "eggplantcrop");
@@ -97,13 +141,19 @@ public class BlockLoader {
 		registerNoItem(RADISHCROP, "radishcrop");
 		registerNoItem(REDBEANCROP, "redbeancrop");
 		registerNoItem(BUCKWHEATCROP, "buckwheatcrop");
+		registerNoItem(PEPPERCROP,"peppercrop");
+		registerNoItem(VANILLACROP,"vanillacrop");
+		registerNoItem(GRAPE_VINE,"grapevine");
+		registerNoItem(GRAPE_LEAVES, "grapeleaves");
 		registerNoItem(MAPLE_SYRUP_CAUDRON, "maple_syrup_caudron");
+
+
     }
 
 	private static void register(Block block, Item itemBlock, String string) {
 		block.setRegistryName(string);
 		block.setUnlocalizedName(SakuraMain.MODID+"."+string);
-
+		block.setCreativeTab(CommonProxy.tab);
 		ForgeRegistries.BLOCKS.register(block);
 		if (itemBlock != null) {
 			itemBlock.setRegistryName(string);
@@ -123,6 +173,9 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerFluidBlockRendering(FOODOIL, "foodoil");
+		registerRender(SHOJI);
+		registerRender(ANDON);
 		registerRender(BAMBOO);
 		registerRender(BAMBOOSHOOT);
         registerRender(BAMBOOLANTERN);
@@ -155,6 +208,15 @@ public class BlockLoader {
 		registerRender(REDBEANCROP);
 		registerRender(BUCKWHEATCROP);
 		registerRender(CHESTNUTBURR);
+		registerRender(RAPESEEDCROP);
+		registerRender(PEPPER_SPLINT);
+		registerRender(PEPPERCROP);
+		registerRender(VANILLA_SPLINT);
+		registerRender(VANILLACROP);
+		registerRender(GRAPE_LEAVES);
+		registerRender(GRAPE_SPLINT);
+        registerRender(GRAPE_SPLINT_STAND);
+        registerRender(GRAPE_VINE);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
@@ -166,7 +228,7 @@ public class BlockLoader {
 
 	@SideOnly(Side.CLIENT)
 	public static void registerFluidBlockRendering(Block block, String name) {
-		final ModelResourceLocation fluidLocation = new ModelResourceLocation(SakuraMain.MODID.toLowerCase() + ":fluids", name);
+		final ModelResourceLocation fluidLocation = new ModelResourceLocation(SakuraMain.MODID + ":fluids", name);
 		ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {

@@ -87,7 +87,7 @@ public class BlockSakuraLeave extends BlockLeaves {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Item.getItemFromBlock(BlockLoader.MAPLE_SAPLING_RED);
+        return Item.getItemFromBlock(BlockLoader.SAKURA_SAPLING);
     }
 
     @Override

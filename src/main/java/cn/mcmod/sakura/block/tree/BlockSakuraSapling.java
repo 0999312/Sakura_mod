@@ -41,7 +41,6 @@ public class BlockSakuraSapling extends BlockBush implements IGrowable {
         if (!treeGenerator.generate(world, rand, pos)) {
 
             world.setBlockState(pos, state, 4);
-
         }
     }
     @Override
