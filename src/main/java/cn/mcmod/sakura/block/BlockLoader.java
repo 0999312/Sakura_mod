@@ -27,6 +27,7 @@ import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -97,11 +98,16 @@ public class BlockLoader {
 
 	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
 	public static Block FOODOIL;
+	
+	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK).setHardness(1.5F).setResistance(10.0F);
+	public static Block KAWARA = new BlockKawara();
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
 		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFoodOil(FOODOIL_FLUID), "foodoil");
+        register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
+        register(KAWARA, new ItemBlock(KAWARA), "kawara");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
@@ -174,6 +180,8 @@ public class BlockLoader {
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
 		registerFluidBlockRendering(FOODOIL, "foodoil");
+		registerRender(KAWARA_BLOCK);
+		registerRender(KAWARA);
 		registerRender(SHOJI);
 		registerRender(ANDON);
 		registerRender(BAMBOO);
