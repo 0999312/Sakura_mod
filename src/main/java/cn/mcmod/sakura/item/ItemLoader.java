@@ -30,16 +30,20 @@ public class ItemLoader {
     public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "rapeseeds");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-            new int[]{1,3, 4, 5, 7, 9, 5},
-            new float[]{0.05f,0.22F, 0.3F, 0.5F, 0.68F, 0.88F, 0.6F},
+            new int[]{1, 3, 4, 5, 7, 9, 5, 5, 5, 9, 10},
+            new float[]{0.05f, 0.22F, 0.3F, 0.5F, 0.68F, 0.88F, 0.6F, 0.65F, 0.65F, 0.85F, 0.95F},
             new String[]{
             		SakuraMain.MODID + "." + "grape",
             		SakuraMain.MODID + "." + "maple_cookie",
                     SakuraMain.MODID + "." + "rice_cooked",
                     SakuraMain.MODID + "." + "rice_bamboo",
                     SakuraMain.MODID + "." + "rice_fish",
-                    SakuraMain.MODID + "." + "rice_beef",
+                    SakuraMain.MODID + "." + "rice_beef",//5
                     SakuraMain.MODID + "." + "rice_bread",
+                    SakuraMain.MODID + "." + "rice_egg",
+                    SakuraMain.MODID + "." + "ramen",
+                    SakuraMain.MODID + "." + "ramen_beef",
+                    SakuraMain.MODID + "." + "rice_beef_egg",//10
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{

@@ -21,6 +21,7 @@ tile.sakura.campfire_idle.name=キャンプファイヤー
 tile.sakura.campfire_lit.name=キャンプファイヤー
 tile.sakura.stone_mortar.name=石臼
 tile.sakura.ricecrop.name=米
+tile.sakura.chestnut_burr.name=栗
 #Item
 item.sakura.bamboo_door.name=竹のドア
 item.sakura.maple_syrup.name=メイプルシロップ
@@ -52,6 +53,14 @@ item.sakura.dough.name=小麦の生地
 item.sakura.dough_buckwheat.name=そばの生地
 item.sakura.dough_rice.name=米粉の生地
 item.sakura.rice_bread.name=米粉パン
+item.sakura.straw.name=藁
+item.sakura.ramen_raw.name=ラーメンの生地
+item.sakura.udon_raw.name=うどんの生地
+item.sakura.soba_raw.name=そばの生地
+item.sakura.curry_sauce.name=カレーソース
+item.sakura.tomato_sauce.name=トマトソース
+item.sakura.white_sauce.name=ホワイトソース
+item.sakura.templa_batter.name=天ぷらバター
 #Container
 container.sakura.stonemortar=石臼
 container.sakura.campfirepot=ポット付きキャンプファイヤー
