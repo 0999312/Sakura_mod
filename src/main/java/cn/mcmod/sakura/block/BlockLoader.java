@@ -51,7 +51,6 @@ public class BlockLoader {
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
     public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
-    
 	public static Block MAPLE_SAPLING_RED = new BlockMapleSaplingRed();
 	public static Block MAPLE_LEAVE_RED = new BlockMapleLeaveRed();
 	public static Block MAPLE_SAPLING_YELLOW = new BlockMapleSaplingYellow();
@@ -60,7 +59,6 @@ public class BlockLoader {
 	public static Block MAPLE_LEAVE_ORANGE = new BlockMapleLeaveOrange();
 	public static Block MAPLE_SAPLING_GREEN = new BlockMapleSaplingGreen();
 	public static Block MAPLE_LEAVE_GREEN = new BlockMapleLeaveGreen();
-	
 	public static Block MAPLE_LOG = new BlockMapleLog();
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
 	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
@@ -77,30 +75,25 @@ public class BlockLoader {
 	public static Block REDBEANCROP = new BlockRedBeanCrop();
 	public static Block BUCKWHEATCROP = new BlockBuckwheatCrop();
 	public static Block RAPESEEDCROP = new BlockRapeseedCrop();
-	
 	public static Block CHESTNUTBURR = new BlockChestnut();
 	public static Block SAKURA_LOG = new BlockMapleLog();
 	public static Block SAKURA_LEAVES = new BlockSakuraLeave();
 	public static Block SAKURA_SAPLING = new BlockSakuraSapling();
-	
 	public static Block PEPPER_SPLINT = new BlockPepperSplint();
 	public static Block PEPPERCROP = new BlockPepperCrop();
 	public static Block VANILLA_SPLINT = new BlockVanillaSplint();
 	public static Block VANILLACROP = new BlockVanillaCrop();
-	
 	public static Block GRAPE_SPLINT_STAND = new BlockGrapeSplintStand();
 	public static Block GRAPE_VINE = new BlockGrapeVine();
 	public static Block GRAPE_SPLINT = new BlockGrapeSplint();
 	public static BlockGrapeLeaves GRAPE_LEAVES = new BlockGrapeLeaves();
-	
 	public static Block SHOJI =new BlockShoji();
 	public static Block ANDON =new BlockAndon();
-
 	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
 	public static Block FOODOIL;
-	
 	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK).setHardness(1.5F).setResistance(10.0F);
 	public static Block KAWARA = new BlockKawara();
+	
     public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
