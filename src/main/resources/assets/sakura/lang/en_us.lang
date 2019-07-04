@@ -23,6 +23,7 @@ tile.sakura.campfire_pot_idle.name=CampfirePot
 tile.sakura.campfire_pot_lit.name=CampfirePot
 tile.sakura.stone_mortar.name=StoneMortar
 tile.sakura.ricecrop.name=RiceCrop
+tile.sakura.chestnut_burr.name=Chestnut Burr
 #Item
 item.sakura.bamboo_door.name=Bamboo Door
 item.sakura.maple_syrup.name=Maple Syrup
@@ -54,6 +55,15 @@ item.sakura.dough.name=Dough
 item.sakura.dough_buckwheat.name=BuckWheat Dough
 item.sakura.dough_rice.name=Rice Dough
 item.sakura.rice_bread.name=Rice Bread
+item.sakura.straw.name=Straw
+item.sakura.ramen_raw.name=Ramen Raw
+item.sakura.udon_raw.name=Udon Raw
+item.sakura.soba_raw.name=Soba Raw
+item.sakura.curry_sauce.name=Curry Sauce
+item.sakura.tomato_sauce.name=Tomato Sauce
+item.sakura.white_sauce.name=White Sauce
+item.sakura.templa_batter.name=Templa Batter
+
 #Container
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot
