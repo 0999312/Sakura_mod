@@ -22,6 +22,10 @@ import cn.mcmod.sakura.block.door.BlockDoorBase;
 import cn.mcmod.sakura.block.fluid.BlockFoodOil;
 import cn.mcmod.sakura.block.fluid.FoodOilFluid;
 import cn.mcmod.sakura.block.slab.BlockBambooSlab;
+import cn.mcmod.sakura.block.slab.BlockCarpetFacing;
+import cn.mcmod.sakura.block.slab.BlockCarpetTatami;
+import cn.mcmod.sakura.block.slab.BlockHalfFacing;
+import cn.mcmod.sakura.block.slab.BlockHalfTatami;
 import cn.mcmod.sakura.block.slab.BlockSlabBase;
 import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
@@ -94,7 +98,21 @@ public class BlockLoader {
 	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK).setHardness(1.5F).setResistance(10.0F);
 	public static Block KAWARA = new BlockKawara();
 	
-    public BlockLoader(FMLPreInitializationEvent event) {
+	public static BlockFacing TATAMI_TAN=(BlockFacing) new BlockFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
+	public static BlockFacing TATAMI_TAN_NS=(BlockFacing) new BlockFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
+    public static Block TATAMI = new BlockTatami(false);
+    public static Block TATAMI_NS = new BlockTatami(true);
+    
+	public static BlockFacing TATAMI_TAN_HALF=(BlockFacing) new BlockHalfFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+	public static BlockFacing TATAMI_TAN_NS_HALF=(BlockFacing) new BlockHalfFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+    public static Block TATAMI_HALF = new BlockHalfTatami(false);
+    public static Block TATAMI_NS_HALF = new BlockHalfTatami(true);
+    
+	public static BlockFacing TATAMI_TAN_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
+	public static BlockFacing TATAMI_TAN_NS_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
+    public static Block TATAMI_CARPET = new BlockCarpetTatami(false);
+    public static Block TATAMI_NS_CARPET = new BlockCarpetTatami(true);
+	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
@@ -106,6 +124,21 @@ public class BlockLoader {
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
+        register(TATAMI_TAN, new ItemBlock(TATAMI_TAN), "tatami_tan");
+        register(TATAMI, new ItemBlock(TATAMI), "tatami");
+        register(TATAMI_TAN_NS, new ItemBlock(TATAMI_TAN_NS), "tatami_tan_ns");
+        register(TATAMI_NS, new ItemBlock(TATAMI_NS), "tatami_ns");
+        
+        register(TATAMI_TAN_HALF, new ItemBlock(TATAMI_TAN_HALF), "tatami_tan_half");
+        register(TATAMI_HALF, new ItemBlock(TATAMI_HALF), "tatami_half");
+        register(TATAMI_TAN_NS_HALF, new ItemBlock(TATAMI_TAN_NS_HALF), "tatami_tan_ns_half");
+        register(TATAMI_NS_HALF, new ItemBlock(TATAMI_NS_HALF), "tatami_ns_half");
+        
+        register(TATAMI_TAN_CARPET, new ItemBlock(TATAMI_TAN_CARPET), "tatami_tan_carpet");
+        register(TATAMI_CARPET, new ItemBlock(TATAMI_CARPET), "tatami_carpet");
+        register(TATAMI_TAN_NS_CARPET, new ItemBlock(TATAMI_TAN_NS_CARPET), "tatami_tan_ns_carpet");
+        register(TATAMI_NS_CARPET, new ItemBlock(TATAMI_NS_CARPET), "tatami_ns_carpet");
+        
 		registerNoItem(BAMBOODOOR, "bamboo_door");
 		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
 		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
@@ -172,6 +205,21 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(TATAMI_TAN);
+		registerRender(TATAMI);
+		registerRender(TATAMI_TAN_NS);
+		registerRender(TATAMI_NS);
+		
+		registerRender(TATAMI_TAN_HALF);
+		registerRender(TATAMI_HALF);
+		registerRender(TATAMI_TAN_NS_HALF);
+		registerRender(TATAMI_NS_HALF);
+		
+		registerRender(TATAMI_TAN_CARPET);
+		registerRender(TATAMI_CARPET);
+		registerRender(TATAMI_TAN_NS_CARPET);
+		registerRender(TATAMI_NS_CARPET);
+		
 		registerFluidBlockRendering(FOODOIL, "foodoil");
 		registerRender(KAWARA_BLOCK);
 		registerRender(KAWARA);

@@ -1,0 +1,32 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "half_slab",
+      "textures" : {
+         "top" : "sakura:blocks/tatami_tan",
+         "bottom" : "#top",
+         "side" : "#top",
+         "all" : "#top",
+         "particle" : "#all"
+      }
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "half_slab"
+      },
+      "facing" : {
+         "north" : {
+            "y" : 0
+         },
+         "south" : {
+            "y" : 180
+         },
+         "west" : {
+            "y" : 270
+         },
+         "east" : {
+            "y" : 90
+         }
+      }
+   }
+}

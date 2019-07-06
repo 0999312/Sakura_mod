@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -23,7 +24,11 @@ public class BlockFacing extends Block {
     public BlockFacing(Material materialIn) {
 		super(materialIn);
 	}
-
+	@Override
+	public Block setSoundType(SoundType sound) {
+		// TODO Auto-generated method stub
+		return super.setSoundType(sound);
+	}
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	   /**
      * Called after the block is set in the Chunk data, but before the Tile Entity is set
