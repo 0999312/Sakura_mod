@@ -31,14 +31,13 @@ import java.util.Random;
 public class BlockAndon extends BlockFacing {
 
     public BlockAndon() {
-        super(Material.WOOD);
-        this.setTickRandomly(true);
+        super(Material.WOOD,false);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(CommonProxy.tab);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setHardness(1.0F);
         this.setResistance(4.0F);
-        this.setLightLevel(1.2F);
+        this.setLightLevel(1F);
     }
 
  

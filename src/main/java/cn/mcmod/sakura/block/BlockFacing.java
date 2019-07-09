@@ -21,8 +21,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockFacing extends Block {
-    public BlockFacing(Material materialIn) {
+	public final boolean isFull;
+    public BlockFacing(Material materialIn,boolean isfull) {
 		super(materialIn);
+		isFull = isfull;
 	}
 	@Override
 	public Block setSoundType(SoundType sound) {
@@ -134,7 +136,7 @@ public class BlockFacing extends Block {
 
     @Override
     public boolean isFullCube(IBlockState state) {
-        return false;
+        return isFull;
     }
 
     @SideOnly(Side.CLIENT)
@@ -144,6 +146,6 @@ public class BlockFacing extends Block {
 
     @Override
     public boolean isOpaqueCube(IBlockState state) {
-        return false;
+        return isFull;
     }
 }

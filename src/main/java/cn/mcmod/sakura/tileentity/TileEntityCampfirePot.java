@@ -154,7 +154,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 }
                 
                 //If pot is a recipe that uses a liquid, it consumes only that amount of liquid
-                if (fluidStack != null) {
+                if (fluidStack != null && fluidStack.amount>0) {
                     this.tank.drain(fluidStack, true);
                 }
 
@@ -408,8 +408,8 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             			else throw new IllegalArgumentException("Not a itemStack or od name");
                     }
 
-                resultItem = result;
-                fluid = fluidStack;
+                resultItem = result.copy();
+                fluid = fluidStack.copy();
             }
             }else throw new IllegalArgumentException("Invalid Main Ore Dictionary");
         }
@@ -433,6 +433,9 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         public FluidStack getResultFluid(FluidStack fluidStack) {
+        	if(fluid.amount<=0) 
+        		return fluidStack;
+        	else
             if (fluidStack.isFluidEqual(fluid)) {
                 return fluidStack;
             } else {
@@ -533,17 +536,18 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (this.getStackInSlot(0).isEmpty()) {
             return null;
         }
-        if (this.getTank().getFluid() == null) {
-            return null;
-        }
+
         for (PotRecipes recipes : potRecipesList) {
-
-            ItemStack stack = recipes.getResult(this);
+            if (this.getTank().getFluid() == null && recipes.getResultFluid().amount>0) 
+                return null;
             FluidStack tankStack = this.getTank().getFluid();
-            
-            FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;
+            ItemStack stack = recipes.getResult(this);
+            if(recipes.getResultFluid().amount<=0 && tankStack==null && !stack.isEmpty())
+            	return recipes;
+            else{
 
-            if ((fluidStack != null || recipes.getResultFluid() != tankStack) && !stack.isEmpty()) {
+            FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;
+            if ((fluidStack != null || recipes.getResultFluid() != tankStack) && !stack.isEmpty()) 
                 return recipes;
             }
         }

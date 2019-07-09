@@ -13,7 +13,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class SakuraRecipeRegister {
 	public static void furnaceRegister() {
-		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 5), 0.1F);
+//		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 5), 0.1F);
 	}
 
     public static void mortarRegister() {
@@ -27,49 +27,77 @@ public class SakuraRecipeRegister {
 
     public static void potRegister() {
 		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(
-						new ItemStack(ItemLoader.FOODSET, 1, 3),
-						"cropRice",
-						new Object[]{
-								"listAllfishfresh"
-						},
-						new FluidStack(FluidRegistry.WATER, 200)));
+		new TileEntityCampfirePot.PotRecipes(
+				new ItemStack(ItemLoader.FOODSET, 1, 90),
+				"listAllbeefraw",
+				new Object[]{
+						"bamboo"
+				},
+				new FluidStack(FluidRegistry.WATER, 0)));
 		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(
-						new ItemStack(ItemLoader.FOODSET, 1, 3),
-						"cropRice",
-						new Object[]{
-								"listAllfishraw"
-						},
-						new FluidStack(FluidRegistry.WATER, 200)));
+		new TileEntityCampfirePot.PotRecipes(
+				new ItemStack(ItemLoader.FOODSET, 1, 10),
+				"cropRice",
+				new Object[]{
+						"listAllbeefraw"
+				},
+				new FluidStack(FluidRegistry.WATER, 200)));
 		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(
-						new ItemStack(ItemLoader.FOODSET, 1, 6),
-						"cropRice",
-						new Object[]{
-								"egg",
-								new ItemStack(Items.BEEF)
-						},
-						new FluidStack(FluidRegistry.WATER, 200)));
-		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(
-						new ItemStack(ItemLoader.FOODSET, 1, 5),
-						"cropRice",
-						new Object[]{
-								new ItemStack(Items.BEEF)
-						},
-						new FluidStack(FluidRegistry.WATER, 200)));
-
-		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 1),
-						"cropRice",
-						new FluidStack(FluidRegistry.WATER, 200)));
-		TileEntityCampfirePot.PotRecipes.addPotRecipe(
-				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 2),
-						"cropRice",
-						new ItemStack[]{
-								new ItemStack(Item.getItemFromBlock(BlockLoader.BAMBOOSHOOT))
-						},
-						new FluidStack(FluidRegistry.WATER, 200)));
+		new TileEntityCampfirePot.PotRecipes(
+				new ItemStack(ItemLoader.FOODSET, 1, 6),
+				"listAllporkraw",
+				new Object[]{
+						"foodFlour",
+						"listAllegg",
+						"foodBreadcrumbs",
+						"dustSalt",
+						"foodBlackpepper"
+				},
+				new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(
+//						new ItemStack(ItemLoader.FOODSET, 1, 3),
+//						"cropRice",
+//						new Object[]{
+//								"listAllfishfresh"
+//						},
+//						new FluidStack(FluidRegistry.WATER, 200)));
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(
+//						new ItemStack(ItemLoader.FOODSET, 1, 3),
+//						"cropRice",
+//						new Object[]{
+//								"listAllfishraw"
+//						},
+//						new FluidStack(FluidRegistry.WATER, 200)));
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(
+//						new ItemStack(ItemLoader.FOODSET, 1, 6),
+//						"cropRice",
+//						new Object[]{
+//								"egg",
+//								new ItemStack(Items.BEEF)
+//						},
+//						new FluidStack(FluidRegistry.WATER, 200)));
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(
+//						new ItemStack(ItemLoader.FOODSET, 1, 5),
+//						"cropRice",
+//						new Object[]{
+//								new ItemStack(Items.BEEF)
+//						},
+//						new FluidStack(FluidRegistry.WATER, 200)));
+//
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 1),
+//						"cropRice",
+//						new FluidStack(FluidRegistry.WATER, 200)));
+//		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+//				new TileEntityCampfirePot.PotRecipes(new ItemStack(ItemLoader.FOODSET, 1, 2),
+//						"cropRice",
+//						new ItemStack[]{
+//								new ItemStack(Item.getItemFromBlock(BlockLoader.BAMBOOSHOOT))
+//						},
+//						new FluidStack(FluidRegistry.WATER, 200)));
     }
 }

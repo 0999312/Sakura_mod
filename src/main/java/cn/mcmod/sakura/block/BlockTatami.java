@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class BlockTatami extends BlockFacing{
 	public final boolean isNS;
 	public BlockTatami(boolean ns) {
-		super(Material.GRASS);
+		super(Material.GRASS,true);
 		this.setTickRandomly(true);
 		this.setSoundType(SoundType.PLANT);
 		setHardness(0.5F).setResistance(0.5F);

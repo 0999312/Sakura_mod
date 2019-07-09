@@ -95,11 +95,11 @@ public class BlockLoader {
 	public static Block ANDON =new BlockAndon();
 	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
 	public static Block FOODOIL;
-	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK).setHardness(1.5F).setResistance(10.0F);
+	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK,true).setHardness(1.5F).setResistance(10.0F);
 	public static Block KAWARA = new BlockKawara();
 	
-	public static BlockFacing TATAMI_TAN=(BlockFacing) new BlockFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
-	public static BlockFacing TATAMI_TAN_NS=(BlockFacing) new BlockFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
+	public static BlockFacing TATAMI_TAN=(BlockFacing) new BlockFacing(Material.GRASS,true).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
+	public static BlockFacing TATAMI_TAN_NS=(BlockFacing) new BlockFacing(Material.GRASS,true).setSoundType(SoundType.PLANT).setHardness(0.5F).setResistance(0.5F);
     public static Block TATAMI = new BlockTatami(false);
     public static Block TATAMI_NS = new BlockTatami(true);
     
