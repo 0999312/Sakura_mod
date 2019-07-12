@@ -179,8 +179,8 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "rice_curry_burger",//47
                     
                     SakuraMain.MODID + "." + "rice_curry_cheese",//48
-                    SakuraMain.MODID + "." + "rice_curry_katsu",//49
-                    SakuraMain.MODID + "." + "rice_curry_burger",//50
+                    SakuraMain.MODID + "." + "rice_curry_cheese_katsu",//49
+                    SakuraMain.MODID + "." + "rice_curry_cheese_burger",//50
                     
                     SakuraMain.MODID + "." + "mashed_potato",//51
                     SakuraMain.MODID + "." + "mochi",//52
@@ -214,17 +214,17 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "tempura",//67
                     SakuraMain.MODID + "." + "fishcake",//68
                     
-                    SakuraMain.MODID + "." + "tofu",//69
-                    SakuraMain.MODID + "." + "tofu_fried",//70
-                    SakuraMain.MODID + "." + "oden",//71
+                    SakuraMain.MODID + "." + "tofu",//81
+                    SakuraMain.MODID + "." + "tofu_fried",//82
+                    SakuraMain.MODID + "." + "oden",//83
                     
-                    SakuraMain.MODID + "." + "dananko",//72
-                    SakuraMain.MODID + "." + "danmitarashi",//73
-                    SakuraMain.MODID + "." + "dansansyoku",//74
+                    SakuraMain.MODID + "." + "dananko",//84
+                    SakuraMain.MODID + "." + "danmitarashi",//85
+                    SakuraMain.MODID + "." + "dansansyoku",//86
                     
-                    SakuraMain.MODID + "." + "eggplant_baked",//75
-                    SakuraMain.MODID + "." + "fried_chicken",//76
-                    SakuraMain.MODID + "." + "sashimi",//77
+                    SakuraMain.MODID + "." + "eggplant_baked",//87
+                    SakuraMain.MODID + "." + "fried_chicken",//88
+                    SakuraMain.MODID + "." + "sashimi",//89
                     
                     SakuraMain.MODID + "." + "beef_stick",//90
                     SakuraMain.MODID + "." + "chicken_stick",//91
