@@ -20,7 +20,8 @@ public class SakuraOreDictLoader {
 		registerOre("foodBreadcrumbs", new ItemStack(ItemLoader.MATERIAL, 1, 30));
 		registerOre("foodBlackpepper", new ItemStack(ItemLoader.MATERIAL, 1, 27));
 		registerOre("dustSalt", new ItemStack(ItemLoader.MATERIAL, 1, 2));
-		
+	
+		registerOre("cropBambooshoot", new ItemStack(BlockLoader.BAMBOOSHOOT));
 		registerOre("bamboo", new ItemStack(BlockLoader.BAMBOO));
 
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));
@@ -48,6 +49,8 @@ public class SakuraOreDictLoader {
 		  registerOre("cropPotato", Items.POTATO);
 		  registerOre("cropPumpkin", Blocks.PUMPKIN);
 		  registerOre("cropWheat", Items.WHEAT);
+	      registerOre("listAllmushroom", Blocks.RED_MUSHROOM);
+	      registerOre("listAllmushroom", Blocks.BROWN_MUSHROOM);
 		  registerOre("cropBeet", Items.BEETROOT);
 		    
 		  registerOre("listAllgrain", Items.WHEAT);

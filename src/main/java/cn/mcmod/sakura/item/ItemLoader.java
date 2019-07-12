@@ -280,8 +280,10 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "miso",
             SakuraMain.MODID + "." + "breadcrumbs",//30
             SakuraMain.MODID + "." + "chestnut",//31
+            SakuraMain.MODID + "." + "noodle_soup",//32
     });
     public static Item POT = new ItemPot();
+    public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
     public ItemLoader(FMLPreInitializationEvent event) {
         register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
@@ -298,6 +300,7 @@ public class ItemLoader {
         register(BUCKWHEAT);
         register(RAPESEED);
         register(MAPLE_SYRUP);
+        register(KNIFE_NOODLE);
         register(MATERIAL);
         register(FOODSET);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 3);
@@ -309,6 +312,7 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(KNIFE_NOODLE);
     	registerRender(POT);
     	registerRender(CABBAGE);
         registerRender(CABBAGE_SEEDS);

@@ -332,16 +332,10 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
     @SideOnly(Side.CLIENT)
     public int getBurnTimeRemainingScaled(int par1) {
-
-        if (this.currentItemBurnTime == 0) {
-
+        if (this.currentItemBurnTime == 0) 
             this.currentItemBurnTime = 200;
-
-        }
-
-
+      
         return this.burnTime * par1 / this.currentItemBurnTime;
-
     }
 
     public static class PotRecipes {

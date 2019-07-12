@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.item;
 
+import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 
@@ -7,6 +8,7 @@ public class ItemKnifeNoodle extends ItemSword {
 
 	public ItemKnifeNoodle() {
 		super(ToolMaterial.IRON);
+		this.setUnlocalizedName(SakuraMain.MODID+"."+"knife_noodle");
 		this.setMaxDamage(ToolMaterial.DIAMOND.getMaxUses());
 	}
     @Override

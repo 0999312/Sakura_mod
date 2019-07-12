@@ -19,10 +19,6 @@ public class ContainerCampfirePot extends Container {
     public ContainerCampfirePot(InventoryPlayer inventory, TileEntityCampfirePot tile) {
         tileCampfire = tile;
         addSlotToContainer(new Slot(tile, 0, 45, 11));
-//        addSlotToContainer(new Slot(tile, 1, 40, 36));
-//        addSlotToContainer(new Slot(tile, 2, 22, 36));
-//        addSlotToContainer(new Slot(tile, 3, 4, 36));
-//        addSlotToContainer(new Slot(tile, 4, 32, 20));
         int i,j,k,l;
         for (k = 1; k <5; ++k)
             addSlotToContainer(new Slot(tile, k, 18 + (k-1) * 18, 29));
