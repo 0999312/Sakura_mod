@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sakura:knife_noodle"
+    },
+    {
+      "item": "sakura:raw_soba",
+      "data": 7
+    }
+  ],
+  "result": {
+    "item": "sakura:material",
+    "count": 2,
+    "data": 9
+  }
+}

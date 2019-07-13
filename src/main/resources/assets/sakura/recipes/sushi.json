@@ -1,0 +1,18 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "listAllfishraw"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 7
+    }
+  ],
+  "result": {
+    "item": "sakura:foodset",
+    "count": 3,
+    "data": 100
+  }
+}
