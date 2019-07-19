@@ -6,7 +6,9 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -285,6 +287,7 @@ public class ItemLoader {
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
     public static Item SAKURA_DIAMOND = new ItemSakuraDiamond();
+    public static Item HYDRA_RAMEN = new ItemFood(20, 10F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION), 120);
     public ItemLoader(FMLPreInitializationEvent event) {
         register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
@@ -304,12 +307,16 @@ public class ItemLoader {
         register(KNIFE_NOODLE);
         register(MATERIAL);
         register(FOODSET);
+        register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
         register(SAKURA_DIAMOND);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 3);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
+        MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(RICE_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(BUCKWHEAT), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(RAPESEED), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(MATERIAL, 1, 23), 2);
     }
 
     @SideOnly(Side.CLIENT)
@@ -332,6 +339,7 @@ public class ItemLoader {
         registerRender(BAMBOO_DOOR);
         registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
+        registerRender(HYDRA_RAMEN);
         registerRender(SAKURA_DIAMOND);
     }
 
