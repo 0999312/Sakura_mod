@@ -17,7 +17,7 @@ public class ModelStrawHat extends ModelBiped {
         this.textureHeight = 64;
         this.bipedHead = new ModelRenderer(this, 0, 0);
         this.bipedHead.setRotationPoint(0.0F, -4.2F, 0.0F);
-        this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 4, 8, 0.0F);
+        this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 4, 8, 0.05F);
         this.hatpiace = new ModelRenderer(this, 24, 32);
         this.hatpiace.setRotationPoint(0.0F, -4.8F, 0.0F);
         this.hatpiace.addBox(-5.0F, 0.0F, -5.0F, 10, 1, 10, 0.0F);
