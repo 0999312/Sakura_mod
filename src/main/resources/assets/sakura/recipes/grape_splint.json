@@ -1,0 +1,17 @@
+{
+  "pattern": [
+    " S ",
+    "SSS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "sakura:grape_splint",
+    "count": 1
+  },
+  "type": "forge:ore_shaped"
+}

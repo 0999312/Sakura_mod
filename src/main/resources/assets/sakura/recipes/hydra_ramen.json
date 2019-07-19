@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "twilightforest"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 19
+    },
+    {
+      "item": "twilightforest:hydra_chop"
+    }
+  ],
+  "result": {
+    "item": "sakura:hydra_ramen",
+    "count": 1
+  }
+}

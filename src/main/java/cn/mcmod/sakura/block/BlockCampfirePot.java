@@ -3,6 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.gui.SakuraGuiHandler;
+import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -203,6 +204,7 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
             }
 
             spawnAsEntity(worldIn, pos, new ItemStack(Item.getItemFromBlock(BlockLoader.CAMPFIRE_IDLE)));
+            spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.POT));
         }
 
         super.breakBlock(worldIn, pos, state);
