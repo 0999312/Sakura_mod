@@ -6,16 +6,21 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemLoader {	
+public class ItemLoader {
+    public static final ItemArmor.ArmorMaterial STRAW_MATERIAL = EnumHelper.addArmorMaterial("STRAW_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/strawhat.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
+
     public static Item RICE_SEEDS = new ItemRiceSeeds();
     public static Item TOMATO = new ItemFood(2,false).setUnlocalizedName(SakuraMain.MODID + "." + "tomato");
     public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "tomato_seeds");
@@ -284,6 +289,10 @@ public class ItemLoader {
     });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
+    public static Item SAKURA_DIAMOND = new ItemSakuraDiamond();
+    public static Item HYDRA_RAMEN = new ItemFood(20, 10F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION), 120);
+
+    public static Item STRAW_HAT = new ItemStrawHat();
     public ItemLoader(FMLPreInitializationEvent event) {
         register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
@@ -303,11 +312,17 @@ public class ItemLoader {
         register(KNIFE_NOODLE);
         register(MATERIAL);
         register(FOODSET);
+        register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
+        register(STRAW_HAT);
+        register(SAKURA_DIAMOND);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 3);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
+        MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(RICE_SEEDS), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(BUCKWHEAT), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(RAPESEED), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(MATERIAL, 1, 23), 2);
     }
 
     @SideOnly(Side.CLIENT)
@@ -330,7 +345,9 @@ public class ItemLoader {
         registerRender(BAMBOO_DOOR);
         registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
-
+        registerRender(HYDRA_RAMEN);
+        registerRender(STRAW_HAT);
+        registerRender(SAKURA_DIAMOND);
     }
 
     private static void register(Item item) {

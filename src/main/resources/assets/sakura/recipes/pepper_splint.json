@@ -1,0 +1,21 @@
+{
+  "pattern": [
+    "S S",
+    " # ",
+    "S S"
+  ],
+  "key": {
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "sakura:pepper_splint",
+    "count": 2
+  },
+  "type": "forge:ore_shaped"
+}
