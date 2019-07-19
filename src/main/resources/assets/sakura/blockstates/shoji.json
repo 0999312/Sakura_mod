@@ -1,13 +1,19 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "sakura:shoji"
+    "model": "sakura:shoji",
+  "textures": {
+    "particle": "sakura:items/shoji"
+  }
   },
   "variants": {
     "normal": [{}],
     "inventory": [
       {
-        "model": "sakura:item/shoji"
+        "model": "sakura:item/shoji",
+  "textures": {
+    "particle": "sakura:items/shoji"
+  }
       }
     ],
     "facing": {
