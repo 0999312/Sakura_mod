@@ -64,6 +64,8 @@ item.sakura.templa_batter.name=天ぷらバター
 item.sakura.hydra_ramen.name=ヒドララーメン
 item.sakura.strawhat.name=藁の帽子
 item.sakura.sakura_diamond.name=桜色のダイアモンド
+item.sakura.katana.name=刀
+item.sakura.sakura_katana.name=桜色ダイアモンドの刀
 #Container
 container.sakura.stonemortar=石臼
 container.sakura.campfirepot=ポット付きキャンプファイヤー

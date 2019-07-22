@@ -1,22 +1,21 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "S",
-    "#",
-    "#"
+    "  #",
+    " # ",
+    "S  "
   ],
   "key": {
+    "#": {
+      "item": "sakura:sakura_diamond"
+    },
     "S": {
       "type": "forge:ore_dict",
       "ore": "stickWood"
-    },
-    "#": {
-      "item": "minecraft:stone_slab",
-      "data": 3
     }
   },
   "result": {
-    "item": "sakura:stone_mortar",
-    "count": 6
+    "item": "sakura:sakura_katana",
+    "count": 1
   }
 }

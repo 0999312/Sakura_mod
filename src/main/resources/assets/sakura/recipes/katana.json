@@ -1,13 +1,14 @@
 {
+  "type": "forge:ore_shaped",
   "pattern": [
-    " S ",
-    "S#S",
-    " S "
+    "  #",
+    " # ",
+    "S  "
   ],
   "key": {
     "#": {
       "type": "forge:ore_dict",
-      "ore": "fenceWood"
+      "ore": "ingotIron"
     },
     "S": {
       "type": "forge:ore_dict",
@@ -15,8 +16,7 @@
     }
   },
   "result": {
-    "item": "sakura:grape_splint_stand",
-    "count": 2
-  },
-  "type": "forge:ore_shaped"
+    "item": "sakura:katana",
+    "count": 1
+  }
 }

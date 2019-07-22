@@ -5,12 +5,12 @@
       "item": "sakura:knife_noodle"
     },
     {
-      "item": "sakura:material",
+      "item": "sakura:materials",
       "data": 6
     }
   ],
   "result": {
-    "item": "sakura:material",
+    "item": "sakura:materials",
     "count": 2,
     "data": 8
   }
