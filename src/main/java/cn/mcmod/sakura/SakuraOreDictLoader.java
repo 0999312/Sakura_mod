@@ -74,7 +74,11 @@ public class SakuraOreDictLoader {
 		  registerOre("listAllfishcooked", Items.COOKED_FISH);
 		  registerOre("listAllfishcooked", new ItemStack(Items.COOKED_FISH, 1, 1));
 		  registerOre("salmonRaw", new ItemStack(Items.FISH, 1));
-		    
+//		  listAllveggie
+		  registerOre("listAllveggie", Items.CARROT);
+		  registerOre("listAllveggie", Items.POTATO);
+		  registerOre("listAllveggie", Blocks.PUMPKIN);
+		  registerOre("listAllveggie", Items.BEETROOT);
 		  registerOre("listAllsugar", Items.SUGAR);
 		  registerOre("cropBeet", Items.BEETROOT);
 		  registerOre("seedBeet", Items.BEETROOT_SEEDS);

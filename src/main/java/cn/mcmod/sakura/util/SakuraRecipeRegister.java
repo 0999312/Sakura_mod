@@ -213,7 +213,8 @@ public class SakuraRecipeRegister {
                         new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                "listAllbeefraw",
+                                "listAllmeatraw",
+                                "listAllveggie",
                                 "listAllegg"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
@@ -222,25 +223,33 @@ public class SakuraRecipeRegister {
          */
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 27),
+                        new ItemStack(ItemLoader.FOODSET, 2, 26),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
-                                new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(Items.BEEF, 1)
+                                new ItemStack(ItemLoader.MATERIAL, 1, 32)
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 28),
+                        new ItemStack(ItemLoader.FOODSET, 2, 27),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(Items.EGG, 1)
+                                "listAllbeefraw"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 29),
+                        new ItemStack(ItemLoader.FOODSET, 2, 28),
+                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
+                        new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 32),
+                                "listAllegg"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 29),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
@@ -249,7 +258,7 @@ public class SakuraRecipeRegister {
                         new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 30),
+                        new ItemStack(ItemLoader.FOODSET, 2, 30),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
@@ -258,7 +267,7 @@ public class SakuraRecipeRegister {
                         new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 31),
+                        new ItemStack(ItemLoader.FOODSET, 2, 31),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
@@ -267,12 +276,13 @@ public class SakuraRecipeRegister {
                         new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 32),
+                        new ItemStack(ItemLoader.FOODSET, 2, 32),
                         new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(ItemLoader.FOODSET, 1, 6),
-                                new ItemStack(Items.EGG, 1)
+                                "listAllmeatraw",
+                                "listAllveggie",
+                                "listAllegg"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
         /*
@@ -334,23 +344,6 @@ public class SakuraRecipeRegister {
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
 
-
-        TileEntityCampfirePot.PotRecipes.addPotRecipe(
-                new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 26),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
-                        new Object[]{
-                                new ItemStack(ItemLoader.MATERIAL, 1, 32)
-                        },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        TileEntityCampfirePot.PotRecipes.addPotRecipe(
-                new TileEntityCampfirePot.PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 1, 34),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
-                        new Object[]{
-                                new ItemStack(ItemLoader.MATERIAL, 1, 32)
-                        },
-                        new FluidStack(FluidRegistry.WATER, 200)));
         TileEntityCampfirePot.PotRecipes.addPotRecipe(
                 new TileEntityCampfirePot.PotRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 3),
