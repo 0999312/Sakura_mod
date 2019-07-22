@@ -1,0 +1,22 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "sakura:items/sakura_katana"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [
+        -65,
+        -180,
+        -58
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -65,
+        0,
+        58
+      ]
+    }
+  }
+}

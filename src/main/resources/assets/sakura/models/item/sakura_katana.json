@@ -1,0 +1,14 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "sakura:items/sakura_katana"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "sakura:item/sakura_katana_blocking"
+    }
+  ]
+}

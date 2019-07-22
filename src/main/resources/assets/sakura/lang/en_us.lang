@@ -212,6 +212,8 @@ item.sakura.maple_syrup.name=Maple Syrup
 item.sakura.hydra_ramen.name=Hydra Ramen
 item.sakura.strawhat.name=Straw Hat
 item.sakura.sakura_diamond.name=Sakura Diamond
+item.sakura.katana.name=Katana
+item.sakura.sakura_katana.name=Sakura Katana
 #Container
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot

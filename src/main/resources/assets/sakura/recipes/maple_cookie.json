@@ -6,7 +6,7 @@
   },
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "ore": "cropWheat"
     },
     {
       "item": "sakura:maple_syrup",
