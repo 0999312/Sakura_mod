@@ -2,31 +2,11 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
-import cn.mcmod.sakura.block.crop.BlockBuckwheatCrop;
-import cn.mcmod.sakura.block.crop.BlockCabbageCrop;
-import cn.mcmod.sakura.block.crop.BlockEggplantCrop;
-import cn.mcmod.sakura.block.crop.BlockGrapeLeaves;
-import cn.mcmod.sakura.block.crop.BlockGrapeSplint;
-import cn.mcmod.sakura.block.crop.BlockGrapeSplintStand;
-import cn.mcmod.sakura.block.crop.BlockGrapeVine;
-import cn.mcmod.sakura.block.crop.BlockPepperCrop;
-import cn.mcmod.sakura.block.crop.BlockPepperSplint;
-import cn.mcmod.sakura.block.crop.BlockRadishCrop;
-import cn.mcmod.sakura.block.crop.BlockRapeseedCrop;
-import cn.mcmod.sakura.block.crop.BlockRedBeanCrop;
-import cn.mcmod.sakura.block.crop.BlockRiceCrop;
-import cn.mcmod.sakura.block.crop.BlockTomatoCrop;
-import cn.mcmod.sakura.block.crop.BlockVanillaCrop;
-import cn.mcmod.sakura.block.crop.BlockVanillaSplint;
+import cn.mcmod.sakura.block.crop.*;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
 import cn.mcmod.sakura.block.fluid.BlockFoodOil;
 import cn.mcmod.sakura.block.fluid.FoodOilFluid;
-import cn.mcmod.sakura.block.slab.BlockBambooSlab;
-import cn.mcmod.sakura.block.slab.BlockCarpetFacing;
-import cn.mcmod.sakura.block.slab.BlockCarpetTatami;
-import cn.mcmod.sakura.block.slab.BlockHalfFacing;
-import cn.mcmod.sakura.block.slab.BlockHalfTatami;
-import cn.mcmod.sakura.block.slab.BlockSlabBase;
+import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
 import cn.mcmod.sakura.util.JSON_Creator;
@@ -112,6 +92,9 @@ public class BlockLoader {
 	public static BlockFacing TATAMI_TAN_NS_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
     public static Block TATAMI_CARPET = new BlockCarpetTatami(false);
     public static Block TATAMI_NS_CARPET = new BlockCarpetTatami(true);
+
+	public static Block SAKURA_DIAMOND_ORE = new BlockSakuraDiamondOre();
+
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -161,6 +144,7 @@ public class BlockLoader {
 		register(GRAPE_SPLINT, new ItemBlock(GRAPE_SPLINT), "grape_splint");
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
+		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
@@ -266,6 +250,7 @@ public class BlockLoader {
 		registerRender(GRAPE_SPLINT);
         registerRender(GRAPE_SPLINT_STAND);
         registerRender(GRAPE_VINE);
+		registerRender(SAKURA_DIAMOND_ORE);
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
