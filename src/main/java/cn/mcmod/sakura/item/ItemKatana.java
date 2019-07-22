@@ -10,6 +10,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MultiPartEntityPart;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,8 +83,12 @@ public class ItemKatana extends Item {
                             ((EntityPlayer) entitylivingbase).disableShield(false);
                         }
                         ((EntityLivingBase) entitylivingbase).knockBack(entityLiving, 0.4F + 0.4F * EnchantmentHelper.getSweepingDamageRatio(entityLiving), (double) MathHelper.sin(entityLiving.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(entityLiving.rotationYaw * 0.017453292F)));
+                        entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entityLiving), f3);
                     }
-                    entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entityLiving), f3);
+
+                    if (entitylivingbase instanceof MultiPartEntityPart) {
+                        entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entityLiving), f3);
+                    }
                 }
             }
 
