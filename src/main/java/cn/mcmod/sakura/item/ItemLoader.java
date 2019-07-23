@@ -298,12 +298,16 @@ public class ItemLoader {
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
     public static Item SAKURA_DIAMOND = new ItemSakuraDiamond();
     public static Item KATANA = new ItemKatana(Item.ToolMaterial.IRON, "katana");
+    public static Item KODACHI = new ItemKotachi(Item.ToolMaterial.IRON, "kodachi");
+    public static Item SHINAI = new ItemShinai("shinai");
     public static Item SAKURAKATANA = new ItemKatana(SAKURA_TOOLMATERIAL, "sakura_katana");
+    public static Item SAKURAKODACHI = new ItemKotachi(SAKURA_TOOLMATERIAL, "sakura_kodachi");
     public static Item HYDRA_RAMEN = new ItemFood(20, 10F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0), 1.0F);
 
     public static Item STRAW_HAT = new ItemStrawHat();
 
     public ItemLoader(FMLPreInitializationEvent event) {
+
         register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(TOMATO);
@@ -325,8 +329,11 @@ public class ItemLoader {
         register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
         register(STRAW_HAT);
         register(SAKURA_DIAMOND);
+        register(SHINAI);
         register(KATANA);
         register(SAKURAKATANA);
+        register(KODACHI);
+        register(SAKURAKODACHI);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
@@ -339,6 +346,9 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(SHINAI);
+    	registerRender(KODACHI);
+        registerRender(SAKURAKODACHI);
         registerRender(KNIFE_NOODLE);
         registerRender(POT);
         registerRender(CABBAGE);

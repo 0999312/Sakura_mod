@@ -33,16 +33,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class ItemKatana extends Item {
+public class ItemKotachi extends Item {
     private final float attackDamage;
     private final Item.ToolMaterial material;
 
-    public ItemKatana(Item.ToolMaterial material, String name) {
+    public ItemKotachi(Item.ToolMaterial material, String name) {
         this.material = material;
         this.maxStackSize = 1;
-        this.setMaxDamage(material.getMaxUses());
+        this.setMaxDamage((int) (material.getMaxUses()*0.75f));
         this.setUnlocalizedName(SakuraMain.MODID + "." + name);
-        this.attackDamage = 3.0F + material.getAttackDamage();
+        this.attackDamage = 1f+material.getAttackDamage();
         this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -66,9 +66,9 @@ public class ItemKatana extends Item {
             entityLiving.swingArm(entityLiving.getActiveHand());
 
             float f = (float) entityLiving.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-            f += EnchantmentHelper.getModifierForCreature(stack, entityLiving.getCreatureAttribute()) / 1.2F;
+            f += EnchantmentHelper.getModifierForCreature(stack, entityLiving.getCreatureAttribute()) / 1.5F;
 
-            float f3 = 2.0F + EnchantmentHelper.getSweepingDamageRatio(entityLiving) * f;
+            float f3 = EnchantmentHelper.getSweepingDamageRatio(entityLiving) * f;
 
             float sweepingRatio = EnchantmentHelper.getSweepingDamageRatio(entityLiving);
 
@@ -79,7 +79,7 @@ public class ItemKatana extends Item {
                             //disable shield
                             ((EntityPlayer) entitylivingbase).disableShield(false);
                         }
-                        ((EntityLivingBase) entitylivingbase).knockBack(entityLiving, 0.4F + 0.4F * EnchantmentHelper.getSweepingDamageRatio(entityLiving), (double) MathHelper.sin(entityLiving.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(entityLiving.rotationYaw * 0.017453292F)));
+                        ((EntityLivingBase) entitylivingbase).knockBack(entityLiving, 0.4F + 0.1F * EnchantmentHelper.getSweepingDamageRatio(entityLiving), (double) MathHelper.sin(entityLiving.rotationYaw * 0.017453292F), (double) (-MathHelper.cos(entityLiving.rotationYaw * 0.017453292F)));
                         entitylivingbase.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) entityLiving), f3);
                     }
 
@@ -99,7 +99,7 @@ public class ItemKatana extends Item {
 
             stack.damageItem(2, entityLiving);
 
-            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 25);
+            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 15);
         }
 
     }
@@ -131,7 +131,7 @@ public class ItemKatana extends Item {
     		ItemStack mainhand =player.getHeldItem(EnumHand.MAIN_HAND);
     		ItemStack offhand =player.getHeldItem(EnumHand.OFF_HAND);
     		boolean flag1 =!(mainhand.isEmpty())&&!(offhand.isEmpty()),
-    				flag2 = mainhand.getItem() instanceof ItemKatana && offhand.getItem() instanceof ItemKatana;
+    				flag2 = mainhand.getItem() instanceof ItemKotachi && offhand.getItem() instanceof ItemKotachi;
     		if(flag1&&flag2) {
                 player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
                 player.dropItem(offhand, false);
