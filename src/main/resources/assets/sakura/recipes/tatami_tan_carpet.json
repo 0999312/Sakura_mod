@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "sakura:tatami_tan_carpet",
+    "count": 6
+  },
+  "pattern": [
+    "FFF"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "sakura:tatami_tan"
+    }
+  }
+}

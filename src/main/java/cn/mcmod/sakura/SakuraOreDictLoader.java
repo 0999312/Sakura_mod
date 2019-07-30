@@ -14,11 +14,13 @@ import java.util.TreeSet;
 
 public class SakuraOreDictLoader {
 	public static final Set<String> OreList = new TreeSet<>();
+	public static final ItemStack MAPLE_SYRUP = new ItemStack(ItemLoader.MAPLE_SYRUP,1,OreDictionary.WILDCARD_VALUE);
 	public SakuraOreDictLoader() {
 		registerOre("cropRice", new ItemStack(ItemLoader.MATERIAL, 1, 1));
 		registerOre("foodFlour", new ItemStack(ItemLoader.MATERIAL, 1, 4));
 		registerOre("foodBreadcrumbs", new ItemStack(ItemLoader.MATERIAL, 1, 30));
 		registerOre("foodBlackpepper", new ItemStack(ItemLoader.MATERIAL, 1, 27));
+		registerOre("foodKetchup", new ItemStack(ItemLoader.MATERIAL, 1, 12));
 		registerOre("dustSalt", new ItemStack(ItemLoader.MATERIAL, 1, 2));
 	
 		registerOre("cropBambooshoot", new ItemStack(BlockLoader.BAMBOOSHOOT));
@@ -26,7 +28,55 @@ public class SakuraOreDictLoader {
 
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.SAKURA_LOG), 1));
+		registerOre("foodNatto", new ItemStack(ItemLoader.FOODSET, 1, 63));
+		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 24));
+		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 25));
+		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 26));
 		
+		registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
+		registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
+//		"cropRadish"
+		registerOre("cropRadish", new ItemStack(ItemLoader.RADISH, 1));
+		registerOre("cropCabbage", new ItemStack(ItemLoader.CABBAGE, 1));
+		registerOre("cropEggplant", new ItemStack(ItemLoader.EGGPLANT, 1));
+		registerOre("cropTomato", new ItemStack(ItemLoader.TOMATO, 1));
+		registerOre("cropOnion", new ItemStack(ItemLoader.ONION, 1));
+		registerOre("cropBuckwheat", new ItemStack(ItemLoader.BUCKWHEAT, 1));
+		registerOre("seedBuckwheat", new ItemStack(ItemLoader.BUCKWHEAT, 1));
+		registerOre("seedOnion", new ItemStack(ItemLoader.ONION_SEEDS, 1));
+		registerOre("seedRadish", new ItemStack(ItemLoader.RADISH_SEEDS, 1));
+		registerOre("seedCabbage", new ItemStack(ItemLoader.CABBAGE_SEEDS, 1));
+		registerOre("seedEggplant", new ItemStack(ItemLoader.EGGPLANT_SEEDS, 1));
+		registerOre("seedTomato", new ItemStack(ItemLoader.TOMATO_SEEDS, 1));
+		
+		registerOre("cropVanillabean", new ItemStack(ItemLoader.MATERIAL, 1,21));
+		registerOre("foodVanilla", new ItemStack(ItemLoader.MATERIAL, 1,22));
+		registerOre("cropPeppercorn", new ItemStack(ItemLoader.MATERIAL, 1,18));
+		
+		registerOre("listAllgrain", new ItemStack(ItemLoader.MATERIAL, 1, 1));
+		registerOre("listAllgrain", new ItemStack(ItemLoader.BUCKWHEAT, 1));
+		
+		registerOre("listAllveggie", new ItemStack(ItemLoader.RADISH, 1));
+		registerOre("listAllveggie", new ItemStack(ItemLoader.CABBAGE, 1));
+		registerOre("listAllveggie", new ItemStack(ItemLoader.EGGPLANT, 1));
+		registerOre("listAllveggie", new ItemStack(ItemLoader.TOMATO, 1));
+		registerOre("listAllveggie", new ItemStack(ItemLoader.ONION, 1));
+		
+		registerOre("listAllseed", new ItemStack(ItemLoader.BUCKWHEAT, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.RADISH_SEEDS, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.CABBAGE_SEEDS, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.EGGPLANT_SEEDS, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.TOMATO_SEEDS, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.RICE_SEEDS, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.RAPESEED, 1));
+		registerOre("listAllseed", new ItemStack(ItemLoader.ONION_SEEDS, 1));
+		
+		registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 4));
+		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 4));
+		registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 2));
+		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
+		registerOre("foodWhitepepper", new ItemStack(ItemLoader.MATERIAL, 1, 28));
+		registerOre("foodCheese", new ItemStack(ItemLoader.FOODSET, 1, 5));
 		registerVanillaFoods();
 	}
 	
@@ -85,6 +135,7 @@ public class SakuraOreDictLoader {
 		  
 		  registerOre("listAllwater", Items.WATER_BUCKET);
 		  registerOre("listAllmilk", Items.MILK_BUCKET);
+		  registerOre("listAllsugar", Items.SUGAR);
 	}
 	
 	private static void registerOre(String string, Block itemStack) {

@@ -42,7 +42,7 @@ public class ItemKotachi extends Item {
         this.maxStackSize = 1;
         this.setMaxDamage((int) (material.getMaxUses()*0.75f));
         this.setUnlocalizedName(SakuraMain.MODID + "." + name);
-        this.attackDamage = 1f+material.getAttackDamage();
+        this.attackDamage = material.getAttackDamage();
         this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
@@ -99,7 +99,7 @@ public class ItemKotachi extends Item {
 
             stack.damageItem(2, entityLiving);
 
-            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 15);
+            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 16);
         }
 
     }
@@ -227,7 +227,7 @@ public class ItemKotachi extends Item {
 
         if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
             multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", (double) this.attackDamage, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -2.2000000953674316D, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -1.6000000953674316D, 0));
         }
         return multimap;
     }

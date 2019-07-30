@@ -2,13 +2,13 @@
   "type": "forge:ore_shaped",
   "pattern": [
     "S",
-    "#",
-    "#"
+    "###",
+    "###"
   ],
   "key": {
     "S": {
       "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "ore": "woodLumber"
     },
     "#": {
       "item": "minecraft:stone_slab",
@@ -16,7 +16,6 @@
     }
   },
   "result": {
-    "item": "sakura:stone_mortar",
-    "count": 6
+    "item": "sakura:stone_mortar"
   }
 }

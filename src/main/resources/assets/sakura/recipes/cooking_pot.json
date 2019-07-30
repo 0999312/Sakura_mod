@@ -3,7 +3,7 @@
   "pattern": [
     "# #",
     "###",
-    "I I"
+    "ISI"
   ],
   "key": {
     "#": {
@@ -12,6 +12,10 @@
     },
     "I": {
       "item": "minecraft:iron_bars"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "woodLumber"
     }
   },
   "result": {

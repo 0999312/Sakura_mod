@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 48,
+    "count": 4
+  },
+  "ingredients": [
+    {
+      "item": "#LISTALLPORKRAW"
+    },
+    {
+      "item": "#LISTALLBEEFRAW"
+    },
+    {
+      "item": "#LISTALLMILK"
+    },
+    {
+      "item": "#CROPONION"
+    },
+    {
+      "item": "#FOODBREADCRUMBS"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

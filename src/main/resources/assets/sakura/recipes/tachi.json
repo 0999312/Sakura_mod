@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "sakura:tachi"
+  },
+  "pattern": [
+    "  I",
+    "II ",
+    "L  "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "I": {
+      "item": "#INGOTIRON"
+    },
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

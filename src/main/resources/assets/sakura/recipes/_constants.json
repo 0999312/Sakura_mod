@@ -1,0 +1,436 @@
+[
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "bamboo"
+    },
+    "name": "BAMBOO"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "name": "INGOTIRON"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "bread"
+    },
+    "name": "BREAD"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropApple"
+    },
+    "name": "CROPAPPLE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropBambooshoot"
+    },
+    "name": "CROPBAMBOOSHOOT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropBeet"
+    },
+    "name": "CROPBEET"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropBuckwheat"
+    },
+    "name": "CROPBUCKWHEAT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropCabbage"
+    },
+    "name": "CROPCABBAGE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropCarrot"
+    },
+    "name": "CROPCARROT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropEggplant"
+    },
+    "name": "CROPEGGPLANT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropOnion"
+    },
+    "name": "CROPONION"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropPeppercorn"
+    },
+    "name": "CROPPEPPERCORN"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropPotato"
+    },
+    "name": "CROPPOTATO"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropPumpkin"
+    },
+    "name": "CROPPUMPKIN"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropRadish"
+    },
+    "name": "CROPRADISH"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropRice"
+    },
+    "name": "CROPRICE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropTomato"
+    },
+    "name": "CROPTOMATO"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropVanillabean"
+    },
+    "name": "CROPVANILLABEAN"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropWheat"
+    },
+    "name": "CROPWHEAT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    },
+    "name": "DUSTSALT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodBlackpepper"
+    },
+    "name": "FOODBLACKPEPPER"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodBread"
+    },
+    "name": "FOODBREAD"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodBreadcrumbs"
+    },
+    "name": "FOODBREADCRUMBS"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodCheese"
+    },
+    "name": "FOODCHEESE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodFlour"
+    },
+    "name": "FOODFLOUR"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodSoysauce"
+    },
+    "name": "FOODSOYSAUCE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodVanilla"
+    },
+    "name": "FOODVANILLA"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllbeefcooked"
+    },
+    "name": "LISTALLBEEFCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllbeefraw"
+    },
+    "name": "LISTALLBEEFRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllchickencooked"
+    },
+    "name": "LISTALLCHICKENCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllchickenraw"
+    },
+    "name": "LISTALLCHICKENRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllegg"
+    },
+    "name": "LISTALLEGG"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllfishcooked"
+    },
+    "name": "LISTALLFISHCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllfishfresh"
+    },
+    "name": "LISTALLFISHFRESH"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllfishraw"
+    },
+    "name": "LISTALLFISHRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllfruit"
+    },
+    "name": "LISTALLFRUIT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllgrain"
+    },
+    "name": "LISTALLGRAIN"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmeatcooked"
+    },
+    "name": "LISTALLMEATCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmeatraw"
+    },
+    "name": "LISTALLMEATRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmilk"
+    },
+    "name": "LISTALLMILK"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmushroom"
+    },
+    "name": "LISTALLMUSHROOM"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmuttoncooked"
+    },
+    "name": "LISTALLMUTTONCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllmuttonraw"
+    },
+    "name": "LISTALLMUTTONRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllporkcooked"
+    },
+    "name": "LISTALLPORKCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllporkraw"
+    },
+    "name": "LISTALLPORKRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllrabbitcooked"
+    },
+    "name": "LISTALLRABBITCOOKED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllrabbitraw"
+    },
+    "name": "LISTALLRABBITRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllseed"
+    },
+    "name": "LISTALLSEED"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllsugar"
+    },
+    "name": "LISTALLSUGAR"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllveggie"
+    },
+    "name": "LISTALLVEGGIE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "listAllwater"
+    },
+    "name": "LISTALLWATER"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "name": "LOGWOOD"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "salmonRaw"
+    },
+    "name": "SALMONRAW"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedBeet"
+    },
+    "name": "SEEDBEET"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedBuckwheat"
+    },
+    "name": "SEEDBUCKWHEAT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedCabbage"
+    },
+    "name": "SEEDCABBAGE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedEggplant"
+    },
+    "name": "SEEDEGGPLANT"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedOnion"
+    },
+    "name": "SEEDONION"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedRadish"
+    },
+    "name": "SEEDRADISH"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedRice"
+    },
+    "name": "SEEDRICE"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "seedTomato"
+    },
+    "name": "SEEDTOMATO"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "woodLumber"
+    },
+    "name": "WOODLUMBER"
+  }
+]

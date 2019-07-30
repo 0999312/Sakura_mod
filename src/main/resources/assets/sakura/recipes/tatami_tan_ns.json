@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "sakura:tatami_tan_ns"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:tatami_tan"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

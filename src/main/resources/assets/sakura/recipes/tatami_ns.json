@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "sakura:tatami_ns"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:tatami"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

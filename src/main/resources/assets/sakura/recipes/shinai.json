@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "sakura:shinai"
+  },
+  "pattern": [
+    "  I",
+    " I ",
+    "L  "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "I": {
+      "item": "#BAMBOO"
+    },
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

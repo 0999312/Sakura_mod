@@ -158,7 +158,6 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        // 需要留空
     }
 
     @Nullable
@@ -196,10 +195,10 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         return tagCompound;
     }
 
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(I18n.format("bakaintouhou.shoji.tooltips.type." + getTagCompoundSafe(stack).getInteger("type")));
-    }
+//    @Override
+//    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+//        tooltip.add(I18n.format("sakura.shoji.tooltips.type." + getTagCompoundSafe(stack).getInteger("type")));
+//    }
 
     @Override
     @SideOnly(Side.CLIENT)

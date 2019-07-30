@@ -59,6 +59,7 @@ public class BlockLoader {
 	public static Block REDBEANCROP = new BlockRedBeanCrop();
 	public static Block BUCKWHEATCROP = new BlockBuckwheatCrop();
 	public static Block RAPESEEDCROP = new BlockRapeseedCrop();
+	public static Block ONIONCROP = new BlockOnionCrop();
 	public static Block CHESTNUTBURR = new BlockChestnut();
 	public static Block SAKURA_LOG = new BlockMapleLog();
 	public static Block SAKURA_LEAVES = new BlockSakuraLeave();
@@ -149,6 +150,7 @@ public class BlockLoader {
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
 		registerNoItem(RICECROP, "ricecrop");
+		registerNoItem(ONIONCROP, "onioncrop");
 		registerNoItem(RAPESEEDCROP, "rapeseedcrop");
 		registerNoItem(CHESTNUTBURR, "chestnut_burr");
 		registerNoItem(TOMATOCROP, "tomatocrop");
@@ -189,6 +191,7 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		
 		registerRender(TATAMI_TAN);
 		registerRender(TATAMI);
 		registerRender(TATAMI_TAN_NS);
@@ -234,16 +237,7 @@ public class BlockLoader {
 		registerRender(CAMPFIRE_LIT);
         registerRender(CAMPFIRE_POT_IDLE);
         registerRender(CAMPFIRE_POT_LIT);
-		registerRender(RICECROP);
-		registerRender(TOMATOCROP);
-		registerRender(EGGPLANTCROP);
-		registerRender(RADISHCROP);
-		registerRender(REDBEANCROP);
-		registerRender(BUCKWHEATCROP);
-		registerRender(CHESTNUTBURR);
-		registerRender(RAPESEEDCROP);
 		registerRender(PEPPER_SPLINT);
-		registerRender(PEPPERCROP);
 		registerRender(VANILLA_SPLINT);
 		registerRender(VANILLACROP);
 		registerRender(GRAPE_LEAVES);

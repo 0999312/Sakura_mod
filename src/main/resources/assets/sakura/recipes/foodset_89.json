@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 89
+  },
+  "ingredients": [
+    {
+      "item": "#LISTALLFISHFRESH"
+    },
+    {
+      "item": "#FOODSOYSAUCE"
+    },
+	{
+	"item": "#CROPRADISH"
+	}
+  ],
+  "type": "forge:ore_shapeless"
+}

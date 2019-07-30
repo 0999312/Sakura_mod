@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 6,
+    "count": 1
+  },
+  "ingredients": [
+    {
+          "type": "forge:ore_dict",
+          "ore": "foodFlour"
+    },
+    {
+          "type": "forge:ore_dict",
+          "ore": "listAllwater"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

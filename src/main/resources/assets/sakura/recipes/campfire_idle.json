@@ -1,12 +1,16 @@
 {
   "pattern": [
     " # ",
-    "###"
+    "#S#"
   ],
   "key": {
     "#": {
       "type": "forge:ore_dict",
       "ore": "logWood"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "woodLumber"
     }
   },
   "result": {

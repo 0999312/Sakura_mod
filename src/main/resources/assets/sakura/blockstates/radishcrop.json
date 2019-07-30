@@ -42,7 +42,7 @@
     "age=5": [
       {
         "textures": {
-          "crop": "sakura:blocks/radish_2"
+          "cross": "sakura:blocks/radish_2"
         }
       }
     ],

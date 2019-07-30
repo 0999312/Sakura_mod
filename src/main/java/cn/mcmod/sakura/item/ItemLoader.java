@@ -21,7 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemLoader {
     public static final ItemArmor.ArmorMaterial STRAW_MATERIAL = EnumHelper.addArmorMaterial("STRAW_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/strawhat.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
     public static final ItemTool.ToolMaterial SAKURA_TOOLMATERIAL = EnumHelper.addToolMaterial("SAKURA_TOOLMATERIAL", 4, 1561, 8.5F, 4.0F, 12);
-
+    public static final ItemTool.ToolMaterial TACHI_TOOLMATERIAL = EnumHelper.addToolMaterial("TACHI_TOOLMATERIAL", 3, 457, 7F, 3.0F, 18);
+    
     public static Item RICE_SEEDS = new ItemRiceSeeds();
     public static Item TOMATO = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "tomato");
     public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "tomato_seeds");
@@ -34,10 +35,12 @@ public class ItemLoader {
     public static Item RED_BEAN = new ItemSeeds(BlockLoader.REDBEANCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "red_bean");
     public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "buckwheat");
     public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "rapeseeds");
+    public static Item ONION = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "onion");
+    public static Item ONION_SEEDS = new ItemSeeds(BlockLoader.ONIONCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "onion_seeds");
     public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
             new int[]{
-                    1, 3, 5,
+                    1, 3, 5,//2
                     4, 5, 2,
                     9, 4, 5,
                     7, 9, 7,
@@ -218,9 +221,9 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "osuimono",//64
                     SakuraMain.MODID + "." + "ochazuke",//65
 
-                    SakuraMain.MODID + "." + "shrimp",//66
-                    SakuraMain.MODID + "." + "tempura",//67
-                    SakuraMain.MODID + "." + "fishcake",//68
+                    SakuraMain.MODID + "." + "shrimp",//77
+                    SakuraMain.MODID + "." + "tempura",//78
+                    SakuraMain.MODID + "." + "fishcake",//79
 
                     SakuraMain.MODID + "." + "tofu",//81
                     SakuraMain.MODID + "." + "tofu_fried",//82
@@ -254,9 +257,13 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "pudding",//103
                     SakuraMain.MODID + "." + "pudding_maple",//104
 
-                    SakuraMain.MODID + "." + "rice_redbean",//102
-                    SakuraMain.MODID + "." + "fish_bake",//103
-                    SakuraMain.MODID + "." + "fries",//104
+                    SakuraMain.MODID + "." + "rice_redbean",//105
+                    SakuraMain.MODID + "." + "fish_bake",//106
+                    SakuraMain.MODID + "." + "fries",//107
+                    
+                    SakuraMain.MODID + "." + "furofuki_daikon",//108
+                    SakuraMain.MODID + "." + "cabbage_roll",//109
+                    SakuraMain.MODID + "." + "white_stew",//110
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
@@ -293,12 +300,15 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "breadcrumbs",//30
             SakuraMain.MODID + "." + "chestnut",//31
             SakuraMain.MODID + "." + "noodle_soup",//32
+            SakuraMain.MODID + "." + "soysause",//33
     });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
     public static Item SAKURA_DIAMOND = new ItemSakuraDiamond();
     public static Item KATANA = new ItemKatana(Item.ToolMaterial.IRON, "katana");
+    public static Item TACHI = new ItemKatana(TACHI_TOOLMATERIAL, "tachi");
     public static Item KODACHI = new ItemKotachi(Item.ToolMaterial.IRON, "kodachi");
+//    
     public static Item SHINAI = new ItemShinai("shinai");
     public static Item SAKURAKATANA = new ItemKatana(SAKURA_TOOLMATERIAL, "sakura_katana");
     public static Item SAKURAKODACHI = new ItemKotachi(SAKURA_TOOLMATERIAL, "sakura_kodachi");
@@ -316,9 +326,11 @@ public class ItemLoader {
         register(EGGPLANT_SEEDS);
         register(CABBAGE);
         register(CABBAGE_SEEDS);
-        register(RICE_SEEDS);
+        register(ONION);
+        register(ONION_SEEDS);
         register(RADISH);
         register(RADISH_SEEDS);
+        register(RICE_SEEDS);
         register(RED_BEAN);
         register(BUCKWHEAT);
         register(RAPESEED);
@@ -334,6 +346,7 @@ public class ItemLoader {
         register(SAKURAKATANA);
         register(KODACHI);
         register(SAKURAKODACHI);
+        register(TACHI);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
@@ -346,6 +359,9 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(TACHI);
+    	registerRender(ONION);
+        registerRender(ONION_SEEDS);
     	registerRender(SHINAI);
     	registerRender(KODACHI);
         registerRender(SAKURAKODACHI);

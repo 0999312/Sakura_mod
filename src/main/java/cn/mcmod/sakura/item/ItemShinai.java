@@ -86,7 +86,7 @@ public class ItemShinai extends ItemSword {
                 ((WorldServer) worldIn).spawnParticle(EnumParticleTypes.SWEEP_ATTACK, entityLiving.posX + d0, entityLiving.posY + (double) entityLiving.height * 0.5D, entityLiving.posZ + d1, 0, d0, 0.0D, d1, 0.0D);
             }
             stack.damageItem(2, entityLiving);
-            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 30);
+            ((EntityPlayer) entityLiving).getCooldownTracker().setCooldown(this, 25);
 
     }
 

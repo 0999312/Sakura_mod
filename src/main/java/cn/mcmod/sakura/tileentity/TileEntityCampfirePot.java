@@ -142,7 +142,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
             if (cookTime >= maxCookTimer) {
                 cookTime = 0;
-                ItemStack processStack = this.inventory.get(0);
                 ItemStack itemstack = this.inventory.get(9);
                 ItemStack result = getRecipesResult().getResultItemStack();
                 FluidStack fluidStack = getRecipesResult().getResultFluid();
@@ -157,17 +156,13 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 if (fluidStack != null && fluidStack.amount>0) {
                     this.tank.drain(fluidStack, true);
                 }
-
-                processStack.shrink(1);
-                this.decrStackSize(1, 1);
-                this.decrStackSize(2, 1);
-                this.decrStackSize(3, 1);
-                this.decrStackSize(4, 1);
-                this.decrStackSize(5, 1);
-                this.decrStackSize(6, 1);
-                this.decrStackSize(7, 1);
-                this.decrStackSize(8, 1);
-
+                
+            for(int i=0;i<9;i++){
+            	if(this.inventory.get(i).getCount()==1&&
+            	this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i))!=null)
+            		this.inventory.set(i,
+            		this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
+            	else this.decrStackSize(i, 1);
             }
 
             if (flag != this.isBurning()) {
@@ -176,10 +171,8 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
             }
         }
-
-        if (flag1) {
-            this.markDirty();
-        }
+        if (flag1) this.markDirty();
+      }
     }
 
 

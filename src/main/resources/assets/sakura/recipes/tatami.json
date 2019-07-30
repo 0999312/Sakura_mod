@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "sakura:tatami"
+  },
+  "pattern": [
+    "FF",
+    "FF"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "sakura:materials",
+      "data": 0
+    }
+  }
+}

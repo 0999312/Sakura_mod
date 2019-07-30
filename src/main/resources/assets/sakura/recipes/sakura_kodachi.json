@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "sakura:sakura_kodachi"
+  },
+  "pattern": [
+    " I",
+    "L "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "I": {
+      "item": "sakura:sakura_diamond"
+    },
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

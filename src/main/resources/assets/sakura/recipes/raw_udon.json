@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "sakura:knife_noodle"
+    },
+    {
+      "item": "sakura:materials",
+      "data": 6
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustSalt"
+    }
+  ],
+  "result": {
+    "item": "sakura:materials",
+    "count": 2,
+    "data": 8
+  }
+}

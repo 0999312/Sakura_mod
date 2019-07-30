@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "sakura:tatami_ns_half",
+    "count": 4
+  },
+  "pattern": [
+    "FF"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "sakura:tatami_ns"
+    }
+  }
+}

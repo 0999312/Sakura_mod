@@ -1,0 +1,64 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cross"
+  },
+  "variants": {
+    "age=0": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_0"
+        }
+      }
+    ],
+    "age=1": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_0"
+        }
+      }
+    ],
+    "age=2": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_1"
+        }
+      }
+    ],
+    "age=3": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_1"
+        }
+      }
+    ],
+    "age=4": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_2"
+        }
+      }
+    ],
+    "age=5": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_2"
+        }
+      }
+    ],
+    "age=6": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_3"
+        }
+      }
+    ],
+    "age=7": [
+      {
+        "textures": {
+          "cross": "sakura:blocks/onion_3"
+        }
+      }
+    ]
+  }
+}

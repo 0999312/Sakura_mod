@@ -11,7 +11,7 @@
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "ore": "woodLumber"
     }
   },
   "result": {
