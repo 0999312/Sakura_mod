@@ -662,5 +662,15 @@ public class SakuraRecipeRegister {
                         "dustSalt"
                         },
                         new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
+
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.MATERIAL, 2, 32),
+                        "foodSoysauce",
+                        new Object[]{
+                                "listAllsugar",
+                                "dustSalt"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
     }
 }

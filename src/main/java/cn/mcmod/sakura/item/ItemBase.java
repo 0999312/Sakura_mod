@@ -2,11 +2,10 @@ package cn.mcmod.sakura.item;
 
 import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBase extends Item {
 	protected String[] subNames;
@@ -44,5 +43,18 @@ public class ItemBase extends Item {
 	public ItemBase setContainerItem(Item containerItem) {
 		this.containerItem = containerItem;
 		return this;
+	}
+
+	@Override
+	public boolean onEntityItemUpdate(EntityItem entityItem) {
+		if (entityItem.isInWater()) {
+			if (entityItem.getItem().getMetadata() == 4) {
+				entityItem.getItem().setItemDamage(6);
+			}
+			if (entityItem.getItem().getMetadata() == 5) {
+				entityItem.getItem().setItemDamage(7);
+			}
+		}
+		return super.onEntityItemUpdate(entityItem);
 	}
 }
