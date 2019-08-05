@@ -13,25 +13,21 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 public class TileEntityStoneMortar extends TileEntity implements ITickable, IInventory {
-
     private int processTimer = 0;
-
     private int maxprocessTimer = 200;
-
     private float progressOld;
 
     public int getProcessTimer() {
         return processTimer;
     }
-
     @Override
     public void update() {
-
         if (!isRecipes()) {
             processTimer = 0;
         } else {
@@ -39,28 +35,37 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
         }
 
         updateAnimation();
-
         if (processTimer >= maxprocessTimer) {
-
             processTimer = 0;
             if (this.getWorld().isRemote) {
-
                 return;
             }
 
+            ItemStack input1 = this.inventorySlotItemStack.get(0);
+            ItemStack input2 = this.inventorySlotItemStack.get(1);
+            ItemStack input3 = this.inventorySlotItemStack.get(2);
+            ItemStack input4 = this.inventorySlotItemStack.get(3);
+            ItemStack output1 = this.inventorySlotItemStack.get(4);
+            ItemStack output2 = this.inventorySlotItemStack.get(5);
+            ItemStack[] result = getRecipesResult().getResultItemStack();
 
-            ItemStack processStack = this.inventorySlotItemStack.get(0);
-            ItemStack itemstack = this.inventorySlotItemStack.get(1);
-            ItemStack result = getRecipesResult().getResultItemStack();
-
-
-            if (itemstack.isEmpty()) {
-                this.inventorySlotItemStack.set(1, result.copy());
-            } else if (itemstack.getItem() == result.getItem()) {
-                itemstack.grow(result.getCount());
+            if (output1.isEmpty()) {
+                this.inventorySlotItemStack.set(4, result[0].copy());
+            } else if (output1.getItem() == result[0].getItem()) {
+            	output1.grow(result[0].getCount());
             }
-
-            processStack.shrink(1);
+            if(result.length>1){
+	            if (output2.isEmpty()) {
+	                this.inventorySlotItemStack.set(5, result[1].copy());
+	            } else if (output2.getItem() == result[1].getItem()) {
+	            	output2.grow(result[1].getCount());
+	            }
+            }
+            
+            input1.shrink(1);
+            input2.shrink(1);
+            input3.shrink(1);
+            input4.shrink(1);
 
         }
     }
@@ -84,18 +89,15 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     public static ArrayList<MortarRecipes> mortarRecipesList = new ArrayList<MortarRecipes>();
 
     public static class MortarRecipes {
-
-        public ItemStack resultItem = null;
-        public ItemStack mainItem = null;
-        public ArrayList<ItemStack> subItems = new ArrayList<ItemStack>();
+        public ItemStack[] resultItems = new ItemStack[]{};
+        public ArrayList<Object> inputItems = new ArrayList<Object>();
         public boolean enchantment = false;
         private static final MortarRecipes MORTAR_RECIPES_BASE = new MortarRecipes();
 
         public MortarRecipes() {
         }
 
-
-        public MortarRecipes(ItemStack result, ItemStack main) {
+        public MortarRecipes(ItemStack[] result, Object[] main) {
             this.setMortarRecipes(result, main);
         }
 
@@ -103,61 +105,64 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
             return MORTAR_RECIPES_BASE;
         }
 
-        public void setMortarRecipes(ItemStack result, ItemStack main) {
+        public void setMortarRecipes(ItemStack[] result, Object[] main) {
             this.clear();
-            mainItem = main;
-            resultItem = result;
+        	for (Object o : main) {
+    			if(o instanceof ItemStack||o instanceof String)
+    				inputItems.add(o);
+    			else throw new IllegalArgumentException("Not a itemStack or OD name");
+            }
+            resultItems = result;
         }
 
         /**
          * 初期化
          */
         public void clear() {
-            resultItem = ItemStack.EMPTY;
-            mainItem = ItemStack.EMPTY;
-            subItems = new ArrayList<ItemStack>();
+            resultItems = new ItemStack[]{};
+            inputItems = new ArrayList<Object>();
         }
 
-        public ItemStack getResultItemStack() {
-            return resultItem.copy();
+        public ItemStack[] getResultItemStack() {
+            return resultItems.clone();
         }
 
 
-        public ItemStack getResult(IInventory inventory) {
-
-            ItemStack retStack = ItemStack.EMPTY;
-
-
-            if (!ItemStack.areItemsEqual(mainItem, inventory.getStackInSlot(0))) {
-                return retStack;
-            }
-
-            if (this.enchantment) {
-                if (EnchantmentHelper.getEnchantments(inventory.getStackInSlot(0)).size() > 0) {
-                    return retStack;
-                }
-            }
+        public ItemStack[] getResult(IInventory inventory) {
+            ItemStack[] retStack = new ItemStack[]{};
 
             ArrayList<ItemStack> inventoryList = new ArrayList<ItemStack>();
-            for (int i = 1; i < 1; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (!inventory.getStackInSlot(i).isEmpty()) {
                     inventoryList.add(inventory.getStackInSlot(i).copy());
                 }
             }
 
-            if (inventoryList.size() != subItems.size()) {
+            if (inventoryList.size() != inputItems.size()) {
                 return retStack;
             }
 
             boolean flg1 = true;
-            for (ItemStack stack1 : subItems) {
-
+            for (Object obj1 : inputItems) {
                 boolean flg2 = false;
                 for (int i = 0; i < inventoryList.size(); i++) {
+                	if(obj1 instanceof ItemStack){
+                		ItemStack stack1 = (ItemStack) obj1;
                     if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
                         inventoryList.remove(i);
                         flg2 = true;
                         break;
+                    }
+                    }else if(obj1 instanceof String){
+                    	String dict = (String) obj1;
+                    	ItemStack result = inventoryList.get(i);
+                    	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
+                    	if(ore.isEmpty())return retStack;
+                    	if (OreDictionary.containsMatch(true, ore, result)) {
+                            inventoryList.remove(i);
+                            flg2 = true;
+                            break;
+                        }
                     }
                 }
                 if (!flg2) {
@@ -170,7 +175,7 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
                 return retStack;
             }
 
-            return resultItem.copy();
+            return resultItems.clone();
 
         }
 
@@ -206,10 +211,8 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
             return null;
         }
         for (MortarRecipes recipes : mortarRecipesList) {
-
-            ItemStack stack = recipes.getResult(this);
-
-            if (!stack.isEmpty()) {
+            ItemStack[] stack = recipes.getResult(this);
+            if (stack.length > 0) {
                 return recipes;
             }
         }
@@ -232,7 +235,7 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
 
     @Override
     public int getSizeInventory() {
-        return 2;
+        return 6;
     }
 
     @Override
@@ -313,17 +316,12 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     public int getField(int id) {
 
         switch (id) {
-
             case 0:
-
                 return this.processTimer;
             case 1:
-
                 return this.maxprocessTimer;
             default:
-
                 return 0;
-
         }
     }
 
@@ -340,9 +338,7 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     }
 
     public int getFieldCount() {
-
         return 2;
-
     }
 
     @Override

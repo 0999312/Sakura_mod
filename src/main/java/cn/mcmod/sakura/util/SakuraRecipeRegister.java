@@ -5,6 +5,7 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -23,14 +24,102 @@ public class SakuraRecipeRegister {
     }
 
     public static void mortarRegister() {
-        TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-                new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.RICE_SEEDS)));
-        TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-                new ItemStack(ItemLoader.MATERIAL, 1, 5), new ItemStack(ItemLoader.BUCKWHEAT)));
-        TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-                new ItemStack(ItemLoader.MATERIAL, 2, 4), new ItemStack(Items.WHEAT)));
-        TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-                new ItemStack(ItemLoader.MATERIAL, 1, 16), new ItemStack(ItemLoader.MATERIAL, 1, 1)));
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 1)},
+    			new ItemStack[]{
+    					new ItemStack(ItemLoader.RICE_SEEDS),
+    					new ItemStack(ItemLoader.RICE_SEEDS),
+    					new ItemStack(ItemLoader.RICE_SEEDS),
+    					new ItemStack(ItemLoader.RICE_SEEDS)
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 16)},
+    			new ItemStack[]{
+    					new ItemStack(ItemLoader.MATERIAL, 1, 1),
+    					new ItemStack(ItemLoader.MATERIAL, 1, 1)
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 5)},
+    			new Object[]{
+    					"cropBuckwheat",
+    					"cropBuckwheat"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 4)},
+    			new Object[]{
+    					"cropWheat",
+    					"cropWheat"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Blocks.GRAVEL),new ItemStack(ItemLoader.MATERIAL, 1, 2)},
+    			new Object[]{
+    					"cobblestone"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Blocks.SAND),new ItemStack(Items.FLINT)},
+    			new Object[]{
+    					"gravel"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Items.DYE,6,2)},
+    			new Object[]{
+    					"treeLeaves",
+    					"treeLeaves",
+    					"treeLeaves",
+    					"treeLeaves"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Items.DYE,3,5),new ItemStack(Items.DYE,2,5)},
+    			new Object[]{
+    					"bone"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Blocks.SAND,4)},
+    			new Object[]{
+    					"sandstone"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Items.BLAZE_POWDER,3),new ItemStack(Items.BLAZE_POWDER,2)},
+    			new Object[]{
+    					new ItemStack(Items.BLAZE_ROD)
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(Items.DYE,3,15),new ItemStack(Items.DYE,2,15)},
+    			new Object[]{
+    					"bone"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.FOODSET,6,80)},
+    			new Object[]{
+    					"listAllfishfresh",
+    					"listAllfishfresh",
+    					"cropPotato",
+    					"listAllegg"
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL,4,30)},
+    			new Object[]{
+    					new ItemStack(ItemLoader.FOODSET,1,4)
+    					})
+    			);
+    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL,2,30)},
+    			new Object[]{
+    					"bread"
+    					})
+    			);
     }
 
     public static void potRegister() {

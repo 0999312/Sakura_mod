@@ -17,8 +17,17 @@ public class ContainerStoneMortar extends Container {
 
     public ContainerStoneMortar(InventoryPlayer inventory, TileEntityStoneMortar tile) {
         tileCampfire = tile;
-        addSlotToContainer(new Slot(tile, 0, 58, 36));
-        addSlotToContainer(new Slot(tile, 1, 116, 36) {
+        addSlotToContainer(new Slot(tile, 0, 40, 26));
+        addSlotToContainer(new Slot(tile, 1, 58, 26));
+        addSlotToContainer(new Slot(tile, 2, 40, 44));
+        addSlotToContainer(new Slot(tile, 3, 58, 44));
+        addSlotToContainer(new Slot(tile, 4, 108, 37) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return false;
+            }
+        });
+        addSlotToContainer(new Slot(tile, 5, 132, 37) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return false;
@@ -80,18 +89,33 @@ public class ContainerStoneMortar extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (slotIndex == 0) {
-                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (slotIndex == 1) {
-                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else {
-                if (!this.mergeItemStack(itemstack1, 0, 0, true)) {
-                    return ItemStack.EMPTY;
-                }
+            switch (slotIndex) {
+			case 0:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 1:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 2:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 3:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 4:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 5:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+			case 6:
+	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
+	              return ItemStack.EMPTY;
+
+			default:
+	              if (!this.mergeItemStack(itemstack1, 0, 5, false)) {
+	                  return ItemStack.EMPTY;
+			}
 
                 slot.onSlotChange(itemstack1, itemstack);
             }

@@ -71,8 +71,6 @@ public class SakuraOreDictLoader {
 		registerOre("listAllseed", new ItemStack(ItemLoader.RAPESEED, 1));
 		registerOre("listAllseed", new ItemStack(ItemLoader.ONION_SEEDS, 1));
 		
-		registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 4));
-		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 4));
 		registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		registerOre("foodWhitepepper", new ItemStack(ItemLoader.MATERIAL, 1, 28));

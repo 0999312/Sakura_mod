@@ -51,7 +51,6 @@ public class GuiStoneMortar extends GuiContainer {
 
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 
-
         int l2 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 79, l + 34, 176, 14, l2 + 1, 16);
     }
