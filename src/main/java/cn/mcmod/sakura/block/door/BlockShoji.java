@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.block;
+package cn.mcmod.sakura.block.door;
 
 
 import net.minecraft.block.Block;
@@ -78,14 +78,14 @@ public class BlockShoji extends Block implements ITileEntityProvider {
     }
 
     private ItemStack getDefaultItemStack() {
-        ItemStack stack = Item.getItemFromBlock(this).getDefaultInstance();
+        ItemStack stack = new ItemStack(this);
         getTagCompoundSafe(stack).setInteger("type", 0);
         return stack;
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        ItemStack stack = Item.getItemFromBlock(this).getDefaultInstance();
+        ItemStack stack = new ItemStack(this);
         TileEntityShoji te = (TileEntityShoji) world.getTileEntity(pos);
         if (te != null) {
             getTagCompoundSafe(stack).setInteger("type", te.getType());

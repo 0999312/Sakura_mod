@@ -4,6 +4,7 @@ import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.crop.*;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
+import cn.mcmod.sakura.block.door.BlockShoji;
 import cn.mcmod.sakura.block.fluid.BlockFoodOil;
 import cn.mcmod.sakura.block.fluid.FoodOilFluid;
 import cn.mcmod.sakura.block.slab.*;
