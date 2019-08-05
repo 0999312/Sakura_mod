@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
@@ -116,7 +117,7 @@ public class WorldGenMapleTreeGreen extends WorldGenAbstractTree {
                         BlockPos upN = position.up(j3);
                         state = worldIn.getBlockState(upN);
 
-                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE) {
+                        if (state.getBlock().isAir(state, worldIn, upN) || this.isBurr(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE) {
                             this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
 
                             if (this.generateSap && j3 == 1) {
@@ -136,6 +137,10 @@ public class WorldGenMapleTreeGreen extends WorldGenAbstractTree {
         } else {
             return false;
         }
+    }
+
+    public boolean isBurr(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state.getBlock() == BlockLoader.CHESTNUTBURR;
     }
 
     private void addSapLog(World worldIn, BlockPos pos) {

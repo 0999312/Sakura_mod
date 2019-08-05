@@ -2,11 +2,16 @@ package cn.mcmod.sakura.item;
 
 import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.world.World;
 
 public class ItemBase extends Item {
 	protected String[] subNames;
@@ -44,5 +49,29 @@ public class ItemBase extends Item {
 	public ItemBase setContainerItem(Item containerItem) {
 		this.containerItem = containerItem;
 		return this;
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		if (stack.getItem() == this && this.getMetadata(stack) == 15) {
+			playerIn.playSound(SoundEvents.BLOCK_GRASS_BREAK, 1.0F, 1.6F);
+			stack.setItemDamage(31);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public boolean onEntityItemUpdate(EntityItem entityItem) {
+		if (entityItem.isInWater()) {
+			if (entityItem.getItem().getMetadata() == 4) {
+				entityItem.getItem().setItemDamage(6);
+			}
+			if (entityItem.getItem().getMetadata() == 5) {
+				entityItem.getItem().setItemDamage(7);
+			}
+		}
+		return super.onEntityItemUpdate(entityItem);
 	}
 }
