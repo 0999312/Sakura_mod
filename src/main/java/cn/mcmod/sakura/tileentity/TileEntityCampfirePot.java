@@ -49,7 +49,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     private int cookTime;
     private int maxCookTimer = 200;
 
-    @SideOnly(Side.CLIENT)
     public FluidTank getTank() {
         return this.tank;
     }
@@ -58,9 +57,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     @SideOnly(Side.CLIENT)
     public FluidStack getFluidForRendering(float partialTicks) {
         final FluidStack actual = tank.getFluid();
-
         int actualAmount;
-
         if (actual != null && !actual.equals(liquidForRendering)) {
             liquidForRendering = new FluidStack(actual, 0);
         }
@@ -70,25 +67,18 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         actualAmount = actual == null ? 0 : actual.amount;
-
         int delta = actualAmount - liquidForRendering.amount;
-
         if (Math.abs(delta) <= 40) {
             liquidForRendering.amount = actualAmount;
         } else {
             int i = (int) (delta * partialTicks * 0.1);
-
             if (i == 0) {
                 i = delta > 0 ? 1 : -1;
             }
-
             liquidForRendering.amount += i;
         }
-
         if (liquidForRendering.amount == 0) {
-
             liquidForRendering = null;
-
         }
         return liquidForRendering;
     }
