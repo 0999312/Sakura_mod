@@ -58,6 +58,7 @@ tile.sakura.grapeleaves.name=葡萄叶
 tile.sakura.maple_syrup_caudron.name=枫糖浆罐
 tile.sakura.ricecrop.name=水稻作物
 tile.sakura.chestnut_burr.name=毛边板栗
+tile.sakura.sakura_diamond_ore.name=樱色钻石矿石
 #物品
 item.sakura.grape.name=葡萄
 item.sakura.maple_cookie.name=枫曲奇
@@ -177,7 +178,7 @@ item.sakura.udon_raw.name=生乌冬面条
 item.sakura.soba_raw.name=生荞麦面条
 item.sakura.curry_sauce.name=咖喱酱
 item.sakura.tomato_sauce.name=番茄酱
-item.sakura.white_sauce.name=白讲
+item.sakura.white_sauce.name=白酱
 item.sakura.tempura_batter.name=天妇罗面糊
 item.sakura.chestnut_burrs.name=栗子果
 item.sakura.flour_rice.name=米粉
@@ -231,10 +232,14 @@ item.sakura.fries.name=薯条
 item.sakura.furofuki_daikon.name=炊煮大根
 item.sakura.cabbage_roll.name=生菜肉卷
 item.sakura.white_stew.name=奶油炖汤
+
+item.sakura.cooking_pot.name=烹饪锅
 #GUI
 container.sakura.stonemortar=石磨
 container.sakura.campfirepot=烹饪锅
 
+#JEI Support
+jei.sakura.category.cooking_pot=烹饪锅
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须的作物知识。
 
