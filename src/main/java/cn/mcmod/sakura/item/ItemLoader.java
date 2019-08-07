@@ -76,7 +76,9 @@ public class ItemLoader {
                     8, 8, 8,
                     4, 6, 6,
                     7, 5, 6,
-                    6, 6, 4,
+                    6, 6, 4,//107
+                    3, 6, 6,//110
+                    6,
             },
             new float[]{
                     1F * 0.25F, 3F * 0.25F, 5F * 0.25F,
@@ -114,7 +116,9 @@ public class ItemLoader {
                     8F * 0.25F, 8F * 0.25F, 8F * 0.25F,
                     4F * 0.25F, 6F * 0.25F, 6F * 0.25F,
                     7F * 0.25F, 5F * 0.25F, 6F * 0.25F,
-                    6F * 0.25F, 6F * 0.25F, 4F * 0.25F,
+                    6F * 0.25F, 6F * 0.25F, 4F * 0.25F,//107
+                    2F * 0.25F, 5F * 0.25F, 4F * 0.25F,//110
+                    5F * 0.25F,
             },
             new String[]{
                     SakuraMain.MODID + "." + "grape",
@@ -264,6 +268,7 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "furofuki_daikon",//108
                     SakuraMain.MODID + "." + "cabbage_roll",//109
                     SakuraMain.MODID + "." + "white_stew",//110
+                    SakuraMain.MODID + "." + "fruitsalad",//111
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
@@ -312,7 +317,7 @@ public class ItemLoader {
     public static Item SHINAI = new ItemShinai("shinai");
     public static Item SAKURAKATANA = new ItemKatana(SAKURA_TOOLMATERIAL, "sakura_katana");
     public static Item SAKURAKODACHI = new ItemKotachi(SAKURA_TOOLMATERIAL, "sakura_kodachi");
-    public static Item HYDRA_RAMEN = new ItemFood(20, 10F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0), 1.0F);
+    public static Item HYDRA_RAMEN = new ItemFood(20, 12F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.SATURATION, 80, 0), 0.4F);
 
     public static Item STRAW_HAT = new ItemStrawHat();
 
