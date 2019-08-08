@@ -1,0 +1,15 @@
+{
+  "name": "CookingPot",
+  "icon": "sakura:cooking_pot",
+  "category": "cooking",
+  "advancement": "sakura:alt/plants/bamboo",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "crafting",
+      "title": "CookingPot",
+      "recipe": "sakura:cooking_pot",
+      "text": "A cooking pot is necessary for cooking food. By right-clicking on the campfire and setting the pot, you will be able to handle richer dishes."
+    }
+  ]
+}

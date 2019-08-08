@@ -46,6 +46,7 @@ public class BlockLoader {
 	public static Block MAPLE_LEAVE_GREEN = new BlockMapleLeaveGreen();
 	public static Block MAPLE_LOG = new BlockMapleLog();
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
+    public static Block MAPLE_PLANK = new BlockSakuraPlank(Material.WOOD);
 	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
 	public static Block CAMPFIRE_IDLE = new BlockCampfire(false);
 	public static Block CAMPFIRE_LIT = new BlockCampfire(true);
@@ -63,6 +64,7 @@ public class BlockLoader {
 	public static Block ONIONCROP = new BlockOnionCrop();
 	public static Block CHESTNUTBURR = new BlockChestnut();
 	public static Block SAKURA_LOG = new BlockMapleLog();
+    public static Block SAKURA_PLANK = new BlockSakuraPlank(Material.WOOD);
 	public static Block SAKURA_LEAVES = new BlockSakuraLeave();
 	public static Block SAKURA_SAPLING = new BlockSakuraSapling();
 	public static Block PEPPER_SPLINT = new BlockPepperSplint();
@@ -94,6 +96,7 @@ public class BlockLoader {
 	public static BlockFacing TATAMI_TAN_NS_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
     public static Block TATAMI_CARPET = new BlockCarpetTatami(false);
     public static Block TATAMI_NS_CARPET = new BlockCarpetTatami(true);
+
 
 	public static Block SAKURA_DIAMOND_ORE = new BlockSakuraDiamondOre();
 	public static Block KITUNEBI = new BlockKitunebi();
@@ -135,9 +138,11 @@ public class BlockLoader {
 		register(MAPLE_LEAVE_GREEN, new ItemBlock(MAPLE_LEAVE_GREEN), "maple_leaves_green");
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
+        register(MAPLE_PLANK, new ItemBlock(MAPLE_PLANK), "plank_maple");
 		register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
 		register(SAKURA_SAPLING, new ItemBlock(SAKURA_SAPLING), "sakura_sapling");
 		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
+        register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		register(PEPPER_SPLINT, new ItemBlock(PEPPER_SPLINT), "pepper_splint");
@@ -222,6 +227,7 @@ public class BlockLoader {
         registerRender(BAMBOO_SLAB);
 		registerRender(SAKURA_LEAVES);
 		registerRender(SAKURA_LOG);
+        registerRender(SAKURA_PLANK);
 		registerRender(SAKURA_SAPLING);
 		registerRender(MAPLE_SAPLING_RED);
 		registerRender(MAPLE_LEAVE_RED);
@@ -233,6 +239,7 @@ public class BlockLoader {
 		registerRender(MAPLE_LEAVE_GREEN);
 		registerRender(MAPLE_LOG);
 		registerRender(MAPLE_LOG_SAP);
+        registerRender(MAPLE_PLANK);
 		registerRender(MAPLE_SYRUP_CAUDRON);
 		registerRender(STONEMORTAR);
 		registerRender(CAMPFIRE_IDLE);

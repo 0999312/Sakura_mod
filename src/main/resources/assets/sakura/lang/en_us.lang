@@ -59,6 +59,8 @@ tile.sakura.maple_syrup_caudron.name=Maple Syrup Caudron
 tile.sakura.ricecrop.name=RiceCrop
 tile.sakura.chestnut_burr.name=Chestnut Burr
 tile.sakura.sakura_diamond_ore.name=Sakura Diamond Ore
+tile.sakura.plank_sakura.name=Sakura Plank
+tile.sakura.plank_maple.name=Maple Plank
 #Item
 item.sakura.grape.name=Grape
 item.sakura.maple_cookie.name=Maple Cookie
@@ -223,6 +225,8 @@ item.sakura.shinai.name=Shinai
 item.sakura.tachi.name=Tachi
 item.sakura.knife_noodle.name=Noodle cutting knife
 
+item.sakura:sakura_guide.name=Harvester Guide
+
 item.sakura.noodle_soup.name=Noodle Soup
 item.sakura.soysause.name=Soysause
 item.sakura.rice_redbean.name=Rea Bean Rice
@@ -233,6 +237,7 @@ item.sakura.furofuki_daikon.name=Furofuki Daikon
 item.sakura.cabbage_roll.name=Cabbage Roll
 item.sakura.white_stew.name=White Stew
 item.sakura.fruitsalad.name=Fruit Salad
+item.sakura.buggys_meat.name=Buggys Meat
 
 #Container
 container.sakura.stonemortar=Stone Mortar

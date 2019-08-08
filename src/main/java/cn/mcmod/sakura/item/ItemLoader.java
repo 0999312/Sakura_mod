@@ -317,7 +317,9 @@ public class ItemLoader {
     public static Item SHINAI = new ItemShinai("shinai");
     public static Item SAKURAKATANA = new ItemKatana(SAKURA_TOOLMATERIAL, "sakura_katana");
     public static Item SAKURAKODACHI = new ItemKotachi(SAKURA_TOOLMATERIAL, "sakura_kodachi");
-    public static Item HYDRA_RAMEN = new ItemFood(20, 12F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.SATURATION, 80, 0), 0.4F);
+    public static Item HYDRA_RAMEN = new ItemFood(20, 14F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 220, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.SATURATION, 80, 0), 0.4F);
+    public static Item BUGGYS_MEAT = new ItemBuggysMeat(20, 22F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 2000, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 2400, 1), 1.0F);
+
 
     public static Item STRAW_HAT = new ItemStrawHat();
 
@@ -344,6 +346,7 @@ public class ItemLoader {
         register(MATERIAL);
         register(FOODSET);
         register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
+        register(BUGGYS_MEAT);
         register(STRAW_HAT);
         register(SAKURA_DIAMOND);
         register(SHINAI);
@@ -389,6 +392,7 @@ public class ItemLoader {
         registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
         registerRender(HYDRA_RAMEN);
+        registerRender(BUGGYS_MEAT);
         registerRender(STRAW_HAT);
         registerRender(SAKURA_DIAMOND);
         registerRender(KATANA);
