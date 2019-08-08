@@ -60,11 +60,6 @@ public class BlockChestnut extends Block implements IGrowable, net.minecraftforg
 
 		return 5f;
 	}
-
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-		return NULL_AABB;
-	}
 	
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {

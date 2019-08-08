@@ -96,7 +96,7 @@ public class BlockLoader {
     public static Block TATAMI_NS_CARPET = new BlockCarpetTatami(true);
 
 	public static Block SAKURA_DIAMOND_ORE = new BlockSakuraDiamondOre();
-
+	public static Block KITUNEBI = new BlockKitunebi();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -144,6 +144,7 @@ public class BlockLoader {
 		register(VANILLA_SPLINT, new ItemBlock(VANILLA_SPLINT), "vanilla_splint");
 		register(GRAPE_SPLINT_STAND, new ItemBlock(GRAPE_SPLINT_STAND), "grape_splint_stand");
 		register(GRAPE_SPLINT, new ItemBlock(GRAPE_SPLINT), "grape_splint");
+		register(KITUNEBI, new ItemBlock(KITUNEBI), "kitunebi");
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
@@ -207,7 +208,7 @@ public class BlockLoader {
 		registerRender(TATAMI_CARPET);
 		registerRender(TATAMI_TAN_NS_CARPET);
 		registerRender(TATAMI_NS_CARPET);
-		
+		registerRender(KITUNEBI);
 		registerFluidBlockRendering(FOODOIL, "foodoil");
 		registerRender(KAWARA_BLOCK);
 		registerRender(KAWARA);
