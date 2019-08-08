@@ -37,7 +37,7 @@ tile.sakura.campfire_idle.name=篝火
 tile.sakura.campfire_lit.name=篝火（点燃）
 tile.sakura.campfire_pot_idle.name=烹饪锅
 tile.sakura.campfire_pot_lit.name=烹饪锅（点燃）
-tile.sakura.stone_mortar.name=石臼
+tile.sakura.stone_mortar.name=石磨
 tile.sakura.pepper_splint.name=胡椒架
 tile.sakura.vanilla_splint.name=香草架
 tile.sakura.grape_splint_stand.name=葡萄架（纵向）
@@ -240,7 +240,7 @@ container.sakura.campfirepot=烹饪锅
 
 #JEI Support
 jei.sakura.category.cooking_pot=烹饪锅
-jei.sakura.category.mortar=石臼
+jei.sakura.category.mortar=石磨
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须的作物知识。
 
