@@ -7,6 +7,7 @@ import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -21,6 +22,8 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 6), new ItemStack(ItemLoader.FOODSET, 1, 4), 0.1F);
 
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
+
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
     }
 
     public static void mortarRegister() {
@@ -762,5 +765,23 @@ public class SakuraRecipeRegister {
                                 "dustSalt"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
+		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+				new TileEntityCampfirePot.PotRecipes(
+						new ItemStack(ItemLoader.FOODSET, 2, 111),
+						new ItemStack(Items.APPLE),
+						new Object[]{
+								"listAllsugar",
+								"listAllfruit"
+						},
+						new FluidStack(FluidRegistry.WATER, 100)));
+		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+				new TileEntityCampfirePot.PotRecipes(
+						new ItemStack(ItemLoader.FOODSET, 2, 111),
+						new ItemStack(Items.CHORUS_FRUIT),
+						new Object[]{
+								"listAllsugar",
+								"listAllfruit"
+						},
+						new FluidStack(FluidRegistry.WATER, 100)));
     }
 }
