@@ -1,0 +1,19 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "sakura:kitunebi"
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "sakura:kitunebi"
+      },
+      "isvisible" : {
+		"true":{
+		"model" : "sakura:kitunebi"
+		},
+		"false":{
+		"model" : "sakura:kitunebi_false"
+		}
+      }
+   }
+}

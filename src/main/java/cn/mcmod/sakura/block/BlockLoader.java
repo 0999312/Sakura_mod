@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.init.Blocks;
@@ -47,6 +48,7 @@ public class BlockLoader {
 	public static Block MAPLE_LEAVE_GREEN = new BlockMapleLeaveGreen();
 	public static Block MAPLE_LOG = new BlockMapleLog();
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
+    public static Block BAMBOO_PLANK = new BlockSakuraPlank(Material.WOOD);
     public static Block MAPLE_PLANK = new BlockSakuraPlank(Material.WOOD);
 	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
 	public static Block CAMPFIRE_IDLE = new BlockCampfire(false);
@@ -99,9 +101,8 @@ public class BlockLoader {
     public static Block TATAMI_CARPET = new BlockCarpetTatami(false);
     public static Block TATAMI_NS_CARPET = new BlockCarpetTatami(true);
 
-
 	public static Block SAKURA_DIAMOND_ORE = new BlockSakuraDiamondOre();
-
+	public static Block KITUNEBI = new BlockKitunebi();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -112,6 +113,7 @@ public class BlockLoader {
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
+        register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
         register(TATAMI_TAN, new ItemBlock(TATAMI_TAN), "tatami_tan");
@@ -152,6 +154,7 @@ public class BlockLoader {
 		register(VANILLA_SPLINT, new ItemBlock(VANILLA_SPLINT), "vanilla_splint");
 		register(GRAPE_SPLINT_STAND, new ItemBlock(GRAPE_SPLINT_STAND), "grape_splint_stand");
 		register(GRAPE_SPLINT, new ItemBlock(GRAPE_SPLINT), "grape_splint");
+		register(KITUNEBI, new ItemBlock(KITUNEBI), "kitunebi");
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
@@ -211,7 +214,7 @@ public class BlockLoader {
 		registerRender(TATAMI);
 		registerRender(TATAMI_TAN_NS);
 		registerRender(TATAMI_NS);
-		
+		registerRender(BAMBOO_PLANK);
 		registerRender(TATAMI_TAN_HALF);
 		registerRender(TATAMI_HALF);
 		registerRender(TATAMI_TAN_NS_HALF);
@@ -221,11 +224,11 @@ public class BlockLoader {
 		registerRender(TATAMI_CARPET);
 		registerRender(TATAMI_TAN_NS_CARPET);
 		registerRender(TATAMI_NS_CARPET);
-		
+		registerRender(KITUNEBI);
 		registerFluidBlockRendering(FOODOIL, "foodoil");
 		registerRender(KAWARA_BLOCK);
 		registerRender(KAWARA);
-		registerRender(SHOJI);
+//		registerRender(SHOJI);
 		registerRender(ANDON);
 		registerRender(BAMBOO);
 		registerRender(BAMBOOSHOOT);
@@ -263,6 +266,39 @@ public class BlockLoader {
         registerRender(GRAPE_SPLINT_STAND);
         registerRender(GRAPE_VINE);
 		registerRender(SAKURA_DIAMOND_ORE);
+		
+        ModelResourceLocation icons_0 = new ModelResourceLocation(SHOJI.getRegistryName() + "_0", "inventory");
+        ModelResourceLocation icons_1 = new ModelResourceLocation(SHOJI.getRegistryName() + "_1", "inventory");
+        ModelResourceLocation icons_2 = new ModelResourceLocation(SHOJI.getRegistryName() + "_2", "inventory");
+        ModelResourceLocation icons_3 = new ModelResourceLocation(SHOJI.getRegistryName() + "_3", "inventory");
+        ModelResourceLocation icons_4 = new ModelResourceLocation(SHOJI.getRegistryName() + "_4", "inventory");
+        ModelResourceLocation icons_5 = new ModelResourceLocation(SHOJI.getRegistryName() + "_5", "inventory");
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(SHOJI),
+        		icons_0,
+        		icons_1,
+        		icons_2,
+        		icons_3,
+        		icons_4,
+        		icons_5
+        		);
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(SHOJI), stack -> {
+            switch (BlockShoji.getTagCompoundSafe(stack).getInteger("type")) {
+                case 0:
+                default:
+                    return icons_0;
+                case 1:
+                    return icons_1;
+                case 2:
+                    return icons_2;
+                case 3:
+                    return icons_3;
+                case 4:
+                    return icons_4;
+                case 5:
+                    return icons_5;    
+            }
+        });
+		
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
@@ -278,9 +314,7 @@ public class BlockLoader {
 		ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-
 				return fluidLocation;
-
 			}
 		});
 	}
