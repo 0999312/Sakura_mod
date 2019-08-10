@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -130,8 +131,8 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                         if (worldIn.rand.nextInt(8) == 0){
                             tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 12000 + worldIn.rand.nextInt(400));
                             setState(true, worldIn, pos);
-                            return true;
                         }
+                        return true;
                     }
 
                     if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
@@ -187,6 +188,10 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         if (this.isBurning) {
             worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
+
+            if (rand.nextDouble() < 0.15D) {
+                worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
         }
     }
 

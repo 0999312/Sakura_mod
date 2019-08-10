@@ -1,6 +1,8 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
+import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.gui.SakuraGuiHandler;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -18,9 +20,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
@@ -61,15 +60,9 @@ public class BlockBarrel extends BlockContainer implements ITileEntityProvider {
                     FluidUtil.interactWithFluidHandler(player, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side));
 
                     return true;
-                } else {
-
-                    if (tileEntityBarrel.getTank().getFluid() != null) {
-                        String string = tileEntityBarrel.getTank().getFluid().getLocalizedName();
-                        player.sendStatusMessage(new TextComponentTranslation("barrel.contains.fluid", new Object[]{string}).setStyle((new Style()).setColor(TextFormatting.DARK_AQUA)), true);
-                    } else {
-                        player.sendStatusMessage(new TextComponentTranslation("barrel.contains.nonfluid", new Object[]{0}).setStyle((new Style()).setColor(TextFormatting.DARK_AQUA)), true);
-                    }
                 }
+
+                player.openGui(SakuraMain.instance, SakuraGuiHandler.ID_BARREL, world, pos.getX(), pos.getY(), pos.getZ());
 
                 return true;
             }

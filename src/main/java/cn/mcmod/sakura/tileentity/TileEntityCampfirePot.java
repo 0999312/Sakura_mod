@@ -2,7 +2,6 @@ package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.block.BlockCampfirePot;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -237,7 +236,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     }
 
     @Override
-
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
 
@@ -440,6 +438,17 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 }
             }
 
+            if (subItems.size() == 1) {
+                for (Object obj1 : subItems) {
+                    if (obj1 instanceof ItemStack) {
+                        ItemStack stack1 = (ItemStack) obj1;
+                        if (stack1.isEmpty()) {
+                            return resultItem.copy();
+                        }
+                    }
+                }
+            }
+
             if (inventoryList.size() != subItems.size()) {
                 return retStack;
             }
@@ -468,6 +477,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                         }
                     }
                 }
+
                 if (!flg2) {
                     flg1 = false;
                     break;
