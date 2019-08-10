@@ -53,7 +53,7 @@ public class GuiBarrel extends GuiContainer {
 
         if (this.tilePot.getTank().getFluid() != null) {
             FluidTank fluidTank = this.tilePot.getTank();
-            int heightInd = (int) (55 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
+            int heightInd = (int) (72 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
                 ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167 - heightInd, l + 11, heightInd, 16f);
             }

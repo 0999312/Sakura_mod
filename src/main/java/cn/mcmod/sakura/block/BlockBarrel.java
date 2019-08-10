@@ -11,9 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -51,8 +49,6 @@ public class BlockBarrel extends BlockContainer implements ITileEntityProvider {
             ItemStack stack = player.getHeldItem(hand);
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileEntityBarrel) {
-                TileEntityBarrel tileEntityBarrel = (TileEntityBarrel) tile;
-
                 IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
 
                 if (handler != null) {
@@ -70,8 +66,6 @@ public class BlockBarrel extends BlockContainer implements ITileEntityProvider {
         }
     }
 
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
-    }
 
     @Nullable
     @Override
@@ -121,31 +115,6 @@ public class BlockBarrel extends BlockContainer implements ITileEntityProvider {
         IBlockState downState = worldIn.getBlockState(pos.down());
 
         return downState.isTopSolid() && downState.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID;
-    }
-
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-
-        if (tileentity instanceof TileEntityBarrel) {
-            TileEntityBarrel tileentitybarrel = (TileEntityBarrel) tileentity;
-
-
-            ItemStack itemstack = new ItemStack(Item.getItemFromBlock(this));
-            NBTTagCompound nbttagcompound = new NBTTagCompound();
-            NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-            nbttagcompound.setTag("BlockEntityTag", ((TileEntityBarrel) tileentity).saveToNbt(nbttagcompound1));
-            itemstack.setTagCompound(nbttagcompound);
-
-            spawnAsEntity(worldIn, pos, itemstack);
-
-
-            worldIn.updateComparatorOutputLevel(pos, state.getBlock());
-        }
-
-
-        super.breakBlock(worldIn, pos, state);
     }
 
 }
