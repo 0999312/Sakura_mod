@@ -17,6 +17,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
@@ -54,6 +55,7 @@ public class BlockLoader {
     public static Block CAMPFIRE_POT_LIT = new BlockCampfirePot(true);
 	public static Block RICECROP = new BlockRiceCrop();
 	public static Block STONEMORTAR = new BlockStoneMortar();
+	public static Block BARREL = new BlockBarrel();
 	public static Block TOMATOCROP = new BlockTomatoCrop();
 	public static Block EGGPLANTCROP = new BlockEggplantCrop();
 	public static Block CABBAGECROP = new BlockCabbageCrop();
@@ -144,6 +146,7 @@ public class BlockLoader {
 		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
         register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
 		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
+		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		register(PEPPER_SPLINT, new ItemBlock(PEPPER_SPLINT), "pepper_splint");
 		register(VANILLA_SPLINT, new ItemBlock(VANILLA_SPLINT), "vanilla_splint");
@@ -171,6 +174,12 @@ public class BlockLoader {
 		registerNoItem(GRAPE_LEAVES, "grapeleaves");
 		registerNoItem(MAPLE_SYRUP_CAUDRON, "maple_syrup_caudron");
 
+		Blocks.FIRE.setFireInfo(SAKURA_PLANK, 5, 20);
+		Blocks.FIRE.setFireInfo(MAPLE_PLANK, 5, 20);
+		Blocks.FIRE.setFireInfo(MAPLE_LOG, 5, 5);
+		Blocks.FIRE.setFireInfo(MAPLE_LOG_SAP, 5, 5);
+		Blocks.FIRE.setFireInfo(BAMBOO_BLOCK, 5, 5);
+		Blocks.FIRE.setFireInfo(BAMBOO, 5, 20);
 
     }
 
@@ -241,6 +250,7 @@ public class BlockLoader {
         registerRender(MAPLE_PLANK);
 		registerRender(MAPLE_SYRUP_CAUDRON);
 		registerRender(STONEMORTAR);
+		registerRender(BARREL);
 		registerRender(CAMPFIRE_IDLE);
 		registerRender(CAMPFIRE_LIT);
         registerRender(CAMPFIRE_POT_IDLE);

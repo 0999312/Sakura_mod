@@ -1,7 +1,7 @@
 package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.inventory.ContainerStoneMortar;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -70,6 +70,15 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
         }
     }
 
+    protected void refresh() {
+        if (hasWorld() && !world.isRemote) {
+
+            IBlockState state = world.getBlockState(pos);
+
+            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+
+        }
+    }
 
     protected void updateAnimation() {
         this.progressOld = this.processTimer;

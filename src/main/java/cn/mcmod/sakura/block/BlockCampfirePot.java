@@ -140,10 +140,9 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                         return true;
                     }
 
-                    if (stack.isEmpty() || !isBurning) {
-                        playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                        return true;
-                    }
+
+                    playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                    return true;
                 }
             }
 

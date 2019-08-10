@@ -23,6 +23,7 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityCampfirePot.class, "campfirepot");
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
         registerTileEntity(TileEntityShoji.class, "shoji");
+        registerTileEntity(TileEntityBarrel.class, "barrel");
     }
 
     @SideOnly(Side.CLIENT)
