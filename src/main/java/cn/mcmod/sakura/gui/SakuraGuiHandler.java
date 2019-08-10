@@ -1,7 +1,9 @@
 package cn.mcmod.sakura.gui;
 
+import cn.mcmod.sakura.inventory.ContainerBarrel;
 import cn.mcmod.sakura.inventory.ContainerCampfirePot;
 import cn.mcmod.sakura.inventory.ContainerStoneMortar;
+import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class SakuraGuiHandler implements IGuiHandler {
     public static final int ID_STONEMORTAR = 0;
     public static final int ID_CAMPFIREPOT = 1;
+    public static final int ID_BARREL = 2;
 
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -26,6 +29,11 @@ public class SakuraGuiHandler implements IGuiHandler {
         if (ID == ID_CAMPFIREPOT) {
             if (tile instanceof TileEntityCampfirePot) {
                 return new ContainerCampfirePot(player.inventory, (TileEntityCampfirePot) tile);
+            }
+        }
+        if (ID == ID_BARREL) {
+            if (tile instanceof TileEntityBarrel) {
+                return new ContainerBarrel(player.inventory, (TileEntityBarrel) tile);
             }
         }
 
@@ -48,7 +56,12 @@ public class SakuraGuiHandler implements IGuiHandler {
                 return new GuiCampfirePot(player.inventory, (TileEntityCampfirePot) tile);
             }
         }
+        if (ID == ID_BARREL) {
+            if (tile instanceof TileEntityBarrel) {
 
+                return new GuiBarrel(player.inventory, (TileEntityBarrel) tile);
+            }
+        }
 
         return null;
     }

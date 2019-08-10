@@ -243,6 +243,9 @@ item.sakura.buggys_meat.name=Buggys Meat
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot
 
+barrel.contains.fluid=This barrel contains %1$s liquid
+barrel.contains.nonfluid=This barrel is empty
+
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 

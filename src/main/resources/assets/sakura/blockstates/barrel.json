@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inventory": {
+      "model": "sakura:barrel"
+    },
+    "normal": {
+      "model": "sakura:barrel"
+    }
+  }
+}
