@@ -334,7 +334,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         public PotRecipes(ItemStack result, ItemStack main, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
+            this.setPotRecipes(result, main, new Object[]{}, fluidStack);
         }
 
         public PotRecipes(ItemStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
@@ -343,7 +343,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
 
         public PotRecipes(ItemStack result, String main, FluidStack fluidStack) {
-            this.setPotRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
+            this.setPotRecipes(result, main, new Object[]{}, fluidStack);
 
         }
 
@@ -440,7 +440,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
                 }
             }
 
-            if (inventoryList.size() != subItems.size()) {
+            if (!subItems.isEmpty()&&inventoryList.size() != subItems.size()) {
                 return retStack;
             }
 

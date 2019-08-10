@@ -87,18 +87,11 @@ public class BlockKitunebi extends Block {
     		return;
     	}
         ItemStack is = player.getHeldItemMainhand();
-        ItemStack offis =player.getHeldItemMainhand();
-        if (!is.isEmpty()) {
-            Item item = is.getItem();
-            if (item instanceof ItemBlock) {
-                if (Block.getBlockFromItem(item) == this) {
-                    world.setBlockState(pos, state.withProperty(ISVISIBLE, true));
-                }
-            }
-        }else if (!offis.isEmpty()) {
-            Item item = offis.getItem();
-            if (item instanceof ItemBlock) {
-                if (Block.getBlockFromItem(item) == this) {
+        ItemStack offis =player.getHeldItemOffhand();
+        if (!is.isEmpty()||!offis.isEmpty()) {
+        	Item mainItem = is.getItem(),offItem=offis.getItem();
+            if (mainItem instanceof ItemBlock||offItem instanceof ItemBlock) {
+                if (Block.getBlockFromItem(mainItem) == this||Block.getBlockFromItem(offItem) == this) {
                     world.setBlockState(pos, state.withProperty(ISVISIBLE, true));
                 }
             }

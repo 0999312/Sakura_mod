@@ -8,5 +8,6 @@ public class BlockSakuraPlank extends Block {
     public BlockSakuraPlank(Material wood) {
         super(wood);
         this.setSoundType(SoundType.WOOD);
+        this.setHardness(2.0F).setResistance(5.0F);
     }
 }

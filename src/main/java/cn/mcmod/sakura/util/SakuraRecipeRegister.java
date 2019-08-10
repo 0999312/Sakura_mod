@@ -15,6 +15,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class SakuraRecipeRegister {
     public static void furnaceRegister() {
+    	
+    	
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 2), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 48), new ItemStack(ItemLoader.FOODSET, 1, 49), 0.1F);
@@ -22,8 +24,9 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 6), new ItemStack(ItemLoader.FOODSET, 1, 4), 0.1F);
 
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
-
-		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.MAPLE_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
     }
 
     public static void mortarRegister() {
@@ -76,18 +79,6 @@ public class SakuraRecipeRegister {
     					"treeLeaves",
     					"treeLeaves",
     					"treeLeaves"
-    					})
-    			);
-    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-    			new ItemStack[]{new ItemStack(Items.DYE,3,5),new ItemStack(Items.DYE,2,5)},
-    			new Object[]{
-    					"bone"
-    					})
-    			);
-    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-    			new ItemStack[]{new ItemStack(Blocks.SAND,4)},
-    			new Object[]{
-    					"sandstone"
     					})
     			);
     	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(

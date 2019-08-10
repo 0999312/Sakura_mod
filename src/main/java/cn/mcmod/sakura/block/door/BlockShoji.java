@@ -57,12 +57,6 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         setSoundType(SoundType.WOOD);
     }
 
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-    
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         state = state.cycleProperty(OPEN);
@@ -145,13 +139,13 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        ItemStack stack = getDefaultItemStack();
-        TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
-        if (te != null) {
-            getTagCompoundSafe(stack).setInteger("type", te.getType());
-        } else {
-            getTagCompoundSafe(stack).setInteger("type", 0);
-        }
+	    ItemStack stack = getDefaultItemStack();
+	    TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
+	    if (te != null) {
+	        getTagCompoundSafe(stack).setInteger("type", te.getType());
+	    } else {
+	        getTagCompoundSafe(stack).setInteger("type", 0);
+	    }
         worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));
         super.breakBlock(worldIn, pos, state);
     }
@@ -186,7 +180,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         return stack;
     }
 
-    private NBTTagCompound getTagCompoundSafe(ItemStack stack) {
+    public static NBTTagCompound getTagCompoundSafe(ItemStack stack) {
         NBTTagCompound tagCompound = stack.getTagCompound();
         if (tagCompound == null) {
             tagCompound = new NBTTagCompound();
@@ -194,11 +188,6 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         }
         return tagCompound;
     }
-
-//    @Override
-//    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-//        tooltip.add(I18n.format("sakura.shoji.tooltips.type." + getTagCompoundSafe(stack).getInteger("type")));
-//    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -220,8 +209,17 @@ public class BlockShoji extends Block implements ITileEntityProvider {
     public boolean isFullCube(IBlockState state) {
         return false;
     }
-
+    
+    @SideOnly(Side.CLIENT)
+    @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
+    @SideOnly(Side.CLIENT)
+    @Override
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
+    }
+    
 }

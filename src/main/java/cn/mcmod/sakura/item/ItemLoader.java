@@ -78,7 +78,7 @@ public class ItemLoader {
                     7, 5, 6,
                     6, 6, 4,//107
                     3, 6, 6,//110
-                    6,
+                    6, 2, 6,
             },
             new float[]{
                     1F * 0.25F, 3F * 0.25F, 5F * 0.25F,
@@ -118,7 +118,7 @@ public class ItemLoader {
                     7F * 0.25F, 5F * 0.25F, 6F * 0.25F,
                     6F * 0.25F, 6F * 0.25F, 4F * 0.25F,//107
                     2F * 0.25F, 5F * 0.25F, 4F * 0.25F,//110
-                    5F * 0.25F,
+                    5F * 0.25F, 2F * 0.01F, 6F * 0.25F,
             },
             new String[]{
                     SakuraMain.MODID + "." + "grape",
@@ -268,7 +268,10 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "furofuki_daikon",//108
                     SakuraMain.MODID + "." + "cabbage_roll",//109
                     SakuraMain.MODID + "." + "white_stew",//110
+                    
                     SakuraMain.MODID + "." + "fruitsalad",//111
+                    SakuraMain.MODID + "." + "raw_taiyaki",//112
+                    SakuraMain.MODID + "." + "taiyaki",//113
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{

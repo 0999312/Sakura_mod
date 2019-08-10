@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"cross": "sakura:blocks/fire",
-		"particle": "sakura:blocks/fire"
+		"cross": "sakura:blocks/ghost_fire_0",
+		"particle": "sakura:blocks/ghost_fire_0"
 	},
 	"elements": [
 		{
@@ -25,27 +25,6 @@
 				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
 				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
 			}
-		},
-		{
-			"from": [8, 0, 0.8],
-			"to": [8, 16, 15.2],
-			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8], "rescale": true},
-			"faces": {
-				"east": {"uv": [0, 0, 16, 16], "texture": "#cross"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#cross"}
-			}
-		},
-		{
-			"from": [0.8, 0, 8],
-			"to": [15.2, 16, 8],
-			"shade": false,
-			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8], "rescale": true},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#cross"}
-			}
 		}
-	],
-	"display": {}
+	]
 }

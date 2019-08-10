@@ -1,5 +1,7 @@
 package cn.mcmod.sakura.client.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.client.model.tileentity.ShojiModel;
 import cn.mcmod.sakura.tileentity.TileEntityShoji;
@@ -19,7 +21,8 @@ public class ShojiRender extends TileEntitySpecialRenderer<TileEntityShoji> {
         float time = (te.getAnimation() == 0) ? 0 : te.getAnimation() - partialTicks;
 
         GlStateManager.pushMatrix();
-
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         switch (te.getFacing()) {
             case NORTH:
             default:
@@ -58,6 +61,7 @@ public class ShojiRender extends TileEntitySpecialRenderer<TileEntityShoji> {
         GlStateManager.rotate(180, 0, 0, 1);
         GlStateManager.rotate(90, 0, 1, 0);
         model.render(1.0f);
+        GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
 }

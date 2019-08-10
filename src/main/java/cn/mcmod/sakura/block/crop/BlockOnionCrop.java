@@ -1,9 +1,10 @@
 package cn.mcmod.sakura.block.crop;
 
 import cn.mcmod.sakura.item.ItemLoader;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 
-public class BlockOnionCrop extends BlockHighCrop {
+public class BlockOnionCrop extends BlockCrops {
 
 	public BlockOnionCrop() {
 		super();
