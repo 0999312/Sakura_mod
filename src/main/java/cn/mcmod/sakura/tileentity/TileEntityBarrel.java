@@ -47,11 +47,8 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     protected void refresh() {
         if (hasWorld() && !world.isRemote) {
-
             IBlockState state = world.getBlockState(pos);
-
             world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
-
         }
     }
 
