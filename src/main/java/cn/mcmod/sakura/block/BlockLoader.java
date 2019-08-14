@@ -5,8 +5,19 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.crop.*;
 import cn.mcmod.sakura.block.door.BlockDoorBase;
 import cn.mcmod.sakura.block.door.BlockShoji;
-import cn.mcmod.sakura.block.fluid.BlockFoodOil;
+import cn.mcmod.sakura.block.fluid.BeerFluid;
+import cn.mcmod.sakura.block.fluid.BlockFluidBasic;
+import cn.mcmod.sakura.block.fluid.ChampagneFluid;
+import cn.mcmod.sakura.block.fluid.DoburokuFluid;
 import cn.mcmod.sakura.block.fluid.FoodOilFluid;
+import cn.mcmod.sakura.block.fluid.GrapeFluid;
+import cn.mcmod.sakura.block.fluid.GreenGrapeFluid;
+import cn.mcmod.sakura.block.fluid.RedWineFluid;
+import cn.mcmod.sakura.block.fluid.RumFluid;
+import cn.mcmod.sakura.block.fluid.SakeFluid;
+import cn.mcmod.sakura.block.fluid.ShouchuFluid;
+import cn.mcmod.sakura.block.fluid.VodkaFluid;
+import cn.mcmod.sakura.block.fluid.WhiteWineFluid;
 import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
@@ -32,6 +43,31 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.GameData;
 
 public class BlockLoader {
+	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
+	public static Block FOODOIL;
+	public static Fluid GRAPE_FLUID = new GrapeFluid();
+	public static Block GRAPE_FLUID_BLOCK;
+	public static Fluid RED_WINE_FLUID = new RedWineFluid();
+	public static Block RED_WINE;
+	public static Fluid GREEN_GRAPE_FLUID = new GreenGrapeFluid();
+	public static Block GREEN_GRAPE_FLUID_BLOCK;
+	public static Fluid WHITE_WINE_FLUID = new WhiteWineFluid();
+	public static Block WHITE_WINE;
+	public static Fluid CHAMPAGNE_FLUID = new ChampagneFluid();
+	public static Block CHAMPAGNE;
+	public static Fluid RUM_FLUID = new RumFluid();
+	public static Block RUM;
+	public static Fluid DOBUROKU_FLUID = new DoburokuFluid();
+	public static Block DOBUROKU;
+	public static Fluid SAKE_FLUID = new SakeFluid();
+	public static Block SAKE;
+	public static Fluid SHOUCHU_FLUID = new ShouchuFluid();
+	public static Block SHOUCHU;
+	public static Fluid BEER_FLUID = new BeerFluid();
+	public static Block BEER;
+	public static Fluid VODKA_FLUID = new VodkaFluid();
+	public static Block VODKA;
+	
     public static Block BAMBOO = new BlockPlantBamboo();
     public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
     public static Block BAMBOO_BLOCK = new BlockBase(Material.WOOD).setHardness(1.6F).setResistance(6.0F);
@@ -81,8 +117,7 @@ public class BlockLoader {
 	public static BlockGrapeLeaves GRAPE_LEAVES = new BlockGrapeLeaves();
 	public static Block SHOJI =new BlockShoji();
 	public static Block ANDON =new BlockAndon();
-	public static Fluid FOODOIL_FLUID = new FoodOilFluid();
-	public static Block FOODOIL;
+
 	public static Block KAWARA_BLOCK = new BlockFacing(Material.ROCK,true).setHardness(1.5F).setResistance(10.0F);
 	public static Block KAWARA = new BlockKawara();
 	
@@ -107,7 +142,31 @@ public class BlockLoader {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
-		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFoodOil(FOODOIL_FLUID), "foodoil");
+		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFluidBasic(FOODOIL_FLUID), "foodoil");
+		FluidRegistry.addBucketForFluid(GRAPE_FLUID);
+		GRAPE_FLUID_BLOCK=registerFluidBlock(GRAPE_FLUID, new BlockFluidBasic(GRAPE_FLUID), "grape_fluid");
+		FluidRegistry.addBucketForFluid(RED_WINE_FLUID);
+		RED_WINE=registerFluidBlock(RED_WINE_FLUID, new BlockFluidBasic(RED_WINE_FLUID), "red_wine");
+		FluidRegistry.addBucketForFluid(GREEN_GRAPE_FLUID);
+		GREEN_GRAPE_FLUID_BLOCK=registerFluidBlock(GREEN_GRAPE_FLUID, new BlockFluidBasic(GREEN_GRAPE_FLUID), "green_grape_fluid");
+		FluidRegistry.addBucketForFluid(WHITE_WINE_FLUID);
+		WHITE_WINE=registerFluidBlock(WHITE_WINE_FLUID, new BlockFluidBasic(WHITE_WINE_FLUID), "white_wine");
+		FluidRegistry.addBucketForFluid(CHAMPAGNE_FLUID);
+		CHAMPAGNE=registerFluidBlock(CHAMPAGNE_FLUID, new BlockFluidBasic(CHAMPAGNE_FLUID), "champagne");
+		FluidRegistry.addBucketForFluid(RUM_FLUID);
+		RUM=registerFluidBlock(RUM_FLUID, new BlockFluidBasic(RUM_FLUID), "rum");
+		FluidRegistry.addBucketForFluid(DOBUROKU_FLUID);
+		DOBUROKU=registerFluidBlock(DOBUROKU_FLUID, new BlockFluidBasic(DOBUROKU_FLUID), "doburoku");
+		FluidRegistry.addBucketForFluid(SAKE_FLUID);
+		SAKE=registerFluidBlock(SAKE_FLUID, new BlockFluidBasic(SAKE_FLUID), "sake");
+		
+		FluidRegistry.addBucketForFluid(SHOUCHU_FLUID);
+		SHOUCHU=registerFluidBlock(SHOUCHU_FLUID, new BlockFluidBasic(SHOUCHU_FLUID), "shouchu");
+		FluidRegistry.addBucketForFluid(BEER_FLUID);
+		BEER=registerFluidBlock(BEER_FLUID, new BlockFluidBasic(BEER_FLUID), "beer");
+		FluidRegistry.addBucketForFluid(VODKA_FLUID);
+		VODKA=registerFluidBlock(VODKA_FLUID, new BlockFluidBasic(VODKA_FLUID), "vodka");
+		
         register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
         register(KAWARA, new ItemBlock(KAWARA), "kawara");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
@@ -226,6 +285,18 @@ public class BlockLoader {
 		registerRender(TATAMI_NS_CARPET);
 		registerRender(KITUNEBI);
 		registerFluidBlockRendering(FOODOIL, "foodoil");
+		registerFluidBlockRendering(GRAPE_FLUID_BLOCK, "grape_fluid");
+		registerFluidBlockRendering(GREEN_GRAPE_FLUID_BLOCK, "green_grape_fluid");
+		registerFluidBlockRendering(RED_WINE, "red_wine");
+		registerFluidBlockRendering(WHITE_WINE, "white_wine");
+		registerFluidBlockRendering(CHAMPAGNE, "champagne");
+		registerFluidBlockRendering(DOBUROKU, "doburoku");
+		registerFluidBlockRendering(SAKE, "sake");
+		registerFluidBlockRendering(RUM, "rum");
+		registerFluidBlockRendering(BEER, "beer");
+		registerFluidBlockRendering(SHOUCHU, "shouchu");
+		registerFluidBlockRendering(VODKA, "vodka");
+		
 		registerRender(KAWARA_BLOCK);
 		registerRender(KAWARA);
 //		registerRender(SHOJI);

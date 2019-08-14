@@ -17,11 +17,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BlockFoodOil extends BlockFluidClassic {
+public class BlockFluidBasic extends BlockFluidClassic {
 
-    public BlockFoodOil(Fluid fluid) {
-
-        super(fluid, Material.WATER);
+    public BlockFluidBasic(Fluid fluid) {
+    	super(fluid, Material.WATER);
         this.setResistance(1000.0F);
     }
 
@@ -36,7 +35,6 @@ public class BlockFoodOil extends BlockFluidClassic {
        /* if (rand.nextInt(6) == 0) {
         }*/
     }
-
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -60,8 +58,6 @@ public class BlockFoodOil extends BlockFluidClassic {
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos neighborPos) {
         super.neighborChanged(state, worldIn, pos, blockIn, neighborPos);
     }
-
-
 
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing) {

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 
 public class TileEntityCampfirePot extends TileEntity implements ITickable, IInventory {
 
-
     public FluidTank tank = new FluidTank(2000) {
         @Override
         protected void onContentsChanged() {
@@ -98,12 +97,9 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         return this.cookTime;
     }
 
-
     protected void refresh() {
         if (hasWorld() && !world.isRemote) {
-
             IBlockState state = world.getBlockState(pos);
-
             world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
 
         }
@@ -156,7 +152,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-
                 BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
             }
         }
@@ -586,13 +581,10 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
     public void writePacketNBT(NBTTagCompound cmp) {
         ItemStackHelper.saveAllItems(cmp, this.inventory);
-        cmp.setInteger("BurnTime", (short) this.burnTime);
-        cmp.setInteger("CookTime", (short) this.cookTime);
-
+        cmp.setInteger("BurnTime", this.burnTime);
+        cmp.setInteger("CookTime", this.cookTime);
         NBTTagCompound tankTag = this.tank.writeToNBT(new NBTTagCompound());
-
         cmp.setTag("Tank", tankTag);
-
         if (tank.getFluid() != null) {
             liquidForRendering = tank.getFluid().copy();
         }
@@ -602,10 +594,8 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         this.inventory =
                 NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(cmp, this.inventory);
-
         this.burnTime = cmp.getInteger("BurnTime");
         this.cookTime = cmp.getInteger("CookTime");
-
         this.tank.readFromNBT(cmp.getCompoundTag("Tank"));
     }
 

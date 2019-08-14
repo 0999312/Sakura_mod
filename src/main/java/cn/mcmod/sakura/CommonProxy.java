@@ -38,8 +38,7 @@ public class CommonProxy {
         SakuraRecipeRegister.mortarRegister();
         SakuraRecipeRegister.potRegister();
         SakuraRecipeRegister.furnaceRegister();
-//        VillagerTofu1.registerVillager();
-//        NetworkRegistry.INSTANCE.registerGuiHandler(TofuMain.instance, new TofuGuiHandler());
+
     }
 
     public void postInit(FMLPostInitializationEvent event) {
