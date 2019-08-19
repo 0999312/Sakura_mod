@@ -3,17 +3,21 @@ package cn.mcmod.sakura.util;
 import cn.mcmod.sakura.SakuraOreDictLoader;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
+import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class SakuraRecipeRegister {
+    public static void barrelRegister() {
+        TileEntityBarrel.BarrelRecipes.addBarrelRecipe(new TileEntityBarrel.BarrelRecipes(new FluidStack(BlockLoader.GRAPE_FLUID, 200), new ItemStack(ItemLoader.FOODSET, 1, 0), new FluidStack(FluidRegistry.WATER, 0)));
+    }
+
     public static void furnaceRegister() {
     	
     	

@@ -38,7 +38,7 @@ public class CommonProxy {
         SakuraRecipeRegister.mortarRegister();
         SakuraRecipeRegister.potRegister();
         SakuraRecipeRegister.furnaceRegister();
-
+        SakuraRecipeRegister.barrelRegister();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

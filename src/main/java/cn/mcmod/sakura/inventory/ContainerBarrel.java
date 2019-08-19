@@ -18,16 +18,19 @@ public class ContainerBarrel extends Container {
 
     public ContainerBarrel(InventoryPlayer inventory, TileEntityBarrel tile) {
         tileBarrel = tile;
-        addSlotToContainer(new Slot(tile, 0, 45, 11));
         int i, j, k, l;
-        for (k = 1; k < 5; ++k)
-            addSlotToContainer(new Slot(tile, k, 18 + (k - 1) * 18, 29));
-        for (l = 5; l < 9; ++l)
-            addSlotToContainer(new Slot(tile, l, 18 + (l - 5) * 18, 47));
-        addSlotToContainer(new Slot(tile, 9, 130, 46) {
+        for (k = 0; k < 3; ++k)
+            addSlotToContainer(new Slot(tile, k, 42, 36 + (k - 1) * 18));
+        addSlotToContainer(new Slot(tile, 3, 131, 12) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return stack.getItem() == Items.GLASS_BOTTLE;
+            }
+        });
+        addSlotToContainer(new Slot(tile, 4, 130, 56) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return false;
             }
         });
 

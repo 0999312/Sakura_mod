@@ -39,10 +39,30 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         protected void onContentsChanged() {
             TileEntityBarrel.this.refresh();
         }
+
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            if (!canFill() || fluid.getFluid().isGaseous(fluid) || fluid.getFluid().isLighterThanAir()) {
+                return false;
+            }
+            return fluid.getFluid().getTemperature(fluid) < 500;
+        }
+    };
+
+    //This is a tank that accumulates liquid when the process is over
+    public FluidTank resultTank = new FluidTank(3000) {
+        @Override
+        protected void onContentsChanged() {
+            TileEntityBarrel.this.refresh();
+        }
     };
 
     public FluidTank getTank() {
         return this.tank;
+    }
+
+    public FluidTank getResultTank() {
+        return this.resultTank;
     }
 
     protected void refresh() {
@@ -58,32 +78,34 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             processTimer = 0;
         } else {
             processTimer += 1;
-        }
-
-        if (processTimer >= maxprocessTimer) {
-            processTimer = 0;
-            if (this.getWorld().isRemote) {
-                return;
-            }
-
-            FluidStack result = getRecipesResult().getResultFinishedFluid();
-            FluidStack fluidStack = getRecipesResult().getResultFluid();
-
-            if (fluidStack != null && fluidStack.amount > 0) {
-                result.amount = this.getTank().getFluidAmount();
-
-                this.tank.setFluid(result);
-            }
-
-            for (int i = 0; i < 9; i++) {
-                if (this.inventory.get(i).getCount() == 1 &&
-                        this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)) != null)
-                    this.inventory.set(i,
-                            this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
-                else this.decrStackSize(i, 1);
-            }
-
             this.markDirty();
+        }
+        if (!world.isRemote) {
+            if (processTimer >= maxprocessTimer) {
+                processTimer = 0;
+                if (this.getWorld().isRemote) {
+                    return;
+                }
+
+                FluidStack result = getRecipesResult().getResultFinishedFluid();
+                FluidStack fluidStack = getRecipesResult().getResultFluid();
+
+                if (fluidStack != null && fluidStack.amount > 0 && result.getFluid() == this.resultTank.getFluid().getFluid()) {
+                    this.tank.drain(fluidStack, true);
+
+                    this.resultTank.fill(result, true);
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    if (this.inventory.get(i).getCount() == 1 &&
+                            this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)) != null)
+                        this.inventory.set(i,
+                                this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
+                    else this.decrStackSize(i, 1);
+                }
+
+                this.markDirty();
+            }
         }
     }
 
@@ -109,7 +131,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     @Override
     public int getSizeInventory() {
-        return 10;
+        return 5;
     }
 
     @Override
@@ -237,7 +259,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         public FluidStack resultFluid = null;
         public ArrayList<Object> subItems = new ArrayList<Object>();
         public boolean enchantment = false;
-        private static final BarrelRecipes POT_RECIPES_BASE = new BarrelRecipes();
+        private static final BarrelRecipes BARREL_RECIPES_BASE = new BarrelRecipes();
 
         public BarrelRecipes() {
         }
@@ -268,7 +290,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         }*/
 
         public static BarrelRecipes instance() {
-            return POT_RECIPES_BASE;
+            return BARREL_RECIPES_BASE;
         }
 
         public void setBarrelRecipes(FluidStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
@@ -342,7 +364,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             }
 
             ArrayList<ItemStack> inventoryList = new ArrayList<ItemStack>();
-            for (int i = 1; i < 9; i++) {
+            for (int i = 1; i < 2; i++) {
                 if (!inventory.getStackInSlot(i).isEmpty()) {
                     inventoryList.add(inventory.getStackInSlot(i).copy());
                 }
@@ -480,12 +502,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         return ret;
     }
 
-    public NBTTagCompound saveToNbt(NBTTagCompound compound) {
-        NBTTagCompound tankTag = this.tank.writeToNBT(new NBTTagCompound());
-
-        compound.setTag("Tank", tankTag);
-        return compound;
-    }
 
     @Nonnull
     @Override
@@ -501,12 +517,20 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     public void writePacketNBT(NBTTagCompound cmp) {
         NBTTagCompound tankTag = this.tank.writeToNBT(new NBTTagCompound());
+        ItemStackHelper.saveAllItems(cmp, this.inventory);
 
         cmp.setTag("Tank", tankTag);
+        NBTTagCompound resultTankTag = this.resultTank.writeToNBT(new NBTTagCompound());
+        cmp.setTag("ResultTank", resultTankTag);
     }
 
     public void readPacketNBT(NBTTagCompound cmp) {
+        this.inventory =
+                NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(cmp, this.inventory);
+
         this.tank.readFromNBT(cmp.getCompoundTag("Tank"));
+        this.resultTank.readFromNBT(cmp.getCompoundTag("ResultTank"));
     }
 
     @Override
