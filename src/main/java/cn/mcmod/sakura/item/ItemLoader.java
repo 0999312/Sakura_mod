@@ -3,6 +3,7 @@ package cn.mcmod.sakura.item;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.item.drinks.DrinkBasic;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
@@ -23,6 +24,9 @@ public class ItemLoader {
     public static final ItemTool.ToolMaterial SAKURA_TOOLMATERIAL = EnumHelper.addToolMaterial("SAKURA_TOOLMATERIAL", 4, 1561, 8.5F, 4.0F, 12);
     public static final ItemTool.ToolMaterial TACHI_TOOLMATERIAL = EnumHelper.addToolMaterial("TACHI_TOOLMATERIAL", 3, 457, 7F, 3.0F, 18);
     
+    public static ItemBase cup = new ItemBase("cup", 32, new String[]{
+    		SakuraMain.MODID + "." + "cup"
+    });
     public static Item RICE_SEEDS = new ItemRiceSeeds();
     public static Item TOMATO = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "tomato");
     public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "tomato_seeds");
@@ -327,7 +331,7 @@ public class ItemLoader {
     public static Item STRAW_HAT = new ItemStrawHat();
 
     public ItemLoader(FMLPreInitializationEvent event) {
-
+    	register(cup);
         register(POT);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(TOMATO);
@@ -400,6 +404,7 @@ public class ItemLoader {
         registerRender(SAKURA_DIAMOND);
         registerRender(KATANA);
         registerRender(SAKURAKATANA);
+        registerRender(cup);
     }
 
     private static void register(Item item) {

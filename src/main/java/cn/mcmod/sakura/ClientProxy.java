@@ -10,6 +10,7 @@ import cn.mcmod.sakura.client.particle.ParticleMapleYellowLeaf;
 import cn.mcmod.sakura.client.particle.ParticleSakuraLeaf;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.item.ItemLoader;
+import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -43,6 +44,7 @@ public class ClientProxy extends CommonProxy {
         super.preInit(event);
         BlockLoader.registerRenders();
         ItemLoader.registerRenders();
+        DrinksLoader.registerRender();
         SakuraEntityRegister.entityRender();
 
         TileEntityRegistry.render();

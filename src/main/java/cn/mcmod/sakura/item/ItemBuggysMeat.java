@@ -21,6 +21,7 @@ public class ItemBuggysMeat extends ItemFood {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (flagIn.isAdvanced()) {
             tooltip.add("Meat that bagu_chan seems to like UwU");
+            tooltip.add("But Syameimaru doesn't OmO");
         }
     }
 

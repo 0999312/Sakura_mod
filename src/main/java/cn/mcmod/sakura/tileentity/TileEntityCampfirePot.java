@@ -122,7 +122,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (!world.isRemote) {
             if (this.isBurning()) {
                 --this.burnTime;
-                flag1 = true;
             }
 
             if (cookTime >= maxCookTimer) {
@@ -152,10 +151,11 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
             if (flag != this.isBurning()) {
                 flag1 = true;
-                BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
+               BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
             }
         }
-        if (flag1) this.markDirty();
+        if (flag1)
+        	this.markDirty();
       }
     }
 
@@ -233,13 +233,9 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     @Override
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
-
             return false;
-
         } else {
-
             return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-
         }
     }
 
@@ -259,9 +255,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     }
 
     public int getField(int id) {
-
         switch (id) {
-
             case 0:
                 return this.burnTime;
             case 1:
@@ -290,9 +284,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     }
 
     public int getFieldCount() {
-
         return 3;
-
     }
 
     @Override
@@ -549,9 +541,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
         }
-
         return super.getCapability(capability, facing);
-
     }
 
     @Override

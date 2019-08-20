@@ -387,6 +387,37 @@ public class JSON_Creator {
             e.printStackTrace();
         }
     }
+    public static void genDrink(String itemName, String textureName, String path){
+
+        File fileDir = new File(path + "\\models\\item\\");
+        if(!fileDir.exists()){
+            fileDir.mkdirs();
+        }
+        try {
+            Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + itemName + ".json"), "UTF-8");
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            @SuppressWarnings("resource")
+			JsonWriter jw = new JsonWriter(writer);
+
+            jw.beginObject();
+            jw.name("parent").value("sakura:item/cup_drink");
+            jw.name("textures");
+            jw.beginObject();
+            jw.name("1").value("sakura:models/cup");
+            jw.name("2").value(modId + ":models/" + textureName);
+            jw.endObject();
+            jw.endObject();
+
+            writer.close();
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void genTool(String itemName, String textureName, String path){
 

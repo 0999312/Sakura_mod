@@ -114,13 +114,9 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
             if (hand == EnumHand.MAIN_HAND) {
                 if (tile instanceof TileEntityCampfirePot) {
                     TileEntityCampfirePot tileEntityCampfire = (TileEntityCampfirePot) tile;
-
                     IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
-
                     if (handler != null) {
-
                         FluidUtil.interactWithFluidHandler(playerIn, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing));
-
                         return true;
                     }
 
@@ -129,7 +125,7 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                             stack.shrink(1);
                         }
                         if (worldIn.rand.nextInt(8) == 0){
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 6000 + worldIn.rand.nextInt(400));
+                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 0 + worldIn.rand.nextInt(100));
                             setState(true, worldIn, pos);
                         }
                         return true;
@@ -140,7 +136,6 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                         setState(true, worldIn, pos);
                         return true;
                     }
-
 
                     playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
                     return true;
@@ -156,12 +151,10 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         worldIn.getBlockState(pos.up()).getBlock().onNeighborChange(worldIn, pos.up(), pos);
     }
 
-
     public static void setState(boolean active, World worldIn, BlockPos pos) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;
-
         if (active) {
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
@@ -169,9 +162,7 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         	worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
         }
-
         keepInventory = false;
-
         if (tileentity != null) {
             tileentity.validate();
             worldIn.setTileEntity(pos, tileentity);
