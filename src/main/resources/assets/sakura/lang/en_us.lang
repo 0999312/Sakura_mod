@@ -1,5 +1,4 @@
 #Block
-tile.sakura.foodoil.name=FoodOil
 tile.sakura.kawara_block.name=Kawara Block
 tile.sakura.kawara.name=Kawara
 tile.sakura.tatami_tan.name=Tan Tatami
@@ -59,8 +58,16 @@ tile.sakura.maple_syrup_caudron.name=Maple Syrup Caudron
 tile.sakura.ricecrop.name=RiceCrop
 tile.sakura.chestnut_burr.name=Chestnut Burr
 tile.sakura.sakura_diamond_ore.name=Sakura Diamond Ore
+tile.sakura.plank_sakura.name=Sakura Plank
+tile.sakura.plank_maple.name=Maple Plank
+tile.sakura.plank_bamboo.name=Bamboo Plank
+tile.sakura.barrel.name=Barrel
+tile.sakura.kitunebi.name=Kitsunebi
+
 #Item
 item.sakura.grape.name=Grape
+item.sakura.raw_taiyaki.name=Raw Taiyaki
+item.sakura.taiyaki.name=Taiyaki
 item.sakura.maple_cookie.name=Maple Cookie
 item.sakura.rice_bread.name=Bread Rice
 item.sakura.red_bean_paste.name=Red Bean Paste
@@ -198,6 +205,8 @@ item.sakura.miso.name=Miso
 item.sakura.breadcrumbs.name=Breadcrumbs
 item.sakura.chestnut.name=Chestnut
 item.sakura.bamboo_door.name=Bamboo Door
+item.sakura.seaweed.name=Seaweed
+item.sakura.rice_seeds.name=Rice Seeds
 item.sakura.tomato.name=Tomato
 item.sakura.tomato_seeds.name=Tomato Seeds
 item.sakura.eggplant.name=Eggplant
@@ -221,7 +230,9 @@ item.sakura.kodachi.name=Kodachi
 item.sakura.sakura_kodachi.name=Sakura Kodachi
 item.sakura.shinai.name=Shinai
 item.sakura.tachi.name=Tachi
-item.sakura.knife_noodle.name=Noodle cutting knife
+item.sakura.knife_noodle.name=Noodle Cutting Knife
+
+item.sakura:sakura_guide.name=Harvester Guide
 
 item.sakura.noodle_soup.name=Noodle Soup
 item.sakura.soysause.name=Soysause
@@ -232,11 +243,51 @@ item.sakura.fries.name=Fries
 item.sakura.furofuki_daikon.name=Furofuki Daikon
 item.sakura.cabbage_roll.name=Cabbage Roll
 item.sakura.white_stew.name=White Stew
+item.sakura.fruitsalad.name=Fruit Salad
+item.sakura.buggys_meat.name=Buggys Meat
+
+item.sakura.cooking_pot.name=Cooking Pot
+
+item.sakura.cup.name=Cup
+item.sakura.black_tea.name=Black Tea
+item.sakura.milk_tea.name=Milk Tea
+item.sakura.milk_green_tea.name=Milk Green Tea
+item.sakura.earl_grey.name=Earl Grey
+item.sakura.milk_earl_grey.name=Milk Earl Grey
+item.sakura.fruit_tea.name=Fruit Tea
+item.sakura.milk_fruit_tea.name=Milk Fruit Tea
+item.sakura.green_tea.name=Green Tea
+item.sakura.lemon_black_tea.name=Lemon Black Tea
+item.sakura.lemon_green_tea.name=Lemon Green Tea
+item.sakura.mint_tea.name=Mint Tea
+item.sakura.barley_tea.name=Barley Tea
+
+#Fluid
+fluid.foodoil=Food Oil
+fluid.grape_fluid=Grape Fluid
+fluid.red_wine=Red Wine
+fluid.green_grape_fluid=Green Grape Fluid
+fluid.white_wine=White Wine
+fluid.champagne=Champagne
+fluid.doburoku=Doburoku
+fluid.sake=Sake
+fluid.shouchu=Shouchu
+fluid.beer=Beer
+fluid.vodka=Vodka
 
 #Container
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot
 
+barrel.contains.fluid=This barrel contains %1$s liquid
+barrel.contains.nonfluid=This barrel is empty
+
+#JEI Support
+jei.sakura.category.cooking_pot=Cooking Pot
+jei.sakura.category.mortar=Stone Mortar
+
+#Entities
+entity.sakura.Deer.name=Deer
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
