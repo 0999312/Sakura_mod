@@ -1,5 +1,4 @@
 #方块
-tile.sakura.foodoil.name=食用油
 tile.sakura.kawara_block.name=瓦块
 tile.sakura.kawara.name=瓦
 tile.sakura.tatami_tan.name=榻榻米（日晒）
@@ -59,8 +58,16 @@ tile.sakura.maple_syrup_caudron.name=枫糖浆罐
 tile.sakura.ricecrop.name=水稻作物
 tile.sakura.chestnut_burr.name=毛边板栗
 tile.sakura.sakura_diamond_ore.name=樱色钻石矿石
+tile.sakura.plank_sakura.name=樱树木板
+tile.sakura.plank_maple.name=枫树木板
+tile.sakura.plank_bamboo.name=竹板
+tile.sakura.barrel.name=酿造桶
+tile.sakura.kitunebi.name=狐火
+
 #物品
 item.sakura.grape.name=葡萄
+item.sakura.raw_taiyaki.name=生鲷鱼烧
+item.sakura.taiyaki.name=鲷鱼烧
 item.sakura.maple_cookie.name=枫曲奇
 item.sakura.rice_bread.name=大米面包
 item.sakura.red_bean_paste.name=红豆酱
@@ -133,7 +140,7 @@ item.sakura.hamburger.name=汉堡包
 item.sakura.cheese_burger.name=奶酪汉堡包
 item.sakura.mabodofu.name=麻婆豆腐
 item.sakura.maboqiezi.name=麻婆茄子
-item.sakura.chestnut_toasted.name=烤栗
+item.sakura.chestnut_toasted.name=烤栗子
 item.sakura.soup_red_bean.name=红豆汤
 item.sakura.pound_cake.name=磅蛋糕
 item.sakura.osuimono.name=清汤
@@ -198,6 +205,8 @@ item.sakura.miso.name=味噌
 item.sakura.breadcrumbs.name=面包屑
 item.sakura.chestnut.name=板栗
 item.sakura.bamboo_door.name=竹门
+item.sakura.seaweed.name=海草
+item.sakura.rice_seeds.name=水稻种子
 item.sakura.tomato.name=番茄
 item.sakura.tomato_seeds.name=番茄种子
 item.sakura.eggplant.name=茄子
@@ -223,6 +232,8 @@ item.sakura.shinai.name=竹刀
 item.sakura.tachi.name=太刀
 item.sakura.knife_noodle.name=切面刀
 
+item.sakura:sakura_guide.name=农夫指南
+
 item.sakura.noodle_soup.name=面汤
 item.sakura.soysause.name=酱油
 item.sakura.rice_redbean.name=红豆饭
@@ -232,11 +243,44 @@ item.sakura.fries.name=薯条
 item.sakura.furofuki_daikon.name=炊煮大根
 item.sakura.cabbage_roll.name=生菜肉卷
 item.sakura.white_stew.name=奶油炖汤
+item.sakura.fruitsalad.name=水果沙拉
+item.sakura.buggys_meat.name=Bagu爱吃的肉
 
 item.sakura.cooking_pot.name=烹饪锅
-#GUI
+
+item.sakura.cup.name=杯子
+item.sakura.black_tea.name=红茶
+item.sakura.milk_tea.name=奶茶
+item.sakura.milk_green_tea.name=奶绿
+item.sakura.earl_grey.name=格雷伯爵茶
+item.sakura.milk_earl_grey.name=格雷伯爵奶茶
+item.sakura.fruit_tea.name=水果茶
+item.sakura.milk_fruit_tea.name=水果奶茶
+item.sakura.green_tea.name=绿茶
+item.sakura.lemon_black_tea.name=柠檬红茶
+item.sakura.lemon_green_tea.name=柠檬绿茶
+item.sakura.mint_tea.name=薄荷茶
+item.sakura.barley_tea.name=大麦茶
+
+#Fluid
+fluid.foodoil=食用油
+fluid.grape_fluid=葡萄汁
+fluid.red_wine=红葡萄酒
+fluid.green_grape_fluid=绿葡萄汁
+fluid.white_wine=白葡萄酒
+fluid.champagne=香槟
+fluid.doburoku=浊酒
+fluid.sake=清酒
+fluid.shouchu=日本烧酒
+fluid.beer=啤酒
+fluid.vodka=伏特加
+
+#Container
 container.sakura.stonemortar=石磨
 container.sakura.campfirepot=烹饪锅
+
+barrel.contains.fluid=这个桶含有%1$s液体
+barrel.contains.nonfluid=这个桶是空的
 
 #JEI Support
 jei.sakura.category.cooking_pot=烹饪锅
@@ -245,6 +289,6 @@ jei.sakura.category.mortar=石磨
 #Entities
 entity.sakura.Deer.name=鹿
 
-guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须的作物知识。
+guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
 itemGroup.sakura_tabs=樱花
