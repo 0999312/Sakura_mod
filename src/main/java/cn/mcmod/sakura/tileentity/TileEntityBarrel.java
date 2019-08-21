@@ -92,7 +92,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
                 if (fluidStack != null && fluidStack.amount > 0 && result.getFluid() == this.resultTank.getFluid().getFluid()) {
                     this.tank.drain(fluidStack, true);
-
                     this.resultTank.fill(result, true);
                 }
 

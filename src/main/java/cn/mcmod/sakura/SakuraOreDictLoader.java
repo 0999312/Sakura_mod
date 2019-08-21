@@ -52,7 +52,7 @@ public class SakuraOreDictLoader {
 		registerOre("seedCabbage", new ItemStack(ItemLoader.CABBAGE_SEEDS, 1));
 		registerOre("seedEggplant", new ItemStack(ItemLoader.EGGPLANT_SEEDS, 1));
 		registerOre("seedTomato", new ItemStack(ItemLoader.TOMATO_SEEDS, 1));
-		
+		registerOre("cropGrape", new ItemStack(ItemLoader.FOODSET, 1,0));
 		registerOre("cropVanillabean", new ItemStack(ItemLoader.MATERIAL, 1,21));
 		registerOre("foodVanilla", new ItemStack(ItemLoader.MATERIAL, 1,22));
 		registerOre("cropPeppercorn", new ItemStack(ItemLoader.MATERIAL, 1,18));

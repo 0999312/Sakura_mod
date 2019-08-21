@@ -313,6 +313,7 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "chestnut",//31
             SakuraMain.MODID + "." + "noodle_soup",//32
             SakuraMain.MODID + "." + "soysause",//33
+            SakuraMain.MODID + "." + "seaweed",//34
     });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();

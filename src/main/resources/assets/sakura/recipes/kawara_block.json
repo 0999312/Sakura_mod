@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:kawara_block",
+    "count": 6
+  },
+  "pattern": [
+    "BBB",
+    "BLB",
+    "BBB"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:brick"
+    },
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

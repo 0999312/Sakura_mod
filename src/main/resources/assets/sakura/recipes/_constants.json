@@ -5,6 +5,12 @@
       "ore": "bamboo"
     },
     "name": "BAMBOO"
+  },{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "gemLapis"
+    },
+    "name": "GEMLAPIS"
   },
   {
     "ingredient": {

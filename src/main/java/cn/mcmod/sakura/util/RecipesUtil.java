@@ -44,9 +44,7 @@ public class RecipesUtil {
 	
 	public static void addShapedRecipe(ItemStack result, Object... components) {
 		setupDir();
-
-		// GameRegistry.addShapedRecipe(result, components);
-
+		
 		Map<String, Object> json = new HashMap<>();
 
 		List<String> pattern = new ArrayList<>();

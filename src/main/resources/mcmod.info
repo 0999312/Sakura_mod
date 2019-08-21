@@ -1,6 +1,7 @@
 [
 {
-  "modid": sakura"name": "Sakura",
+  "modid": "sakura",
+  "name": "Sakura",
   "description": "A mod that mix Bamboo, WA and MapleTree.",
   "version": "${version}",
   "mcversion": "${mcversion}",
