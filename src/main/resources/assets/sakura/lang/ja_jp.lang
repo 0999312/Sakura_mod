@@ -23,6 +23,8 @@ tile.sakura.stone_mortar.name=石臼
 tile.sakura.ricecrop.name=米
 tile.sakura.chestnut_burr.name=栗
 tile.sakura.sakura_diamond_ore.name=桜色ダイアモンド鉱石
+tile.sakura.plank_sakura.name=桜の木材
+tile.sakura.plank_maple.name=紅葉の木材
 #Item
 item.sakura.bamboo_door.name=竹のドア
 item.sakura.maple_syrup.name=メイプルシロップ
@@ -67,9 +69,14 @@ item.sakura.strawhat.name=藁の帽子
 item.sakura.sakura_diamond.name=桜色のダイアモンド
 item.sakura.katana.name=刀
 item.sakura.sakura_katana.name=桜色ダイアモンドの刀
+item.sakura.fruitsalad.name=フルーツサラダ
+item.sakura.buggys_meat.name=ばぐの肉
 #Container
 container.sakura.stonemortar=石臼
 container.sakura.campfirepot=ポット付きキャンプファイヤー
+
+barrel.contains.fluid=この樽は、%1$sの液体が入ってる
+barrel.contains.nonfluid=この樽にはなにもない
 
 guide.sakura_guide.landing_text=この世界にはたくさんの植物がいっぱいある。この本では主にタケノコやハーベスター必見のことが書かれている
 

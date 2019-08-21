@@ -1,47 +1,45 @@
 {
-   "forge_marker" : 1,
-   "variants" : {
-      "inventory" : {
-         "model" : "sakura:kawara"
-      },
-      "facing" : {
-         "north" : {
-            "y" : 0
-         },
-         "south" : {
-            "y" : 180,
-            "uvlock" : true
-         },
-         "west" : {
-            "y" : 270,
-            "uvlock" : true
-         },
-         "east" : {
-            "y" : 90,
-            "uvlock" : true
-         }
-      },
-      "shape" : {
-         "straight" : {
-            "model" : "sakura:kawara"
-         },
-         "outer_right" : {
-            "model" : "sakura:kawara_outer",
-            "y" : 90
-         },
-         "outer_left" : {
-            "model" : "sakura:kawara_outer"
-         },
-         "inner_right" : {
-            "model" : "sakura:kawara_inner",
-            "y" : 90
-         },
-         "inner_left" : {
-            "model" : "sakura:kawara_inner"
-         }
-      }
-   },
-   "defaults" : {
-      "model" : "sakura:kawara"
-   }
+ "variants": {
+        "facing=east,shape=straight":  { "model": "sakura:kawara", "y": 90 ,
+            "uvlock" : true},
+        "facing=west,shape=straight":  { "model": "sakura:kawara", "y": 270 ,
+            "uvlock" : true},
+        "facing=south,shape=straight": { "model": "sakura:kawara", "y": 180,
+            "uvlock" : true},
+        "facing=north,shape=straight": { "model": "sakura:kawara" ,
+            "uvlock" : true},
+        "facing=east,shape=outer_right":  { "model": "sakura:kawara_outer", "y": 180 ,
+            "uvlock" : true},
+        "facing=west,shape=outer_right":  { "model": "sakura:kawara_outer", "y": 0 ,
+            "uvlock" : true},
+        "facing=south,shape=outer_right": { "model": "sakura:kawara_outer", "y": 270 ,
+            "uvlock" : true},
+        "facing=north,shape=outer_right": { "model": "sakura:kawara_outer", "y": 90 ,
+            "uvlock" : true},
+        "facing=east,shape=outer_left":  { "model": "sakura:kawara_outer", "y": 90 ,
+            "uvlock" : true},
+        "facing=west,shape=outer_left":  { "model": "sakura:kawara_outer", "y": 270 ,
+            "uvlock" : true},
+        "facing=south,shape=outer_left": { "model": "sakura:kawara_outer", "y": 180 ,
+            "uvlock" : true},
+        "facing=north,shape=outer_left": { "model": "sakura:kawara_outer", "y": 0 ,
+            "uvlock" : true},
+        "facing=east,shape=inner_right":  { "model": "sakura:kawara_inner", "y": 180 ,
+            "uvlock" : true},
+        "facing=west,shape=inner_right":  { "model": "sakura:kawara_inner", "y": 0 ,
+            "uvlock" : true},
+        "facing=south,shape=inner_right": { "model": "sakura:kawara_inner", "y": 270 ,
+            "uvlock" : true},
+        "facing=north,shape=inner_right": { "model": "sakura:kawara_inner", "y": 90 ,
+            "uvlock" : true},
+        "facing=east,shape=inner_left":  { "model": "sakura:kawara_inner", "y": 90 ,
+            "uvlock" : true},
+        "facing=west,shape=inner_left":  { "model": "sakura:kawara_inner", "y": 270 ,
+            "uvlock" : true},
+        "facing=south,shape=inner_left": { "model": "sakura:kawara_inner", "y": 180 ,
+            "uvlock" : true},
+        "facing=north,shape=inner_left": { "model": "sakura:kawara_inner", "y": 0 ,
+            "uvlock" : true},
+		"inventory":{ "model": "sakura:kawara","uvlock" : true}
+    }
 }

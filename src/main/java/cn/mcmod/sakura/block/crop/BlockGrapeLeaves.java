@@ -63,7 +63,7 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return this.isMaxAge(state) ? this.getCrop() : this.getSeed();
+        return this.getSeed();
     }
 
     @Override

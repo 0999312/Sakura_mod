@@ -18,10 +18,9 @@ public class WorldGenBamboo extends WorldGenAbstractTree {
 
         int i = 9 + rand.nextInt(9);
 
-        if(BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn,position))
         for (int i2 = 0; i2 < i; ++i2) {
             BlockPos blockpos = position.up(i2);
-            if (worldIn.isAirBlock(blockpos) || worldIn.getBlockState(blockpos).getMaterial() == Material.PLANTS) {
+            if (BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos) && (worldIn.isAirBlock(blockpos) || worldIn.getBlockState(blockpos).getMaterial() == Material.PLANTS)) {
                 this.setBlockAndNotifyAdequately(worldIn, blockpos, BlockLoader.BAMBOO.getDefaultState());
             }
         }

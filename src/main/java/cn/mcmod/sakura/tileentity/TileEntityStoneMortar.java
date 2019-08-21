@@ -1,7 +1,7 @@
 package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.inventory.ContainerStoneMortar;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -28,25 +28,35 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     }
     @Override
     public void update() {
+        if (this.getWorld().isRemote) {
+            return;
+        }
+    	 ItemStack input1 = this.inventorySlotItemStack.get(0);
+         ItemStack input2 = this.inventorySlotItemStack.get(1);
+         ItemStack input3 = this.inventorySlotItemStack.get(2);
+         ItemStack input4 = this.inventorySlotItemStack.get(3);
+         ItemStack output1 = this.inventorySlotItemStack.get(4);
+         ItemStack output2 = this.inventorySlotItemStack.get(5);
+
         if (!isRecipes()) {
             processTimer = 0;
         } else {
-            processTimer += 1;
+        	ItemStack[] result = getRecipesResult().getResultItemStack();
+        	if(output1.getCount()<output1.getMaxStackSize()
+          	 &&output2.getCount()<output2.getMaxStackSize()
+          	 &&output1.getCount()+result[0].getCount()<=output1.getMaxStackSize()){
+        	if(result.length>1){
+        	if(output2.getCount()+result[1].getCount()<=output2.getMaxStackSize())
+            processTimer += 1;else processTimer = 0;
+        	}else
+        	processTimer += 1;	
+            }
+        	else processTimer = 0;
         }
 
         updateAnimation();
         if (processTimer >= maxprocessTimer) {
             processTimer = 0;
-            if (this.getWorld().isRemote) {
-                return;
-            }
-
-            ItemStack input1 = this.inventorySlotItemStack.get(0);
-            ItemStack input2 = this.inventorySlotItemStack.get(1);
-            ItemStack input3 = this.inventorySlotItemStack.get(2);
-            ItemStack input4 = this.inventorySlotItemStack.get(3);
-            ItemStack output1 = this.inventorySlotItemStack.get(4);
-            ItemStack output2 = this.inventorySlotItemStack.get(5);
             ItemStack[] result = getRecipesResult().getResultItemStack();
 
             if (output1.isEmpty()) {
@@ -70,6 +80,15 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
         }
     }
 
+    protected void refresh() {
+        if (hasWorld() && !world.isRemote) {
+
+            IBlockState state = world.getBlockState(pos);
+
+            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+
+        }
+    }
 
     protected void updateAnimation() {
         this.progressOld = this.processTimer;
@@ -158,7 +177,7 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
                     	ItemStack result = inventoryList.get(i);
                     	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
                     	if(ore.isEmpty())return retStack;
-                    	if (OreDictionary.containsMatch(true, ore, result)) {
+                    	if (OreDictionary.containsMatch(false, ore, result)) {
                             inventoryList.remove(i);
                             flg2 = true;
                             break;

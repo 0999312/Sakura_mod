@@ -32,6 +32,10 @@ public class SakuraOreDictLoader {
 		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 24));
 		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 25));
 		registerOre("woodLumber", new ItemStack(ItemLoader.MATERIAL, 1, 26));
+
+        registerOre("plankWood", new ItemStack(BlockLoader.MAPLE_PLANK, 1));
+        registerOre("plankWood", new ItemStack(BlockLoader.SAKURA_PLANK, 1));
+        registerOre("plankWood", new ItemStack(BlockLoader.BAMBOO_PLANK, 1));
 		
 		registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
@@ -75,6 +79,8 @@ public class SakuraOreDictLoader {
 		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		registerOre("foodWhitepepper", new ItemStack(ItemLoader.MATERIAL, 1, 28));
 		registerOre("foodCheese", new ItemStack(ItemLoader.FOODSET, 1, 5));
+
+		registerOre("listAllfruit", new ItemStack(ItemLoader.FOODSET, 1, 0));
 		registerVanillaFoods();
 	}
 	

@@ -6,6 +6,72 @@
          "custom" : {
             "fluid" : "foodoil"
          }
+      },
+      "grape_fluid" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "grape_fluid"
+         }
+      },
+      "red_wine" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "red_wine"
+         }
+      },
+      "green_grape_fluid" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "green_grape_fluid"
+         }
+      },
+      "white_wine" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "white_wine"
+         }
+      },
+      "champagne" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "champagne"
+         }
+      },
+      "rum" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "rum"
+         }
+      },
+      "doburoku" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "doburoku"
+         }
+      },
+      "sake" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "sake"
+         }
+      },
+      "shouchu" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "shouchu"
+         }
+      },
+      "beer" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "beer"
+         }
+      },
+      "vodka" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "vodka"
+         }
       }
    }
 }

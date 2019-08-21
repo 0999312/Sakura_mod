@@ -3,6 +3,7 @@ package cn.mcmod.sakura.util;
 import cn.mcmod.sakura.SakuraOreDictLoader;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
+import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
 import net.minecraft.init.Blocks;
@@ -13,7 +14,13 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class SakuraRecipeRegister {
+    public static void barrelRegister() {
+        TileEntityBarrel.BarrelRecipes.addBarrelRecipe(new TileEntityBarrel.BarrelRecipes(new FluidStack(BlockLoader.GRAPE_FLUID, 200), new ItemStack(ItemLoader.FOODSET, 1, 0), new FluidStack(FluidRegistry.WATER, 0)));
+    }
+
     public static void furnaceRegister() {
+    	
+    	
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 2), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 48), new ItemStack(ItemLoader.FOODSET, 1, 49), 0.1F);
@@ -21,6 +28,9 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 6), new ItemStack(ItemLoader.FOODSET, 1, 4), 0.1F);
 
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.MAPLE_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
     }
 
     public static void mortarRegister() {
@@ -73,18 +83,6 @@ public class SakuraRecipeRegister {
     					"treeLeaves",
     					"treeLeaves",
     					"treeLeaves"
-    					})
-    			);
-    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-    			new ItemStack[]{new ItemStack(Items.DYE,3,5),new ItemStack(Items.DYE,2,5)},
-    			new Object[]{
-    					"bone"
-    					})
-    			);
-    	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
-    			new ItemStack[]{new ItemStack(Blocks.SAND,4)},
-    			new Object[]{
-    					"sandstone"
     					})
     			);
     	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
@@ -762,5 +760,23 @@ public class SakuraRecipeRegister {
                                 "dustSalt"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
+		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+				new TileEntityCampfirePot.PotRecipes(
+						new ItemStack(ItemLoader.FOODSET, 2, 111),
+						new ItemStack(Items.APPLE),
+						new Object[]{
+								"listAllsugar",
+								"listAllfruit"
+						},
+						new FluidStack(FluidRegistry.WATER, 100)));
+		TileEntityCampfirePot.PotRecipes.addPotRecipe(
+				new TileEntityCampfirePot.PotRecipes(
+						new ItemStack(ItemLoader.FOODSET, 2, 111),
+						new ItemStack(Items.CHORUS_FRUIT),
+						new Object[]{
+								"listAllsugar",
+								"listAllfruit"
+						},
+						new FluidStack(FluidRegistry.WATER, 100)));
     }
 }

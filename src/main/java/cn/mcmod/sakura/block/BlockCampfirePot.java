@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -113,13 +114,9 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
             if (hand == EnumHand.MAIN_HAND) {
                 if (tile instanceof TileEntityCampfirePot) {
                     TileEntityCampfirePot tileEntityCampfire = (TileEntityCampfirePot) tile;
-
                     IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
-
                     if (handler != null) {
-
                         FluidUtil.interactWithFluidHandler(playerIn, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing));
-
                         return true;
                     }
 
@@ -128,10 +125,10 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                             stack.shrink(1);
                         }
                         if (worldIn.rand.nextInt(8) == 0){
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 12000 + worldIn.rand.nextInt(400));
+                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 0 + worldIn.rand.nextInt(100));
                             setState(true, worldIn, pos);
-                            return true;
                         }
+                        return true;
                     }
 
                     if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
@@ -140,10 +137,8 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
                         return true;
                     }
 
-                    if (stack.isEmpty() || !isBurning) {
-                        playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                        return true;
-                    }
+                    playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                    return true;
                 }
             }
 
@@ -156,12 +151,10 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         worldIn.getBlockState(pos.up()).getBlock().onNeighborChange(worldIn, pos.up(), pos);
     }
 
-
     public static void setState(boolean active, World worldIn, BlockPos pos) {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;
-
         if (active) {
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
@@ -169,9 +162,7 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         	worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
             worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
         }
-
         keepInventory = false;
-
         if (tileentity != null) {
             tileentity.validate();
             worldIn.setTileEntity(pos, tileentity);
@@ -188,6 +179,10 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         if (this.isBurning) {
             worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
+
+            if (rand.nextDouble() < 0.15D) {
+                worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
         }
     }
 

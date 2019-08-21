@@ -1,6 +1,5 @@
 {
-  "parent": "builtin/entity",
   "textures": {
-    "particle": "sakura:items/shoji"
+    "particle": "sakura:blocks/shoji"
   }
 }

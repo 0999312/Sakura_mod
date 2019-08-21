@@ -1,0 +1,17 @@
+{
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "sakura:materials",
+      "data": 25
+    }
+  },
+  "result": {
+    "item": "sakura:plank_sakura",
+    "count": 1
+  },
+  "type": "forge:ore_shaped"
+}

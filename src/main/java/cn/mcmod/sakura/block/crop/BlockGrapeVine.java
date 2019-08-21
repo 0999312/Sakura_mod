@@ -17,6 +17,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -52,33 +53,14 @@ public class BlockGrapeVine extends BlockCrops{
      */
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return this.isMaxAge(state) ? this.getCrop() : this.getSeed();
+        return this.getSeed();
     }
-
-    /**
-     * Spawns this Block's drops into the World as EntityItems.
-     */
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-    {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-
-        if (!worldIn.isRemote) // Forge: NOP all this.
-        {
-            int i = this.getAge(state);
-
-            if (i >= this.getMaxAge())
-            {
-                int j = 3 + fortune;
-
-                for (int k = 0; k < j; ++k)
-                {
-                    if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
-                    {
-                        spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed(),1,0));
-                    }
-                }
-            }
-        }
+    
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
+    		int fortune) {
+    	drops.clear();
+    	drops.add(new ItemStack(this.getSeed()));
     }
     
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
