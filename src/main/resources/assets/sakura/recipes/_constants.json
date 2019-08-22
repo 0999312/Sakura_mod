@@ -11,6 +11,19 @@
       "ore": "gemLapis"
     },
     "name": "GEMLAPIS"
+  },{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropSeaweed"
+    },
+    "name": "CROPSEAWEED"
+  },
+	{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodKetchup"
+    },
+    "name": "FOODKETCHUP"
   },
   {
     "ingredient": {

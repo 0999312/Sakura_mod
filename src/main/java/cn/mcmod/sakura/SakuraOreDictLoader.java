@@ -22,7 +22,7 @@ public class SakuraOreDictLoader {
 		registerOre("foodBlackpepper", new ItemStack(ItemLoader.MATERIAL, 1, 27));
 		registerOre("foodKetchup", new ItemStack(ItemLoader.MATERIAL, 1, 12));
 		registerOre("dustSalt", new ItemStack(ItemLoader.MATERIAL, 1, 2));
-	
+		registerOre("cropSeaweed", new ItemStack(ItemLoader.MATERIAL, 1, 34));
 		registerOre("cropBambooshoot", new ItemStack(BlockLoader.BAMBOOSHOOT));
 		registerOre("bamboo", new ItemStack(BlockLoader.BAMBOO));
 

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 112,
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "#FOODFLOUR"
+    },
+    {
+      "item": "#LISTALLSUGAR"
+    },
+    {
+      "item": "#LISTALLEGG"
+    },
+    {
+      "item": "#LISTALLEGG"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 3
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

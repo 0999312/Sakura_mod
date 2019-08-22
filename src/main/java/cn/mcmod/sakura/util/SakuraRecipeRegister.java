@@ -24,7 +24,7 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 48), new ItemStack(ItemLoader.FOODSET, 1, 49), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 58), new ItemStack(ItemLoader.FOODSET, 1, 59), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 6), new ItemStack(ItemLoader.FOODSET, 1, 4), 0.1F);
-
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 112), new ItemStack(ItemLoader.FOODSET, 1, 113), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.MAPLE_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
@@ -32,6 +32,7 @@ public class SakuraRecipeRegister {
     }
 
     public static void mortarRegister() {
+    	
     	TileEntityStoneMortar.MortarRecipes.addMortarRecipe(new TileEntityStoneMortar.MortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 1)},
     			new ItemStack[]{
@@ -260,6 +261,63 @@ public class SakuraRecipeRegister {
                         "foodNatto"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
+        
+        //fantuan
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 42),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 43),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                                "cropBambooshoot"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 44),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                                "listAllfishraw"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 45),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                                "listAllmushroom"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 46),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                                "cropSeaweed"
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 47),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                        		new ItemStack(ItemLoader.FOODSET, 1, 79),
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
+        //
         /*
          * RAMEN
          */
@@ -776,5 +834,14 @@ public class SakuraRecipeRegister {
 								"listAllfruit"
 						},
 						new FluidStack(FluidRegistry.WATER, 100)));
+        TileEntityCampfirePot.PotRecipes.addPotRecipe(
+                new TileEntityCampfirePot.PotRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 2, 47),
+                        "cropRice",
+                        new Object[]{
+                        		"cropSeaweed",
+                        		new ItemStack(ItemLoader.FOODSET, 1, 79),
+                        },
+                        new FluidStack(FluidRegistry.WATER, 200)));
     }
 }

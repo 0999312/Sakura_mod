@@ -9,6 +9,7 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.storage.loot.LootEntry;
@@ -22,6 +23,9 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -30,33 +34,33 @@ public class SakuraEventLoader {
     private static final Set<String> LOOT_LOCATIONS = ImmutableSet.<String>builder()
             .add(LootTableList.GAMEPLAY_FISHING_FISH.toString())
             .build();
-    private final static Set<LootPool> FishinglootPools = new HashSet<LootPool>();
+    private final static Set<LootEntry> FishinglootPools = new HashSet<LootEntry>();
     @SubscribeEvent
 	public static void OnRecipeRegister(RegistryEvent.Register<IRecipe> event) {
-    	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,78), 5);
-    	addFishingLoot(new ItemStack(ItemLoader.MATERIAL,1,34), 8);
-    	
+    	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,78),35);
+    	addFishingLoot(new ItemStack(ItemLoader.MATERIAL,1,34),25);
+
     }
     
 	@SubscribeEvent
 	public static void onFishingLootLoaded(LootTableLoadEvent evt) {
         if (LOOT_LOCATIONS.contains(evt.getName().toString()))
         {
-            for (LootPool pool : FishinglootPools)
+            for (LootEntry entry : FishinglootPools)
             {
-                evt.getTable().addPool(pool);
+            evt.getTable().getPool("main").addEntry(entry); 
             }
+
         }
 	}
 	
-    public static void addFishingLoot(ItemStack stack,int chanceint)
+    public static void addFishingLoot(ItemStack stack,int weight)
     {
         LootCondition[] lootConditions = new LootCondition[0];
         LootFunction[] setMeta = new LootFunction[] { new SetMetadata(lootConditions, new RandomValueRange(stack.getMetadata())) };
-        LootEntry entry = new LootEntryItem(stack.getItem(), 1, 1, setMeta, lootConditions, stack.getUnlocalizedName());
-        LootCondition chance = new RandomChance(1 * 0.75f * ((float)chanceint / 10.0f));
+        LootEntry entry = new LootEntryItem(stack.getItem(), weight, 0, setMeta, lootConditions, stack.getUnlocalizedName());
 
-        FishinglootPools.add(new LootPool(new LootEntry[] { entry }, new LootCondition[] { chance }, new RandomValueRange(1), new RandomValueRange(0), stack.getUnlocalizedName()));
+        FishinglootPools.add(entry);
     }
 	
 }

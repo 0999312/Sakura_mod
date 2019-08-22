@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 14,
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "#FOODFLOUR"
+    },
+    {
+      "item": "#DUSTSALT"
+    },
+    {
+      "item": "#LISTALLEGG"
+    },
+    {
+      "item": "#LISTALLEGG"
+    },
+    {
+      "item": "#LISTALLWATER"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}
