@@ -2,7 +2,6 @@ package cn.mcmod.sakura;
 
 import cn.mcmod.sakura.gui.SakuraGuiHandler;
 import cn.mcmod.sakura.world.biome.SakuraBiomes;
-import cn.mcmod.sakura.world.gen.SakuraDiamondOreGenerator;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -52,7 +51,6 @@ public class SakuraMain {
         proxy.preInit(event);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new SakuraGuiHandler());
 
-        GameRegistry.registerWorldGenerator(new SakuraDiamondOreGenerator(), 0);
     }
 
     @EventHandler

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 60
+  },
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 58
+    },
+    {
+      "item": "sakura:sakuraleaves"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

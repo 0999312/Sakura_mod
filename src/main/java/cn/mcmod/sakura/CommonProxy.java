@@ -44,6 +44,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+    	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
     	new WorldGenLoader();
         TileEntityRegistry.init();
         SakuraRecipeRegister.mortarRegister();

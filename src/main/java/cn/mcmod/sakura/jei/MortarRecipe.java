@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Collections;
 import java.util.List;
 
-import cn.mcmod.sakura.tileentity.TileEntityStoneMortar.MortarRecipes;
+import cn.mcmod.sakura.api.MortarRecipes;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -32,6 +32,6 @@ public class MortarRecipe  implements IRecipeWrapper
 	  
 	  public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
 	  {
-	    MortarRecipes furnaceRecipes = MortarRecipes.instance();
+	    MortarRecipes furnaceRecipes = new MortarRecipes();
 	  }
 	}

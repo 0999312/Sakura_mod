@@ -452,4 +452,12 @@
     },
     "name": "WOODLUMBER"
   }
+,
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "name": "STICKWOOD"
+  }
 ]

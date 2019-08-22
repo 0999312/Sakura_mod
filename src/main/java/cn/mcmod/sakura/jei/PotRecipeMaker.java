@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import cn.mcmod.sakura.api.PotRecipes;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
-import cn.mcmod.sakura.tileentity.TileEntityCampfirePot.PotRecipes;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
@@ -15,12 +15,12 @@ public final class PotRecipeMaker {
 	  public static List<CampingPotRecipe> getRecipes(IJeiHelpers helpers)
 	  {
 	    IStackHelper stackHelper = helpers.getStackHelper();
-	    PotRecipes furnaceRecipes = PotRecipes.instance();
+	    PotRecipes furnaceRecipes = new PotRecipes();
 
 	    List<CampingPotRecipe> recipes = new ArrayList<CampingPotRecipe>();
 
 
-	    for (PotRecipes recipe : TileEntityCampfirePot.potRecipesList) {
+	    for (PotRecipes recipe : PotRecipes.potRecipesList) {
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	List<ItemStack> main = new ArrayList<ItemStack>();
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();
