@@ -1,8 +1,8 @@
 package cn.mcmod.sakura.util;
 
 import cn.mcmod.sakura.SakuraOreDictLoader;
-import cn.mcmod.sakura.api.MortarRecipes;
-import cn.mcmod.sakura.api.PotRecipes;
+import cn.mcmod.sakura.api.recipes.MortarRecipes;
+import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;

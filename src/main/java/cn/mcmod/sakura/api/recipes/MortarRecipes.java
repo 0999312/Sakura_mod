@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.api;
+package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
 

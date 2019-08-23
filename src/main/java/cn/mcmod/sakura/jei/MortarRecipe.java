@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Collections;
 import java.util.List;
 
-import cn.mcmod.sakura.api.MortarRecipes;
+import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;

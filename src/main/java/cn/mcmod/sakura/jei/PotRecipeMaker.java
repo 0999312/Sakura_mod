@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import cn.mcmod.sakura.api.PotRecipes;
+import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;

@@ -1,6 +1,6 @@
 package cn.mcmod.sakura.tileentity;
 
-import cn.mcmod.sakura.api.PotRecipes;
+import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockCampfirePot;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -116,26 +116,27 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             --this.burnTime;
         }
         //check can cook
-        if (!isRecipes()) {
-            cookTime = 0;
-        } else {
-            if (isBurning()) {
-                cookTime += 1;
-            }
-        }
+
 
         if (!this.world.isRemote) {
-        if (cookTime >= maxCookTimer) {
-            cookTime = 0;
-            this.cooking();
-            flag1 = true;
-        }
-        if (flag != this.isBurning()) {
-           flag1 = true;
-           BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
-        }
-        if (flag1)
-        	this.markDirty();
+	        if (!isRecipes()) {
+	            cookTime = 0;
+	        } else {
+	            if (isBurning()) {
+	                cookTime += 1;
+	            }
+	        }
+	        if (cookTime >= maxCookTimer) {
+	            cookTime = 0;
+	            this.cooking();
+	            flag1 = true;
+	        }
+	        if (flag != this.isBurning()) {
+	           flag1 = true;
+	           BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
+	        }
+	        if (flag1)
+	        	this.markDirty();
       }
     }
 
@@ -155,13 +156,13 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             this.tank.drain(fluidStack, true);
         }
         
-    for(int i=0;i<9;i++){
-    	if(this.inventory.get(i).getCount()==1&&
-    	this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i))!=null)
-    		this.inventory.set(i,
-    		this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
-    	else this.decrStackSize(i, 1);
-    }
+	    for(int i=0;i<9;i++){
+	    	if(this.inventory.get(i).getCount()==1&&
+	    	this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i))!=null)
+	    		this.inventory.set(i,
+	    		this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
+	    	else this.decrStackSize(i, 1);
+	    }
 
 	}
 
@@ -322,11 +323,11 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     /**
      * @return
      */
-    protected PotRecipes getRecipesResult() {
+    public PotRecipes getRecipesResult() {
         if (this.getStackInSlot(0).isEmpty()) {
             return null;
         }
-
+        
         for (PotRecipes recipes : PotRecipes.potRecipesList) {
             if (this.getTank().getFluid() == null && recipes.getResultFluid().amount>0) 
                 return null;
@@ -335,11 +336,11 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             if(recipes.getResultFluid().amount<=0 && tankStack==null && !stack.isEmpty())
             	return recipes;
             else{
-
             FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;
             if ((fluidStack != null || recipes.getResultFluid() != tankStack) && !stack.isEmpty()) 
                 return recipes;
             }
+            
         }
         return null;
     }

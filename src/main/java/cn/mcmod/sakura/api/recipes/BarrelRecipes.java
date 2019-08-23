@@ -37,8 +37,7 @@ public class BarrelRecipes {
         register(new BarrelRecipes(
                 new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1),
                 new FluidStack(BlockLoader.BEER_FLUID, 200),
-                new Object[]{new ItemStack(Items.GLASS_BOTTLE), "stone"},
-                200));
+                new Object[]{new ItemStack(Items.GLASS_BOTTLE), "stone"},200));
     }
 
     public static void register(BarrelRecipes recipes) {

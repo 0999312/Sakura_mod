@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import cn.mcmod.sakura.api.MortarRecipes;
+import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;

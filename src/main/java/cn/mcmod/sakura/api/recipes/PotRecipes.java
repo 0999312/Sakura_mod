@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.api;
+package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
 
@@ -118,38 +118,30 @@ public class PotRecipes {
             }
         }
 
-        if (subItems.size() == 1) {
-            for (Object obj1 : subItems) {
-                if (obj1 instanceof ItemStack) {
-                    ItemStack stack1 = (ItemStack) obj1;
-                    if (stack1.isEmpty()) {
-                        return resultItem.copy();
-                    }
-                }
-            }
+        if (subItems.isEmpty() && !inventoryList.isEmpty()) {
+            return retStack;
         }
-        if (!subItems.isEmpty()&&inventoryList.size() != subItems.size()) {
-
+        
+        if (!subItems.isEmpty() && inventoryList.size() != subItems.size()) {
             return retStack;
         }
 
         boolean flg1 = true;
         for (Object obj1 : subItems) {
-
             boolean flg2 = false;
             for (int i = 0; i < inventoryList.size(); i++) {
             	if(obj1 instanceof ItemStack){
             		ItemStack stack1 = (ItemStack) obj1;
-                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
-                    inventoryList.remove(i);
-                    flg2 = true;
-                    break;
-                }
+	                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
+	                    inventoryList.remove(i);
+	                    flg2 = true;
+	                    break;
+	                }
                 }else if(obj1 instanceof String){
                 	String dict = (String) obj1;
                 	ItemStack result = inventoryList.get(i);
                 	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
-                	if(ore.isEmpty())return retStack;
+                	if(ore.isEmpty()) return retStack;
                 	if (OreDictionary.containsMatch(true, ore, result)) {
                         inventoryList.remove(i);
                         flg2 = true;
@@ -177,11 +169,6 @@ public class PotRecipes {
     }
 
 
-    /**
-     * Compares two itemstacks to ensure that they are the same. This checks both the item and the metadata of the item.
-     */
-    private boolean compareItemStacks(ItemStack stack1, ItemStack stack2) {
-        return stack2.getItem() == stack1.getItem() && (stack2.getMetadata() == 32767 || stack2.getMetadata() == stack1.getMetadata());
-    }
+
 
 }

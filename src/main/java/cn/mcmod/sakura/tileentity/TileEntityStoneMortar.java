@@ -1,6 +1,6 @@
 package cn.mcmod.sakura.tileentity;
 
-import cn.mcmod.sakura.api.MortarRecipes;
+import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.inventory.ContainerStoneMortar;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

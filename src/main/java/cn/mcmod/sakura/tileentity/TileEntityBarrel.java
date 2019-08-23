@@ -221,9 +221,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     }
 
     public int getField(int id) {
-
         switch (id) {
-
             case 0:
                 return this.processTimer;
             case 1:
@@ -247,9 +245,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     }
 
     public int getFieldCount() {
-
         return 2;
-
     }
 
     @Override
