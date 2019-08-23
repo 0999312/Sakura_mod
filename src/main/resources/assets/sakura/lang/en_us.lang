@@ -290,6 +290,9 @@ jei.sakura.category.mortar=Stone Mortar
 
 #Entities
 entity.sakura.Deer.name=Deer
+entity.Villager.wa_farmer=Japanese Farmer
+entity.Villager.wa_fisher=Japanese Fisher
+entity.Villager.wa_trader=Japanese Trader
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 

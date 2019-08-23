@@ -80,7 +80,7 @@ item.sakura.rice_fish.name=鱼肉饭
 item.sakura.rice_beef.name=牛肉饭
 item.sakura.rice_pork.name=猪肉饭
 item.sakura.rice_mushroom.name=蘑菇饭
-item.sakura.rice_egg.name=鸡蛋
+item.sakura.rice_egg.name=鸡蛋饭
 item.sakura.rice_beef_egg.name=牛肉鸡蛋饭
 item.sakura.rice_pork_egg.name=猪肉鸡蛋饭
 item.sakura.rice_pork_fried.name=猪肉炒饭
@@ -288,6 +288,9 @@ jei.sakura.category.mortar=石磨
 
 #Entities
 entity.sakura.Deer.name=鹿
+entity.Villager.wa_farmer=日本农民
+entity.Villager.wa_fisher=日本渔夫
+entity.Villager.wa_trader=日本商人
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
