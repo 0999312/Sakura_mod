@@ -288,6 +288,9 @@ jei.sakura.category.mortar=石磨
 
 #Entities
 entity.sakura.Deer.name=鹿
+entity.Villager.wa_farmer=日本农民
+entity.Villager.wa_fisher=日本渔夫
+entity.Villager.wa_trader=日本商人
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
