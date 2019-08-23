@@ -113,10 +113,11 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
                         result.getFluid().equals(resultTank.getFluid().getFluid())) {
                     this.tank.drain(fluidStack, true);
                     this.resultTank.fill(result, true);
-                }
-                if (bestMatched.getTransformed() != null) {
-                    for (int i = 0; i < bestMatched.getTransformed().size(); i++) {
-                        inventory.set(i, bestMatched.getTransformed().get(i));
+
+                    if (bestMatched.getTransformed() != null) {
+                        for (int i = 0; i < bestMatched.getTransformed().size(); i++) {
+                            inventory.set(i, bestMatched.getTransformed().get(i));
+                        }
                     }
                 }
 
