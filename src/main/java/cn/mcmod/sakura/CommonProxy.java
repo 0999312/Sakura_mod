@@ -1,5 +1,6 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
@@ -9,10 +10,7 @@ import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
-import cn.mcmod.sakura.world.gen.WorldGenBambooShot;
 import cn.mcmod.sakura.world.gen.WorldGenLoader;
-import cn.mcmod.sakura.world.gen.WorldGenPepper;
-import cn.mcmod.sakura.world.gen.WorldGenVanilla;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.World;
@@ -21,7 +19,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 @EventBusSubscriber
@@ -47,10 +44,10 @@ public class CommonProxy {
     	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
     	new WorldGenLoader();
         TileEntityRegistry.init();
+        BarrelRecipes.init();
         SakuraRecipeRegister.mortarRegister();
         SakuraRecipeRegister.potRegister();
         SakuraRecipeRegister.furnaceRegister();
-        SakuraRecipeRegister.barrelRegister();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

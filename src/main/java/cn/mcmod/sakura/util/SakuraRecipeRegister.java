@@ -16,9 +16,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class SakuraRecipeRegister {
-    public static void barrelRegister() {
-        TileEntityBarrel.BarrelRecipes.addBarrelRecipe(new TileEntityBarrel.BarrelRecipes(new FluidStack(BlockLoader.GRAPE_FLUID, 200), "cropGrape",new Object[]{"cropGrape","cropGrape"}, new FluidStack(FluidRegistry.WATER, 0)));
-    }
 
     public static void furnaceRegister() {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);

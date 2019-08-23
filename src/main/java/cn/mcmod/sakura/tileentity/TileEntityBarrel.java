@@ -1,7 +1,7 @@
 package cn.mcmod.sakura.tileentity;
 
+import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -19,21 +19,13 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TileEntityBarrel extends TileEntity implements ITickable, IInventory {
-    private int processTimer = 0;
-    private int maxprocessTimer = 9000;
-    private float progressOld;
-
-    public int getProcessTimer() {
-        return processTimer;
-    }
-
     public FluidTank tank = new FluidTank(3000) {
         @Override
         protected void onContentsChanged() {
@@ -48,7 +40,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             return fluid.getFluid().getTemperature(fluid) < 500;
         }
     };
-
     //This is a tank that accumulates liquid when the process is over
     public FluidTank resultTank = new FluidTank(3000) {
         @Override
@@ -56,6 +47,21 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             TileEntityBarrel.this.refresh();
         }
     };
+    protected NonNullList<ItemStack> inventory =
+            NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+
+    private static final String TAG_PROCESS = "processTimer";
+    private static final String TAG_TOTAL = "maxTimer";
+
+    private int processTimer = 0;
+    private int maxprocessTimer = 9000;
+
+    public TileEntityBarrel() {
+    }
+
+    public int getProcessTimer() {
+        return processTimer;
+    }
 
     public FluidTank getTank() {
         return this.tank;
@@ -74,33 +80,44 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     @Override
     public void update() {
-        if (!isRecipes()) {
+        List<ItemStack> inputs = new ArrayList<>();
+        inputs.add(inventory.get(0));
+        inputs.add(inventory.get(1));
+        inputs.add(inventory.get(2));
+        List<BarrelRecipes> recipes = BarrelRecipes.getPossibleRecipes(tank.getFluid(), inputs);
+
+        if (recipes.isEmpty()) {
             processTimer = 0;
         } else {
             processTimer += 1;
             this.markDirty();
         }
         if (!world.isRemote) {
+            BarrelRecipes bestMatched = new BarrelRecipes(null, null, null, 9000);
+            for (BarrelRecipes br : recipes) {
+                if (br.getAdditives().size() >= bestMatched.getAdditives().size())
+                    bestMatched = br;
+            }
+
+            if (bestMatched.getDuration() != maxprocessTimer) {
+                processTimer = 0;
+                maxprocessTimer = bestMatched.getDuration();
+            }
             if (processTimer >= maxprocessTimer) {
                 processTimer = 0;
-                if (this.getWorld().isRemote) {
-                    return;
-                }
 
-                FluidStack result = getRecipesResult().getResultFinishedFluid();
-                FluidStack fluidStack = getRecipesResult().getResultFluid();
+                FluidStack result = bestMatched.getOutput();
+                FluidStack fluidStack = bestMatched.getInput();
 
-                if (fluidStack != null && fluidStack.amount > 0 && result.getFluid() == this.resultTank.getFluid().getFluid()) {
+                if (resultTank.getFluid() == null ||
+                        result.getFluid().equals(resultTank.getFluid().getFluid())) {
                     this.tank.drain(fluidStack, true);
                     this.resultTank.fill(result, true);
                 }
-
-                for (int i = 0; i < 3; i++) {
-                    if (this.inventory.get(i).getCount() == 1 &&
-                            this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)) != null)
-                        this.inventory.set(i,
-                                this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
-                    else this.decrStackSize(i, 1);
+                if (bestMatched.getTransformed() != null) {
+                    for (int i = 0; i < bestMatched.getTransformed().size(); i++) {
+                        inventory.set(i, bestMatched.getTransformed().get(i));
+                    }
                 }
 
                 this.markDirty();
@@ -113,10 +130,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         super.markDirty();
 
     }
-
-    protected NonNullList<ItemStack> inventory =
-            NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-
 
     @Override
     public String getName() {
@@ -248,228 +261,9 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         return inventory;
     }
 
-    public static ArrayList<BarrelRecipes> potRecipesList = new ArrayList<BarrelRecipes>();
-
-
-    public static class BarrelRecipes {
-
-        public ItemStack mainItem = ItemStack.EMPTY;
-        public FluidStack fluid = null;
-        public FluidStack resultFluid = null;
-        public ArrayList<Object> subItems = new ArrayList<Object>();
-        public boolean enchantment = false;
-        private static final BarrelRecipes BARREL_RECIPES_BASE = new BarrelRecipes();
-
-        public BarrelRecipes() {
-        }
-
-        public BarrelRecipes(FluidStack result, ItemStack main, FluidStack fluidStack) {
-            this.setBarrelRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
-        }
-
-        public BarrelRecipes(FluidStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
-            this.setBarrelRecipes(result, main, subList, fluidStack);
-
-        }
-
-        public BarrelRecipes(FluidStack result, String main, FluidStack fluidStack) {
-            this.setBarrelRecipes(result, main, new Object[]{ItemStack.EMPTY}, fluidStack);
-
-        }
-
-        public BarrelRecipes(FluidStack result, String main, Object[] subList, FluidStack fluidStack) {
-            this.setBarrelRecipes(result, main, subList, fluidStack);
-
-        }
-
-        //still WIP
-       /* public BarrelRecipes(ItemStack result, String main, String[] subList, FluidStack fluidStack) {
-            this.setBarrelRecipes(result, main, subList, fluidStack);
-
-        }*/
-
-        public static BarrelRecipes instance() {
-            return BARREL_RECIPES_BASE;
-        }
-
-        public void setBarrelRecipes(FluidStack result, ItemStack main, Object[] subList, FluidStack fluidStack) {
-            this.clear();
-            mainItem = main.copy();
-            for (Object o : subList) {
-                if (o instanceof ItemStack || o instanceof String)
-                    subItems.add(o);
-                else throw new IllegalArgumentException("Not a itemStack or od name");
-            }
-            resultFluid = result.copy();
-            fluid = fluidStack.copy();
-        }
-
-        public void setBarrelRecipes(FluidStack result, String mainOreName, Object[] subList, FluidStack fluidStack) {
-            if (!OreDictionary.getOres(mainOreName).isEmpty()) {
-                for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
-                    this.clear();
-                    mainItem = OreDictionary.getOres(mainOreName).get(i2).copy();
-                    for (Object o : subList) {
-                        if (o instanceof ItemStack || o instanceof String)
-                            subItems.add(o);
-                        else throw new IllegalArgumentException("Not a itemStack or od name");
-                    }
-
-                    resultFluid = result.copy();
-                    fluid = fluidStack.copy();
-                }
-            } else throw new IllegalArgumentException("Invalid Main Ore Dictionary");
-        }
-
-        /**
-         * 初期化
-         */
-        public void clear() {
-            resultFluid = null;
-            mainItem = ItemStack.EMPTY;
-            fluid = null;
-            subItems = new ArrayList<Object>();
-        }
-
-        public FluidStack getResultFinishedFluid() {
-            return resultFluid.copy();
-        }
-
-        public FluidStack getResultFluid() {
-            return fluid.copy();
-        }
-
-        public FluidStack getResultFluid(FluidStack fluidStack) {
-            if (fluid.amount <= 0)
-                return fluidStack;
-            else if (fluidStack.isFluidEqual(fluid)) {
-                return fluidStack;
-            } else {
-                return null;
-            }
-        }
-
-        public FluidStack getResult(IInventory inventory) {
-
-            FluidStack retStack = null;
-            if (!ItemStack.areItemsEqual(mainItem, inventory.getStackInSlot(0))) {
-                return retStack;
-            }
-
-            if (this.enchantment) {
-                if (EnchantmentHelper.getEnchantments(inventory.getStackInSlot(0)).size() > 0) {
-                    return retStack;
-                }
-            }
-
-            ArrayList<ItemStack> inventoryList = new ArrayList<ItemStack>();
-            for (int i = 1; i < 2; i++) {
-                if (!inventory.getStackInSlot(i).isEmpty()) {
-                    inventoryList.add(inventory.getStackInSlot(i).copy());
-                }
-            }
-
-            if (subItems.size() == 1) {
-                for (Object obj1 : subItems) {
-                    if (obj1 instanceof ItemStack) {
-                        ItemStack stack1 = (ItemStack) obj1;
-                        if (stack1.isEmpty()) {
-                            return resultFluid.copy();
-                        }
-                    }
-                }
-            }
-
-            if (inventoryList.size() != subItems.size()) {
-                return retStack;
-            }
-
-            boolean flg1 = true;
-            for (Object obj1 : subItems) {
-
-                boolean flg2 = false;
-                for (int i = 0; i < inventoryList.size(); i++) {
-                    if (obj1 instanceof ItemStack) {
-                        ItemStack stack1 = (ItemStack) obj1;
-                        if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
-                            inventoryList.remove(i);
-                            flg2 = true;
-                            break;
-                        }
-                    } else if (obj1 instanceof String) {
-                        String dict = (String) obj1;
-                        ItemStack result = inventoryList.get(i);
-                        NonNullList<ItemStack> ore = OreDictionary.getOres(dict);
-                        if (ore.isEmpty()) return retStack;
-                        if (OreDictionary.containsMatch(true, ore, result)) {
-                            inventoryList.remove(i);
-                            flg2 = true;
-                            break;
-                        }
-                    }
-                }
-                if (!flg2) {
-                    flg1 = false;
-                    break;
-                }
-            }
-
-            if (!flg1) {
-                return retStack;
-            }
-
-            return resultFluid.copy();
-
-        }
-
-        public static void addBarrelRecipe(BarrelRecipes recipes) {
-            potRecipesList.add(recipes);
-        }
-
-
-        /**
-         * Compares two itemstacks to ensure that they are the same. This checks both the item and the metadata of the item.
-         */
-        private boolean compareItemStacks(ItemStack stack1, ItemStack stack2) {
-            return stack2.getItem() == stack1.getItem() && (stack2.getMetadata() == 32767 || stack2.getMetadata() == stack1.getMetadata());
-        }
-
-    }
-
     /**
      * @return
      */
-    protected boolean isRecipes() {
-        if (getRecipesResult() == null) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * @return
-     */
-    protected BarrelRecipes getRecipesResult() {
-        if (this.getStackInSlot(0).isEmpty()) {
-            return null;
-        }
-
-        for (BarrelRecipes recipes : potRecipesList) {
-            if (this.getTank().getFluid() == null && recipes.getResultFluid().amount > 0)
-                return null;
-            FluidStack tankStack = this.getTank().getFluid();
-            FluidStack stack = recipes.getResult(this);
-            if (recipes.getResultFluid().amount <= 0 && tankStack == null && stack.getFluid() != null)
-                return recipes;
-            else {
-
-                FluidStack fluidStack = (tankStack != null) ? recipes.getResultFluid() : null;
-                if ((fluidStack != null || recipes.getResultFluid() != tankStack) && stack.getFluid() != null)
-                    return recipes;
-            }
-        }
-        return null;
-    }
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
@@ -521,12 +315,17 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         cmp.setTag("Tank", tankTag);
         NBTTagCompound resultTankTag = this.resultTank.writeToNBT(new NBTTagCompound());
         cmp.setTag("ResultTank", resultTankTag);
+        cmp.setInteger(TAG_PROCESS, processTimer);
+        cmp.setInteger(TAG_TOTAL, maxprocessTimer);
     }
 
     public void readPacketNBT(NBTTagCompound cmp) {
         this.inventory =
                 NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(cmp, this.inventory);
+
+        processTimer = cmp.getInteger(TAG_PROCESS);
+        maxprocessTimer = cmp.getInteger(TAG_TOTAL);
 
         this.tank.readFromNBT(cmp.getCompoundTag("Tank"));
         this.resultTank.readFromNBT(cmp.getCompoundTag("ResultTank"));
