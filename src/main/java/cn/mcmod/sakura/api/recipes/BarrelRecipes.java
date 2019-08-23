@@ -51,12 +51,12 @@ public class BarrelRecipes {
     }
 
     public static List<BarrelRecipes> getPossibleRecipes(FluidStack input, List<ItemStack> items) {
-        List<ItemStack> examine = new ArrayList<>();
+
 
         List<BarrelRecipes> result = new ArrayList<>();
 
         for (BarrelRecipes br : recipeRegistry) {
-            examine.clear();
+            List<ItemStack> examine = new ArrayList<>();
             for (ItemStack item : items)
                 examine.add(item.copy());
 

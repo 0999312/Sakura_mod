@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileEntityBarrel extends TileEntity implements ITickable, IInventory {
+    private static final String TAG_PROCESS = "processTimer";
+    private static final String TAG_TOTAL = "maxTimer";
     public FluidTank tank = new FluidTank(3000) {
         @Override
         protected void onContentsChanged() {
@@ -49,10 +51,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     };
     protected NonNullList<ItemStack> inventory =
             NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
-
-    private static final String TAG_PROCESS = "processTimer";
-    private static final String TAG_TOTAL = "maxTimer";
-
     private int processTimer = 0;
     private int maxprocessTimer = 9000;
 
@@ -93,10 +91,18 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             this.markDirty();
         }
         if (!world.isRemote) {
-            BarrelRecipes bestMatched = new BarrelRecipes(null, null, null, 9000);
+            BarrelRecipes bestMatched = new BarrelRecipes(null, null, null, -1);
             for (BarrelRecipes br : recipes) {
                 if (br.getAdditives().size() >= bestMatched.getAdditives().size())
-                    bestMatched = br;
+                    if (resultTank.getFluid() == null ||
+                            br.getOutput().getFluid().equals(
+                                    resultTank.getFluid().getFluid()))
+                        bestMatched = br;
+            }
+
+            if (bestMatched.getDuration() == -1) {
+                processTimer = 0;
+                return;
             }
 
             if (bestMatched.getDuration() != maxprocessTimer) {
