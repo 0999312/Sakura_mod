@@ -36,8 +36,14 @@ public class BarrelRecipes {
         register(new BarrelRecipes(new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 100), 9000));
         register(new BarrelRecipes(
                 new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1),
+                new FluidStack(BlockLoader.FOODOIL_FLUID, 200),
+                new Object[]{new ItemStack(Items.GLASS_BOTTLE)},
+                100));
+        register(new BarrelRecipes(
+                new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1),
                 new FluidStack(BlockLoader.BEER_FLUID, 200),
-                new Object[]{new ItemStack(Items.GLASS_BOTTLE), "stone"},200));
+                new Object[]{new ItemStack(Items.GLASS_BOTTLE), "stone"},
+                100));
     }
 
     public static void register(BarrelRecipes recipes) {
@@ -46,12 +52,14 @@ public class BarrelRecipes {
 
     public static List<BarrelRecipes> getPossibleRecipes(FluidStack input, List<ItemStack> items) {
         List<ItemStack> examine = new ArrayList<>();
-        for (ItemStack item : items)
-            examine.add(item.copy());
 
         List<BarrelRecipes> result = new ArrayList<>();
 
         for (BarrelRecipes br : recipeRegistry) {
+            examine.clear();
+            for (ItemStack item : items)
+                examine.add(item.copy());
+
             if (br.getInput().isFluidEqual(input) && br.getInput().amount <= input.amount) {
                 boolean matched = true;
                 for (Object i : br.getAdditives()) {
