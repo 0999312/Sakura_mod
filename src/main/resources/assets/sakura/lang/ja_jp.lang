@@ -78,6 +78,10 @@ container.sakura.campfirepot=ポット付きキャンプファイヤー
 barrel.contains.fluid=この樽は、%1$sの液体が入ってる
 barrel.contains.nonfluid=この樽にはなにもない
 
+#Entity
+entity.sakura.Deer.name=鹿
+entity.sakura.SamuraiIllager.name=邪悪な侍
+
 guide.sakura_guide.landing_text=この世界にはたくさんの植物がいっぱいある。この本では主にタケノコやハーベスター必見のことが書かれている
 
 itemGroup.sakura_tabs=Sakura
