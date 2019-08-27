@@ -106,7 +106,7 @@ public class EntitySamuraiIllager extends AbstractIllager {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         float f = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
 
-        if (this.rand.nextFloat() < f * 0.3F) {
+        if (this.rand.nextFloat() < f * 0.2F) {
             this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemLoader.TACHI));
         } else {
             this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemLoader.KATANA));
