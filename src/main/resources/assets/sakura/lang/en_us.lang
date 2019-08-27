@@ -298,3 +298,12 @@ entity.Villager.wa_trader=Japanese Trader
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
 itemGroup.sakura_tabs=Sakura
+
+
+#Config
+sakura.config.vanilla_weight=Vannila Weight
+sakura.config.vanilla_weight.tooltip=Changes generate rate of Vanilla. Increase value to gen more Vanilla.
+sakura.config.pepper_weight=Pepper Weight
+sakura.config.pepper_weight.tooltip=Changes generate rate of Pepper. Increase value to gen more Pepper.
+sakura.config.bambooshot_weight=BambooShot Weight
+sakura.config.bambooshot_weight.tooltip=Changes generate rate of BambooShot. Increase value to gen more BambooShot.

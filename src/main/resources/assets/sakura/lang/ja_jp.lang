@@ -85,3 +85,11 @@ entity.sakura.SamuraiIllager.name=邪悪な侍
 guide.sakura_guide.landing_text=この世界にはたくさんの植物がいっぱいある。この本では主にタケノコやハーベスター必見のことが書かれている
 
 itemGroup.sakura_tabs=Sakura
+
+#Config
+sakura.config.vanilla_weight=バニラの出現率
+sakura.config.vanilla_weight.tooltip=バニラの出現率を変えれます。値を高くするほど生成されやすくなります
+sakura.config.pepper_weight=胡椒の出現率
+sakura.config.pepper_weight.tooltip=胡椒の出現率を変えれます。値を高くするほど生成されやすくなります
+sakura.config.bambooshot_weight=タケノコの出現率
+sakura.config.bambooshot_weight.tooltip=タケノコの出現率を変えれます。値を高くするほど生成されやすくなります

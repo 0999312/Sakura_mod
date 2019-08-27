@@ -1,11 +1,7 @@
 package cn.mcmod.sakura.world.gen;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
+import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.block.BlockLoader;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
@@ -18,6 +14,9 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
 public class WorldGenPepper implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,IChunkProvider chunkProvider) {
@@ -29,8 +28,8 @@ public class WorldGenPepper implements IWorldGenerator {
 	    		||BiomeDictionary.hasType(biome, BiomeDictionary.Type.SANDY)) {
 	      return;
 	    }
-//	    ConfigLoader.bamboo_int
-	    if (random.nextFloat() < 5F / 20.0F)
+
+		if (random.nextFloat() < SakuraConfig.pepper_weight / 4000.0F)
 	    {
 	      int posX = x  + world.rand.nextInt(16) + 8;
 	      int posZ = z  + world.rand.nextInt(16) + 8;
