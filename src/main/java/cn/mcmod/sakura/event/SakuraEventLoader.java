@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableSet;
 
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
+import cn.mcmod.sakura.util.ClientUtils;
 import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,6 +29,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class SakuraEventLoader {
@@ -73,5 +77,14 @@ public class SakuraEventLoader {
 
         FishinglootPools.add(entry);
     }
-	
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void renderTick(TickEvent.RenderTickEvent event)
+    {
+      if (event.phase == TickEvent.Phase.START)
+      {
+        ClientUtils.sysPartialTicks = event.renderTickTime;
+      }
+
+    }
 }

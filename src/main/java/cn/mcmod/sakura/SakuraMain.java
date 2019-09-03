@@ -41,16 +41,13 @@ public class SakuraMain {
     @SubscribeEvent
     public void registerBiomes(RegistryEvent.Register<Biome> event) {
         IForgeRegistry<Biome> registry = event.getRegistry();
-
         SakuraBiomes.register(registry);
-
     }
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         proxy.preInit(event);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new SakuraGuiHandler());
-
     }
 
     @EventHandler

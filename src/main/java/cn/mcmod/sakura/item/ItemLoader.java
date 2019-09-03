@@ -3,11 +3,14 @@ package cn.mcmod.sakura.item;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.item.armors.ItemSamuraiArmors;
+import cn.mcmod.sakura.item.armors.ItemStrawHat;
 import cn.mcmod.sakura.item.drinks.DrinkBasic;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -23,10 +26,16 @@ public class ItemLoader {
     public static final ItemArmor.ArmorMaterial STRAW_MATERIAL = EnumHelper.addArmorMaterial("STRAW_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/strawhat.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
     public static final ItemTool.ToolMaterial SAKURA_TOOLMATERIAL = EnumHelper.addToolMaterial("SAKURA_TOOLMATERIAL", 4, 1561, 8.5F, 4.0F, 12);
     public static final ItemTool.ToolMaterial TACHI_TOOLMATERIAL = EnumHelper.addToolMaterial("TACHI_TOOLMATERIAL", 3, 457, 7F, 3.0F, 18);
-    
+    public static final ItemArmor.ArmorMaterial SAMURAI_MATERIAL = EnumHelper.addArmorMaterial("SAMURAI_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
     public static ItemBase cup = new ItemBase("cup", 32, new String[]{
     		SakuraMain.MODID + "." + "cup"
     });
+    
+    public static Item SAMURAI_HELMET=new ItemSamuraiArmors("samurai_helmet", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.HEAD);
+    public static Item SAMURAI_CHEST=new ItemSamuraiArmors("samurai_chest", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.CHEST);
+    public static Item SAMURAI_PANTS=new ItemSamuraiArmors("samurai_pants", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.LEGS);
+    public static Item SAMURAI_SHOES=new ItemSamuraiArmors("samurai_shoes", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.FEET);
+    
     public static Item RICE_SEEDS = new ItemRiceSeeds();
     public static Item TOMATO = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "tomato");
     public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "tomato_seeds");
@@ -363,6 +372,10 @@ public class ItemLoader {
         register(KODACHI);
         register(SAKURAKODACHI);
         register(TACHI);
+        register(SAMURAI_HELMET);
+        register(SAMURAI_CHEST);
+        register(SAMURAI_PANTS);
+        register(SAMURAI_SHOES);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
@@ -375,6 +388,10 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(SAMURAI_HELMET);
+        registerRender(SAMURAI_CHEST);
+        registerRender(SAMURAI_PANTS);
+        registerRender(SAMURAI_SHOES);
     	registerRender(TACHI);
     	registerRender(ONION);
         registerRender(ONION_SEEDS);

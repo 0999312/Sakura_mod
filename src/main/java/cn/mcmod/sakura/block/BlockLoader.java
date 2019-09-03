@@ -242,6 +242,7 @@ public class BlockLoader {
 		Blocks.FIRE.setFireInfo(MAPLE_LOG_SAP, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO_BLOCK, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO, 5, 20);
+		
 
     }
 
@@ -255,7 +256,7 @@ public class BlockLoader {
 			itemBlock.setUnlocalizedName(SakuraMain.MODID+"."+string);
 			ForgeRegistries.ITEMS.register(itemBlock);
 		}
-		GameData.getBlockItemMap().put(block, itemBlock);
+//		GameData.getBlockItemMap().put(block, itemBlock);
 	}
 
 	private static void registerNoItem(Block block, String string) {

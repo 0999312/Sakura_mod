@@ -6,7 +6,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@SuppressWarnings("WeakerAccess")
 @Config(modid = SakuraMain.MODID)
 @Mod.EventBusSubscriber(modid = SakuraMain.MODID)
 public class SakuraConfig {

@@ -32,18 +32,7 @@ public class BarrelRecipes {
     }
 
     public static void init() {
-        register(new BarrelRecipes(new FluidStack(BlockLoader.BEER_FLUID, 1), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 200), 200));
-        register(new BarrelRecipes(new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 100), 9000));
-        register(new BarrelRecipes(
-                new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1),
-                new FluidStack(BlockLoader.FOODOIL_FLUID, 200),
-                new Object[]{new ItemStack(Items.GLASS_BOTTLE)},
-                100));
-        register(new BarrelRecipes(
-                new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1),
-                new FluidStack(BlockLoader.BEER_FLUID, 200),
-                new Object[]{new ItemStack(Items.GLASS_BOTTLE), "stone"},
-                100));
+
     }
 
     public static void register(BarrelRecipes recipes) {
