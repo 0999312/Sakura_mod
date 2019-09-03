@@ -18,7 +18,7 @@ tile.sakura.bamboo.name=竹子
 tile.sakura.bamboo_shoot.name=竹笋
 tile.sakura.bamboo_lantern.name=竹灯笼
 tile.sakura.bamboo_block.name=竹块
-tile.sakura.bamboo_slab.name=竹半砖
+tile.sakura.bamboo_slab.name=竹台阶
 tile.sakura.maple_leaves_red.name=红色枫叶
 tile.sakura.maple_leaves_yellow.name=黄色枫叶
 tile.sakura.maple_leaves_orange.name=橙色枫叶
@@ -288,6 +288,7 @@ jei.sakura.category.mortar=石磨
 
 #Entities
 entity.sakura.Deer.name=鹿
+entity.sakura.SamuraiIllager.name=灾厄武士
 entity.Villager.wa_farmer=日本农民
 entity.Villager.wa_fisher=日本渔夫
 entity.Villager.wa_trader=日本商人
@@ -295,3 +296,12 @@ entity.Villager.wa_trader=日本商人
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
 itemGroup.sakura_tabs=樱花
+
+
+#Config
+sakura.config.vanilla_weight=香草世界生成率
+sakura.config.vanilla_weight.tooltip=变更香草的生成率，数字越高生成越多。
+sakura.config.pepper_weight=胡椒世界生成率
+sakura.config.pepper_weight.tooltip=变更胡椒的生成率，数字越高生成越多。
+sakura.config.bambooshot_weight=竹笋世界生成率
+sakura.config.bambooshot_weight.tooltip=变更竹笋的生成率，数字越高生成越多。
