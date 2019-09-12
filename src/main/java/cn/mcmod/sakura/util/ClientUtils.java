@@ -112,8 +112,8 @@ public class ClientUtils {
           model.bipedBody.showModel = (armorSlot == EntityEquipmentSlot.CHEST);
           model.bipedRightArm.showModel = (armorSlot == EntityEquipmentSlot.CHEST);
           model.bipedLeftArm.showModel = (armorSlot == EntityEquipmentSlot.CHEST);
-          model.bipedRightLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS);
-          model.bipedLeftLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS);
+          model.bipedRightLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS||armorSlot == EntityEquipmentSlot.FEET);
+          model.bipedLeftLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS||armorSlot == EntityEquipmentSlot.FEET);
           model.isSneak = entityLiving.isSneaking();
           
           model.isRiding = entityLiving.isRiding();

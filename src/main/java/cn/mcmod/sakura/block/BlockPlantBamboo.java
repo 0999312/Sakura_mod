@@ -132,16 +132,12 @@ public class BlockPlantBamboo extends Block implements IPlantable {
     }
 
     public boolean canBlockStay(World worldIn, BlockPos pos) {
-
         IBlockState state = worldIn.getBlockState(pos.down());
         return state.getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, this) && !worldIn.getBlockState(pos.up()).getMaterial().isLiquid();
     }
 
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable) {
-
-
         IBlockState plant = plantable.getPlant(world, pos.offset(direction));
-
         if (plant.getBlock() == BlockLoader.BAMBOO) {
             return this == BlockLoader.BAMBOO;
         } else {

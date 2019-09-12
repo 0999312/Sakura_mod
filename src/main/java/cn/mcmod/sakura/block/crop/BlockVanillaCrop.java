@@ -49,8 +49,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		int i = this.getAge(state);
-		if(i>=7){
+		if(this.isMaxAge(state)){
 			if(playerIn.getHeldItem(hand).getItem() instanceof ItemShears){
 			List<ItemStack> list = onSheared(playerIn.getHeldItem(hand), worldIn, pos, 0);
 			for(ItemStack stackresult:list)
@@ -77,7 +76,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
         int age = getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
-        if (age >= getMaxAge())
+        if (this.isMaxAge(state))
         {
             int k = 3 + fortune;
 
@@ -100,9 +99,8 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 
         if (!worldIn.isRemote) // Forge: NOP all this.
         {
-            int i = this.getAge(state);
-
-            if (i >= this.getMaxAge())
+        	 int i = getAge(state);
+            if (this.isMaxAge(state))
             {
                 int j = 3 + fortune;
 
@@ -129,7 +127,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 		int i = this.getAge(world.getBlockState(pos));
 		List<ItemStack> list = new ArrayList<ItemStack>();
-		list.add(new ItemStack(ItemLoader.MATERIAL,1+fortune,21));
+		if(this.isMaxAge(world.getBlockState(pos)))list.add(new ItemStack(ItemLoader.MATERIAL,1+fortune,21));
 		return list;
 	}
 	@Override

@@ -22,7 +22,7 @@ public class ItemSamuraiArmors extends ItemArmor {
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-		return SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png";
+		return SakuraMain.MODID + ":" + "textures/models/armor/fortress_armor.png";
 	}
 	
 	  ModelBiped model1 = null;
@@ -33,10 +33,10 @@ public class ItemSamuraiArmors extends ItemArmor {
 	  public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
 	  {
 	    if (this.model1 == null) {
-	      this.model1 = new ModelSamuraiArmors(1.0F);
+	      this.model1 = new ModelSamuraiArmors(armorSlot,3,1.0F);
 	    }
 	    if (this.model2 == null) {
-	      this.model2 = new ModelSamuraiArmors(0.5F);
+	      this.model2 = new ModelSamuraiArmors(armorSlot,3,0.5F);
 	    }
 	    
 	    this.model = ClientUtils.getCustomArmorModel(entityLiving, itemStack, armorSlot, this.model, this.model1, this.model2);

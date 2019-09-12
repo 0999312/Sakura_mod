@@ -25,7 +25,7 @@ public final class PotRecipeMaker {
 	    	List<ItemStack> main = new ArrayList<ItemStack>();
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();
 	    	List<FluidStack> fluid = new ArrayList<FluidStack>();
-	    	main.add(recipe.mainItem);
+	    	main = stackHelper.toItemStackList(recipe.mainItem);
 	    	inputs.add(main);
 	    	for (Object obj : recipe.subItems) {
 	    		List<ItemStack> subinputs = stackHelper.toItemStackList(obj);
