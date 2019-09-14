@@ -45,9 +45,8 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
         BlockPos blockpos = pos.up();
 
         if (worldIn.isAirBlock(blockpos)) {
-        	if(worldIn.checkLightFor(EnumSkyBlock.BLOCK, pos)){
+        	if(worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) > 2 + worldIn.rand.nextInt(6)){
             int j = state.getValue(AGE).intValue();
-
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                 if (j == 6) {
                     if(rand.nextInt() ==0){
