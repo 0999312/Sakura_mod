@@ -1,0 +1,21 @@
+{
+  "result": {
+    "nbt": "{type:0}",
+    "item": "sakura:shoji",
+    "type": "minecraft:item_nbt"
+  },
+  "pattern": [
+    "PPS",
+    "PPS",
+    "PPS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#PAPER"
+    },
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

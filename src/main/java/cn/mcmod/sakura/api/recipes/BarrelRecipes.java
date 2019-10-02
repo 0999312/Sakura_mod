@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.api.recipes;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -40,8 +41,6 @@ public class BarrelRecipes {
     }
 
     public static List<BarrelRecipes> getPossibleRecipes(FluidStack input, List<ItemStack> items) {
-
-
         List<BarrelRecipes> result = new ArrayList<>();
 
         for (BarrelRecipes br : recipeRegistry) {
@@ -63,7 +62,7 @@ public class BarrelRecipes {
                             }
                         if (i instanceof String) {
                             NonNullList<ItemStack> ore = OreDictionary.getOres((String) i);
-                            if (!ore.isEmpty() && OreDictionary.containsMatch(true, ore, j)) {
+                            if (!ore.isEmpty() && RecipesUtil.containsMatch(false, ore, j)) {
                                 found = true;
                                 j.shrink(1);
                                 break;

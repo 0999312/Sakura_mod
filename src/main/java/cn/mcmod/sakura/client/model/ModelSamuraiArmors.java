@@ -545,6 +545,8 @@ public class ModelSamuraiArmors
     this.LegpanelL5.isHidden = (state < 2)||(armorSlot!=EntityEquipmentSlot.LEGS);
     this.LegpanelL6.isHidden = (state < 3)||(armorSlot!=EntityEquipmentSlot.LEGS);
     
+    this.Chestplate.isHidden = false;
+    
     this.LegpanelR4.isHidden = (state < 1)||(armorSlot!=EntityEquipmentSlot.LEGS);
     this.LegpanelR5.isHidden = (state < 2)||(armorSlot!=EntityEquipmentSlot.LEGS);
     this.LegpanelR6.isHidden = (state < 3)||(armorSlot!=EntityEquipmentSlot.LEGS);

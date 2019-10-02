@@ -28,7 +28,7 @@ public class WorldGenBambooShot implements IWorldGenerator {
 	    		||BiomeDictionary.hasType(biome, BiomeDictionary.Type.SANDY)) {
 	      return;
 	    }
-
+	    
         if (random.nextFloat() < SakuraConfig.bambooshot_weight / 4000.0F)
 	    {
 	      int posX = x+ world.rand.nextInt(16) + 8;

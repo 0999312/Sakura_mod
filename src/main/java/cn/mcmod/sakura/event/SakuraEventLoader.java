@@ -43,18 +43,7 @@ public class SakuraEventLoader {
 	public static void OnRecipeRegister(RegistryEvent.Register<IRecipe> event) {
     	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,78),35);
     	addFishingLoot(new ItemStack(ItemLoader.MATERIAL,1,34),25);
-    	RecipesUtil.addShapelessRecipe(new ItemStack(ItemLoader.FOODSET,1,60), new Object[]{
-    			new ItemStack(ItemLoader.FOODSET,1,58),BlockLoader.SAKURA_LEAVES
-    	});
-    	RecipesUtil.addShapelessRecipe(new ItemStack(ItemLoader.FOODSET,1,61), new Object[]{
-    			new ItemStack(ItemLoader.FOODSET,1,58),new ItemStack(ItemLoader.FOODSET,1,3)
-    	});
-    	RecipesUtil.addShapelessRecipe(new ItemStack(ItemLoader.FOODSET,1,69), new Object[]{
-    			new ItemStack(ItemLoader.FOODSET,1,4),new ItemStack(ItemLoader.FOODSET,1,49),"foodKetchup"
-    	});
-    	RecipesUtil.addShapelessRecipe(new ItemStack(ItemLoader.FOODSET,1,70), new Object[]{
-    			new ItemStack(ItemLoader.FOODSET,1,4),new ItemStack(ItemLoader.FOODSET,1,49),"foodKetchup","foodCheese"
-    	});
+
     }
     
 	@SubscribeEvent

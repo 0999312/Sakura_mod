@@ -1,0 +1,18 @@
+{
+    "multipart": [
+        {   "apply": { "model": "sakura:bamboo_sunburnt" },
+			"when": { "up": "true" }},
+        {   "when": { "north": "true" },
+            "apply": { "model": "sakura:bamboo_fence_sunburnt", "uvlock": false }
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "sakura:bamboo_fence_sunburnt", "y": 90, "uvlock": false }
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "sakura:bamboo_fence_sunburnt", "y": 180, "uvlock": false }
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "sakura:bamboo_fence_sunburnt", "y": 270, "uvlock": false }
+        }
+    ]
+}

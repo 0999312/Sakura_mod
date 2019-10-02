@@ -2,6 +2,7 @@ package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
 
+import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -151,11 +152,9 @@ public class PotRecipes {
 	                }
                 }else if(obj1 instanceof String){
                 	String dict = (String) obj1;
-                	ItemStack result = inventoryList.get(i);
                 	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
-                	if(ore.isEmpty()) return retStack;
-                	if (OreDictionary.containsMatch(true, ore, result)) {
-                        inventoryList.remove(i);
+                	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, inventoryList.get(i))) {
+                        inventoryList.remove(obj1);
                         flg2 = true;
                         break;
                     }

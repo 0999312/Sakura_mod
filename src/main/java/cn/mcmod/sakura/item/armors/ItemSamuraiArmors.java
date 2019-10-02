@@ -22,7 +22,7 @@ public class ItemSamuraiArmors extends ItemArmor {
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-		return SakuraMain.MODID + ":" + "textures/models/armor/fortress_armor.png";
+		return SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png";
 	}
 	
 	  ModelBiped model1 = null;

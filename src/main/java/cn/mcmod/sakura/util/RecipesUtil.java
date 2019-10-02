@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,12 +24,41 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class RecipesUtil {
+    public static boolean containsMatch(boolean strict, NonNullList<ItemStack> inputs, @Nonnull ItemStack... targets)
+    {
+        for (ItemStack input : inputs)
+        {
+            for (ItemStack target : targets)
+            {
+                if (itemMatches(target, input, strict))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean itemMatches(@Nonnull ItemStack target, @Nonnull ItemStack input, boolean strict)
+    {
+        if (input.isEmpty() && !target.isEmpty() || !input.isEmpty() && target.isEmpty())
+        {
+            return false;
+        }
+         return (target.getItem() == input.getItem() && (
+        		(target.getMetadata() == OreDictionary.WILDCARD_VALUE && !strict) 
+        	 || (target.getMetadata() == input.getMetadata()
+        	 ||input.getMetadata() == OreDictionary.WILDCARD_VALUE)));
+    }
+    
+	
 	public static void addRecipe(Item item, IRecipe value) {
 	addRecipe(item.getRegistryName().toString().replaceAll(":", "."), value);
 	}

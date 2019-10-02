@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class TileEntityStoneMortar extends TileEntity implements ITickable, IInventory {
     private int processTimer = 0;
     private int maxprocessTimer = 200;
-    private float progressOld;
 
     public int getProcessTimer() {
         return processTimer;
@@ -47,15 +46,13 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
           	 &&output2.getCount()<output2.getMaxStackSize()
           	 &&output1.getCount()+result[0].getCount()<=output1.getMaxStackSize()){
         	if(result.length>1){
-        	if(output2.getCount()+result[1].getCount()<=output2.getMaxStackSize())
-            processTimer += 1;else processTimer = 0;
-        	}else
-        	processTimer += 1;	
+        		if(output2.getCount()+result[1].getCount()<=output2.getMaxStackSize()) processTimer += 1;
+        		else processTimer = 0;
+        	}else processTimer += 1;	
             }
         	else processTimer = 0;
         }
 
-        updateAnimation();
         if (processTimer >= maxprocessTimer) {
             processTimer = 0;
             ItemStack[] result = getRecipesResult().getResultItemStack();
@@ -77,26 +74,14 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
             input2.shrink(1);
             input3.shrink(1);
             input4.shrink(1);
-
         }
     }
-
+    
     protected void refresh() {
         if (hasWorld() && !world.isRemote) {
-
             IBlockState state = world.getBlockState(pos);
-
             world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
-
         }
-    }
-
-    protected void updateAnimation() {
-        this.progressOld = this.processTimer;
-    }
-
-    public float getProgress(float p_190585_1_) {
-        return this.progressOld + (processTimer - this.progressOld) * p_190585_1_;
     }
 
     @Override
@@ -119,9 +104,6 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
      * @return
      */
     protected MortarRecipes getRecipesResult() {
-        if (this.getStackInSlot(0).isEmpty()) {
-            return null;
-        }
         for (MortarRecipes recipes : MortarRecipes.mortarRecipesList) {
             ItemStack[] stack = recipes.getResult(this);
             if (stack.length > 0) {
@@ -200,13 +182,9 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
 
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
-
             return false;
-
         } else {
-
             return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-
         }
     }
 
@@ -226,7 +204,6 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     }
 
     public int getField(int id) {
-
         switch (id) {
             case 0:
                 return this.processTimer;

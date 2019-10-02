@@ -3,6 +3,8 @@ package cn.mcmod.sakura.item;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.item.armors.ItemHaori;
+import cn.mcmod.sakura.item.armors.ItemKimono;
 import cn.mcmod.sakura.item.armors.ItemSamuraiArmors;
 import cn.mcmod.sakura.item.armors.ItemStrawHat;
 import cn.mcmod.sakura.item.drinks.DrinkBasic;
@@ -10,6 +12,7 @@ import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.potion.PotionEffect;
@@ -26,10 +29,14 @@ public class ItemLoader {
     public static final ItemArmor.ArmorMaterial STRAW_MATERIAL = EnumHelper.addArmorMaterial("STRAW_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/strawhat.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0);
     public static final ItemTool.ToolMaterial SAKURA_TOOLMATERIAL = EnumHelper.addToolMaterial("SAKURA_TOOLMATERIAL", 4, 1561, 8.5F, 4.0F, 12);
     public static final ItemTool.ToolMaterial TACHI_TOOLMATERIAL = EnumHelper.addToolMaterial("TACHI_TOOLMATERIAL", 3, 457, 7F, 3.0F, 18);
-    public static final ItemArmor.ArmorMaterial SAMURAI_MATERIAL = EnumHelper.addArmorMaterial("SAMURAI_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png", 6, new int[]{0, 0, 0, 1}, 30, net.minecraft.init.SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0);
+    public static final ItemTool.ToolMaterial STRAW_TOOLMATERIAL = EnumHelper.addToolMaterial("STRAW_TOOLMATERIAL", 0, 256, 2F, 1.0F, 8);
+    public static final ItemArmor.ArmorMaterial SAMURAI_MATERIAL = EnumHelper.addArmorMaterial("SAMURAI_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png", 33, new int[]{5, 8, 9, 5}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
+    public static final ItemArmor.ArmorMaterial KIMONO_MATERIAL = EnumHelper.addArmorMaterial("KIMONO_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/kimono.png", -1, new int[]{0, 0, 0, 0}, 0, net.minecraft.init.SoundEvents.BLOCK_CLOTH_PLACE, 0);
     public static ItemBase cup = new ItemBase("cup", 32, new String[]{
     		SakuraMain.MODID + "." + "cup"
     });
+    
+    public static Item BROOM = new ItemBroom(STRAW_TOOLMATERIAL).setUnlocalizedName(SakuraMain.MODID + "." + "broom");
     
     public static Item SAMURAI_HELMET=new ItemSamuraiArmors("samurai_helmet", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.HEAD);
     public static Item SAMURAI_CHEST=new ItemSamuraiArmors("samurai_chest", SAMURAI_MATERIAL, 0, EntityEquipmentSlot.CHEST);
@@ -339,10 +346,13 @@ public class ItemLoader {
 
 
     public static Item STRAW_HAT = new ItemStrawHat();
-
+    public static Item KIMONO = new ItemKimono();
+    public static Item HAORI = new ItemHaori();
     public ItemLoader(FMLPreInitializationEvent event) {
     	register(cup);
         register(POT);
+        register(KIMONO);
+        register(HAORI);
         register(BAMBOO_DOOR.setUnlocalizedName(SakuraMain.MODID + "." + "bamboo_door"));
         register(TOMATO);
         register(TOMATO_SEEDS);
@@ -360,12 +370,14 @@ public class ItemLoader {
         register(RAPESEED);
         register(MAPLE_SYRUP);
         register(KNIFE_NOODLE);
+        register(SAKURA_DIAMOND);
         register(MATERIAL);
         register(FOODSET);
         register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
         register(BUGGYS_MEAT);
         register(STRAW_HAT);
-        register(SAKURA_DIAMOND);
+
+        register(BROOM);
         register(SHINAI);
         register(KATANA);
         register(SAKURAKATANA);
@@ -388,6 +400,9 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(HAORI);
+    	registerRender(KIMONO);
+    	registerRender(BROOM);
     	registerRender(SAMURAI_HELMET);
         registerRender(SAMURAI_CHEST);
         registerRender(SAMURAI_PANTS);

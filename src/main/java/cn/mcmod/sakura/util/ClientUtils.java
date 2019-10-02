@@ -21,6 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
+import cn.mcmod.sakura.client.model.ModelKimono;
+
 import java.util.HashMap;
 
 public class ClientUtils {
@@ -114,6 +116,58 @@ public class ClientUtils {
           model.bipedLeftArm.showModel = (armorSlot == EntityEquipmentSlot.CHEST);
           model.bipedRightLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS||armorSlot == EntityEquipmentSlot.FEET);
           model.bipedLeftLeg.showModel = (armorSlot == EntityEquipmentSlot.LEGS||armorSlot == EntityEquipmentSlot.FEET);
+          model.isSneak = entityLiving.isSneaking();
+          
+          model.isRiding = entityLiving.isRiding();
+          model.isChild = entityLiving.isChild();
+          ItemStack itemstack = entityLiving.getHeldItemMainhand();
+          ItemStack itemstack1 = entityLiving.getHeldItemOffhand();
+          ModelBiped.ArmPose modelbiped$armpose = ModelBiped.ArmPose.EMPTY;
+          ModelBiped.ArmPose modelbiped$armpose1 = ModelBiped.ArmPose.EMPTY;
+          if ((itemstack != null) && (!itemstack.isEmpty()))
+          {
+            modelbiped$armpose = ModelBiped.ArmPose.ITEM;
+            if (entityLiving.getItemInUseCount() > 0)
+            {
+              EnumAction enumaction = itemstack.getItemUseAction();
+              if (enumaction == EnumAction.BLOCK) {
+                modelbiped$armpose = ModelBiped.ArmPose.BLOCK;
+              } else if (enumaction == EnumAction.BOW) {
+                modelbiped$armpose = ModelBiped.ArmPose.BOW_AND_ARROW;
+              }
+            }
+          }
+          if ((itemstack1 != null) && (!itemstack1.isEmpty()))
+          {
+            modelbiped$armpose1 = ModelBiped.ArmPose.ITEM;
+            if (entityLiving.getItemInUseCount() > 0)
+            {
+              EnumAction enumaction1 = itemstack1.getItemUseAction();
+              if (enumaction1 == EnumAction.BLOCK) {
+                modelbiped$armpose1 = ModelBiped.ArmPose.BLOCK;
+              }
+            }
+          }
+          if (entityLiving.getPrimaryHand() == EnumHandSide.RIGHT)
+          {
+            model.rightArmPose = modelbiped$armpose;
+            model.leftArmPose = modelbiped$armpose1;
+          }
+          else
+          {
+            model.rightArmPose = modelbiped$armpose1;
+            model.leftArmPose = modelbiped$armpose;
+          }
+        }
+        return model;
+      }
+    @SideOnly(Side.CLIENT)
+    public static ModelBiped getKimonoModel(EntityLivingBase entityLiving, ItemStack itemStack,ModelBiped model)
+      {
+        if (model != null)
+        {
+          model.setVisible(true);
+          
           model.isSneak = entityLiving.isSneaking();
           
           model.isRiding = entityLiving.isRiding();

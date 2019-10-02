@@ -2,6 +2,9 @@ package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nonnull;
+
+import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -24,11 +27,12 @@ public class MortarRecipes {
     public void setMortarRecipes(ItemStack[] result, Object[] main) {
         this.clear();
     	for (Object o : main) {
-			if(o instanceof ItemStack||o instanceof String)
+			if(o instanceof ItemStack||o instanceof String){
 				inputItems.add(o);
+			}
 			else throw new IllegalArgumentException("Not a itemStack or Ore Dictionary");
         }
-        resultItems = result;
+        resultItems = result.clone();
     }
 
     /**
@@ -54,28 +58,25 @@ public class MortarRecipes {
             }
         }
 
-        if (inventoryList.size() != inputItems.size()) {
+        if (!inputItems.isEmpty() && !inventoryList.isEmpty() && inventoryList.size() != inputItems.size()) {
             return retStack;
         }
-
+        
         boolean flg1 = true;
         for (Object obj1 : inputItems) {
             boolean flg2 = false;
             for (int i = 0; i < inventoryList.size(); i++) {
             	if(obj1 instanceof ItemStack){
             		ItemStack stack1 = (ItemStack) obj1;
-                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
-                    inventoryList.remove(i);
-                    flg2 = true;
-                    break;
-                }
+	                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
+	                    inventoryList.remove(obj1);
+	                    flg2 = true;
+	                    break;
+	                }
                 }else if(obj1 instanceof String){
-                	String dict = (String) obj1;
-                	ItemStack result = inventoryList.get(i);
-                	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
-                	if(ore.isEmpty())return retStack;
-                	if (OreDictionary.containsMatch(false, ore, result)) {
-                        inventoryList.remove(i);
+                	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
+                	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, inventoryList.get(i))) {
+                        inventoryList.remove(obj1);
                         flg2 = true;
                         break;
                     }
@@ -90,9 +91,8 @@ public class MortarRecipes {
         if (!flg1) {
             return retStack;
         }
-
+        
         return resultItems.clone();
-
     }
 
     public static void addMortarRecipe(MortarRecipes recipes) {
@@ -100,10 +100,4 @@ public class MortarRecipes {
     }
 
 
-    /**
-     * Compares two itemstacks to ensure that they are the same. This checks both the item and the metadata of the item.
-     */
-    private boolean compareItemStacks(ItemStack stack1, ItemStack stack2) {
-        return stack2.getItem() == stack1.getItem() && (stack2.getMetadata() == 32767 || stack2.getMetadata() == stack1.getMetadata());
-    }
 }

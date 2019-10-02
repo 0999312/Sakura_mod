@@ -4,6 +4,7 @@ import cn.mcmod.sakura.SakuraOreDictLoader;
 import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.block.door.BlockShoji;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
@@ -20,6 +21,7 @@ public class SakuraRecipeRegister {
 	
 	
     public static void furnaceRegister() {
+
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 2), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 48), new ItemStack(ItemLoader.FOODSET, 1, 49), 0.1F);
@@ -97,15 +99,7 @@ public class SakuraRecipeRegister {
     					"bone"
     					})
     			);
-    	MortarRecipes.addMortarRecipe(new MortarRecipes(
-    			new ItemStack[]{new ItemStack(ItemLoader.FOODSET,6,80)},
-    			new Object[]{
-    					"listAllfishfresh",
-    					"listAllfishfresh",
-    					"cropPotato",
-    					"listAllegg"
-    					})
-    			);
+
     	MortarRecipes.addMortarRecipe(new MortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL,4,30)},
     			new Object[]{
@@ -118,9 +112,19 @@ public class SakuraRecipeRegister {
     					"bread"
     					})
     			);
+    	MortarRecipes.addMortarRecipe(new MortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.FOODSET,6,80)},
+    			new Object[]{
+    					"cropPotato",
+    					"listAllfishfresh",
+    					"listAllfishfresh",
+    					"listAllegg"
+    					})
+    			);
     }
 
     public static void potRegister() {
+    	
         PotRecipes.addPotRecipe(
                 new PotRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 90),
