@@ -18,6 +18,10 @@ import cn.mcmod.sakura.block.fluid.SakeFluid;
 import cn.mcmod.sakura.block.fluid.ShouchuFluid;
 import cn.mcmod.sakura.block.fluid.VodkaFluid;
 import cn.mcmod.sakura.block.fluid.WhiteWineFluid;
+import cn.mcmod.sakura.block.noodles.BlockRamen;
+import cn.mcmod.sakura.block.noodles.BlockSoba;
+import cn.mcmod.sakura.block.noodles.BlockUdon;
+import cn.mcmod.sakura.block.noodles.BlockUdonUnfinished;
 import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
@@ -145,6 +149,10 @@ public class BlockLoader {
 	public static Block BAMBOO_FENCE = new BlockBambooFence();
 	public static Block BAMBOO_FENCE_SUNBURNT = new BlockBambooFence();
 	
+	public static Block UDON_UNFINISHED = new BlockUdonUnfinished();
+	public static Block UDON_BLOCK = new BlockUdon();
+	public static Block RAMEN_BLOCK = new BlockRamen();
+	public static Block SOBA_BLOCK = new BlockSoba();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -178,6 +186,10 @@ public class BlockLoader {
         register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
         register(KAWARA, new ItemBlock(KAWARA), "kawara");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
+        register(RAMEN_BLOCK, new ItemBlock(RAMEN_BLOCK), "ramen_block");
+        register(UDON_UNFINISHED, new ItemBlock(UDON_UNFINISHED), "udon_unfinished_block");
+        registerNoItem(UDON_BLOCK, "udon_block");
+        register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
@@ -284,6 +296,9 @@ public class BlockLoader {
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
 		registerRender(WINDBELL);
+		registerRender(UDON_UNFINISHED);
+		registerRender(SOBA_BLOCK);
+		registerRender(RAMEN_BLOCK);
 		registerRender(TATAMI_TAN);
 		registerRender(TATAMI);
 		registerRender(TATAMI_TAN_NS);

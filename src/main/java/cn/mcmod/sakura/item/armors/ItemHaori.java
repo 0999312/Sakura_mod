@@ -33,10 +33,9 @@ public class ItemHaori extends ItemArmor {
 
     public static final TagPropertyString texture_name = new TagPropertyString("texture_name");
     
-    private ModelBiped model = new ModelHaori();
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
-    	return ClientUtils.getKimonoModel(entityLiving, itemStack, model);
+    	return ClientUtils.getKimonoModel(entityLiving, itemStack, new ModelHaori());
     }
 
     @Override

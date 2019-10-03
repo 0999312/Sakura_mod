@@ -1,0 +1,75 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sakura:noodle_0",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+  },
+   "variants" : {
+      "cut=0" : {
+         "model" : "sakura:noodle_0",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=1" : {
+         "model" : "sakura:noodle_1",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=2" : {
+         "model" : "sakura:noodle_2",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=3" : {
+         "model" : "sakura:noodle_3",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=4" : {
+         "model" : "sakura:noodle_4",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=5" : {
+         "model" : "sakura:noodle_5",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=6" : {
+         "model" : "sakura:noodle_6",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "cut=7" : {
+         "model" : "sakura:noodle_7",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      },
+      "inventory" : {
+         "model" : "sakura:noodle_0",
+         "textures" : {
+            "0" : "sakura:blocks/ramen",
+            "particle" : "sakura:blocks/ramen"
+         }
+      }
+   }
+}
