@@ -63,6 +63,14 @@ tile.sakura.plank_maple.name=枫树木板
 tile.sakura.plank_bamboo.name=竹板
 tile.sakura.barrel.name=酿造桶
 tile.sakura.kitunebi.name=狐火
+tile.sakura.windbell.name=风铃
+tile.sakura.bamboo_fence_sunburnt.name=日晒竹栅栏
+tile.sakura.bamboo_fence.name=竹栅栏
+tile.sakura.bamboo_slab_sunburnt.name=日晒竹台阶
+tile.sakura.bamboo_block_sunburnt.name=日晒竹块
+tile.sakura.soba_block.name=荞麦面团
+tile.sakura.udon_unfinished_block.name=未完成的乌冬面团
+tile.sakura.ramen_block.name=拉面面团
 
 #物品
 item.sakura.grape.name=葡萄
@@ -231,6 +239,13 @@ item.sakura.sakura_kodachi.name=樱之小太刀
 item.sakura.shinai.name=竹刀
 item.sakura.tachi.name=太刀
 item.sakura.knife_noodle.name=切面刀
+item.sakura.samurai_shoes.name=武士靴子
+item.sakura.samurai_pants.name=武士护腿
+item.sakura.samurai_chest.name=武士胸甲
+item.sakura.samurai_helmet.name=武士头盔
+item.sakura.broom.name=扫帚
+item.sakura.haori.name=羽织
+item.sakura.kimono.name=和服
 
 item.sakura:sakura_guide.name=农夫指南
 
