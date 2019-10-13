@@ -63,6 +63,14 @@ tile.sakura.plank_maple.name=Maple Plank
 tile.sakura.plank_bamboo.name=Bamboo Plank
 tile.sakura.barrel.name=Barrel
 tile.sakura.kitunebi.name=Kitsunebi
+tile.sakura.windbell.name=Windbell
+tile.sakura.bamboo_fence_sunburnt.name=Sunburnt Bamboo Fence
+tile.sakura.bamboo_fence.name=Bamboo Fence
+tile.sakura.bamboo_slab_sunburnt.name=Sunburnt Bamboo Slab
+tile.sakura.bamboo_block_sunburnt.name=Sunburnt Bamboo Block
+tile.sakura.soba_block.name=Buckwheat Dough
+tile.sakura.udon_unfinished_block.name=Unfinished Udon
+tile.sakura.ramen_block.name=Ramen Dough
 
 #Item
 item.sakura.grape.name=Grape
@@ -231,6 +239,13 @@ item.sakura.sakura_kodachi.name=Sakura Kodachi
 item.sakura.shinai.name=Shinai
 item.sakura.tachi.name=Tachi
 item.sakura.knife_noodle.name=Noodle Cutting Knife
+item.sakura.samurai_shoes.name=Samurai Shoes
+item.sakura.samurai_pants.name=Samurai Pants
+item.sakura.samurai_chest.name=Samurai Chestplate
+item.sakura.samurai_helmet.name=Samurai Helmet
+item.sakura.broom.name=Broom
+item.sakura.haori.name=Haori
+item.sakura.kimono.name=Kimono
 
 item.sakura:sakura_guide.name=Harvester Guide
 
