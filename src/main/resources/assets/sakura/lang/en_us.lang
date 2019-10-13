@@ -249,8 +249,6 @@ item.sakura.kimono.name=Kimono
 
 item.sakura:sakura_guide.name=Harvester Guide
 
-item.sakura:sakura_guide.name=Harvester Guide
-
 item.sakura.noodle_soup.name=Noodle Soup
 item.sakura.soysause.name=Soysause
 item.sakura.rice_redbean.name=Rea Bean Rice
@@ -305,6 +303,7 @@ jei.sakura.category.mortar=Stone Mortar
 
 #Entities
 entity.sakura.Deer.name=Deer
+entity.sakura.SamuraiIllager.name=Samurai Illager
 entity.Villager.wa_farmer=Japanese Farmer
 entity.Villager.wa_fisher=Japanese Fisher
 entity.Villager.wa_trader=Japanese Trader
@@ -312,3 +311,12 @@ entity.Villager.wa_trader=Japanese Trader
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
 itemGroup.sakura_tabs=Sakura
+
+
+#Config
+sakura.config.vanilla_weight=Vanilla Generating Rate
+sakura.config.vanilla_weight.tooltip=Configure this to change the generating rate of Vanillas. Higher number for more Vanillas.
+sakura.config.pepper_weight=Pepper Generating Rate
+sakura.config.pepper_weight.tooltip=Configure this to change the generating rate of Peppers. Higher number for more Peppers.
+sakura.config.bambooshot_weight=Bamboo Shoots Generating Rate
+sakura.config.bambooshot_weight.tooltip=Configure this to change the generating rate of Bamboo Shoots. Higher number for more Vanilla.
