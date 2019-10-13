@@ -18,6 +18,10 @@ import cn.mcmod.sakura.block.fluid.SakeFluid;
 import cn.mcmod.sakura.block.fluid.ShouchuFluid;
 import cn.mcmod.sakura.block.fluid.VodkaFluid;
 import cn.mcmod.sakura.block.fluid.WhiteWineFluid;
+import cn.mcmod.sakura.block.noodles.BlockRamen;
+import cn.mcmod.sakura.block.noodles.BlockSoba;
+import cn.mcmod.sakura.block.noodles.BlockUdon;
+import cn.mcmod.sakura.block.noodles.BlockUdonUnfinished;
 import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
 import cn.mcmod.sakura.item.ItemSlabBase;
@@ -69,9 +73,12 @@ public class BlockLoader {
 	public static Block VODKA;
 	
     public static Block BAMBOO = new BlockPlantBamboo();
+    public static Block WINDBELL = new BlockWindBell();
     public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
-    public static Block BAMBOO_BLOCK = new BlockBase(Material.WOOD).setHardness(1.6F).setResistance(6.0F);
+    public static Block BAMBOO_BLOCK = new BlockBambooBlock(Material.WOOD).setHardness(1.6F).setResistance(6.0F);
+    public static Block BAMBOO_BLOCK_SUNBURNT = new BlockBambooBlock(Material.WOOD).setHardness(1.6F).setResistance(5.5F);
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
+    public static BlockSlabBase BAMBOO_SLAB_SUNBURNT = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
     public static BlockDoorBase BAMBOODOOR = new BlockDoorBase(Material.WOOD);
 	public static Block MAPLE_SAPLING_RED = new BlockMapleSaplingRed();
@@ -138,9 +145,18 @@ public class BlockLoader {
 
 	public static Block SAKURA_DIAMOND_ORE = new BlockSakuraDiamondOre();
 	public static Block KITUNEBI = new BlockKitunebi();
+	
+	public static Block BAMBOO_FENCE = new BlockBambooFence();
+	public static Block BAMBOO_FENCE_SUNBURNT = new BlockBambooFence();
+	
+	public static Block UDON_UNFINISHED = new BlockUdonUnfinished();
+	public static Block UDON_BLOCK = new BlockUdon();
+	public static Block RAMEN_BLOCK = new BlockRamen();
+	public static Block SOBA_BLOCK = new BlockSoba();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
+
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
 		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFluidBasic(FOODOIL_FLUID), "foodoil");
 		FluidRegistry.addBucketForFluid(GRAPE_FLUID);
@@ -170,11 +186,21 @@ public class BlockLoader {
         register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
         register(KAWARA, new ItemBlock(KAWARA), "kawara");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
+        register(RAMEN_BLOCK, new ItemBlock(RAMEN_BLOCK), "ramen_block");
+        register(UDON_UNFINISHED, new ItemBlock(UDON_UNFINISHED), "udon_unfinished_block");
+        registerNoItem(UDON_BLOCK, "udon_block");
+        register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
-        register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
+        register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
+        register(BAMBOO_BLOCK_SUNBURNT, new ItemBlock(BAMBOO_BLOCK_SUNBURNT), "bamboo_block_sunburnt");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
+        register(BAMBOO_SLAB_SUNBURNT, new ItemSlabBase(BAMBOO_SLAB_SUNBURNT), "bamboo_slab_sunburnt");
+		register(BAMBOO_FENCE, new ItemBlock(BAMBOO_FENCE), "bamboo_fence");
+	    register(BAMBOO_FENCE_SUNBURNT, new ItemBlock(BAMBOO_FENCE_SUNBURNT), "bamboo_fence_sunburnt");
+		
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
+        register(WINDBELL, new ItemBlock(WINDBELL), "windbell");
         register(TATAMI_TAN, new ItemBlock(TATAMI_TAN), "tatami_tan");
         register(TATAMI, new ItemBlock(TATAMI), "tatami");
         register(TATAMI_TAN_NS, new ItemBlock(TATAMI_TAN_NS), "tatami_tan_ns");
@@ -242,6 +268,7 @@ public class BlockLoader {
 		Blocks.FIRE.setFireInfo(MAPLE_LOG_SAP, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO_BLOCK, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO, 5, 20);
+		
 
     }
 
@@ -255,7 +282,7 @@ public class BlockLoader {
 			itemBlock.setUnlocalizedName(SakuraMain.MODID+"."+string);
 			ForgeRegistries.ITEMS.register(itemBlock);
 		}
-		GameData.getBlockItemMap().put(block, itemBlock);
+//		GameData.getBlockItemMap().put(block, itemBlock);
 	}
 
 	private static void registerNoItem(Block block, String string) {
@@ -268,7 +295,10 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
-		
+		registerRender(WINDBELL);
+		registerRender(UDON_UNFINISHED);
+		registerRender(SOBA_BLOCK);
+		registerRender(RAMEN_BLOCK);
 		registerRender(TATAMI_TAN);
 		registerRender(TATAMI);
 		registerRender(TATAMI_TAN_NS);
@@ -284,6 +314,7 @@ public class BlockLoader {
 		registerRender(TATAMI_TAN_NS_CARPET);
 		registerRender(TATAMI_NS_CARPET);
 		registerRender(KITUNEBI);
+		registerRender(BAMBOO_BLOCK_SUNBURNT);
 		registerFluidBlockRendering(FOODOIL, "foodoil");
 		registerFluidBlockRendering(GRAPE_FLUID_BLOCK, "grape_fluid");
 		registerFluidBlockRendering(GREEN_GRAPE_FLUID_BLOCK, "green_grape_fluid");
@@ -296,10 +327,10 @@ public class BlockLoader {
 		registerFluidBlockRendering(BEER, "beer");
 		registerFluidBlockRendering(SHOUCHU, "shouchu");
 		registerFluidBlockRendering(VODKA, "vodka");
-		
+		registerRender(BAMBOO_FENCE);
+		registerRender(BAMBOO_FENCE_SUNBURNT);
 		registerRender(KAWARA_BLOCK);
 		registerRender(KAWARA);
-//		registerRender(SHOJI);
 		registerRender(ANDON);
 		registerRender(BAMBOO);
 		registerRender(BAMBOOSHOOT);
@@ -307,6 +338,7 @@ public class BlockLoader {
         registerRender(BAMBOODOOR);
         registerRender(BAMBOO_BLOCK);
         registerRender(BAMBOO_SLAB);
+        registerRender(BAMBOO_SLAB_SUNBURNT);
 		registerRender(SAKURA_LEAVES);
 		registerRender(SAKURA_LOG);
         registerRender(SAKURA_PLANK);

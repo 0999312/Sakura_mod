@@ -314,9 +314,9 @@ itemGroup.sakura_tabs=Sakura
 
 
 #Config
-sakura.config.vanilla_weight=Vanilla Generating Rate
-sakura.config.vanilla_weight.tooltip=Configure this to change the generating rate of Vanillas. Higher number for more Vanillas.
-sakura.config.pepper_weight=Pepper Generating Rate
-sakura.config.pepper_weight.tooltip=Configure this to change the generating rate of Peppers. Higher number for more Peppers.
-sakura.config.bambooshot_weight=Bamboo Shoots Generating Rate
-sakura.config.bambooshot_weight.tooltip=Configure this to change the generating rate of Bamboo Shoots. Higher number for more Vanilla.
+sakura.config.vanilla_weight=Vannila Weight
+sakura.config.vanilla_weight.tooltip=Changes generate rate of Vanilla. Increase value to gen more Vanilla.
+sakura.config.pepper_weight=Pepper Weight
+sakura.config.pepper_weight.tooltip=Changes generate rate of Pepper. Increase value to gen more Pepper.
+sakura.config.bambooshot_weight=BambooShot Weight
+sakura.config.bambooshot_weight.tooltip=Changes generate rate of BambooShot. Increase value to gen more BambooShot.

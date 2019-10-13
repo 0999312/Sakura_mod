@@ -13,8 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RenderTileEntityStoneMortar extends TileEntitySpecialRenderer<TileEntityStoneMortar> {
 
     private static final ResourceLocation TEXTURES = new ResourceLocation(SakuraMain.MODID, "textures/entity/tileentity/mortar.png");
-
-
+    
     private final ModelMortar model = new ModelMortar();
 
     public RenderTileEntityStoneMortar() {
@@ -52,9 +51,9 @@ public class RenderTileEntityStoneMortar extends TileEntitySpecialRenderer<TileE
         GlStateManager.scale(0.9995F, 0.9995F, 0.9995F);
         GlStateManager.translate(0.0F, -1.0F, 0.0F);
 
-
         this.model.block1.render(0.0625F);
-        GlStateManager.rotate(10.0F * te.getProgress(partialTicks), 0.0F, 1.0F, 0.0F);
+
+        GlStateManager.rotate((float) (1.8f * te.getUpdateTag().getInteger("processTimer")), 0.0F, 1.0F, 0.0F);
         this.model.block2.render(0.0625F);
         this.model.handle.render(0.0625F);
         GlStateManager.enableCull();

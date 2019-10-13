@@ -1,7 +1,9 @@
-package cn.mcmod.sakura.item;
+package cn.mcmod.sakura.item.armors;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.client.model.ModelStrawHat;
+import cn.mcmod.sakura.item.ItemLoader;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -17,7 +19,7 @@ public class ItemStrawHat extends ItemArmor {
     }
 
     @SideOnly(Side.CLIENT)
-    public net.minecraft.client.model.ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
+    public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
         return new ModelStrawHat();
     }
 

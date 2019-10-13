@@ -108,7 +108,7 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
                 {
                     if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
                     {
-                        spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed(),1,21));
+                        spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.MATERIAL,1,23));
                     }
                 }
             }

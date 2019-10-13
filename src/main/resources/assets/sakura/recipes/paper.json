@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "minecraft:paper",
+    "count": 4
+  },
+  "pattern": [
+    "LL"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

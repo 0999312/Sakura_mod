@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "sakura:andon"
+  },
+  "pattern": [
+    "SLS",
+    "SLS",
+    "SIS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#STICKWOOD"
+    },
+    "I": {
+      "item": "minecraft:torch"
+    },
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

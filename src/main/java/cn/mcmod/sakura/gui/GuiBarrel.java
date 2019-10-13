@@ -31,7 +31,7 @@ public class GuiBarrel extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+//        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override
@@ -49,14 +49,11 @@ public class GuiBarrel extends GuiContainer {
 
 
         int l2 = this.getCookProgressScaled(24);
-        this.drawTexturedModalRect(k + 93, l + 45, 176, 14, l2 + 1, 16);
+        this.drawTexturedModalRect(k + 63, l + 35, 176, 0, l2 + 1, 16);
 
         if (this.tilePot.getTank().getFluid() != null) {
             FluidTank fluidTank = this.tilePot.getTank();
             int heightInd = (int) (68 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
-           /* if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167 - heightInd, l + 11, heightInd, 16f);
-            }*/
 
             if (heightInd > 0) {
                 ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 18, l + 78 - heightInd, 16f, heightInd);
@@ -72,7 +69,7 @@ public class GuiBarrel extends GuiContainer {
             }*/
 
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 62, l + 78 - heightInd, 16f, heightInd);
+                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 89, l + 78 - heightInd, 16f, heightInd);
             }
 
         }

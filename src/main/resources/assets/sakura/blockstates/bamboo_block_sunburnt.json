@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "end": "sakura:blocks/bamboo_block_sunburnt_top",
+      "side": "sakura:blocks/bamboo_block_sunburnt",
+      "all": "sakura:blocks/bamboo_block_sunburnt"
+    }
+  },
+  "variants": {
+    "axis=y": {
+      "model": "cube_column"
+    },
+    "axis=z": {
+      "model": "cube_column",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "cube_column",
+      "x": 90,
+      "y": 90
+    },
+    "axis=none": {
+      "model": "cube_all"
+    },
+    "inventory": {
+      "model": "cube_column"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "sakura:samurai_shoes"
+  },
+  "pattern": [
+    "S S",
+    "S S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "sakura:sakura_diamond"
+    }
+  }
+}

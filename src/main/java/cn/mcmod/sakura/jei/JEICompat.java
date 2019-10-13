@@ -29,7 +29,7 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipeClickArea(GuiStoneMortar.class, 77, 32, 28, 23,"sakura.mortar");
 
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerCampfirePot.class,"sakura.cooking_pot", 0, 9, 10, 36);
-		recipeTransferRegistry.addRecipeTransferHandler(ContainerStoneMortar.class,"sakura.mortar", 0, 1, 2, 36);
+		recipeTransferRegistry.addRecipeTransferHandler(ContainerStoneMortar.class,"sakura.mortar", 0, 4, 6, 36);
 
 		registry.addRecipeCatalyst(new ItemStack(ItemLoader.POT),"sakura.cooking_pot");
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.STONEMORTAR),"sakura.mortar");

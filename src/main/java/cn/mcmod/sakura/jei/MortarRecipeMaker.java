@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.tileentity.TileEntityStoneMortar;
-import cn.mcmod.sakura.tileentity.TileEntityStoneMortar.MortarRecipes;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ public final class MortarRecipeMaker {
 	    IStackHelper stackHelper = helpers.getStackHelper(); 
 	    List<MortarRecipe> recipes = new ArrayList<MortarRecipe>();
 
-	    for (MortarRecipes recipe : TileEntityStoneMortar.mortarRecipesList) {
+	    for (MortarRecipes recipe : MortarRecipes.mortarRecipesList) {
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	for (Object obj : recipe.inputItems) {
 	    		List<ItemStack> subinputs = stackHelper.toItemStackList(obj);

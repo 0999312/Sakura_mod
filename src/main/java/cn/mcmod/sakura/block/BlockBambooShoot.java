@@ -16,6 +16,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -44,9 +45,8 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
         BlockPos blockpos = pos.up();
 
         if (worldIn.isAirBlock(blockpos)) {
-
+        	if(worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) > 2 + worldIn.rand.nextInt(6)){
             int j = state.getValue(AGE).intValue();
-
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                 if (j == 6) {
                     if(rand.nextInt() ==0){
@@ -60,7 +60,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
                 }
                 net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
             }
-
+        	}
         }
     }
 
@@ -91,9 +91,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         IBlockState state = worldIn.getBlockState(pos.down());
-
-        if (this.canBlockStay(worldIn, pos) && state.getBlock() != BlockLoader.BAMBOO) {
-
+        if (this.canBlockStay(worldIn, pos) && state.getBlock() != BlockLoader.BAMBOO ) {
             return super.canPlaceBlockAt(worldIn, pos);
         } else {
             return false;
@@ -108,7 +106,6 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
     }
 
     public boolean canBlockStay(World worldIn, BlockPos pos) {
-
         IBlockState state = worldIn.getBlockState(pos.down());
         return state.getBlock().canSustainPlant(state, worldIn, pos.down(), EnumFacing.UP, this) && !worldIn.getBlockState(pos.up()).getMaterial().isLiquid();
     }

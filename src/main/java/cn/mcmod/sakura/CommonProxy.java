@@ -1,13 +1,16 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
+import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
 import cn.mcmod.sakura.event.SakuraEventLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
+import cn.mcmod.sakura.world.gen.WorldGenLoader;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.World;
@@ -16,6 +19,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 @EventBusSubscriber
 public class CommonProxy {
@@ -31,15 +35,19 @@ public class CommonProxy {
 
         MinecraftForge.EVENT_BUS.register(new SakuraEventLoader());
         new SakuraOreDictLoader();
-
+        VillagerCreationWA.registerComponents();
+		VillagerCreationWA villageHandler = new VillagerCreationWA();
+		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
     }
 
     public void init(FMLInitializationEvent event) {
+    	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
+    	new WorldGenLoader();
         TileEntityRegistry.init();
+        BarrelRecipes.init();
         SakuraRecipeRegister.mortarRegister();
         SakuraRecipeRegister.potRegister();
         SakuraRecipeRegister.furnaceRegister();
-        SakuraRecipeRegister.barrelRegister();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

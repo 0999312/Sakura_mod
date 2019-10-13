@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "minecraft:stick",
+    "count": 2
+  },
+  "pattern": [
+    "L",
+    "L"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "L": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

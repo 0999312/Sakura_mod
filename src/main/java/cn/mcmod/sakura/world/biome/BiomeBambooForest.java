@@ -18,7 +18,6 @@ public class BiomeBambooForest extends Biome {
 	 protected static final WorldGenAbstractTree SAKURA_BIG = new WorldGenBigSakura(false);
     public BiomeBambooForest(BiomeProperties bambooForest) {
         super(bambooForest);
-
         this.decorator.treesPerChunk = 30;
         this.decorator.grassPerChunk = 25;
         this.decorator.flowersPerChunk = 4;

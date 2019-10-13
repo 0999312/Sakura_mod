@@ -1,6 +1,8 @@
 package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.block.BlockPlantBamboo;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,15 +17,18 @@ public class WorldGenBamboo extends WorldGenAbstractTree {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-
         int i = 9 + rand.nextInt(9);
 
         for (int i2 = 0; i2 < i; ++i2) {
             BlockPos blockpos = position.up(i2);
-            if (BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos) && (worldIn.isAirBlock(blockpos) || worldIn.getBlockState(blockpos).getMaterial() == Material.PLANTS)) {
-                this.setBlockAndNotifyAdequately(worldIn, blockpos, BlockLoader.BAMBOO.getDefaultState());
+            if ((BlockLoader.BAMBOOSHOOT.canBlockStay(worldIn, blockpos)||
+            		worldIn.getBlockState(blockpos.down()).getBlock() instanceof BlockPlantBamboo) && 
+            (worldIn.isAirBlock(blockpos) || 
+            		worldIn.getBlockState(blockpos).getMaterial() == Material.PLANTS
+            		&& !(worldIn.getBlockState(blockpos).getBlock() instanceof BlockLeaves))) {
+                worldIn.setBlockState(blockpos, BlockLoader.BAMBOO.getDefaultState(), 2);
             }
         }
-        return false;
+        return true;
     }
 }

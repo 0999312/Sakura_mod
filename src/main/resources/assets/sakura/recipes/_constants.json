@@ -5,6 +5,37 @@
       "ore": "bamboo"
     },
     "name": "BAMBOO"
+  },{
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    },
+    "name": "PAPER"
+  },{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "gemLapis"
+    },
+    "name": "GEMLAPIS"
+  },{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlue"
+    },
+    "name": "DYEBLUE"
+  },{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "cropSeaweed"
+    },
+    "name": "CROPSEAWEED"
+  },
+	{
+   "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "foodKetchup"
+    },
+    "name": "FOODKETCHUP"
   },
   {
     "ingredient": {
@@ -12,6 +43,13 @@
       "ore": "ingotIron"
     },
     "name": "INGOTIRON"
+  },
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotGold"
+    },
+    "name": "INGOTGOLD"
   },
   {
     "ingredient": {
@@ -432,5 +470,13 @@
       "ore": "woodLumber"
     },
     "name": "WOODLUMBER"
+  }
+,
+  {
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "name": "STICKWOOD"
   }
 ]

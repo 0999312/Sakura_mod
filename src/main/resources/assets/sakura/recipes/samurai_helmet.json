@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "sakura:samurai_helmet"
+  },
+  "pattern": [
+    "SGS",
+    "SIS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "sakura:sakura_diamond"
+    },
+    "G": {
+      "item": "#INGOTGOLD"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

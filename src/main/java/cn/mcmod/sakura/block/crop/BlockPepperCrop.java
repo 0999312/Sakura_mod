@@ -147,7 +147,6 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
 	
     public void grow(World worldIn, BlockPos pos, IBlockState state)
     {
-
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
     	if(i>= 2 && worldIn.getBlockState(pos.up()).getBlock() == BlockLoader.PEPPER_SPLINT)
