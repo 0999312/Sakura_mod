@@ -62,6 +62,7 @@ tile.sakura.plank_sakura.name=樱树木板
 tile.sakura.plank_maple.name=枫树木板
 tile.sakura.plank_bamboo.name=竹板
 tile.sakura.barrel.name=酿造桶
+tile.sakura.barrel_distillation.name=蒸馏桶
 tile.sakura.kitunebi.name=狐火
 tile.sakura.windbell.name=风铃
 tile.sakura.bamboo_fence_sunburnt.name=日晒竹栅栏
@@ -392,6 +393,11 @@ fluid.sake=清酒
 fluid.shouchu=日本烧酒
 fluid.beer=啤酒
 fluid.vodka=伏特加
+fluid.rum=朗姆酒
+fluid.brandy=白兰地
+fluid.whiskey=威士忌
+fluid.liqueur=利口酒
+fluid.cocoa_liqueur=可可利口酒
 
 #Container
 container.sakura.stonemortar=石磨
