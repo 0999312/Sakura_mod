@@ -1,7 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "sakura:entity/tileentity/stone_mortar",
-    "particle": "sakura:entity/tileentity/stone_mortar"
+    "particle": "blocks/cobblestone"
   }
 }

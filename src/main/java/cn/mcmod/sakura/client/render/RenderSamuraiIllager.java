@@ -47,7 +47,6 @@ public class RenderSamuraiIllager extends RenderLiving<EntityMob> {
      * Allows the render to do state modifications necessary before the model is rendered.
      */
     protected void preRenderCallback(EntityMob entitylivingbaseIn, float partialTickTime) {
-        float f = 0.9375F;
         GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
     }
 

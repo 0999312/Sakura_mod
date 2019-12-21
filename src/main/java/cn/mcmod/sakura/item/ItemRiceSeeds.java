@@ -35,44 +35,43 @@ public class ItemRiceSeeds extends Item implements IPlantable {
 
         if (raytraceresult == null) {
             return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
-        } else {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
-                BlockPos blockpos = raytraceresult.getBlockPos();
-
-                if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemstack)) {
-                    return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
-                }
-
-                BlockPos blockpos1 = blockpos.up();
-                IBlockState iblockstate = worldIn.getBlockState(blockpos);
-
-                if (iblockstate.getMaterial() == Material.WATER && ((Integer) iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 && worldIn.isAirBlock(blockpos1)) {
-                    // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
-                    worldIn.setBlockState(blockpos1, BlockLoader.RICECROP.getDefaultState());
-                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP, handIn).isCanceled()) {
-                        blocksnapshot.restore(true, false);
-                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
-                    }
-
-                    worldIn.setBlockState(blockpos1, BlockLoader.RICECROP.getDefaultState(), 11);
-
-                    if (playerIn instanceof EntityPlayerMP) {
-                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) playerIn, blockpos1, itemstack);
-                    }
-
-                    if (!playerIn.capabilities.isCreativeMode) {
-                        itemstack.shrink(1);
-                    }
-
-                    playerIn.addStat(StatList.getObjectUseStats(this));
-                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-                }
-            }
-
-            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
         }
+		if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK) {
+		    BlockPos blockpos = raytraceresult.getBlockPos();
+
+		    if (!worldIn.isBlockModifiable(playerIn, blockpos) || !playerIn.canPlayerEdit(blockpos.offset(raytraceresult.sideHit), raytraceresult.sideHit, itemstack)) {
+		        return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+		    }
+
+		    BlockPos blockpos1 = blockpos.up();
+		    IBlockState iblockstate = worldIn.getBlockState(blockpos);
+
+		    if (iblockstate.getMaterial() == Material.WATER && iblockstate.getValue(BlockLiquid.LEVEL).intValue() == 0 && worldIn.isAirBlock(blockpos1)) {
+		        // special case for handling block placement with water lilies
+		        net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
+		        worldIn.setBlockState(blockpos1, BlockLoader.RICECROP.getDefaultState());
+		        if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP, handIn).isCanceled()) {
+		            blocksnapshot.restore(true, false);
+		            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+		        }
+
+		        worldIn.setBlockState(blockpos1, BlockLoader.RICECROP.getDefaultState(), 11);
+
+		        if (playerIn instanceof EntityPlayerMP) {
+		            CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) playerIn, blockpos1, itemstack);
+		        }
+
+		        if (!playerIn.capabilities.isCreativeMode) {
+		            itemstack.shrink(1);
+		        }
+
+		        playerIn.addStat(StatList.getObjectUseStats(this));
+		        worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+		    }
+		}
+
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
     }
 
 

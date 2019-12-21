@@ -18,19 +18,18 @@ public class ContainerCampfirePot extends Container {
 
     public ContainerCampfirePot(InventoryPlayer inventory, TileEntityCampfirePot tile) {
         tileCampfire = tile;
-        addSlotToContainer(new Slot(tile, 0, 45, 11));
+        addSlotToContainer(new Slot(tile, 0, 45, 19));
         int i,j,k,l;
         for (k = 1; k <5; ++k)
-            addSlotToContainer(new Slot(tile, k, 18 + (k-1) * 18, 29));
+            addSlotToContainer(new Slot(tile, k, 18 + (k-1) * 18, 37));
         for (l = 5; l <9; ++l)
-            addSlotToContainer(new Slot(tile, l, 18 + (l-5) * 18, 47));
+            addSlotToContainer(new Slot(tile, l, 18 + (l-5) * 18, 55));
         addSlotToContainer(new Slot(tile, 9, 130, 46) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }
         });
-
 
         for (i = 0; i < 3; ++i)
             for (j = 0; j < 9; ++j)
@@ -82,64 +81,66 @@ public class ContainerCampfirePot extends Container {
         return tileCampfire.isUsableByPlayer(player);
     }
 
+    /**
+     * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
+     */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(slotIndex);
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
+    {
+        // 0-9: Contain inventory
+        // 10-36: Player inventory
+        // 37-46: Hot bar in the player inventory
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+        ItemStack itemStack = null;
+        Slot slot = this.inventorySlots.get(index);
 
-            switch (slotIndex) {
-			case 0:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
+
+            if (index >= 0 && index <= 9){
+                if (!this.mergeItemStack(itemStack1, 10, 46, true))
+                {
                     return ItemStack.EMPTY;
-			case 1:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
+                }
+
+                slot.onSlotChange(itemStack1, itemStack);
+            }
+            else if (index >= 10){
+            	if (index >= 10 && index < 37){
+                    if (!this.mergeItemStack(itemStack1, 37, 46, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (index >= 37 && index < 46 && !this.mergeItemStack(itemStack1, 10, 37, false))
+                {
                     return ItemStack.EMPTY;
-			case 2:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 3:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 4:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 5:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 6:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 7:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 8:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			case 9:
-                if (!this.mergeItemStack(itemstack1, 6, 41, true)) 
-                    return ItemStack.EMPTY;
-			default:
-              if (!this.mergeItemStack(itemstack1, 0, 9, false)) {
-              return ItemStack.EMPTY;
-			}
-            
-                slot.onSlotChange(itemstack1, itemstack);
+                }
+            }
+            else if (!this.mergeItemStack(itemStack1, 10, 46, false))
+            {
+                return ItemStack.EMPTY;
             }
 
-
-            if (itemstack1.getCount() == 0)
+            if (itemStack1.getCount() == 0)
+            {
                 slot.putStack(ItemStack.EMPTY);
+            }
             else
+            {
                 slot.onSlotChanged();
-            if (itemstack1.getCount() == itemstack.getCount())
-                return ItemStack.EMPTY;
+            }
 
-            slot.onTake(player, itemstack1);
+            if (itemStack1.getCount() == itemStack.getCount())
+            {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(par1EntityPlayer, itemStack1);
         }
-        return itemstack;
+
+        return itemStack;
     }
 }

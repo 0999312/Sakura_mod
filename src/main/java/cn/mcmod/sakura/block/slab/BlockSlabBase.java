@@ -56,7 +56,7 @@ public class BlockSlabBase extends Block {
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = getStateFromMeta(meta);
-        return state.getValue(HALF).equals(EnumBlockFrostHalf.FULL) ? state : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || (double) hitY <= 0.5D) ? state.withProperty(HALF, EnumBlockFrostHalf.BOTTOM) : state.withProperty(HALF, EnumBlockFrostHalf.TOP));
+        return state.getValue(HALF).equals(EnumBlockFrostHalf.FULL) ? state : (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || hitY <= 0.5D) ? state.withProperty(HALF, EnumBlockFrostHalf.BOTTOM) : state.withProperty(HALF, EnumBlockFrostHalf.TOP));
     }
 
     @Override

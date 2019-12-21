@@ -21,8 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import cn.mcmod.sakura.client.model.ModelKimono;
-
 import java.util.HashMap;
 
 public class ClientUtils {
@@ -77,8 +75,8 @@ public class ClientUtils {
 
         float leftoverW = w % iconWidth;
         float leftoverH = h % iconHeight;
-        float leftoverWf = leftoverW / (float) iconWidth;
-        float leftoverHf = leftoverH / (float) iconHeight;
+        float leftoverWf = leftoverW / iconWidth;
+        float leftoverHf = leftoverH / iconHeight;
 
         float iconUDif = uMax - uMin;
         float iconVDif = vMax - vMin;

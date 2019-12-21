@@ -7,7 +7,11 @@ import cn.mcmod.sakura.item.armors.ItemHaori;
 import cn.mcmod.sakura.item.armors.ItemKimono;
 import cn.mcmod.sakura.item.armors.ItemSamuraiArmors;
 import cn.mcmod.sakura.item.armors.ItemStrawHat;
-import cn.mcmod.sakura.item.drinks.DrinkBasic;
+import cn.mcmod.sakura.item.katana.ItemKatana;
+import cn.mcmod.sakura.item.katana.ItemKotachi;
+import cn.mcmod.sakura.item.katana.ItemSheath;
+import cn.mcmod.sakura.item.katana.ItemSheathKatana;
+import cn.mcmod.sakura.item.katana.ItemShinai;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
@@ -99,6 +103,11 @@ public class ItemLoader {
                     6, 6, 4,//107
                     3, 6, 6,//110
                     6, 2, 6,
+                    1, 2, 2,
+                    2, 2, 2,
+                    
+                    1, 4, 1,
+                    8, 8, 8,
             },
             new float[]{
                     1F * 0.25F, 3F * 0.25F, 5F * 0.25F,
@@ -139,6 +148,10 @@ public class ItemLoader {
                     6F * 0.25F, 6F * 0.25F, 4F * 0.25F,//107
                     2F * 0.25F, 5F * 0.25F, 4F * 0.25F,//110
                     5F * 0.25F, 2F * 0.01F, 6F * 0.25F,
+                    0.2F      , 0.2F      , 0.2F,
+                    0.2F      , 0.2F      , 0.2F,
+                    0.1F, 0.5F, 0.2F,
+                    8F * 0.25F, 8F * 0.25F, 8F * 0.25F,
             },
             new String[]{
                     SakuraMain.MODID + "." + "grape",
@@ -292,6 +305,22 @@ public class ItemLoader {
                     SakuraMain.MODID + "." + "fruitsalad",//111
                     SakuraMain.MODID + "." + "raw_taiyaki",//112
                     SakuraMain.MODID + "." + "taiyaki",//113
+                    
+                    SakuraMain.MODID + "." + "lemon",//114
+                    SakuraMain.MODID + "." + "lemon_juice",//115
+                    SakuraMain.MODID + "." + "soda_water",//116
+                    
+                    SakuraMain.MODID + "." + "almond",//117
+                    SakuraMain.MODID + "." + "blackcurrant_juice",//118
+                    SakuraMain.MODID + "." + "orange_juice",//119
+                    
+                    SakuraMain.MODID + "." + "grape_green",//120
+                    SakuraMain.MODID + "." + "sliced_cabbage",//121
+                    SakuraMain.MODID + "." + "sushi_shrimp",//122
+                    
+                    SakuraMain.MODID + "." + "curry_omurice",//123
+                    SakuraMain.MODID + "." + "katsu_dish",//124
+                    SakuraMain.MODID + "." + "croquette_dish",//125
             });
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
     public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
@@ -330,6 +359,20 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "noodle_soup",//32
             SakuraMain.MODID + "." + "soysause",//33
             SakuraMain.MODID + "." + "seaweed",//34
+            SakuraMain.MODID + "." + "alkaline",//35
+            SakuraMain.MODID + "." + "yeast",//36
+            SakuraMain.MODID + "." + "hop",//37
+            
+            SakuraMain.MODID + "." + "brown_rice",//38
+            SakuraMain.MODID + "." + "green_tea_leaves",//39
+            SakuraMain.MODID + "." + "black_tea_leaves",//40
+            SakuraMain.MODID + "." + "earl_grey_leaves",//41
+            SakuraMain.MODID + "." + "fruit_tea_leaves",//42
+            SakuraMain.MODID + "." + "mocha",//43
+            SakuraMain.MODID + "." + "rice_tea_leaves",//44
+            SakuraMain.MODID + "." + "mint",//45
+            SakuraMain.MODID + "." + "mint_tea_leaves",//46
+            SakuraMain.MODID + "." + "empty_bottle",//47
     });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
@@ -337,17 +380,17 @@ public class ItemLoader {
     public static Item KATANA = new ItemKatana(Item.ToolMaterial.IRON, "katana");
     public static Item TACHI = new ItemKatana(TACHI_TOOLMATERIAL, "tachi");
     public static Item KODACHI = new ItemKotachi(Item.ToolMaterial.IRON, "kodachi");
-//    
+    public static ItemSheath SHEATH = new ItemSheath();
     public static Item SHINAI = new ItemShinai("shinai");
     public static Item SAKURAKATANA = new ItemKatana(SAKURA_TOOLMATERIAL, "sakura_katana");
     public static Item SAKURAKODACHI = new ItemKotachi(SAKURA_TOOLMATERIAL, "sakura_kodachi");
     public static Item HYDRA_RAMEN = new ItemFood(20, 14F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.REGENERATION, 220, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.SATURATION, 80, 0), 0.4F);
     public static Item BUGGYS_MEAT = new ItemBuggysMeat(20, 22F * 0.25F, false).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 2000, 0), 1.0F).setPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 2400, 1), 1.0F);
-
-
     public static Item STRAW_HAT = new ItemStrawHat();
     public static Item KIMONO = new ItemKimono();
     public static Item HAORI = new ItemHaori();
+    public static ItemSheathKatana KATANA_SHEATH = new ItemSheathKatana(KATANA);
+    public static ItemSheathKatana SAKURAKATANA_SHEATH = new ItemSheathKatana(SAKURAKATANA);
     public ItemLoader(FMLPreInitializationEvent event) {
     	register(cup);
         register(POT);
@@ -376,11 +419,13 @@ public class ItemLoader {
         register(HYDRA_RAMEN.setUnlocalizedName(SakuraMain.MODID + "." + "hydra_ramen"));
         register(BUGGYS_MEAT);
         register(STRAW_HAT);
-
         register(BROOM);
         register(SHINAI);
         register(KATANA);
         register(SAKURAKATANA);
+        register(SHEATH);
+        register(KATANA_SHEATH);
+        register(SAKURAKATANA_SHEATH);
         register(KODACHI);
         register(SAKURAKODACHI);
         register(TACHI);
@@ -400,6 +445,7 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(SHEATH);
     	registerRender(HAORI);
     	registerRender(KIMONO);
     	registerRender(BROOM);
@@ -437,6 +483,8 @@ public class ItemLoader {
         registerRender(SAKURA_DIAMOND);
         registerRender(KATANA);
         registerRender(SAKURAKATANA);
+        registerRender(KATANA_SHEATH);
+        registerRender(SAKURAKATANA_SHEATH);
         registerRender(cup);
     }
 

@@ -2,7 +2,6 @@ package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import cn.mcmod.sakura.world.gen.WorldGenMapleTreeGreen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -33,7 +32,7 @@ public class BlockMapleSaplingGreen extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = (WorldGenerator)(rand.nextInt(8) == 0 ? new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),true) : new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),false));
+        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),true) : new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),false);
 
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

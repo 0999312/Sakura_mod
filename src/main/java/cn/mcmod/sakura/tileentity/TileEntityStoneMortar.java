@@ -14,10 +14,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.oredict.OreDictionary;
-
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 
 public class TileEntityStoneMortar extends TileEntity implements ITickable, IInventory {
     private int processTimer = 0;
@@ -183,9 +180,8 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
             return false;
-        } else {
-            return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
         }
+		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override

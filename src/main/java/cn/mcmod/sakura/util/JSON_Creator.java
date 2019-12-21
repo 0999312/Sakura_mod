@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.util;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
 
@@ -19,7 +18,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -59,7 +58,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -93,7 +92,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -167,7 +166,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_uneaten"+ ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -187,7 +186,7 @@ public class JSON_Creator {
             writer.close();
             
             Writer writer1 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice1"+ ".json"), "UTF-8");
-            Gson gson1 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw1 = new JsonWriter(writer1);
 
@@ -208,7 +207,7 @@ public class JSON_Creator {
             writer1.close();
             
             Writer writer11 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice2"+ ".json"), "UTF-8");
-            Gson gson11 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw11 = new JsonWriter(writer11);
 
@@ -229,7 +228,7 @@ public class JSON_Creator {
             writer11.close();
             
             Writer writer111 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice3"+ ".json"), "UTF-8");
-            Gson gson111 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw111 = new JsonWriter(writer111);
 
@@ -250,7 +249,7 @@ public class JSON_Creator {
             writer111.close();
             
             Writer writer1111 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice4"+ ".json"), "UTF-8");
-            Gson gson1111 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw1111 = new JsonWriter(writer1111);
 
@@ -271,7 +270,7 @@ public class JSON_Creator {
             writer1111.close();
             
             Writer writer11111 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice5"+ ".json"), "UTF-8");
-            Gson gson11111 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw11111 = new JsonWriter(writer11111);
 
@@ -292,7 +291,7 @@ public class JSON_Creator {
             writer11111.close();
             
             Writer writer111111 = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName+"_slice6"+ ".json"), "UTF-8");
-            Gson gson111111 = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw111111 = new JsonWriter(writer111111);
 
@@ -333,7 +332,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + blockName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -365,7 +364,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + itemName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -395,7 +394,7 @@ public class JSON_Creator {
         }
         try {
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + itemName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 
@@ -429,7 +428,7 @@ public class JSON_Creator {
         try {
 
             Writer writer = new OutputStreamWriter(new FileOutputStream(fileDir + "\\" + itemName + ".json"), "UTF-8");
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            new GsonBuilder().setPrettyPrinting().create();
             @SuppressWarnings("resource")
 			JsonWriter jw = new JsonWriter(writer);
 

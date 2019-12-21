@@ -2,7 +2,6 @@ package cn.mcmod.sakura.client.model;
 
 import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,7 +10,6 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Rotations;
 
 public class ModelCustomArmor
   extends ModelBiped

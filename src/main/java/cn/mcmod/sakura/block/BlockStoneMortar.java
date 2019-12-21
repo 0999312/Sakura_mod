@@ -37,13 +37,12 @@ public class BlockStoneMortar extends BlockContainer implements ITileEntityProvi
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             return true;
-        } else {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if (tileEntity instanceof TileEntityStoneMortar) {
-                player.openGui(SakuraMain.instance, SakuraGuiHandler.ID_STONEMORTAR, world, pos.getX(), pos.getY(), pos.getZ());
-            }
-            return true;
         }
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof TileEntityStoneMortar) {
+		    player.openGui(SakuraMain.instance, SakuraGuiHandler.ID_STONEMORTAR, world, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
     }
 
     @Nullable

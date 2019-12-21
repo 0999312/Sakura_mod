@@ -42,16 +42,8 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
     /**
      * The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for
      */
-    private int currentItemBurnTime;
     private int cookTime;
     private boolean isFinishedCook;
-
-//    public void readFromNBT(NBTTagCompound compound) {
-//        super.readFromNBT(compound);
-
-//
-//    }
-
 
     public ItemStackHandler getInventory() {
         return this.inventory;
@@ -164,7 +156,8 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-    @Override
+	@SuppressWarnings("unchecked")
+	@Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) inventory : super.getCapability(capability, facing);
     }

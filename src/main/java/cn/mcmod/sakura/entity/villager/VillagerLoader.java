@@ -7,7 +7,6 @@ import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager.ITradeList;
 import net.minecraft.entity.passive.EntityVillager.PriceInfo;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;

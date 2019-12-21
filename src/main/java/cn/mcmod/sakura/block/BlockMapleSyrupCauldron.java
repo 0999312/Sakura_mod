@@ -93,36 +93,32 @@ public class BlockMapleSyrupCauldron extends Block {
 
         if (itemstack.isEmpty()) {
             return true;
-        } else {
-            int i = ((Integer) state.getValue(LEVEL)).intValue();
-            Item item = itemstack.getItem();
-            if (item == Items.GLASS_BOTTLE) {
-                if (i > 0 && !worldIn.isRemote) {
-                    if (!playerIn.capabilities.isCreativeMode) {
-                        ItemStack itemstack3 = new ItemStack(ItemLoader.MAPLE_SYRUP);
-                        playerIn.addStat(StatList.CAULDRON_USED);
-                        itemstack.shrink(1);
-
-                        if (itemstack.isEmpty()) {
-                            playerIn.setHeldItem(hand, itemstack3);
-                        } else if (!playerIn.inventory.addItemStackToInventory(itemstack3)) {
-                            playerIn.dropItem(itemstack3, false);
-                        } else if (playerIn instanceof EntityPlayerMP) {
-                            ((EntityPlayerMP) playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                        }
-                    }
-
-                    worldIn.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    this.setSyrupLevel(worldIn, pos, state, i - 1);
-                }
-
-                return true;
-            } else {
-
-                return false;
-
-            }
         }
+		int i = state.getValue(LEVEL).intValue();
+		Item item = itemstack.getItem();
+		if (item == Items.GLASS_BOTTLE) {
+		    if (i > 0 && !worldIn.isRemote) {
+		        if (!playerIn.capabilities.isCreativeMode) {
+		            ItemStack itemstack3 = new ItemStack(ItemLoader.MAPLE_SYRUP);
+		            playerIn.addStat(StatList.CAULDRON_USED);
+		            itemstack.shrink(1);
+
+		            if (itemstack.isEmpty()) {
+		                playerIn.setHeldItem(hand, itemstack3);
+		            } else if (!playerIn.inventory.addItemStackToInventory(itemstack3)) {
+		                playerIn.dropItem(itemstack3, false);
+		            } else if (playerIn instanceof EntityPlayerMP) {
+		                ((EntityPlayerMP) playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+		            }
+		        }
+
+		        worldIn.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		        this.setSyrupLevel(worldIn, pos, state, i - 1);
+		    }
+
+		    return true;
+		}
+		return false;
     }
 
     public void setSyrupLevel(World worldIn, BlockPos pos, IBlockState state, int level) {
@@ -150,7 +146,7 @@ public class BlockMapleSyrupCauldron extends Block {
     }
 
     public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos) {
-        return ((Integer) blockState.getValue(LEVEL)).intValue();
+        return blockState.getValue(LEVEL).intValue();
     }
 
     /**
@@ -164,7 +160,7 @@ public class BlockMapleSyrupCauldron extends Block {
      * Convert the BlockState into the correct metadata value
      */
     public int getMetaFromState(IBlockState state) {
-        return ((Integer) state.getValue(LEVEL)).intValue();
+        return state.getValue(LEVEL).intValue();
     }
 
     protected BlockStateContainer createBlockState() {
@@ -190,8 +186,7 @@ public class BlockMapleSyrupCauldron extends Block {
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
         if (face == EnumFacing.UP) {
             return BlockFaceShape.BOWL;
-        } else {
-            return face == EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
         }
+		return face == EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
     }
 }

@@ -26,6 +26,8 @@ public class SakuraOreDictLoader {
 		registerOre("cropBambooshoot", new ItemStack(BlockLoader.BAMBOOSHOOT));
 		registerOre("bamboo", new ItemStack(BlockLoader.BAMBOO));
 
+		registerOre("listAlltofu", new ItemStack(ItemLoader.FOODSET,1,81));
+
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.SAKURA_LOG), 1));
 		registerOre("foodNatto", new ItemStack(ItemLoader.FOODSET, 1, 63));
@@ -36,10 +38,18 @@ public class SakuraOreDictLoader {
         registerOre("plankWood", new ItemStack(BlockLoader.MAPLE_PLANK, 1));
         registerOre("plankWood", new ItemStack(BlockLoader.SAKURA_PLANK, 1));
         registerOre("plankWood", new ItemStack(BlockLoader.BAMBOO_PLANK, 1));
+        
+        registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_GREEN, 1));
+        registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_ORANGE, 1));
+        registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_RED, 1));
+        registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_YELLOW, 1));
+        registerOre("treeLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
+        registerOre("sakuraLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
+		
 		
 		registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
-//		"cropRadish"
+
 		registerOre("cropRadish", new ItemStack(ItemLoader.RADISH, 1));
 		registerOre("cropCabbage", new ItemStack(ItemLoader.CABBAGE, 1));
 		registerOre("cropEggplant", new ItemStack(ItemLoader.EGGPLANT, 1));
@@ -53,6 +63,7 @@ public class SakuraOreDictLoader {
 		registerOre("seedEggplant", new ItemStack(ItemLoader.EGGPLANT_SEEDS, 1));
 		registerOre("seedTomato", new ItemStack(ItemLoader.TOMATO_SEEDS, 1));
 		registerOre("cropGrape", new ItemStack(ItemLoader.FOODSET, 1,0));
+		registerOre("cropGreengrape", new ItemStack(ItemLoader.FOODSET, 1,120));
 		registerOre("cropVanillabean", new ItemStack(ItemLoader.MATERIAL, 1,21));
 		registerOre("foodVanilla", new ItemStack(ItemLoader.MATERIAL, 1,22));
 		registerOre("cropPeppercorn", new ItemStack(ItemLoader.MATERIAL, 1,18));
@@ -75,12 +86,23 @@ public class SakuraOreDictLoader {
 		registerOre("listAllseed", new ItemStack(ItemLoader.RAPESEED, 1));
 		registerOre("listAllseed", new ItemStack(ItemLoader.ONION_SEEDS, 1));
 		
+		registerOre("cropTea", new ItemStack(ItemLoader.MATERIAL, 1, 39));
 		registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		registerOre("foodWhitepepper", new ItemStack(ItemLoader.MATERIAL, 1, 28));
 		registerOre("foodCheese", new ItemStack(ItemLoader.FOODSET, 1, 5));
-
+		registerOre("foodYeast", new ItemStack(ItemLoader.MATERIAL, 1, 36));
+		registerOre("cropHops", new ItemStack(ItemLoader.MATERIAL, 1, 37));
 		registerOre("listAllfruit", new ItemStack(ItemLoader.FOODSET, 1, 0));
+		registerOre("listAllfruit", new ItemStack(ItemLoader.FOODSET, 1, 114));
+		registerOre("cropLemon", new ItemStack(ItemLoader.FOODSET, 1, 114));
+		registerOre("listAllcitrus", new ItemStack(ItemLoader.FOODSET, 1, 114));
+		registerOre("foodPeppermint", new ItemStack(ItemLoader.MATERIAL, 1, 45));
+		registerOre("foodLimejuice", new ItemStack(ItemLoader.FOODSET, 1, 115));
+		registerOre("foodBubblywater", new ItemStack(ItemLoader.FOODSET, 1, 116));
+		registerOre("cropAlmond", new ItemStack(ItemLoader.FOODSET, 1, 117));
+		registerOre("foodBlackberryjuice", new ItemStack(ItemLoader.FOODSET, 1, 118));
+		registerOre("foodOrangejuice", new ItemStack(ItemLoader.FOODSET, 1, 119));
 		registerVanillaFoods();
 	}
 	

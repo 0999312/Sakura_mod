@@ -2,7 +2,6 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.BlockRotatedPillar;
-import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -74,13 +73,11 @@ public class BlockBambooBlock extends BlockRotatedPillar {
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        switch (rot)
-        {
+        switch (rot){
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
 
-                switch ((EnumAxis)state.getValue(LOG_AXIS))
-                {
+                switch (state.getValue(LOG_AXIS)){
                     case X:
                         return state.withProperty(LOG_AXIS, EnumAxis.Z);
                     case Z:

@@ -1,8 +1,7 @@
 package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
-
-import javax.annotation.Nonnull;
+import java.util.Iterator;
 
 import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.inventory.IInventory;
@@ -95,9 +94,35 @@ public class MortarRecipes {
         return resultItems.clone();
     }
 
-    public static void addMortarRecipe(MortarRecipes recipes) {
+    public static void addRecipe(MortarRecipes recipes) {
         mortarRecipesList.add(recipes);
     }
 
-
+    public static void ClearRecipe(Object[] inputs) {
+		Iterator<MortarRecipes> iter = mortarRecipesList.iterator();
+		while(iter.hasNext()){
+			MortarRecipes recipe = iter.next();
+			if(check(inputs[0], recipe.resultItems[0])
+			&&check(inputs[1], recipe.resultItems[1]))
+				iter.remove();
+		}
+	}
+	
+    private static boolean check(Object a,ItemStack b) {
+    	if(a instanceof ItemStack||a instanceof String){
+			if(a instanceof ItemStack&&ItemStack.areItemStacksEqual((ItemStack)a, b)) 
+				return true;
+			if(a instanceof String) {
+				NonNullList<ItemStack> ore = OreDictionary.getOres((String) a);
+				if(RecipesUtil.containsMatch(false, ore, b))
+				return true;
+			}
+		}
+		else throw new IllegalArgumentException("Not a itemStack or Ore Dictionary");
+		return false;
+	}
+    
+    public static void ClearAllRecipe() {
+    	mortarRecipesList.clear();
+	}
 }

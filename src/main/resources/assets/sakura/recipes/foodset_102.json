@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 102,
+    "count": 3
+  },
+  "ingredients": [
+    {
+      "item": "#CROPSEAWEED"
+    },
+    {
+      "item": "#LISTALLVEGGIE"
+    },
+    {
+      "item": "#LISTALLFISHRAW"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 99
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 7
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

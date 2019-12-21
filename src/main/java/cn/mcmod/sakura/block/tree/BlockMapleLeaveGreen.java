@@ -8,14 +8,10 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -43,12 +39,12 @@ public class BlockMapleLeaveGreen extends BlockLeaves {
             int j = rand.nextInt(2) * 2 - 1;
             int k = rand.nextInt(2) * 2 - 1;
 
-            double d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-            double d1 = (double) ((float) pos.getY() - 0.15D);
-            double d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
-            double d3 = (double) (rand.nextFloat() * (float) j) * 0.1D;
-            double d4 = (((double) rand.nextFloat()) * 0.055D) + 0.015D;
-            double d5 = (double) (rand.nextFloat() * (float) k) * 0.1D;
+            double d0 = pos.getX() + 0.5D + 0.25D * j;
+            double d1 = pos.getY() - 0.15D;
+            double d2 = pos.getZ() + 0.5D + 0.25D * k;
+            double d3 = rand.nextFloat() * j * 0.1D;
+            double d4 = ((rand.nextFloat()) * 0.055D) + 0.015D;
+            double d5 = rand.nextFloat() * k * 0.1D;
 
             SakuraMain.proxy.spawnParticle(SakuraParticleType.MAPLEGREEN, d0, d1, d2, d3, -d4, d5);
         }
@@ -97,13 +93,6 @@ public class BlockMapleLeaveGreen extends BlockLeaves {
     }
 
     @Override
-    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
-        if (worldIn.rand.nextInt(chance) >= 0 && worldIn.rand.nextInt(chance) <= 4) {
-            /* spawnAsEntity(worldIn, pos, new ItemStack(Tofu));*/
-        }
-    }
-
-    @Override
     public ItemStack getSilkTouchDrop(IBlockState state) {
         return new ItemStack(this, 1);
     }
@@ -128,31 +117,4 @@ public class BlockMapleLeaveGreen extends BlockLeaves {
         return NonNullList.withSize(1, new ItemStack(this, 1));
     }
 
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 60;
-    }
-
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 30;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean isOpaqueCube(IBlockState state) {
-        return !Minecraft.getMinecraft().gameSettings.fancyGraphics;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return (Minecraft.getMinecraft().gameSettings.fancyGraphics || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) && Blocks.STONE.shouldSideBeRendered(blockState, blockAccess, pos, side);
-    }
 }

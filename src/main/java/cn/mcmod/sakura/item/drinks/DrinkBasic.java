@@ -2,8 +2,6 @@ package cn.mcmod.sakura.item.drinks;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.item.ItemLoader;
-import cn.mcmod.sakura.util.RecipesUtil;
-import cn.mcmod.sakura.util.TagPropertyAccessor.TagPropertyInteger;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,46 +31,26 @@ import toughasnails.api.thirst.ThirstHelper;
 @Interface(iface="toughasnails.api.thirst.IDrink", modid="toughasnails")
 public class DrinkBasic extends ItemFood {
 	private PotionEffect[][] effect;
-	private int max_cups;
-	
 	public String[] subNames;
-
-	
-	public static final TagPropertyInteger cup_amount = new TagPropertyInteger("cup_amount");
-	public static final TagPropertyInteger max_cup_amount = new TagPropertyInteger("max_cup_amount");
-	public DrinkBasic(String name,int cups, String[] subNames, PotionEffect[][] effects) {
+	public DrinkBasic(String name,String[] subNames, PotionEffect[][] effects) {
 		super(1, 0.1f, false);
 		this.setUnlocalizedName(SakuraMain.MODID+"."+name);
 		this.setAlwaysEdible();
 		this.setHasSubtypes(subNames!=null&&subNames.length > 0);
 		this.setMaxStackSize(1);
 		this.effect=effects!=null&&effects.length>0?effects:null;
-		this.max_cups = cups;
 		this.subNames = subNames!=null&&subNames.length > 0?subNames: null;
-	}
-
-	public int getMaxCup() {
-		return this.max_cups;
 	}
 	
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if(this.isInCreativeTab(tab))
-			if(getSubNames()!=null)
-			{
+			if(getSubNames()!=null){
 				for(int i = 0; i < getSubNames().length; i++){
 						ItemStack stack =new ItemStack(this, 1, i);
-						cup_amount.set(RecipesUtil.getItemTagCompound(stack), 0);
-						max_cup_amount.set(RecipesUtil.getItemTagCompound(stack), max_cups);
 						list.add(stack);
 						}
 			}
-			else{
-				ItemStack stack =new ItemStack(this);
-				cup_amount.set(RecipesUtil.getItemTagCompound(stack), 0);
-				max_cup_amount.set(RecipesUtil.getItemTagCompound(stack), max_cups);
-				list.add(stack);
-				}
 	}
 
 	public String[] getSubNames() {
@@ -85,13 +63,6 @@ public class DrinkBasic extends ItemFood {
 			return subName;
 		}
 		return this.getUnlocalizedName();
-	}
-	
-	@Override
-	public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
-		cup_amount.set(RecipesUtil.getItemTagCompound(stack), 0);
-		max_cup_amount.set(RecipesUtil.getItemTagCompound(stack), max_cups);
-		super.onCreated(stack, worldIn, playerIn);
 	}
 	
 	public PotionEffect[] getEffectList(ItemStack stack){
@@ -111,10 +82,7 @@ public class DrinkBasic extends ItemFood {
             playerIn.setActiveHand(handIn);
             return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }
-        else
-        {
-            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
-        }
+		return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
     }
 	 public EnumAction getItemUseAction(ItemStack stack)
 	    {
@@ -133,30 +101,10 @@ public class DrinkBasic extends ItemFood {
 	            {
 	                CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack);
 	            }
-	            int cups = cup_amount.get(RecipesUtil.getItemTagCompound(stack));
-	            if(cups <max_cup_amount.get(RecipesUtil.getItemTagCompound(stack))){
-	            	cup_amount.add(RecipesUtil.getItemTagCompound(stack), 1);
-	       		 System.out.println("cups:"+cup_amount.get(RecipesUtil.getItemTagCompound(stack)));
-	            	return stack;
-	            }else{
-	            	cup_amount.set(RecipesUtil.getItemTagCompound(stack), max_cup_amount.get(RecipesUtil.getItemTagCompound(stack)));
-	       		 return new ItemStack(ItemLoader.cup,1,0);
-	            }
 	        }
-		 System.out.println("?cups:"+cup_amount.get(RecipesUtil.getItemTagCompound(stack)));
 		 return new ItemStack(ItemLoader.cup,1,0);
 	    }
 
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return cup_amount.get(RecipesUtil.getItemTagCompound(stack))>0;
-	} 
-	 
-	 @Override
-	public double getDurabilityForDisplay(ItemStack stack) {
-		return (double)cup_amount.get(RecipesUtil.getItemTagCompound(stack))/(double)max_cup_amount.get(RecipesUtil.getItemTagCompound(stack));
-	}
-	 
 	@Override
 	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
 		if(getEffectList(stack)!=null&&getEffectList(stack).length>0){
@@ -177,8 +125,6 @@ public class DrinkBasic extends ItemFood {
 			}
 		}
 	}
-	
-
 	
 	  @Method(modid="toughasnails")
 	  public void drink(EntityLivingBase entity)

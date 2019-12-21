@@ -1,7 +1,8 @@
 package cn.mcmod.sakura;
 
+import org.lwjgl.input.Keyboard;
+
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.block.door.BlockShoji;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.client.particle.ParticleMapleGreenLeaf;
 import cn.mcmod.sakura.client.particle.ParticleMapleOrangeLeaf;
@@ -14,23 +15,13 @@ import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,7 +29,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
     public static ResourceLocation leafTexture = new ResourceLocation(SakuraMain.MODID, "textures/particles/leaf.png");
-
+    public static KeyBinding ChangeMode;
+    
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
@@ -53,18 +45,14 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-
+        ChangeMode = new KeyBinding("key.sakura.sheath_in", Keyboard.KEY_V, "key.categories.sakura");
+        ClientRegistry.registerKeyBinding(ChangeMode); 
     }
 
     @Override
     public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
 
-    }
-
-    @Override
-    public World getClientWorld() {
-        return FMLClientHandler.instance().getClient().world;
     }
 
     @Override

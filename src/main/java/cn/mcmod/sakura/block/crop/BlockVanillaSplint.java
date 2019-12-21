@@ -18,10 +18,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class BlockVanillaSplint extends Block {
 
@@ -71,7 +69,6 @@ public class BlockVanillaSplint extends Block {
     }
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-    	// TODO Auto-generated method stub
     	return worldIn.getBlockState(pos.down()).getMaterial()==Material.GROUND||worldIn.getBlockState(pos.down()).getMaterial()==Material.GRASS
     			||worldIn.getBlockState(pos.down()).getBlock()==BlockLoader.VANILLA_SPLINT||worldIn.getBlockState(pos.down()).getBlock()==BlockLoader.VANILLACROP;
     }

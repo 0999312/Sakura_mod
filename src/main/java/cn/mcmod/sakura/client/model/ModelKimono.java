@@ -1,8 +1,5 @@
 package cn.mcmod.sakura.client.model;
 
-import java.util.HashMap;
-import java.util.List;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -10,9 +7,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
@@ -323,57 +317,5 @@ public class ModelKimono extends ModelCustomArmor
     }
   }
   
-  @Override
-  public void setRotationAnglesZombie(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-  {
-    super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-    
-    boolean flag = ((entityIn instanceof EntityZombie)) && (((EntityZombie)entityIn).isArmsRaised());
-    float f = MathHelper.sin(this.swingProgress * 3.1415927F);
-    float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * 3.1415927F);
-    this.rightArm.rotateAngleZ = 0.0F;
-    this.leftArm.rotateAngleZ = 0.0F;
-    this.rightArm.rotateAngleY = (-(0.1F - f * 0.6F));
-    this.leftArm.rotateAngleY = (0.1F - f * 0.6F);
-    float f2 = -3.1415927F / (flag ? 1.5F : 2.25F);
-    this.rightArm.rotateAngleX = f2;
-    this.leftArm.rotateAngleX = f2;
-    this.rightArm.rotateAngleX += f * 1.2F - f1 * 0.4F;
-    this.leftArm.rotateAngleX += f * 1.2F - f1 * 0.4F;
-    this.rightArm.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-    this.leftArm.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-    this.rightArm.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-    this.leftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-  }
-  
-  @Override
-  public void setRotationAnglesStand(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-  {
-    if ((entityIn instanceof EntityArmorStand))
-    {
-      EntityArmorStand entityarmorstand = (EntityArmorStand)entityIn;
-      this.bipedHead.rotateAngleX = (0.017453292F * entityarmorstand.getHeadRotation().getX());
-      this.bipedHead.rotateAngleY = (0.017453292F * entityarmorstand.getHeadRotation().getY());
-      this.bipedHead.rotateAngleZ = (0.017453292F * entityarmorstand.getHeadRotation().getZ());
-      this.bipedHead.setRotationPoint(0.0F, 1.0F, 0.0F);
-      this.bipedBody.rotateAngleX = (0.017453292F * entityarmorstand.getBodyRotation().getX());
-      this.bipedBody.rotateAngleY = (0.017453292F * entityarmorstand.getBodyRotation().getY());
-      this.bipedBody.rotateAngleZ = (0.017453292F * entityarmorstand.getBodyRotation().getZ());
-      this.leftArm.rotateAngleX = (0.017453292F * entityarmorstand.getLeftArmRotation().getX());
-      this.leftArm.rotateAngleY = (0.017453292F * entityarmorstand.getLeftArmRotation().getY());
-      this.leftArm.rotateAngleZ = (0.017453292F * entityarmorstand.getLeftArmRotation().getZ());
-      this.rightArm.rotateAngleX = (0.017453292F * entityarmorstand.getRightArmRotation().getX());
-      this.rightArm.rotateAngleY = (0.017453292F * entityarmorstand.getRightArmRotation().getY());
-      this.rightArm.rotateAngleZ = (0.017453292F * entityarmorstand.getRightArmRotation().getZ());
-      this.bipedLeftLeg.rotateAngleX = (0.017453292F * entityarmorstand.getLeftLegRotation().getX());
-      this.bipedLeftLeg.rotateAngleY = (0.017453292F * entityarmorstand.getLeftLegRotation().getY());
-      this.bipedLeftLeg.rotateAngleZ = (0.017453292F * entityarmorstand.getLeftLegRotation().getZ());
-      this.bipedLeftLeg.setRotationPoint(1.9F, 11.0F, 0.0F);
-      this.bipedRightLeg.rotateAngleX = (0.017453292F * entityarmorstand.getRightLegRotation().getX());
-      this.bipedRightLeg.rotateAngleY = (0.017453292F * entityarmorstand.getRightLegRotation().getY());
-      this.bipedRightLeg.rotateAngleZ = (0.017453292F * entityarmorstand.getRightLegRotation().getZ());
-      this.bipedRightLeg.setRotationPoint(-1.9F, 11.0F, 0.0F);
-      copyModelAngles(this.bipedHead, this.bipedHeadwear);
-    }
-  }
+ 
 }

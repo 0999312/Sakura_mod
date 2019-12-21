@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
+import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -78,6 +79,9 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     @Override
     public void update() {
+    	
+    	DrainInput();
+    	
         List<ItemStack> inputs = new ArrayList<>();
         inputs.add(inventory.get(0));
         inputs.add(inventory.get(1));
@@ -186,7 +190,6 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-
         inventory.set(index, stack);
         if (stack.getCount() > this.getInventoryStackLimit()) {
             stack.setCount(this.getInventoryStackLimit());
@@ -202,14 +205,9 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     @Override
     public boolean isUsableByPlayer(EntityPlayer player) {
         if (this.world.getTileEntity(this.pos) != this) {
-
             return false;
-
-        } else {
-
-            return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-
         }
+		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     @Override
@@ -235,10 +233,8 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
                 return this.maxprocessTimer;
             default:
                 return 0;
-
         }
     }
-
 
     public void setField(int id, int value) {
         switch (id) {
@@ -273,16 +269,13 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-
     @Override
     @Nullable
     public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
         }
-
         return super.getCapability(capability, facing);
-
     }
 
     @Override
@@ -347,4 +340,54 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
         readPacketNBT(packet.getNbtCompound());
     }
 
+    private void DrainInput() {
+        ItemStack itemstack = this.inventory.get(3);
+        if(getRecipesResult()!=null){
+     	   
+     	   ItemStack itemstack1 = getRecipesResult().getResultItemStack();
+            if(itemstack1!=null){
+         	   ItemStack itemstack2 = this.inventory.get(4);
+                boolean not_full=(itemstack2.getCount()<itemstack2.getMaxStackSize()
+                    	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
+                if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
+                &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){ 
+         	        if(resultTank.getFluidAmount()>=getRecipesResult().getResultFluid().amount){
+         		        if (itemstack2.isEmpty())
+         		        {
+         		            this.inventory.set(4, itemstack1.copy());
+         		        }
+         		        else if (itemstack2.getItem() == itemstack1.getItem())
+         		        {
+         		            itemstack2.grow(itemstack1.getCount());
+         		        }
+         		
+         		        if(!itemstack.getItem().hasContainerItem(itemstack))
+         		        	itemstack.shrink(1);
+         		        else  this.inventory.set(3, new ItemStack(itemstack.getItem().getContainerItem()));
+         		        resultTank.drain(getRecipesResult().getResultFluid().amount, true);
+         	        }
+            		}
+            }
+     	   
+        }
+        
+ 	}
+    private LiquidToItemRecipe getRecipesResult() {
+        if (this.getStackInSlot(0).isEmpty()) {
+            return null;
+        }
+        
+        for (LiquidToItemRecipe recipes : LiquidToItemRecipe.RecipesList) {
+            if (this.getResultTank().getFluid() == null && recipes.getResultFluid().amount>0) 
+                return null;
+            FluidStack tankStack = this.getResultTank().getFluid();
+            ItemStack stack = recipes.getResult(this,this.resultTank.getFluid(), 3);
+            if(recipes.getResultFluid().amount<=0 && tankStack==null && !stack.isEmpty())
+            	return recipes;
+			FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;
+            if ((fluidStack != null && recipes.getResultFluid().getFluid() == tankStack.getFluid()) && !stack.isEmpty()) 
+                return recipes;
+        }
+        return null;
+    }
 }

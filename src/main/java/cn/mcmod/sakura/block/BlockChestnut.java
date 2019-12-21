@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -17,7 +15,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -30,7 +27,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,8 +52,7 @@ public class BlockChestnut extends Block implements IGrowable, net.minecraftforg
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
 		if(getMetaFromState(blockState) >= 3) {
 			return 2f;
-		} else
-
+		}
 		return 5f;
 	}
 	
@@ -233,7 +228,7 @@ public class BlockChestnut extends Block implements IGrowable, net.minecraftforg
     
     protected int getAge(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue();
+        return state.getValue(this.getAgeProperty()).intValue();
     }
 
     public IBlockState withAge(int age)
@@ -243,7 +238,7 @@ public class BlockChestnut extends Block implements IGrowable, net.minecraftforg
 
     public boolean isMaxAge(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue() >= this.getMaxAge();
+        return state.getValue(this.getAgeProperty()).intValue() >= this.getMaxAge();
     }
     
     
@@ -269,17 +264,15 @@ public class BlockChestnut extends Block implements IGrowable, net.minecraftforg
 	  }
 	  
 	  	@Override
-	    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	    {
+	    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
 		  if(!worldIn.isRemote){
-		  if(canGrow(worldIn, pos, state, false))
-	        return false;
-	        else{
-	        	worldIn.setBlockState(pos, this.withAge(1));
-	              dropItem(new ItemStack(ItemLoader.MATERIAL,1,15), worldIn, pos);
-	            return true;
-	        }
-		  }else return false;
+			  if(canGrow(worldIn, pos, state, false))
+			        return false;
+			worldIn.setBlockState(pos, this.withAge(1));
+			dropItem(new ItemStack(ItemLoader.MATERIAL,1,15), worldIn, pos);
+			return true;
+		  }
+		  return false;
 	    }
 	  
 	  	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)

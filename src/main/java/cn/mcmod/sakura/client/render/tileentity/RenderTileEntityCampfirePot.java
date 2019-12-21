@@ -68,7 +68,6 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
         GlStateManager.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scale(1.0F, -1.0F, -1.0F);
         GlStateManager.translate(0.0F, 1.0F, 0.0F);
-        float f = 0.9995F;
         GlStateManager.scale(0.9995F, 0.9995F, 0.9995F);
         GlStateManager.translate(0.0F, -1.0F, 0.0F);
 

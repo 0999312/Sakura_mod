@@ -54,9 +54,8 @@ public class ItemSlabBase extends ItemBlock {
             }
 
             return this.tryPlace(player, itemstack, worldIn, pos.offset(facing)) ? EnumActionResult.SUCCESS : super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-        } else {
-            return EnumActionResult.FAIL;
         }
+		return EnumActionResult.FAIL;
     }
 
     @SideOnly(Side.CLIENT)

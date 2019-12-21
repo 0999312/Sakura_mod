@@ -3,16 +3,12 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
-import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -37,8 +33,7 @@ public class BlockBambooFence extends BlockFence {
      * metadata, such as fence connections.
      */
 	@Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-    {
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos){
         boolean flag =  canFenceConnectTo(worldIn, pos, EnumFacing.NORTH);
         boolean flag1 = canFenceConnectTo(worldIn, pos, EnumFacing.EAST);
         boolean flag2 = canFenceConnectTo(worldIn, pos, EnumFacing.SOUTH);
@@ -48,8 +43,7 @@ public class BlockBambooFence extends BlockFence {
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
-    {
+    protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH});
     }
 

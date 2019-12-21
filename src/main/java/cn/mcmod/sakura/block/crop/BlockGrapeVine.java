@@ -1,29 +1,19 @@
 package cn.mcmod.sakura.block.crop;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.IShearable;
 
 public class BlockGrapeVine extends BlockCrops{
 	public BlockGrapeVine() {
@@ -57,26 +47,30 @@ public class BlockGrapeVine extends BlockCrops{
     }
     
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
-    		int fortune) {
-    	drops.clear();
-    	drops.add(new ItemStack(this.getSeed()));
+    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune){
+        drops.clear();
+        drops.add(new ItemStack(this.getSeed()));
     }
     
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
+    /**
+     * Spawns this Block's drops into the World as EntityItems.
+     */
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune){
+        if (!worldIn.isRemote) {
+        	spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed()));
+        }
+    }
+    
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return new ItemStack(BlockLoader.GRAPE_SPLINT_STAND);
     }
 
 	@Override
-	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
-			IPlantable plantable) {
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,IPlantable plantable) {
         return true;
 	}
 	
-    public void grow(World worldIn, BlockPos pos, IBlockState state)
-    {
-
+    public void grow(World worldIn, BlockPos pos, IBlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
     	if(i>= 2 && worldIn.getBlockState(pos.up()).getBlock() == BlockLoader.GRAPE_SPLINT_STAND)
@@ -89,16 +83,13 @@ public class BlockGrapeVine extends BlockCrops{
     		worldIn.setBlockState(pos.west(), BlockLoader.GRAPE_LEAVES.withAge(0), 2);
         if(i>= 5 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
     		worldIn.setBlockState(pos.south(), BlockLoader.GRAPE_LEAVES.withAge(0), 2);
-        if (i > j)
-        {
+        if (i > j) 
             i = j;
-        }
 
         worldIn.setBlockState(pos, this.withAge(i), 2);
     }
 	@Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)  {
         super.updateTick(worldIn, pos, state, rand);
 
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light

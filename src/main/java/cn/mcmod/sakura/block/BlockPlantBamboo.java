@@ -67,8 +67,6 @@ public class BlockPlantBamboo extends Block implements IPlantable {
             }
 
             if (i >= 18) {
-                int j = state.getValue(AGE).intValue();
-
                 if (worldIn.isRaining() || worldIn.rand.nextFloat() < 0.15) {
                     BlockPos blockpos1 = pos.add(rand.nextInt(3) - 1, rand.nextInt(2) - rand.nextInt(2), rand.nextInt(3) - 1);
 
@@ -140,9 +138,8 @@ public class BlockPlantBamboo extends Block implements IPlantable {
         IBlockState plant = plantable.getPlant(world, pos.offset(direction));
         if (plant.getBlock() == BlockLoader.BAMBOO) {
             return this == BlockLoader.BAMBOO;
-        } else {
-            return super.canSustainPlant(state, world, pos, direction, plantable);
         }
+		return super.canSustainPlant(state, world, pos, direction, plantable);
     }
 
     @Override

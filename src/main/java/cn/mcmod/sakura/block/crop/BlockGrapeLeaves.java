@@ -45,10 +45,9 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
 		return Item.getItemFromBlock(BlockLoader.GRAPE_SPLINT);
 	}
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		int i = this.getAge(state);
-		if(i>=7){
+		if(i>=6){
 			if(playerIn.getHeldItem(hand).getItem() instanceof ItemShears){
 			List<ItemStack> list = onSheared(playerIn.getHeldItem(hand), worldIn, pos, 0);
 			for(ItemStack stackresult:list)
@@ -61,30 +60,20 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
     /**
      * Get the Item that this Block should drop when harvested.
      */
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return this.getSeed();
     }
 
     @Override
-    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        super.getDrops(drops, world, pos, state, 0);
+    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune){
         drops.clear();
-    	drops.add(new ItemStack(BlockLoader.GRAPE_SPLINT));
         int age = getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
-
-        if (age >= getMaxAge())
-        {
-            int k = 3 + fortune;
-
-            for (int i = 0; i < 3 + fortune; ++i)
-            {
+        drops.add(new ItemStack(BlockLoader.GRAPE_SPLINT));
+        if (age >= getMaxAge()) {
+            for (int i = 0; i < 3 + fortune; ++i) {
                 if (rand.nextInt(2 * getMaxAge()) <= age)
-                {
-                    drops.add(new ItemStack(ItemLoader.MATERIAL,1+fortune,23));
-                }
+                    drops.add(new ItemStack(ItemLoader.MATERIAL,1,23));
             }
         }
     }
@@ -92,24 +81,15 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
     /**
      * Spawns this Block's drops into the World as EntityItems.
      */
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-    {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-
-        if (!worldIn.isRemote) // Forge: NOP all this.
-        {
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune){
+        if (!worldIn.isRemote) {
+        	spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed()));
             int i = this.getAge(state);
-
-            if (i >= this.getMaxAge())
-            {
+            if (i >= this.getMaxAge()) {
                 int j = 3 + fortune;
-
-                for (int k = 0; k < j; ++k)
-                {
+                for (int k = 0; k < j; ++k){
                     if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
-                    {
                         spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.MATERIAL,1,23));
-                    }
                 }
             }
         }
@@ -127,7 +107,14 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 		int i = this.getAge(world.getBlockState(pos));
 		List<ItemStack> list = new ArrayList<ItemStack>();
-		list.add(new ItemStack(ItemLoader.FOODSET,1+fortune,0));
+		if(i==6){
+			list.clear();
+			list.add(new ItemStack(ItemLoader.FOODSET,1+fortune,120));
+		}else 
+		if(i==7){
+			list.clear();
+			list.add(new ItemStack(ItemLoader.FOODSET,1+fortune,0));
+		}
 		return list;
 	}
 	@Override
@@ -136,9 +123,7 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
         return true;
 	}
 	
-    public void grow(World worldIn, BlockPos pos, IBlockState state)
-    {
-
+    public void grow(World worldIn, BlockPos pos, IBlockState state) {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
         if(i>= 2 && worldIn.getBlockState(pos.east()).getBlock() == BlockLoader.GRAPE_SPLINT)
@@ -150,15 +135,11 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
         if(i>= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
     		worldIn.setBlockState(pos.south(), this.withAge(0), 2);
         if (i > j)
-        {
             i = j;
-        }
-
         worldIn.setBlockState(pos, this.withAge(i), 2);
     }
 	@Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         super.updateTick(worldIn, pos, state, rand);
 
         if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
@@ -173,13 +154,9 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
         		worldIn.setBlockState(pos.west(), this.withAge(0), 2);
             if(i>= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
         		worldIn.setBlockState(pos.south(), this.withAge(0), 2);
-            if (i < this.getMaxAge())
-            {
-            	
+            if (i < this.getMaxAge()){
                 float f = getGrowthChance(this, worldIn, pos);
-
-                if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0))
-                {
+                if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)){
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
                     net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
                 }
@@ -188,8 +165,7 @@ public class BlockGrapeLeaves extends BlockCrops implements IShearable {
     }
 	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
-        if (state.getBlock() == this) //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-        {
+        if (state.getBlock() == this) {
             IBlockState n = worldIn.getBlockState(pos.north());
             IBlockState s = worldIn.getBlockState(pos.south());
             IBlockState w = worldIn.getBlockState(pos.west());

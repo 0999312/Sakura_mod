@@ -5,18 +5,15 @@ import java.util.Random;
 
 import cn.mcmod.sakura.block.BlockFacing;
 import cn.mcmod.sakura.block.BlockLoader;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;

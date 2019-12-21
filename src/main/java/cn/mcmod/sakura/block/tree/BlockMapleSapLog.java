@@ -39,36 +39,31 @@ public class BlockMapleSapLog extends Block {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
-        } else {
-            int j = state.getValue(SAP_AGE).intValue();
-
-            ItemStack stack = playerIn.getHeldItem(hand);
-
-            if (stack.getItem() == Items.GLASS_BOTTLE&& j < 5) {
-
-                ItemStack itemstack3 =new ItemStack(ItemLoader.MAPLE_SYRUP);
-                if (!playerIn.capabilities.isCreativeMode) {
-                    stack.shrink(1);
-                }
-
-                if (stack.isEmpty()) {
-                    playerIn.setHeldItem(hand, itemstack3);
-                } else if (!playerIn.inventory.addItemStackToInventory(itemstack3)) {
-                    playerIn.dropItem(itemstack3, false);
-                } else if (playerIn instanceof EntityPlayerMP) {
-                    ((EntityPlayerMP) playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
-                }
-
-
-                if(worldIn.rand.nextInt(2) == 0) {
-                    worldIn.setBlockState(pos, state.withProperty(SAP_AGE, Integer.valueOf(j + 1)), 4);
-                }
-                worldIn.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
-                return true;
-            }
-            return true;
         }
+		int j = state.getValue(SAP_AGE).intValue();
+		ItemStack stack = playerIn.getHeldItem(hand);
+		if (stack.getItem() == Items.GLASS_BOTTLE&& j < 5) {
+		    ItemStack itemstack3 =new ItemStack(ItemLoader.MAPLE_SYRUP);
+		    if (!playerIn.capabilities.isCreativeMode) {
+		        stack.shrink(1);
+		    }
+
+		    if (stack.isEmpty()) {
+		        playerIn.setHeldItem(hand, itemstack3);
+		    } else if (!playerIn.inventory.addItemStackToInventory(itemstack3)) {
+		        playerIn.dropItem(itemstack3, false);
+		    } else if (playerIn instanceof EntityPlayerMP) {
+		        ((EntityPlayerMP) playerIn).sendContainerToPlayer(playerIn.inventoryContainer);
+		    }
+
+		    if(worldIn.rand.nextInt(2) == 0) {
+		        worldIn.setBlockState(pos, state.withProperty(SAP_AGE, Integer.valueOf(j + 1)), 4);
+		    }
+		    worldIn.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+		    return true;
+		}
+		return true;
     }
 
     public Item getItemDropped(IBlockState state, Random rand, int fortune)

@@ -40,7 +40,7 @@ public class BlockSakuraDiamondOre extends BlockOre {
      * Get the quantity dropped based on the given fortune level
      */
     public int quantityDroppedWithBonus(int fortune, Random random) {
-        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped((IBlockState) this.getBlockState().getValidStates().iterator().next(), random, fortune)) {
+        if (fortune > 0 && Item.getItemFromBlock(this) != this.getItemDropped(this.getBlockState().getValidStates().iterator().next(), random, fortune)) {
             int i = random.nextInt(fortune + 2) - 1;
 
             if (i < 0) {
@@ -48,9 +48,8 @@ public class BlockSakuraDiamondOre extends BlockOre {
             }
 
             return this.quantityDropped(random) * (i + 1);
-        } else {
-            return this.quantityDropped(random);
         }
+		return this.quantityDropped(random);
     }
 
     /**

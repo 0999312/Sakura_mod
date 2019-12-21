@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 47,
+    "count": 4
+  },
+  "pattern": [
+    " P ",
+    "P P",
+    "PBP"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#PANEGLASS"
+    },
+    "B": {
+      "item": "#BLOCKGLASS"
+    }
+  }
+}

@@ -1,10 +1,10 @@
 {
    "forge_marker" : 1,
    "variants" : {
-      "foodoil" : {
+      "food_oil" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "foodoil"
+            "fluid" : "food_oil"
          }
       },
       "grape_fluid" : {
@@ -71,6 +71,30 @@
          "model" : "forge:fluid",
          "custom" : {
             "fluid" : "vodka"
+         }
+      },
+      "whiskey" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "whiskey"
+         }
+      },
+      "brandy" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "brandy"
+         }
+      },
+      "liqueur" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "liqueur"
+         }
+      },
+      "cocoa_liqueur" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "cocoa_liqueur"
          }
       }
    }

@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 46
+  },
+  "ingredients": [
+    {
+      "item": "#CROPTEA"
+    },
+    {
+      "item": "#FOODPEPPERMINT"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

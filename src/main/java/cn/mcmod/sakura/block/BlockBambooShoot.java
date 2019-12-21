@@ -45,7 +45,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
         BlockPos blockpos = pos.up();
 
         if (worldIn.isAirBlock(blockpos)) {
-        	if(worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) > 2 + worldIn.rand.nextInt(6)){
+        	if(worldIn.getLightFor(EnumSkyBlock.BLOCK, pos) > 6 + worldIn.rand.nextInt(6)){
             int j = state.getValue(AGE).intValue();
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                 if (j == 6) {
@@ -93,9 +93,8 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
         IBlockState state = worldIn.getBlockState(pos.down());
         if (this.canBlockStay(worldIn, pos) && state.getBlock() != BlockLoader.BAMBOO ) {
             return super.canPlaceBlockAt(worldIn, pos);
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -161,7 +160,7 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
 
     @Override
     public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return (double)worldIn.rand.nextFloat() < 0.45D;
+        return worldIn.rand.nextFloat() < 0.45D;
     }
 
     @Override

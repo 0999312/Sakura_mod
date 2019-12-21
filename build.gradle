@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "V0.0.6-MC1.12.2"
+version = "V0.0.7-MC1.12.2"
 group = "cn.mcmod.sakura" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Sakura"
 
@@ -28,32 +28,56 @@ minecraft {
 }
 
 repositories {
-    maven {
-	url 'https://maven.blamejared.com' 
-	}
 	maven {
+        // CraftTweaker2
+        url = "http://maven.blamejared.com"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+        maven {
+    name = "Chickenbones maven"
+    url = "http://chickenbones.net/maven/"
+    }
+    maven {
     // location of the maven that hosts JEI files
     name = "Progwml6 maven"
     url = "http://dvs1.progwml6.com/files/maven"
-	}
+    }
 
-	maven {
+    maven {
     // location of a maven mirror for JEI files, as a fallback
     name = "ModMaven"
     url = "modmaven.k-4u.nl"
-	}
-	    maven {
+    }
+    maven {
         name = "CurseForge"
         url = "https://minecraft.curseforge.com/api/maven/"
     }
+
 }
+
 dependencies {
     compile "vazkii.patchouli:Patchouli:1.0-10.51"
 	// compile against the JEI API but do not include it at runtime
     deobfProvided "mezz.jei:jei_1.12.2:4.14.3.238:api"
     // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_1.12.2:4.14.3.238"
+	
+	deobfCompile "jei-integration:jeiintegration_1.12.2:1.5.1.36"
+
+    deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.55"
+
+    deobfCompile "slimeknights:TConstruct:1.12.2-2.12.0.157"
+	
+	deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.19.547") {
+        exclude group: 'org.ow2.asm'
+    }
+    deobfCompile "CraftTweaker2:CraftTweaker2-API:4.1.19.547"
+    deobfCompile "CraftTweaker2:ZenScript:4.1.19.547"
 }
+
 
 processResources {
     // this will ensure that this task is redone when the versions change.

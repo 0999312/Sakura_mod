@@ -1,24 +1,18 @@
 package cn.mcmod.sakura.block;
 
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockKawara extends BlockFacing
 {
@@ -56,12 +50,12 @@ public class BlockKawara extends BlockFacing
   
   private static EnumShape getStairsShape(IBlockState p_185706_0_, IBlockAccess p_185706_1_, BlockPos p_185706_2_)
   {
-    EnumFacing enumfacing = (EnumFacing)p_185706_0_.getValue(FACING);
+    EnumFacing enumfacing = p_185706_0_.getValue(FACING);
     IBlockState iblockstate = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing.getOpposite()));
     if (isBlockStairs(iblockstate))
     {
-      EnumFacing enumfacing1 = (EnumFacing)iblockstate.getValue(FACING);
-      if (enumfacing1.getAxis() != ((EnumFacing)p_185706_0_.getValue(FACING)).getAxis())
+      EnumFacing enumfacing1 = iblockstate.getValue(FACING);
+      if (enumfacing1.getAxis() != p_185706_0_.getValue(FACING).getAxis())
       {
         if (enumfacing1 == enumfacing.rotateYCCW()) {
           return EnumShape.OUTER_LEFT;
@@ -72,8 +66,8 @@ public class BlockKawara extends BlockFacing
     IBlockState iblockstate1 = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing));
     if (isBlockStairs(iblockstate1))
     {
-      EnumFacing enumfacing2 = (EnumFacing)iblockstate1.getValue(FACING);
-      if (enumfacing2.getAxis() != ((EnumFacing)p_185706_0_.getValue(FACING)).getAxis())
+      EnumFacing enumfacing2 = iblockstate1.getValue(FACING);
+      if (enumfacing2.getAxis() != p_185706_0_.getValue(FACING).getAxis())
       {
         if (enumfacing2 == enumfacing.rotateYCCW()) {
           return EnumShape.INNER_LEFT;

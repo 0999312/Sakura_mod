@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 41
+  },
+  "ingredients": [
+    {
+      "item": "sakura:materials",
+      "data": 40
+    },
+    {
+      "item": "#LISTALLCITRUS"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

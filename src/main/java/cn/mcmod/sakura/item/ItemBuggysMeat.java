@@ -25,6 +25,8 @@ public class ItemBuggysMeat extends ItemFood {
         }
     }
 
+    
+    
     public int getMaxItemUseDuration(ItemStack stack) {
         return 38;
     }

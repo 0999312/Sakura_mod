@@ -24,6 +24,7 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
         registerTileEntity(TileEntityShoji.class, "shoji");
         registerTileEntity(TileEntityBarrel.class, "barrel");
+        registerTileEntity(TileEntityDistillation.class, "barrel_distillation");
     }
 
     @SideOnly(Side.CLIENT)
@@ -32,7 +33,7 @@ public class TileEntityRegistry {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShoji.class, new ShojiRender());
-        Item.getItemFromBlock(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
+        getItem(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {

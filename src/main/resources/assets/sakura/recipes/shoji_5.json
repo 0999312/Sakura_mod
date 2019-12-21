@@ -1,0 +1,18 @@
+{
+  "result": {
+    "nbt": "{type:5}",
+    "item": "sakura:shoji",
+    "type": "minecraft:item_nbt"
+  },
+  "pattern": [
+    "SS ",
+    "SS ",
+    "SS "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

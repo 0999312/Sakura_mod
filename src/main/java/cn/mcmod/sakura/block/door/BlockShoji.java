@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.block.door;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -9,15 +8,11 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -34,11 +29,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-import cn.mcmod.sakura.CommonProxy;
-import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.tileentity.TileEntityShoji;
-
-import java.util.List;
+import cn.mcmod.sakura.util.RecipesUtil;
 
 public class BlockShoji extends Block implements ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
@@ -71,9 +64,9 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         return true;
     }
 
-    private ItemStack getDefaultItemStack() {
-        ItemStack stack = new ItemStack(this);
-        getTagCompoundSafe(stack).setInteger("type", 0);
+    private static ItemStack getDefaultItemStack() {
+        ItemStack stack = new ItemStack(BlockLoader.SHOJI);
+        RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
         return stack;
     }
 
@@ -82,9 +75,9 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         ItemStack stack = new ItemStack(this);
         TileEntityShoji te = (TileEntityShoji) world.getTileEntity(pos);
         if (te != null) {
-            getTagCompoundSafe(stack).setInteger("type", te.getType());
+        	RecipesUtil.getItemTagCompound(stack).setInteger("type", te.getType());
         } else {
-            getTagCompoundSafe(stack).setInteger("type", 0);
+        	RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
         }
         return stack;
     }
@@ -142,9 +135,9 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 	    ItemStack stack = getDefaultItemStack();
 	    TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
 	    if (te != null) {
-	        getTagCompoundSafe(stack).setInteger("type", te.getType());
+	    	RecipesUtil.getItemTagCompound(stack).setInteger("type", te.getType());
 	    } else {
-	        getTagCompoundSafe(stack).setInteger("type", 0);
+	    	RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
 	    }
         worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));
         super.breakBlock(worldIn, pos, state);
@@ -167,27 +160,19 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         if (!worldIn.isRemote) {
             TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
             if (te != null) {
-                te.setType(getTagCompoundSafe(stack).getInteger("type"));
+                te.setType(RecipesUtil.getItemTagCompound(stack).getInteger("type"));
                 te.setFacing(EnumFacing.getDirectionFromEntityLiving(pos, placer));
                 te.setOpen(false);
             }
         }
     }
 
-    private ItemStack getItemStackWithType(int type) {
+    public static ItemStack getItemStackWithType(int type) {
         ItemStack stack = getDefaultItemStack();
-        getTagCompoundSafe(stack).setInteger("type", type);
+        RecipesUtil.getItemTagCompound(stack).setInteger("type", type);
         return stack;
     }
 
-    public static NBTTagCompound getTagCompoundSafe(ItemStack stack) {
-        NBTTagCompound tagCompound = stack.getTagCompound();
-        if (tagCompound == null) {
-            tagCompound = new NBTTagCompound();
-            stack.setTagCompound(tagCompound);
-        }
-        return tagCompound;
-    }
 
     @Override
     @SideOnly(Side.CLIENT)

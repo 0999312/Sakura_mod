@@ -1,22 +1,24 @@
 {
   "type": "forge:ore_shapeless",
   "ingredients": [
-    {
-      "item": "sakura:knife_noodle",
-      "data":32767
-    },
-    {
-      "item": "sakura:materials",
-      "data": 6
-    },
-    {
-      "type": "forge:ore_dict",
-      "ore": "dustSalt"
-    }
+  {
+        "type": "forge:ore_dict",
+        "ore": "foodFlour"
+  },
+  {
+        "type": "forge:ore_dict",
+        "ore": "listAllwater"
+  },
+  {
+        "type": "forge:ore_dict",
+        "ore": "foodFlour"
+  },
+  {
+        "type": "forge:ore_dict",
+        "ore": "dustSalt"
+  }
   ],
   "result": {
-    "item": "sakura:materials",
-    "count": 2,
-    "data": 9
+    "item": "sakura:udon_unfinished_block"
   }
 }

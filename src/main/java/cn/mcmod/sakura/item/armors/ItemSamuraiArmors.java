@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.item.armors;
 
-import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.client.model.ModelSamuraiArmors;
 import cn.mcmod.sakura.util.ClientUtils;

@@ -6,7 +6,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +27,6 @@ public class BlockFacing extends Block {
 	}
 	@Override
 	public Block setSoundType(SoundType sound) {
-		// TODO Auto-generated method stub
 		return super.setSoundType(sound);
 	}
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -48,7 +46,7 @@ public class BlockFacing extends Block {
             IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
             IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
             IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
@@ -108,7 +106,7 @@ public class BlockFacing extends Block {
      */
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
+        return state.getValue(FACING).getIndex();
     }
 
     /**
@@ -117,7 +115,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     /**
@@ -126,7 +124,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     protected BlockStateContainer createBlockState()

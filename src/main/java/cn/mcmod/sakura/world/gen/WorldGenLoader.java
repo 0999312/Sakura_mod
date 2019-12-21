@@ -1,18 +1,11 @@
 package cn.mcmod.sakura.world.gen;
 
-import java.util.Random;
-
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.world.biome.SakuraBiomes;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.OreGenEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 

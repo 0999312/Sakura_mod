@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "sakura:sheath"
+  },
+  "pattern": [
+    "S S",
+    "S S",
+    "S S"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

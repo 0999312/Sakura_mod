@@ -47,13 +47,12 @@ public class RenderTileEntityStoneMortar extends TileEntitySpecialRenderer<TileE
         GlStateManager.translate((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         GlStateManager.scale(1.0F, -1.0F, -1.0F);
         GlStateManager.translate(0.0F, 1.0F, 0.0F);
-        float f = 0.9995F;
         GlStateManager.scale(0.9995F, 0.9995F, 0.9995F);
         GlStateManager.translate(0.0F, -1.0F, 0.0F);
 
         this.model.block1.render(0.0625F);
 
-        GlStateManager.rotate((float) (1.8f * te.getUpdateTag().getInteger("processTimer")), 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(1.8f * te.getUpdateTag().getInteger("processTimer"), 0.0F, 1.0F, 0.0F);
         this.model.block2.render(0.0625F);
         this.model.handle.render(0.0625F);
         GlStateManager.enableCull();
