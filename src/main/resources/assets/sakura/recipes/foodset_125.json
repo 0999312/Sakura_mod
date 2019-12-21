@@ -1,12 +1,12 @@
 {
   "result": {
     "item": "sakura:foodset",
-    "data": 50
+    "data": 125
   },
   "ingredients": [
     {
       "item": "sakura:foodset",
-      "data": 49
+      "data": 62
     },
     {
       "item": "#FOODKETCHUP"
