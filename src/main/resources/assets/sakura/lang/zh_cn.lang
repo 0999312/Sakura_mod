@@ -381,7 +381,7 @@ item.sakura.glass_scorpion.name=天蝎
 item.sakura.glass_moscow_mule.name=莫斯科骡子
 item.sakura.glass_boilermaker.name=酒鬼炸弹
 
-#Fluid
+#液体方块
 fluid.food_oil=食用油
 fluid.grape_fluid=葡萄汁
 fluid.red_wine=红葡萄酒
@@ -399,30 +399,47 @@ fluid.whiskey=威士忌
 fluid.liqueur=利口酒
 fluid.cocoa_liqueur=可可利口酒
 
-#Container
+#物品信息
+item.sakura.kimono.texture.name=和服
+item.sakura.haori.texture.name=羽织
+
+#按键绑定
+key.categories.sakura=樱
+key.sakura.sheath_in=收刀入鞘
+
+#聊天提示信息
+sakura.katana.wrong_duel_shinai=竹刀必须双手握持。
+sakura.katana.wrong_duel=你不能双持打刀。
+sakura.katana.sheath.not_empty_hand=空出一只手才可以拔刀。
+
+#容器GUI
 container.sakura.stonemortar=石磨
 container.sakura.campfirepot=烹饪锅
 
 barrel.contains.fluid=这个桶含有%1$s液体
 barrel.contains.nonfluid=这个桶是空的
 
-#JEI Support
+#JEI条目
 jei.sakura.category.cooking_pot=烹饪锅
 jei.sakura.category.mortar=石磨
+jei.sakura.category.barrel=酿造桶
+jei.sakura.category.distillation=蒸馏桶
+jei.sakura.category.liquid_item=液体装桶
 
-#Entities
+#实体
 entity.sakura.Deer.name=鹿
 entity.sakura.SamuraiIllager.name=灾厄武士
 entity.Villager.wa_farmer=日本农民
 entity.Villager.wa_fisher=日本渔夫
 entity.Villager.wa_trader=日本商人
+entity.Villager.wine_trader=酒品贩子
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
-itemGroup.sakura_tabs=樱花
+itemGroup.sakura_tabs=樱
 
 
-#Config
+#配置选项
 sakura.config.vanilla_weight=香草世界生成率
 sakura.config.vanilla_weight.tooltip=变更香草的生成率，数字越高生成越多。
 sakura.config.pepper_weight=胡椒世界生成率
