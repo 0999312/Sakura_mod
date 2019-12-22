@@ -264,7 +264,7 @@ item.sakura.buggys_meat.name=Buggys Meat
 
 item.sakura.cooking_pot.name=Cooking Pot
 
-item.sakura.earl_grey_leaves=Earl Grey Leaves
+item.sakura.earl_grey_leaves.name=Earl Grey Leaves
 item.sakura.black_tea_leaves.name=Black Tea Leaves
 item.sakura.green_tea_leaves.name=Green Tea Leaves
 item.sakura.fruit_tea_leaves.name=Fruit Tea Leaves
@@ -399,6 +399,19 @@ fluid.whiskey=Whiskey
 fluid.liqueur=Liqueur
 fluid.cocoa_liqueur=Cocoa Liqueur
 
+#Tooltips
+item.sakura.kimono.texture.name=Kimono
+item.sakura.haori.texture.name=Haori
+
+#Keybinding
+key.categories.sakura=Sakura
+key.sakura.sheath_in=Retract Katana into Sheath
+
+#Chats
+sakura.katana.wrong_duel_shinai=You must hold a Shinai with BOTH hands.
+sakura.katana.wrong_duel=You shouldn't wield two Katanas with both hands.
+sakura.katana.sheath.not_empty_hand=You should pull out your Katana with an empty hand.
+
 #Container
 container.sakura.stonemortar=Stone Mortar
 container.sakura.campfirepot=Campfire Pot
@@ -409,6 +422,9 @@ barrel.contains.nonfluid=This barrel is empty
 #JEI Support
 jei.sakura.category.cooking_pot=Cooking Pot
 jei.sakura.category.mortar=Stone Mortar
+jei.sakura.category.barrel=Barrel
+jei.sakura.category.distillation=Distillation Barrel
+jei.sakura.category.liquid_item=Liquid to Bucket
 
 #Entities
 entity.sakura.Deer.name=Deer
@@ -416,6 +432,7 @@ entity.sakura.SamuraiIllager.name=Samurai Illager
 entity.Villager.wa_farmer=Japanese Farmer
 entity.Villager.wa_fisher=Japanese Fisher
 entity.Villager.wa_trader=Japanese Trader
+entity.Villager.wine_trader=Liquor Trader
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
