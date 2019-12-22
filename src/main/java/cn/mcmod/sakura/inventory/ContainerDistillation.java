@@ -94,7 +94,7 @@ public class ContainerDistillation extends Container {
             itemStack = itemStack1.copy();
 
             if (index >= 0 && index <= 4){
-                if (!this.mergeItemStack(itemStack1, 5, 42, true))
+                if (!this.mergeItemStack(itemStack1, 5, 41, true))
                 {
                     return ItemStack.EMPTY;
                 }
@@ -103,17 +103,17 @@ public class ContainerDistillation extends Container {
             }
             else if (index >= 5){
             	if (index >= 5 && index < 32){
-                    if (!this.mergeItemStack(itemStack1, 32, 42, false))
+                    if (!this.mergeItemStack(itemStack1, 32, 41, false))
                     {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 32 && index < 42 && !this.mergeItemStack(itemStack1, 5, 32, false))
+                else if (index >= 32 && index < 41 && !this.mergeItemStack(itemStack1, 5, 32, false))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(itemStack1, 5, 42, false))
+            else if (!this.mergeItemStack(itemStack1, 5, 41, false))
             {
                 return ItemStack.EMPTY;
             }

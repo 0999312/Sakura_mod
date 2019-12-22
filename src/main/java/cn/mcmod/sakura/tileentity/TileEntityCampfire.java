@@ -108,7 +108,7 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
                 if (this.cookTime >= 700) {
                     if (!cookstack.isEmpty()) {
                         if (!itemstack1.isEmpty()) {
-                            this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount()));
+                            this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount(),itemstack1.getMetadata()));
 
                             this.cookTime = 0;
                             this.isFinishedCook = true;

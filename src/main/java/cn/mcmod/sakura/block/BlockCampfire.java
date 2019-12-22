@@ -112,7 +112,7 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
 		        TileEntityCampfire tileEntityCampfire = (TileEntityCampfire) tile;
 
 		        if(tileEntityCampfire.getInventory().isItemValid(0,stack)&& tileEntityCampfire.getInventory().getStackInSlot(0).getCount() < 16){
-		            ItemStack campfireStack=new ItemStack(stack.getItem(),1);
+		            ItemStack campfireStack=new ItemStack(stack.getItem(),1,stack.getMetadata());
 		            stack.shrink(1);
 		            tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
 		            return true;
