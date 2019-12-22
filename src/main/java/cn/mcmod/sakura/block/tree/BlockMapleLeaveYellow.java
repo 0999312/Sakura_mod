@@ -56,7 +56,6 @@ public class BlockMapleLeaveYellow extends BlockLeaves {
     }
 
     @Override
-    @Deprecated
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
@@ -87,8 +86,7 @@ public class BlockMapleLeaveYellow extends BlockLeaves {
     }
 
     @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return new ItemStack(this);
     }
 
