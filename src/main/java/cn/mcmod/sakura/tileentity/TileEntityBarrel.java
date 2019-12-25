@@ -343,15 +343,15 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     private void DrainInput() {
         ItemStack itemstack = this.inventory.get(3);
         if(getRecipesResult()!=null){
-     	   
      	   ItemStack itemstack1 = getRecipesResult().getResultItemStack();
             if(itemstack1!=null){
          	   ItemStack itemstack2 = this.inventory.get(4);
                 boolean not_full=(itemstack2.getCount()<itemstack2.getMaxStackSize()
                     	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
                 if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
-                &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){ 
-         	        if(resultTank.getFluidAmount()>=getRecipesResult().getResultFluid().amount){
+                &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){
+                    if (getRecipesResult().getResultFluid() != null && getRecipesResult().getResultFluid().amount>0) {
+         	        if(this.getResultTank().getFluidAmount()>=getRecipesResult().getResultFluid().amount){
          		        if (itemstack2.isEmpty())
          		        {
          		            this.inventory.set(4, itemstack1.copy());
@@ -364,14 +364,15 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
          		        if(!itemstack.getItem().hasContainerItem(itemstack))
          		        	itemstack.shrink(1);
          		        else  this.inventory.set(3, new ItemStack(itemstack.getItem().getContainerItem()));
-         		        resultTank.drain(getRecipesResult().getResultFluid().amount, true);
+         		        
+         		        this.getResultTank().drain(getRecipesResult().getResultFluid(), true);
          	        }
-            		}
+            	}
             }
-     	   
+           }
         }
-        
  	}
+    
     private LiquidToItemRecipe getRecipesResult() {
         if (this.getStackInSlot(0).isEmpty()) {
             return null;
@@ -381,7 +382,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
             if (this.getResultTank().getFluid() == null && recipes.getResultFluid().amount>0) 
                 return null;
             FluidStack tankStack = this.getResultTank().getFluid();
-            ItemStack stack = recipes.getResult(this,this.resultTank.getFluid(), 3);
+            ItemStack stack = recipes.getResult(this,this.getResultTank().getFluid(), 3);
             if(recipes.getResultFluid().amount<=0 && tankStack==null && !stack.isEmpty())
             	return recipes;
 			FluidStack fluidStack =(tankStack!=null)?recipes.getResultFluid():null;

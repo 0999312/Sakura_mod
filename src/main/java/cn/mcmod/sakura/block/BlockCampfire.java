@@ -157,7 +157,6 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
         worldIn.getBlockState(pos.up()).getBlock().onNeighborChange(worldIn, pos.up(), pos);
     }
 
-
     public static void setState(boolean active, World worldIn, BlockPos pos) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;

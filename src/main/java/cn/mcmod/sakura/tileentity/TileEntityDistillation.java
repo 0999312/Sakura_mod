@@ -374,7 +374,8 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
                    	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
                if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
                &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){ 
-        	        if(resultTank.getFluidAmount()>=getRecipesResult().getResultFluid().amount){
+            	   if (getRecipesResult().getResultFluid() != null && getRecipesResult().getResultFluid().amount>0) {
+            	   if(resultTank.getFluidAmount()>getRecipesResult().getResultFluid().amount){
         		        if (itemstack2.isEmpty())
         		        {
         		            this.inventory.set(4, itemstack1.copy());
@@ -391,12 +392,12 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
         	        }
            		}
            }
-    	   
+           }
        }
        
 	}
     private LiquidToItemRecipe getRecipesResult() {
-        if (this.getStackInSlot(0).isEmpty()) {
+        if (this.getStackInSlot(3).isEmpty()) {
             return null;
         }
         

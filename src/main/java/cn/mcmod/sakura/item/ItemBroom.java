@@ -38,7 +38,7 @@ public class ItemBroom extends ItemSpade {
 		IBlockState iblockstate = worldIn.getBlockState(pos);
 		Block block = iblockstate.getBlock();
 
-		if (facing != EnumFacing.DOWN && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR && worldIn.getBlockState(pos).getMaterial() == Material.GROUND||!(block instanceof BlockFarmland||block instanceof BlockGrassPath))
+		if (facing != EnumFacing.DOWN && worldIn.getBlockState(pos.up()).getMaterial() == Material.AIR && ((worldIn.getBlockState(pos).getMaterial() == Material.GROUND||worldIn.getBlockState(pos).getMaterial() ==Material.GRASS) && !(block instanceof BlockFarmland||block instanceof BlockGrassPath)))
 		{
 		    IBlockState iblockstate1 = Blocks.GRASS_PATH.getDefaultState();
 		    worldIn.playSound(player, pos, SoundEvents.BLOCK_GRASS_STEP, SoundCategory.BLOCKS, 1.2F, 1.2F);

@@ -124,7 +124,7 @@ public class SakuraRecipeRegister {
 				"cropWheat",
 				"foodYeast",
 				"cropHops"
-				}, 600));
+				}, 60));
 		BarrelRecipes.register(
 				new BarrelRecipes(
 				new FluidStack(BlockLoader.GRAPE_FLUID, 100),
