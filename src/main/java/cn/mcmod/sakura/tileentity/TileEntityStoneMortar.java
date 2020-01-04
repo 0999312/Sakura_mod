@@ -84,7 +84,6 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     @Override
     public void markDirty() {
         super.markDirty();
-
     }
 
     /**

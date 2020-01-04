@@ -80,21 +80,16 @@ public class BlockStoneMortar extends BlockContainer implements ITileEntityProvi
     //Only on top of FullBlock can place
     private boolean canPlaceFullBlock(World worldIn, BlockPos pos) {
         IBlockState downState = worldIn.getBlockState(pos.down());
-
         return downState.isTopSolid() && downState.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID;
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-
         TileEntity tileentity = worldIn.getTileEntity(pos);
-
         if (tileentity instanceof TileEntityStoneMortar) {
             InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityStoneMortar) tileentity);
             worldIn.updateComparatorOutputLevel(pos, this);
         }
-
-
         super.breakBlock(worldIn, pos, state);
     }
 

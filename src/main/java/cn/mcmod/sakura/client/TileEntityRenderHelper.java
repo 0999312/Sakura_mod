@@ -16,9 +16,7 @@ public class TileEntityRenderHelper extends TileEntityItemStackRenderer {
 
     @Override
     public void renderByItem(ItemStack itemStack) {
-
         Block block = Block.getBlockFromItem(itemStack.getItem());
-//        Item item = itemStack.getItem();
         if (block == BlockLoader.STONEMORTAR) {
             TileEntityRendererDispatcher.instance.render(this.mortarRender, 0.0D, 0.0D, 0.0D, 0.0F);
         } else {

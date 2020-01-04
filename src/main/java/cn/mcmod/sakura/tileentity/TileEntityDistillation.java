@@ -1,11 +1,7 @@
 package cn.mcmod.sakura.tileentity;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFire;
-import net.minecraft.block.BlockMagma;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -28,6 +24,7 @@ import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.api.recipes.DistillationRecipes;
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
+import cn.mcmod.sakura.util.WorldUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +89,7 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
         inputs.add(inventory.get(2));
         List<DistillationRecipes> recipes = DistillationRecipes.getPossibleRecipes(tank.getFluid(), inputs);
 
-        if (recipes.isEmpty()||getHeatStrength(getWorld(), getPos())<2) {
+        if (recipes.isEmpty()||WorldUtil.getHeatStrength(getWorld(), getPos())<2) {
             processTimer = 0;
         } else {
             processTimer += 1;
@@ -349,20 +346,7 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
         super.onDataPacket(net, packet);
         readPacketNBT(packet.getNbtCompound());
     }
-    
-    private int getHeatStrength(World par1World, BlockPos pos)
-    {
-        for (int i = 1; i < 5; i++)
-        {
-            Block block = par1World.getBlockState(pos.down(i)).getBlock();
-            if (block instanceof BlockMagma||block instanceof BlockFire || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)
-            {
-                return i <= 2 ? 2 : 1;
-            }
-        }
-        return 0;
-    }
-    
+
     private void DrainInput() {
        ItemStack itemstack = this.inventory.get(3);
        if(getRecipesResult()!=null){

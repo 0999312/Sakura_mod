@@ -61,7 +61,7 @@ public class ItemLoader {
     public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "rapeseeds");
     public static Item ONION = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "onion");
     public static Item ONION_SEEDS = new ItemSeeds(BlockLoader.ONIONCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "onion_seeds");
-    public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
+//    public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
     public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
             new int[]{
                     1, 3, 5,//2
@@ -373,6 +373,9 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "mint",//45
             SakuraMain.MODID + "." + "mint_tea_leaves",//46
             SakuraMain.MODID + "." + "empty_bottle",//47
+            SakuraMain.MODID + "." + "bamboo_sunburnt",//48
+           
+            SakuraMain.MODID + "." + "maple_syrup",//49
     });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
@@ -411,7 +414,6 @@ public class ItemLoader {
         register(RED_BEAN);
         register(BUCKWHEAT);
         register(RAPESEED);
-        register(MAPLE_SYRUP);
         register(KNIFE_NOODLE);
         register(SAKURA_DIAMOND);
         register(MATERIAL);
@@ -475,7 +477,6 @@ public class ItemLoader {
         registerRender(RICE_SEEDS);
         registerRender(RED_BEAN);
         registerRender(BAMBOO_DOOR);
-        registerRender(MAPLE_SYRUP);
         registerRender(FOODSET);
         registerRender(HYDRA_RAMEN);
         registerRender(BUGGYS_MEAT);

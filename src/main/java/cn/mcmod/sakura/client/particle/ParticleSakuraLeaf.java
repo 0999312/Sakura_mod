@@ -57,7 +57,6 @@ public class ParticleSakuraLeaf extends Particle {
 
     @Override
     public void onUpdate() {
-
         prevPosX = posX;
         prevPosY = posY;
         prevPosZ = posZ;

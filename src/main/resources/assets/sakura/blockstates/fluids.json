@@ -96,6 +96,12 @@
          "custom" : {
             "fluid" : "cocoa_liqueur"
          }
+      },
+      "maple_syrup" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "maple_syrup"
+         }
       }
    }
 }

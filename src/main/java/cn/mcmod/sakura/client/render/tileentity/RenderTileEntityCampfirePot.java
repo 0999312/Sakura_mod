@@ -25,7 +25,6 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
 
     private static final ResourceLocation TEXTURES = new ResourceLocation(SakuraMain.MODID, "textures/entity/tileentity/pot.png");
 
-
     private final ModelPot model = new ModelPot();
 
     protected ItemStack renderItemStack = ItemStack.EMPTY;
@@ -96,7 +95,6 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
         FluidStack fluid = te.getFluidForRendering(partialTicks);
 
         if (fluid != null) {
-
             RenderHelper.disableStandardItemLighting();
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);

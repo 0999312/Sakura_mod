@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.logging.log4j.Level;
 
 import cn.mcmod.sakura.SakuraMain;
-import cn.mcmod.sakura.SakuraOreDictLoader;
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.api.recipes.DistillationRecipes;
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
@@ -1162,7 +1161,7 @@ public class SakuraRecipeRegister {
                         "listAllsugar",
                         "listAllegg",
                         "foodVanilla",
-                        SakuraOreDictLoader.MAPLE_SYRUP
+                        "cropMaplesyrup"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
         PotRecipes.addRecipe(

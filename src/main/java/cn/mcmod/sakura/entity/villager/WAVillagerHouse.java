@@ -57,13 +57,13 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
             this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 9 - 1, 0);
         }
 
-        IBlockState iblockstate = this.getBiomeSpecificBlockState(Blocks.STONEBRICK.getDefaultState());
-        IBlockState iblockstate1 = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-        IBlockState iblockstate2 = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
-        IBlockState iblockstate3 = this.getBiomeSpecificBlockState(Blocks.OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
+        IBlockState iblockstate = Blocks.STONE.getDefaultState();
+        IBlockState iblockstate1 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+        IBlockState iblockstate2 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+        IBlockState iblockstate3 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
         IBlockState iblockstate4 = BlockLoader.BAMBOO_PLANK.getDefaultState();
-        IBlockState iblockstate5 = this.getBiomeSpecificBlockState(Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockFacing.FACING, EnumFacing.NORTH));
-        IBlockState iblockstate6 = this.getBiomeSpecificBlockState(Blocks.OAK_FENCE.getDefaultState());
+        IBlockState iblockstate5 = BlockLoader.MAPLE_PLANK_STAIR.getDefaultState().withProperty(BlockFacing.FACING, EnumFacing.NORTH);
+        IBlockState iblockstate6 = BlockLoader.BAMBOO_FENCE.getDefaultState();
         this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 7, 5, 4, Blocks.AIR.getDefaultState(), Blocks.AIR.getDefaultState(), false);
         this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 0, 0, 8, 0, 5, iblockstate, iblockstate, false);
         this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 5, 0, 8, 5, 5, iblockstate, iblockstate, false);

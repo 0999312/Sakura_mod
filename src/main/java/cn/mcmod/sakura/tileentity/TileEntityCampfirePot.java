@@ -111,13 +111,14 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
             --this.burnTime;
         }
         //check can cook
-
-
         if (!this.world.isRemote) {
 	        if (!isRecipes()) {
 	            cookTime = 0;
 	        } else {
-	            if (isBurning()) {
+        	  ItemStack itemstack = this.inventory.get(9);
+              ItemStack result = getRecipesResult().getResultItemStack();
+              	if(!itemstack.isEmpty()&&!itemstack.isItemEqual(result))  cookTime = 0;
+              	else if (isBurning()) {
 	                cookTime += 1;
 	            }
 	        }
@@ -142,7 +143,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
         if (itemstack.isEmpty()) {
             this.inventory.set(9, result.copy());
-        } else if (itemstack.getItem() == result.getItem()) {
+        } else if (itemstack.isItemEqual(result)) {
             itemstack.grow(result.getCount());
         }
         
@@ -340,7 +341,6 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
-
 
     @Override
     @Nullable

@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.block.slab;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -22,7 +21,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockSlabBase extends Block {
+import cn.mcmod.sakura.block.BlockBase;
+
+public class BlockSlabBase extends BlockBase {
     public static final PropertyEnum<EnumBlockFrostHalf> HALF = PropertyEnum.create("half", EnumBlockFrostHalf.class);
     protected static final AxisAlignedBB AABB_BOTTOM_HALF = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
     protected static final AxisAlignedBB AABB_TOP_HALF = new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);

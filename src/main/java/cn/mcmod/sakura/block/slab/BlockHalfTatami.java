@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class BlockHalfTatami extends BlockHalfFacing{
 	public final boolean isNS;
 	public BlockHalfTatami(boolean ns) {
-		super(Material.GRASS);
+		super(Material.CLOTH);
 		this.setTickRandomly(true);
 		this.setSoundType(SoundType.PLANT);
 		setHardness(0.25F).setResistance(0.5F);

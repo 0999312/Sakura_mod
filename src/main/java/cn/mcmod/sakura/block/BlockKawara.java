@@ -21,6 +21,7 @@ public class BlockKawara extends BlockFacing
   public BlockKawara()
   {
     super(Material.ROCK,false);
+    this.useNeighborBrightness = true;
     setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, EnumShape.STRAIGHT));
   }
   

@@ -14,7 +14,7 @@ import java.util.TreeSet;
 
 public class SakuraOreDictLoader {
 	public static final Set<String> OreList = new TreeSet<>();
-	public static final ItemStack MAPLE_SYRUP = new ItemStack(ItemLoader.MAPLE_SYRUP,1,OreDictionary.WILDCARD_VALUE);
+	
 	public SakuraOreDictLoader() {
 		registerOre("cropRice", new ItemStack(ItemLoader.MATERIAL, 1, 1));
 		registerOre("foodFlour", new ItemStack(ItemLoader.MATERIAL, 1, 4));
@@ -38,14 +38,15 @@ public class SakuraOreDictLoader {
         registerOre("plankWood", new ItemStack(BlockLoader.MAPLE_PLANK, 1));
         registerOre("plankWood", new ItemStack(BlockLoader.SAKURA_PLANK, 1));
         registerOre("plankWood", new ItemStack(BlockLoader.BAMBOO_PLANK, 1));
-        
+
         registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_GREEN, 1));
         registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_ORANGE, 1));
         registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_RED, 1));
         registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_YELLOW, 1));
         registerOre("treeLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
         registerOre("sakuraLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
-		
+		registerOre("cropMaplesyrup", new ItemStack(ItemLoader.MATERIAL, 1,49));
+		registerOre("listAllsugar", new ItemStack(ItemLoader.MATERIAL, 1,49));
 		
 		registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));

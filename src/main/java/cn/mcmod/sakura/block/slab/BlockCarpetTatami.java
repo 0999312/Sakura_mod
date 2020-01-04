@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class BlockCarpetTatami extends BlockCarpetFacing{
 	public final boolean isNS;
 	public BlockCarpetTatami(boolean ns) {
-		super(Material.GRASS);
+		super(Material.CLOTH);
 		this.setTickRandomly(true);
 		this.setSoundType(SoundType.PLANT);
 		setHardness(0.15F).setResistance(0.5F);

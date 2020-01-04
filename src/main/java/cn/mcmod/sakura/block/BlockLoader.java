@@ -38,6 +38,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockLoader {
 	public static Fluid FOODOIL_FLUID = new FluidBasic("food_oil");
 	public static Block FOODOIL;
+	public static Fluid MAPLE_SYRUP_FLUID = new FluidBasic("maple_syrup");
+	public static Block MAPLE_SYRUP;
 	public static Fluid GRAPE_FLUID = new FluidBasic("grape_fluid");
 	public static Block GRAPE_FLUID_BLOCK;
 	public static Fluid RED_WINE_FLUID = new FluidBasic("red_wine");
@@ -74,8 +76,8 @@ public class BlockLoader {
     public static Block BAMBOO = new BlockPlantBamboo();
     public static Block WINDBELL = new BlockWindBell();
     public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
-    public static Block BAMBOO_BLOCK = new BlockBambooBlock(Material.WOOD).setHardness(1.6F).setResistance(6.0F);
-    public static Block BAMBOO_BLOCK_SUNBURNT = new BlockBambooBlock(Material.WOOD).setHardness(1.6F).setResistance(5.5F);
+    public static Block BAMBOO_BLOCK = new BlockBambooBlock(Material.WOOD,false).setHardness(1.6F).setResistance(6.0F);
+    public static Block BAMBOO_BLOCK_SUNBURNT = new BlockBambooBlock(Material.WOOD,true).setHardness(1.6F).setResistance(5.5F);
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static BlockSlabBase BAMBOO_SLAB_SUNBURNT = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
@@ -92,7 +94,7 @@ public class BlockLoader {
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
     public static Block BAMBOO_PLANK = new BlockSakuraPlank(Material.WOOD);
     public static Block MAPLE_PLANK = new BlockSakuraPlank(Material.WOOD);
-//	public static Block MAPLE_SYRUP_CAUDRON = new BlockMapleSyrupCauldron();
+	public static Block MAPLE_CAULDRON = new BlockMapleSyrupCauldron();
 	public static Block CAMPFIRE_IDLE = new BlockCampfire(false);
 	public static Block CAMPFIRE_LIT = new BlockCampfire(true);
     public static Block CAMPFIRE_POT_IDLE = new BlockCampfirePot(false);
@@ -153,12 +155,29 @@ public class BlockLoader {
 	public static Block UDON_BLOCK = new BlockUdon();
 	public static Block RAMEN_BLOCK = new BlockRamen();
 	public static Block SOBA_BLOCK = new BlockSoba();
+	
+	public static Block STRAW_BLOCK = new BlockBase(Material.CLOTH).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+	public static Block STRAW_BLOCK_STAIR = new BlockStairBasic(STRAW_BLOCK.getDefaultState());
+	public static Block SAKURA_PLANK_STAIR = new BlockStairBasic(SAKURA_PLANK.getDefaultState());
+	public static Block BAMBOO_PLANK_STAIR = new BlockStairBasic(BAMBOO_PLANK.getDefaultState());
+	public static Block MAPLE_PLANK_STAIR = new BlockStairBasic(MAPLE_PLANK.getDefaultState());
+	public static Block BAMBOO_STAIR = new BlockStairBasic(BAMBOO_BLOCK.getDefaultState());
+	public static Block BAMBOO_SUNBURNT_STAIR = new BlockStairBasic(BAMBOO_BLOCK_SUNBURNT.getDefaultState());
+	
+	public static Block STRAW_BLOCK_SLAB = new BlockBambooSlab(Material.WOOD).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+	public static Block SAKURA_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	public static Block BAMBOO_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	public static Block MAPLE_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	
+	public static Block MAPLE_SPILE = new BlockMapleSpile();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
 		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFluidBasic(FOODOIL_FLUID), "foodoil");
+		FluidRegistry.addBucketForFluid(MAPLE_SYRUP_FLUID);
+		MAPLE_SYRUP=registerFluidBlock(MAPLE_SYRUP_FLUID, new BlockFluidBasic(MAPLE_SYRUP_FLUID), "maple_syrup");
 		FluidRegistry.addBucketForFluid(GRAPE_FLUID);
 		GRAPE_FLUID_BLOCK=registerFluidBlock(GRAPE_FLUID, new BlockFluidBasic(GRAPE_FLUID), "grape_fluid");
 		FluidRegistry.addBucketForFluid(RED_WINE_FLUID);
@@ -202,8 +221,12 @@ public class BlockLoader {
         register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
+        register(BAMBOO_PLANK_STAIR, new ItemBlock(BAMBOO_PLANK_STAIR), "stairs_plank_bamboo");
+        register(BAMBOO_PLANK_SLAB, new ItemBlock(BAMBOO_PLANK_SLAB), "slab_plank_bamboo");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_BLOCK_SUNBURNT, new ItemBlock(BAMBOO_BLOCK_SUNBURNT), "bamboo_block_sunburnt");
+        register(BAMBOO_STAIR, new ItemBlock(BAMBOO_STAIR), "bamboo_stair");
+        register(BAMBOO_SUNBURNT_STAIR, new ItemBlock(BAMBOO_SUNBURNT_STAIR), "bamboo_stair_sunburnt");
         register(BAMBOO_SLAB, new ItemSlabBase(BAMBOO_SLAB), "bamboo_slab");
         register(BAMBOO_SLAB_SUNBURNT, new ItemSlabBase(BAMBOO_SLAB_SUNBURNT), "bamboo_slab_sunburnt");
 		register(BAMBOO_FENCE, new ItemBlock(BAMBOO_FENCE), "bamboo_fence");
@@ -211,6 +234,10 @@ public class BlockLoader {
 		
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
         register(WINDBELL, new ItemBlock(WINDBELL), "windbell");
+        
+        register(STRAW_BLOCK, new ItemBlock(STRAW_BLOCK), "straw_block");
+        register(STRAW_BLOCK_STAIR, new ItemBlock(STRAW_BLOCK_STAIR), "straw_stair");
+        register(STRAW_BLOCK_SLAB, new ItemBlock(STRAW_BLOCK_SLAB), "slab_straw_block");
         register(TATAMI_TAN, new ItemBlock(TATAMI_TAN), "tatami_tan");
         register(TATAMI, new ItemBlock(TATAMI), "tatami");
         register(TATAMI_TAN_NS, new ItemBlock(TATAMI_TAN_NS), "tatami_tan_ns");
@@ -228,6 +255,7 @@ public class BlockLoader {
         
 		registerNoItem(BAMBOODOOR, "bamboo_door");
 		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
+		register(MAPLE_CAULDRON, new ItemBlock(MAPLE_CAULDRON), "maple_cauldron");
 		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
 		register(MAPLE_SAPLING_YELLOW, new ItemBlock(MAPLE_SAPLING_YELLOW), "maple_sapling_yellow");
 		register(MAPLE_LEAVE_YELLOW, new ItemBlock(MAPLE_LEAVE_YELLOW), "maple_leaves_yellow");
@@ -238,11 +266,18 @@ public class BlockLoader {
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
         register(MAPLE_PLANK, new ItemBlock(MAPLE_PLANK), "plank_maple");
-		register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
+        register(MAPLE_PLANK_STAIR, new ItemBlock(MAPLE_PLANK_STAIR), "stairs_plank_maple");
+        register(MAPLE_PLANK_SLAB, new ItemBlock(MAPLE_PLANK_SLAB), "slab_plank_maple");
+        register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
 		register(SAKURA_SAPLING, new ItemBlock(SAKURA_SAPLING), "sakura_sapling");
 		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
         register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
-		register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
+        register(SAKURA_PLANK_STAIR, new ItemBlock(SAKURA_PLANK_STAIR), "stairs_plank_sakura");
+        register(SAKURA_PLANK_SLAB, new ItemBlock(SAKURA_PLANK_SLAB), "slab_plank_sakura");
+	
+        register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
+        
+        register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(BARREL_DISTILLATION, new ItemBlock(BARREL_DISTILLATION), "barrel_distillation");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
@@ -303,6 +338,20 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(MAPLE_SPILE);
+		registerRender(STRAW_BLOCK);
+		registerRender(STRAW_BLOCK_STAIR);
+		registerRender(SAKURA_PLANK_STAIR);
+		registerRender(BAMBOO_PLANK_STAIR);
+		registerRender(MAPLE_PLANK_STAIR);
+		registerRender(BAMBOO_STAIR);
+		registerRender(BAMBOO_SUNBURNT_STAIR);
+		
+		registerRender(STRAW_BLOCK_SLAB);
+		registerRender(SAKURA_PLANK_SLAB);
+		registerRender(BAMBOO_PLANK_SLAB);
+		registerRender(MAPLE_PLANK_SLAB);
+		
 		registerRender(WINDBELL);
 		registerRender(BARREL_DISTILLATION);
 		registerRender(UDON_UNFINISHED);
@@ -329,6 +378,7 @@ public class BlockLoader {
 		registerFluidBlockRendering(LIQUEUR, "liqueur");
 		
 		registerFluidBlockRendering(FOODOIL, "food_oil");
+		registerFluidBlockRendering(MAPLE_SYRUP, "maple_syrup");
 		registerFluidBlockRendering(GRAPE_FLUID_BLOCK, "grape_fluid");
 		registerFluidBlockRendering(GREEN_GRAPE_FLUID_BLOCK, "green_grape_fluid");
 		registerFluidBlockRendering(RED_WINE, "red_wine");
@@ -342,7 +392,7 @@ public class BlockLoader {
 		registerFluidBlockRendering(VODKA, "vodka");
 		registerFluidBlockRendering(BRANDY, "brandy");
 		registerFluidBlockRendering(WHISKEY, "whiskey");
-		
+		registerRender(MAPLE_CAULDRON);
 		registerRender(BAMBOO_FENCE);
 		registerRender(BAMBOO_FENCE_SUNBURNT);
 		registerRender(KAWARA_BLOCK);

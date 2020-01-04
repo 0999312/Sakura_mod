@@ -85,7 +85,7 @@ public class ContainerDistillation extends Container {
         // 5-31: Player inventory
         // 32-41: Hot bar in the player inventory
 
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())

@@ -122,7 +122,7 @@ public class PotRecipes {
             	if(obj1 instanceof ItemStack){
             		ItemStack stack1 = (ItemStack) obj1;
 	                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
-	                    inventoryList.remove(i);
+//	                    inventoryList.remove(i);
 	                    flg2 = true;
 	                    break;
 	                }
@@ -130,7 +130,7 @@ public class PotRecipes {
                 	String dict = (String) obj1;
                 	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
                 	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, inventoryList.get(i))) {
-                        inventoryList.remove(obj1);
+//                        inventoryList.remove(obj1);
                         flg2 = true;
                         break;
                     }

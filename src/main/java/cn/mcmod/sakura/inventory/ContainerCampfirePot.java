@@ -91,7 +91,7 @@ public class ContainerCampfirePot extends Container {
         // 10-36: Player inventory
         // 37-46: Hot bar in the player inventory
 
-        ItemStack itemStack = null;
+        ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack())

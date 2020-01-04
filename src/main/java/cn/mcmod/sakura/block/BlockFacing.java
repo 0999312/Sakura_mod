@@ -1,8 +1,6 @@
 package cn.mcmod.sakura.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -19,16 +17,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFacing extends Block {
+public class BlockFacing extends BlockBase {
 	public final boolean isFull;
     public BlockFacing(Material materialIn,boolean isfull) {
 		super(materialIn);
 		isFull = isfull;
 	}
-	@Override
-	public Block setSoundType(SoundType sound) {
-		return super.setSoundType(sound);
-	}
+
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	   /**
      * Called after the block is set in the Chunk data, but before the Tile Entity is set
@@ -91,12 +86,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
+        EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
 
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
@@ -106,7 +96,7 @@ public class BlockFacing extends Block {
      */
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(FACING).getIndex();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     /**

@@ -18,6 +18,8 @@ public class ItemFoodBasic extends ItemFood {
 		this.setUnlocalizedName(SakuraMain.MODID+"."+name);
 		this.setHasSubtypes(subNames!=null&&subNames.length > 0);
 		this.setMaxStackSize(stackSize);
+		this.setMaxDamage(0);
+		this.setNoRepair();
 		this.subNames = subNames!=null&&subNames.length > 0?subNames: null;
 		this.amount = amounts!=null&&amounts.length > 0?amounts: null;
 		this.saturation = saturations!=null&&saturations.length > 0?saturations: null;
