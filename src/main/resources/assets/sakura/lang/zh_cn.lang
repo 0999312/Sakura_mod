@@ -72,6 +72,24 @@ tile.sakura.bamboo_block_sunburnt.name=日晒竹块
 tile.sakura.soba_block.name=荞麦面团
 tile.sakura.udon_unfinished_block.name=未完成的乌冬面团
 tile.sakura.ramen_block.name=拉面面团
+tile.sakura.taiko.name=太鼓
+tile.sakura.maple_spile.name=枫糖龙头
+tile.sakura.slab_plank_bamboo.name=竹板台阶
+tile.sakura.stairs_plank_bamboo.name=竹板楼梯
+tile.sakura.slab_plank_sakura.name=樱木板台阶
+tile.sakura.stairs_plank_sakura.name=樱木板楼梯
+tile.sakura.slab_plank_maple.name=枫树木板台阶
+tile.sakura.stairs_plank_maple.name=枫树木板楼梯
+tile.sakura.fallen_leaves_green.name=绿色落叶
+tile.sakura.fallen_leaves_orange.name=橙色落叶
+tile.sakura.fallen_leaves_red.name=红色落叶
+tile.sakura.fallen_leaves_yellow.name=黄色落叶
+tile.sakura.maple_cauldron.name=枫糖大锅
+tile.sakura.slab_straw_block.name=稻草台阶
+tile.sakura.straw_block.name=稻草方块
+tile.sakura.straw_stair.name=稻草楼梯
+tile.sakura.bamboo_stair.name=竹楼梯
+tile.sakura.bamboo_stair_sunburnt.name=日晒竹楼梯
 
 #物品
 item.sakura.grape.name=葡萄
@@ -247,6 +265,8 @@ item.sakura.samurai_helmet.name=武士头盔
 item.sakura.broom.name=扫帚
 item.sakura.haori.name=羽织
 item.sakura.kimono.name=和服
+item.sakura.coin.name=樱花钱币
+item.sakura.bamboo_sunburnt.name=日晒竹子
 
 item.sakura:sakura_guide.name=农夫指南
 
