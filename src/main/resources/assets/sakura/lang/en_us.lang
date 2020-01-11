@@ -72,6 +72,24 @@ tile.sakura.bamboo_block_sunburnt.name=Sunburnt Bamboo Block
 tile.sakura.soba_block.name=Buckwheat Dough
 tile.sakura.udon_unfinished_block.name=Unfinished Udon
 tile.sakura.ramen_block.name=Ramen Dough
+tile.sakura.taiko.name=Taiko
+tile.sakura.maple_spile.name=Maple Spile
+tile.sakura.slab_plank_bamboo.name=Bamboo Plank Slab
+tile.sakura.stairs_plank_bamboo.name=Bamboo Plank Stairs
+tile.sakura.slab_plank_sakura.name=Sakura Plank Slab
+tile.sakura.stairs_plank_sakura.name=Sakura Plank Stairs
+tile.sakura.slab_plank_maple.name=Maple Plank Slab
+tile.sakura.stairs_plank_maple.name=Maple Plank Stairs
+tile.sakura.fallen_leaves_green.name=Green Fallen Leaves
+tile.sakura.fallen_leaves_orange.name=Orange Fallen Leaves
+tile.sakura.fallen_leaves_red.name=Red Fallen Leaves
+tile.sakura.fallen_leaves_yellow.name=Yellow Fallen Leaves
+tile.sakura.maple_cauldron.name=Maple Cauldron
+tile.sakura.slab_straw_block.name=Straw Slab
+tile.sakura.straw_block.name=Straw Block
+tile.sakura.straw_stair.name=Straw Stairs
+tile.sakura.bamboo_stair.name=Bamboo Stairs
+tile.sakura.bamboo_stair_sunburnt.name=Sunburnt Bamboo Stairs
 
 #Item
 item.sakura.grape.name=Grape
@@ -247,6 +265,8 @@ item.sakura.samurai_helmet.name=Samurai Helmet
 item.sakura.broom.name=Broom
 item.sakura.haori.name=Haori
 item.sakura.kimono.name=Kimono
+item.sakura.coin.name=Sakura Coin
+item.sakura.bamboo_sunburnt.name=Sunburnt Bamboo
 
 item.sakura:sakura_guide.name=Harvester Guide
 
