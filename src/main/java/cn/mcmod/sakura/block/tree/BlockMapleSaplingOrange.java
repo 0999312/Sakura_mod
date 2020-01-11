@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod.sakura.world.gen.WorldGenBigMaple;
 import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -32,14 +33,32 @@ public class BlockMapleSaplingOrange extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(),true) : new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(),false);
-
+    	WorldGenerator treeGenerator = new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(),false);
+    	switch (rand.nextInt(16)) {
+		case 0:
+			treeGenerator = new WorldGenBigMaple(true, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_SAPLING_ORANGE.getDefaultState(), BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(), true);
+			break;
+		case 1:
+			treeGenerator = new WorldGenBigMaple(true, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_SAPLING_ORANGE.getDefaultState(), BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(), false);
+			break;
+		case 2:
+			treeGenerator = new WorldGenBigMaple(true, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_SAPLING_ORANGE.getDefaultState(), BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(), false);
+			break;
+		case 3:
+			treeGenerator = new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(),true);
+			break;
+		case 4:
+			treeGenerator = new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(),true);
+			break;
+		case 5:
+			treeGenerator = new WorldGenMapleTree(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(),true);
+			break;
+		default:
+			break;
+		}
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-
         if (!treeGenerator.generate(world, rand, pos)) {
-
             world.setBlockState(pos, state, 4);
-
         }
     }
     @Override

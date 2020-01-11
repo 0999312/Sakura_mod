@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "sakura:bamboo_fence"
+    "item": "sakura:bamboo_fence",
+    "count": 3
   },
   "pattern": [
     "   ",

@@ -16,11 +16,15 @@ import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import cn.mcmod.sakura.world.gen.WorldGenLoader;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -28,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @EventBusSubscriber
 public class CommonProxy {
+	public static final SoundEvent TAIKO = new SoundEvent(new ResourceLocation(SakuraMain.MODID, "taiko"));
     public static CreativeTabs tab;
     private static SimpleNetworkWrapper network;
     public static SimpleNetworkWrapper getNetwork() {
@@ -69,5 +74,8 @@ public class CommonProxy {
     public void spawnParticle(SakuraParticleType particleType, double x, double y, double z, double velX, double velY, double velZ) {
 
     }
-
+    @SubscribeEvent
+    public static void onSoundEvenrRegistration(RegistryEvent.Register<SoundEvent> event) {
+        event.getRegistry().register(TAIKO.setRegistryName(new ResourceLocation(SakuraMain.MODID, "taiko")));
+    }
 }

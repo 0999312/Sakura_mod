@@ -25,7 +25,7 @@ public class SakuraOreDictLoader {
 		registerOre("cropSeaweed", new ItemStack(ItemLoader.MATERIAL, 1, 34));
 		registerOre("cropBambooshoot", new ItemStack(BlockLoader.BAMBOOSHOOT));
 		registerOre("bamboo", new ItemStack(BlockLoader.BAMBOO));
-
+		registerOre("bamboo", new ItemStack(ItemLoader.MATERIAL,1,48));
 		registerOre("listAlltofu", new ItemStack(ItemLoader.FOODSET,1,81));
 
 		registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));

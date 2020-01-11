@@ -32,7 +32,7 @@ public class BlockMapleSaplingGreen extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),true) : new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(),false);
+        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState(),true) : new WorldGenMapleTreeGreen(true,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState(),false);
 
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 

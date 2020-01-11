@@ -22,12 +22,13 @@ public class BlockBambooBlock extends BlockRotatedPillar {
     public BlockBambooBlock(Material material,boolean sunburnt) {
         super(material);
         isSunburnt=sunburnt;
+        this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
     }
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if(!isSunburnt&&worldIn.canBlockSeeSky(pos)&&worldIn.isDaytime()){
+		if(!isSunburnt&&(worldIn.canBlockSeeSky(pos)||worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBambooBlock)&&worldIn.isDaytime()){
 				worldIn.setBlockState(pos, (BlockLoader.BAMBOO_BLOCK_SUNBURNT).getDefaultState().withProperty(LOG_AXIS, state.getValue(LOG_AXIS)));
 		}
 		super.updateTick(worldIn, pos, state, rand);

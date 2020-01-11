@@ -129,7 +129,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
 			IPlantable plantable) {
         return state.getMaterial()==Material.GROUND||state.getMaterial()==Material.GRASS||
-        	(this.getAge(state)>=2&&state.getBlock() instanceof BlockVanillaCrop)||(this.getAge(state)>=2&&state.getBlock() instanceof BlockVanillaSplint);
+        	(state.getBlock() instanceof BlockVanillaCrop&&this.getAge(state)>=2)||(state.getBlock() instanceof BlockVanillaSplint);
 	}
 	
     public void grow(World worldIn, BlockPos pos, IBlockState state)

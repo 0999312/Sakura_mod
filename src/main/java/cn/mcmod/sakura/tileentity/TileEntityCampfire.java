@@ -84,12 +84,9 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
             //check can cook
             if (this.isBurning() & this.isFinishedCook()) {
                 cookstack = getItemBurning();
-
                 ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(cookstack);
-
                 if (!cookstack.isEmpty()) {
                     if (!itemstack1.isEmpty()) {
-
                         if (this.isBurning() && this.cookTime >= 0) {
                             this.isFinishedCook = false;
                             flag1 = true;

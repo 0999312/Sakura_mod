@@ -5,22 +5,26 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;
 import net.minecraft.block.BlockMagma;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class WorldUtil {
     
-    public static int getHeatStrength(World par1World, BlockPos pos)
-    {
-        for (int i = 1; i < 5; i++)
-        {
+    public static int getHeatStrength(World par1World, BlockPos pos) {
+        for (int i = 1; i < 5; i++) {
             Block block = par1World.getBlockState(pos.down(i)).getBlock();
-            if (block instanceof BlockCampfire||block instanceof BlockMagma||block instanceof BlockFire || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA)
-            {
+            if (block instanceof BlockCampfire||block instanceof BlockMagma||block instanceof BlockFire || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA) {
                 return i <= 3 ? 2 : 1;
             }
         }
         return 0;
     }
+    public static boolean isItemFuel(ItemStack stack){
+        return TileEntityFurnace.getItemBurnTime(stack) > 0;
+    }
+    
+
     
 }

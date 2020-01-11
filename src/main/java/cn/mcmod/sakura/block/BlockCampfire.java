@@ -3,6 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfire;
+import cn.mcmod.sakura.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -13,9 +14,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -102,9 +103,8 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote)
-        {
             return true;
-        }
+        
 		ItemStack stack = playerIn.getHeldItem(hand);
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (hand == EnumHand.MAIN_HAND) {
@@ -118,26 +118,25 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
 		            return true;
 		        }
 		        if(stack.getItem()==ItemLoader.POT){
-				worldIn.setBlockToAir(pos);
-				worldIn.removeTileEntity(pos);
-				worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
-				stack.shrink(1);
-		        return true;
+					worldIn.setBlockToAir(pos);
+					worldIn.removeTileEntity(pos);
+					worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
+					stack.shrink(1);
+			        return true;
 		        }
-		        if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO)) {
-		            if (!playerIn.isCreative()) {
-		                stack.shrink(1);
-		            }
-		            if (worldIn.rand.nextInt(8) == 0) {
-		                tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 2000 + worldIn.rand.nextInt(400));
-		                
-		            }
+		        
+		        if (WorldUtil.isItemFuel(stack)) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
+		            setState(true, worldIn, pos);
+					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
+						else stack.shrink(1);
 		            return true;
 		        }
 
-		        if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
-		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000 + worldIn.rand.nextInt(800));
-
+		        if (stack.getItem() == Items.FLINT_AND_STEEL) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000);
+		            setState(true, worldIn, pos);
+		            stack.damageItem(1, playerIn);
 		            return true;
 		        }
 

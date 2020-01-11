@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:straw_block"
+  },
+  "pattern": [
+    "FFF",
+    "FFF",
+    "FFF"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "sakura:materials",
+      "data": 0
+    }
+  }
+}

@@ -169,7 +169,13 @@ public class BlockLoader {
 	public static Block BAMBOO_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
 	public static Block MAPLE_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
 	
+	public static Block FALLEN_LEAVES_MAPLE_RED =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
+	public static Block FALLEN_LEAVES_MAPLE_GREEN =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
+	public static Block FALLEN_LEAVES_MAPLE_YELLOW =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
+	public static Block FALLEN_LEAVES_MAPLE_ORANGE =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
+	
 	public static Block MAPLE_SPILE = new BlockMapleSpile();
+	public static Block TAIKO = new BlockTaiko();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -219,6 +225,7 @@ public class BlockLoader {
         register(UDON_UNFINISHED, new ItemBlock(UDON_UNFINISHED), "udon_unfinished_block");
         registerNoItem(UDON_BLOCK, "udon_block");
         register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
+
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
         register(BAMBOO_PLANK_STAIR, new ItemBlock(BAMBOO_PLANK_STAIR), "stairs_plank_bamboo");
@@ -254,15 +261,19 @@ public class BlockLoader {
         register(TATAMI_NS_CARPET, new ItemBlock(TATAMI_NS_CARPET), "tatami_ns_carpet");
         
 		registerNoItem(BAMBOODOOR, "bamboo_door");
-		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
 		register(MAPLE_CAULDRON, new ItemBlock(MAPLE_CAULDRON), "maple_cauldron");
+		register(MAPLE_SAPLING_RED, new ItemBlock(MAPLE_SAPLING_RED), "maple_sapling_red");
 		register(MAPLE_LEAVE_RED, new ItemBlock(MAPLE_LEAVE_RED), "maple_leaves_red");
+		register(FALLEN_LEAVES_MAPLE_RED, new ItemBlock(FALLEN_LEAVES_MAPLE_RED), "fallen_leaves_red");
 		register(MAPLE_SAPLING_YELLOW, new ItemBlock(MAPLE_SAPLING_YELLOW), "maple_sapling_yellow");
 		register(MAPLE_LEAVE_YELLOW, new ItemBlock(MAPLE_LEAVE_YELLOW), "maple_leaves_yellow");
+		register(FALLEN_LEAVES_MAPLE_YELLOW, new ItemBlock(FALLEN_LEAVES_MAPLE_YELLOW), "fallen_leaves_yellow");
 		register(MAPLE_SAPLING_ORANGE, new ItemBlock(MAPLE_SAPLING_ORANGE), "maple_sapling_orange");
 		register(MAPLE_LEAVE_ORANGE, new ItemBlock(MAPLE_LEAVE_ORANGE), "maple_leaves_orange");
+		register(FALLEN_LEAVES_MAPLE_ORANGE, new ItemBlock(FALLEN_LEAVES_MAPLE_ORANGE), "fallen_leaves_orange");
 		register(MAPLE_SAPLING_GREEN, new ItemBlock(MAPLE_SAPLING_GREEN), "maple_sapling_green");
 		register(MAPLE_LEAVE_GREEN, new ItemBlock(MAPLE_LEAVE_GREEN), "maple_leaves_green");
+		register(FALLEN_LEAVES_MAPLE_GREEN, new ItemBlock(FALLEN_LEAVES_MAPLE_GREEN), "fallen_leaves_green");
 		register(MAPLE_LOG, new ItemBlock(MAPLE_LOG), "maple_log");
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
         register(MAPLE_PLANK, new ItemBlock(MAPLE_PLANK), "plank_maple");
@@ -288,6 +299,7 @@ public class BlockLoader {
 		register(KITUNEBI, new ItemBlock(KITUNEBI), "kitunebi");
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
+        register(TAIKO, new ItemBlock(TAIKO), "taiko");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
@@ -338,6 +350,12 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(TAIKO);
+		registerRender(FALLEN_LEAVES_MAPLE_GREEN);
+		registerRender(FALLEN_LEAVES_MAPLE_ORANGE);
+		registerRender(FALLEN_LEAVES_MAPLE_RED);
+		registerRender(FALLEN_LEAVES_MAPLE_YELLOW);
+		
 		registerRender(MAPLE_SPILE);
 		registerRender(STRAW_BLOCK);
 		registerRender(STRAW_BLOCK_STAIR);

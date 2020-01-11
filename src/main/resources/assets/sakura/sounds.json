@@ -1,0 +1,12 @@
+{
+    "taiko": {
+        "category": "block",
+        "subtitle": "sakura.sound.taiko",
+        "sounds": [
+            "sakura:taiko_1",
+            "sakura:taiko_2",
+			"sakura:taiko_3",
+            "sakura:taiko_4"
+        ]
+    }
+}

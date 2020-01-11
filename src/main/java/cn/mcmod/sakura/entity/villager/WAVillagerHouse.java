@@ -58,8 +58,9 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
         }
 
         IBlockState iblockstate = Blocks.STONE.getDefaultState();
-        IBlockState iblockstate1 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
-        IBlockState iblockstate2 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+        IBlockState iblockstate1 = BlockLoader.STRAW_BLOCK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
+        IBlockState iblockstate2 = BlockLoader.STRAW_BLOCK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
+        IBlockState iblockstate000 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
         IBlockState iblockstate3 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST);
         IBlockState iblockstate4 = BlockLoader.BAMBOO_PLANK.getDefaultState();
         IBlockState iblockstate5 = BlockLoader.MAPLE_PLANK_STAIR.getDefaultState().withProperty(BlockFacing.FACING, EnumFacing.NORTH);
@@ -111,10 +112,10 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
         this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 4, 7, 4, 4, iblockstate4, iblockstate4, false);
         this.setBlockState(worldIn, iblockstate4, 7, 1, 4, structureBoundingBoxIn);
         this.setBlockState(worldIn, iblockstate3, 7, 1, 3, structureBoundingBoxIn);
-        this.setBlockState(worldIn, iblockstate1, 6, 1, 4, structureBoundingBoxIn);
-        this.setBlockState(worldIn, iblockstate1, 5, 1, 4, structureBoundingBoxIn);
-        this.setBlockState(worldIn, iblockstate1, 4, 1, 4, structureBoundingBoxIn);
-        this.setBlockState(worldIn, iblockstate1, 3, 1, 4, structureBoundingBoxIn);
+        this.setBlockState(worldIn, iblockstate000, 6, 1, 4, structureBoundingBoxIn);
+        this.setBlockState(worldIn, iblockstate000, 5, 1, 4, structureBoundingBoxIn);
+        this.setBlockState(worldIn, iblockstate000, 4, 1, 4, structureBoundingBoxIn);
+        this.setBlockState(worldIn, iblockstate000, 3, 1, 4, structureBoundingBoxIn);
         this.setBlockState(worldIn, iblockstate6, 6, 1, 3, structureBoundingBoxIn);
         this.setBlockState(worldIn, Blocks.WOODEN_PRESSURE_PLATE.getDefaultState(), 6, 2, 3, structureBoundingBoxIn);
         this.setBlockState(worldIn, iblockstate6, 4, 1, 3, structureBoundingBoxIn);

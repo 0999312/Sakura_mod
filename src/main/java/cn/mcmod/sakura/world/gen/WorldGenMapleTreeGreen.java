@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,32 +16,27 @@ import java.util.Random;
 public class WorldGenMapleTreeGreen extends WorldGenAbstractTree {
     private static final IBlockState DEFAULT_TRUNK = BlockLoader.MAPLE_LOG.getDefaultState();
     private static final IBlockState DEFAULT_LEAF = BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-    /**
-     * The minimum height of a generated tree.
-     */
+    private static final IBlockState DEFAULT_FALLEN_LEAF = BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState();
+
     private final int minTreeHeight;
-    /**
-     * True if this tree should grow Vines.
-     */
+
     private final boolean generateSap;
-    /**
-     * The metadata value of the wood to use in tree generation.
-     */
+
     private final IBlockState metaWood;
-    /**
-     * The metadata value of the leaves to use in tree generation.
-     */
+
     private final IBlockState metaLeaves;
+    private final IBlockState metaFallenLeaves;
 
     public WorldGenMapleTreeGreen(boolean p_i2027_1_, boolean sap) {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, sap);
+        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF,DEFAULT_FALLEN_LEAF, sap);
     }
 
-    public WorldGenMapleTreeGreen(boolean notify, int minTreeHeightIn, IBlockState woodMeta, IBlockState p_i46446_4_, boolean sap) {
+    public WorldGenMapleTreeGreen(boolean notify, int minTreeHeightIn, IBlockState woodMeta, IBlockState p_i46446_4_,IBlockState fallenMeta, boolean sap) {
         super(notify);
         this.minTreeHeight = minTreeHeightIn;
         this.metaWood = woodMeta;
         this.metaLeaves = p_i46446_4_;
+        this.metaFallenLeaves = fallenMeta;
         this.generateSap = sap;
     }
 
@@ -126,7 +122,8 @@ public class WorldGenMapleTreeGreen extends WorldGenAbstractTree {
 			            }
 			        }
 			    }
-
+			    fallenLeaves(worldIn, position,4,2,4, this.metaFallenLeaves);
+			    
 			    return true;
 			}
 			return false;
@@ -134,6 +131,50 @@ public class WorldGenMapleTreeGreen extends WorldGenAbstractTree {
 		return false;
     }
 
+    /**
+     * Fill the given area with the selected blocks
+     */
+    private void fallenLeaves(World worldIn,BlockPos pos, int xADD, int yADD, int zADD, IBlockState insideBlockState){
+    	int xx = pos.getX();
+        int yy = pos.getY();
+        int zz = pos.getZ();
+        
+        boolean setFlg = false;
+        int YEND = 4;
+        for (int xx1 = xx - xADD; xx1 <= xx + xADD; xx1++) {
+          for (int zz1 = zz - zADD; zz1 <= zz + zADD; zz1++) {
+            if (((xx1 != xx - xADD) || (zz1 != zz - zADD)) && ((xx1 != xx + xADD) || (zz1 != zz - zADD)) && ((xx1 != xx - xADD) || (zz1 != zz + zADD)) && ((xx1 != xx + xADD) || (zz1 != zz + zADD)) && (((xx1 >= xx - xADD + 1) && (xx1 <= xx + xADD - 1) && (zz1 >= zz - zADD + 1) && (zz1 <= zz + zADD - 1)) || (worldIn.rand.nextInt(2) != 0)))
+            {
+              setFlg = false;
+              int yy1 = yy + yADD;
+              Block cBl = worldIn.getBlockState(new BlockPos(xx1, yy + yADD, zz1)).getBlock();
+              
+              if ((cBl == Blocks.AIR) || (cBl instanceof BlockLeaves) || (cBl == BlockLoader.CHESTNUTBURR)) {
+                for (yy1 = yy + yADD; yy1 >= yy - YEND; yy1--)
+                {
+                  boolean cAir = worldIn.isAirBlock(new BlockPos(xx1, yy1, zz1));
+                  cBl = worldIn.getBlockState(new BlockPos(xx1, yy1 - 1, zz1)).getBlock();
+                  if ((cBl == Blocks.AIR) || ((cBl != Blocks.GRASS) && !(cBl instanceof BlockLeaves) && (!worldIn.getBlockState(new BlockPos(xx1, yy1 - 1, zz1)).isOpaqueCube())))
+                  {
+                    if (cBl != Blocks.AIR) {
+                      break;
+                    }
+                  }
+                  else if (cAir)
+                  {
+                    setFlg = true;
+                    break;
+                  }
+                }
+              }
+              if (setFlg) {
+                setBlockAndNotifyAdequately(worldIn, new BlockPos(xx1, yy1, zz1), insideBlockState);
+              }
+            }
+          }
+        }
+    }
+    
     public boolean isBurr(IBlockState state, IBlockAccess world, BlockPos pos) {
         return state.getBlock() == BlockLoader.CHESTNUTBURR;
     }

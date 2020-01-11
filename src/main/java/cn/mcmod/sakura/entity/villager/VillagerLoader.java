@@ -112,7 +112,7 @@ public class VillagerLoader {
 		public void addMerchantRecipe(IMerchant merchant, MerchantRecipeList recipeList, Random random)
 		{
 			int i = price != null ? price.getPrice(random) : 1;
-			recipeList.add(new MerchantRecipe(new ItemStack(Items.EMERALD, i, 0),item.copy()));
+			recipeList.add(new MerchantRecipe(new ItemStack(ItemLoader.MATERIAL, i, 50),item.copy()));
         }
 	}
     private static class SimpleSell implements ITradeList{
@@ -127,7 +127,7 @@ public class VillagerLoader {
 		public void addMerchantRecipe(IMerchant merchant, MerchantRecipeList recipeList, Random random)
 		{
 			int i = price != null ? price.getPrice(random) : 1;
-			recipeList.add(new MerchantRecipe(item.copy(),new ItemStack(Items.EMERALD, i, 0)));
+			recipeList.add(new MerchantRecipe(item.copy(),new ItemStack(ItemLoader.MATERIAL, i, 50)));
         }
 	}
 }
