@@ -418,6 +418,7 @@ fluid.brandy=白兰地
 fluid.whiskey=威士忌
 fluid.liqueur=利口酒
 fluid.cocoa_liqueur=可可利口酒
+fluid.maple_syrup=枫糖浆
 
 #物品信息
 item.sakura.kimono.texture.name=和服
