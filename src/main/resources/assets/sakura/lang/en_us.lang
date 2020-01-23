@@ -418,6 +418,7 @@ fluid.brandy=Brandy
 fluid.whiskey=Whiskey
 fluid.liqueur=Liqueur
 fluid.cocoa_liqueur=Cocoa Liqueur
+fluid.maple_syrup=Maple Syrup
 
 #Tooltips
 item.sakura.kimono.texture.name=Kimono
