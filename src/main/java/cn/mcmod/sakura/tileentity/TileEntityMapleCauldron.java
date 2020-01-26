@@ -139,13 +139,12 @@ public class TileEntityMapleCauldron extends TileEntity implements ITickable, II
     private void cooking() {
     	boolean flag = this.isBurning();
         boolean flag1 = false;
-        
-    	if (isBurning()) {
+        ItemStack itemstack = this.inventory.get(0);
+    	if (isBurning()&&(itemstack.getCount()<itemstack.getMaxStackSize())) {
             cookTime += 1;
     	}
-	    if (cookTime >= 500) {
+	    if (cookTime >= 1200) {
 	        cookTime = 0;
-            ItemStack itemstack = this.inventory.get(0);
 
             if (itemstack.isEmpty()) {
                 this.inventory.set(0, new ItemStack(ItemLoader.MATERIAL, 8, 49).copy());

@@ -69,7 +69,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
     @Override
     public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        super.getDrops(drops, world, pos, state, 0);
+//        super.getDrops(drops, world, pos, state, 0);
         drops.clear();
     	drops.add(new ItemStack(BlockLoader.VANILLA_SPLINT));
         int age = getAge(state);
@@ -91,7 +91,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
      */
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+//        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 
         if (!worldIn.isRemote) // Forge: NOP all this.
         {

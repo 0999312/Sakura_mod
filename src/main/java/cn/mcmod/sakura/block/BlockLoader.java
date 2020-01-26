@@ -1,5 +1,7 @@
 package cn.mcmod.sakura.block;
 
+import java.util.Random;
+
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.crop.*;
@@ -23,10 +25,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -38,6 +45,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockLoader {
 	public static Fluid FOODOIL_FLUID = new FluidBasic("food_oil");
 	public static Block FOODOIL;
+	public static Fluid YEAST_FLUID = new FluidBasic("yeast_liquid");
+	public static Block YEAST_LIQUID;
 	public static Fluid MAPLE_SYRUP_FLUID = new FluidBasic("maple_syrup");
 	public static Block MAPLE_SYRUP;
 	public static Fluid GRAPE_FLUID = new FluidBasic("grape_fluid");
@@ -72,6 +81,9 @@ public class BlockLoader {
 	public static Block LIQUEUR;
 	public static Fluid COCOA_LIQUEUR_FLUID = new FluidBasic("cocoa_liqueur");
 	public static Block COCOA_LIQUEUR;
+	
+	public static Fluid HOT_SPRING_WATER_FLUID = new FluidBasic("hot_spring_water");
+	public static Block HOT_SPRING_WATER;
 	
     public static Block BAMBOO = new BlockPlantBamboo();
     public static Block WINDBELL = new BlockWindBell();
@@ -176,12 +188,40 @@ public class BlockLoader {
 	
 	public static Block MAPLE_SPILE = new BlockMapleSpile();
 	public static Block TAIKO = new BlockTaiko();
+//	public static Block OBON = new BlockOben();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
 
+		FluidRegistry.addBucketForFluid(HOT_SPRING_WATER_FLUID);
+		HOT_SPRING_WATER=registerFluidBlock(HOT_SPRING_WATER_FLUID, new BlockFluidBasic(HOT_SPRING_WATER_FLUID){
+		    @Override
+		    public void onEntityCollidedWithBlock(World par1World, BlockPos pos, IBlockState state, Entity par5Entity) {
+		        if (!par1World.isRemote) {
+		            if (par5Entity instanceof EntityLivingBase) {
+		                EntityLivingBase entityLiving = (EntityLivingBase)par5Entity;
+		                if (entityLiving.ticksExisted % 20 == 0) {
+								entityLiving.heal(0.5f);
+		                }
+		            }
+		        }
+		    }
+		    
+			@Override
+			@SideOnly(Side.CLIENT)
+			public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+	        if (world.isAirBlock(pos.up())) {
+		                double d0 = pos.getX() + rand.nextDouble();
+		                double d1 = pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
+		                double d2 = pos.getZ() + rand.nextDouble();
+		                world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+	            }
+			}
+		}, "hot_spring_water");
 		FluidRegistry.addBucketForFluid(FOODOIL_FLUID);
 		FOODOIL=registerFluidBlock(FOODOIL_FLUID, new BlockFluidBasic(FOODOIL_FLUID), "foodoil");
+		FluidRegistry.addBucketForFluid(YEAST_FLUID);
+		YEAST_LIQUID=registerFluidBlock(YEAST_FLUID, new BlockFluidBasic(YEAST_FLUID), "yeast_liquid");
 		FluidRegistry.addBucketForFluid(MAPLE_SYRUP_FLUID);
 		MAPLE_SYRUP=registerFluidBlock(MAPLE_SYRUP_FLUID, new BlockFluidBasic(MAPLE_SYRUP_FLUID), "maple_syrup");
 		FluidRegistry.addBucketForFluid(GRAPE_FLUID);
@@ -287,7 +327,7 @@ public class BlockLoader {
         register(SAKURA_PLANK_SLAB, new ItemBlock(SAKURA_PLANK_SLAB), "slab_plank_sakura");
 	
         register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
-        
+//        register(OBON, new ItemBlock(OBON), "obon");
         register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(BARREL_DISTILLATION, new ItemBlock(BARREL_DISTILLATION), "barrel_distillation");
@@ -351,6 +391,7 @@ public class BlockLoader {
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
 		registerRender(TAIKO);
+//		registerRender(OBON);
 		registerRender(FALLEN_LEAVES_MAPLE_GREEN);
 		registerRender(FALLEN_LEAVES_MAPLE_ORANGE);
 		registerRender(FALLEN_LEAVES_MAPLE_RED);
@@ -393,8 +434,9 @@ public class BlockLoader {
 		registerRender(BAMBOO_BLOCK_SUNBURNT);
 		
 		registerFluidBlockRendering(COCOA_LIQUEUR, "cocoa_liqueur");
+		registerFluidBlockRendering(YEAST_LIQUID, "yeast_liquid");
 		registerFluidBlockRendering(LIQUEUR, "liqueur");
-		
+		registerFluidBlockRendering(HOT_SPRING_WATER, "hot_spring_water");
 		registerFluidBlockRendering(FOODOIL, "food_oil");
 		registerFluidBlockRendering(MAPLE_SYRUP, "maple_syrup");
 		registerFluidBlockRendering(GRAPE_FLUID_BLOCK, "grape_fluid");

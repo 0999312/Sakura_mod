@@ -66,7 +66,7 @@ public class SakuraRecipeRegister {
 		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.VODKA_FLUID, 1000)), new FluidStack(BlockLoader.VODKA_FLUID, 1000)));
 		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BRANDY_FLUID, 1000)), new FluidStack(BlockLoader.BRANDY_FLUID, 1000)));
 		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)), new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)));
-		
+		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.YEAST_FLUID, 1000)), new FluidStack(BlockLoader.YEAST_FLUID, 1000)));
 		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)));
 		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)));
 		
@@ -118,12 +118,21 @@ public class SakuraRecipeRegister {
 		BarrelRecipes.register(
 				new BarrelRecipes(
 				new FluidStack(FluidRegistry.WATER, 100),
+				new FluidStack(BlockLoader.YEAST_FLUID, 50), 
+				new Object[]{
+				"listAllfruit",
+				"listAllgrain",
+				"listAllsugar"
+				}, 600));
+		BarrelRecipes.register(
+				new BarrelRecipes(
+				new FluidStack(FluidRegistry.WATER, 100),
 				new FluidStack(BlockLoader.BEER_FLUID, 100), 
 				new Object[]{
 				"cropWheat",
 				"foodYeast",
 				"cropHops"
-				}, 60));
+				}, 800));
 		BarrelRecipes.register(
 				new BarrelRecipes(
 				new FluidStack(BlockLoader.GRAPE_FLUID, 100),
@@ -163,7 +172,7 @@ public class SakuraRecipeRegister {
 		DistillationRecipes.register(
 				new DistillationRecipes(
 				new FluidStack(BlockLoader.SAKE_FLUID, 100),
-				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50), 1200));
+				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50), 100));
 		DistillationRecipes.register(
 				new DistillationRecipes(
 				new FluidStack(FluidRegistry.WATER, 100),

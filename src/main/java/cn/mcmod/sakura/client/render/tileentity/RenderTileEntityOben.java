@@ -1,15 +1,15 @@
 package cn.mcmod.sakura.client.render.tileentity;
 
-import cn.mcmod.sakura.tileentity.TileEntityCampfire;
+import cn.mcmod.sakura.tileentity.TileEntityOben;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 
-public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEntityCampfire> {
+public class RenderTileEntityOben extends TileEntitySpecialRenderer<TileEntityOben> {
 
     @Override
-    public void render(TileEntityCampfire te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(TileEntityOben te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
     	if(!te.getInventory().getStackInSlot(0).isEmpty()){
     	GlStateManager.pushMatrix();
         GlStateManager.translate((float) x + 0.5F, (float) y-0.25F, (float) z + 0.5F);
@@ -18,26 +18,20 @@ public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEnti
     	}
     }
     
-    public RenderTileEntityCampfire() {
+    public RenderTileEntityOben() {
 	}
 
     /**
      * Render the item.
      */
-    protected void renderItem(TileEntityCampfire te, double posX, double posY, double posZ, float partialTicks) {
+    protected void renderItem(TileEntityOben te, double posX, double posY, double posZ, float partialTicks) {
         	EntityItem renderItemEntity = null;
-
             renderItemEntity = new EntityItem(te.getWorld());
             renderItemEntity.setItem(te.getInventory().getStackInSlot(0).copy());
             renderItemEntity.hoverStart = 0;
-        	
             GlStateManager.scale(1.0F, 1.0F, 1.0F);
-            GlStateManager.translate(0.0F, 0.4F, 0.0F);
-
-            float rot = te.getWorld().getTotalWorldTime() % 360;
-            rot = rot * 2;
-            GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
+            GlStateManager.translate(0.0F, 0.8F, 0.0F);
+            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity, 0.0D, 0.0D, 0.0D, 0F, partialTicks, false);
 
     }
 }

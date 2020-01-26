@@ -62,7 +62,7 @@ public class VillagerLoader {
 		trader.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.MATERIAL,8,31),new PriceInfo(2, 5)));
 		trader.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.FOODSET,8,63),new PriceInfo(4, 7)));
 		trader.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.FOODSET,8,81),new PriceInfo(3, 5)));
-		
+		trader.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.FOODSET,8,37),new PriceInfo(3, 5)));
 		
 		VillagerRegistry.VillagerCareer wine_trader = new VillagerRegistry.VillagerCareer(wa_villager, "wine_trader");
 		wine_trader.addTrade(1, new SimpleBuy(new ItemStack(DrinksLoader.bottle_alcoholic,1,0),new PriceInfo(3, 5)));

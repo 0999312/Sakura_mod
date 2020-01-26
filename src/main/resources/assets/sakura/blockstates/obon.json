@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "sakura:oben"
+    },
+	"inventory": {
+      "model": "sakura:oben"
+    }
+  }
+}

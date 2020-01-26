@@ -343,6 +343,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
     private void DrainInput() {
         ItemStack itemstack = this.inventory.get(3);
         if(getRecipesResult()!=null){
+        	FluidStack fluidstack = getRecipesResult().getResultFluid();
      	   ItemStack itemstack1 = getRecipesResult().getResultItemStack();
             if(itemstack1!=null){
          	   ItemStack itemstack2 = this.inventory.get(4);
@@ -350,8 +351,8 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
                     	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
                 if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
                 &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){
-                    if (getRecipesResult().getResultFluid() != null && getRecipesResult().getResultFluid().amount>0) {
-         	        if(this.getResultTank().getFluidAmount()>=getRecipesResult().getResultFluid().amount){
+                    if (fluidstack != null && fluidstack.amount>0) {
+         	        if(this.getResultTank()!=null&&this.getResultTank().getFluidAmount()>=fluidstack.amount){
          		        if (itemstack2.isEmpty())
          		        {
          		            this.inventory.set(4, itemstack1.copy());
@@ -365,7 +366,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
          		        	itemstack.shrink(1);
          		        else  this.inventory.set(3, new ItemStack(itemstack.getItem().getContainerItem()));
          		        
-         		        this.getResultTank().drain(getRecipesResult().getResultFluid(), true);
+         		        this.getResultTank().drain(fluidstack, true);
          	        }
             	}
             }

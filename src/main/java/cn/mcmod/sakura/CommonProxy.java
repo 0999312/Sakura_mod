@@ -5,7 +5,6 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
-import cn.mcmod.sakura.event.SakuraEventLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import cn.mcmod.sakura.packet.PacketKeyMessage;
@@ -46,7 +45,6 @@ public class CommonProxy {
         new DrinksLoader();
         SakuraEntityRegister.entityRegister();
 
-        MinecraftForge.EVENT_BUS.register(new SakuraEventLoader());
         new SakuraOreDictLoader();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
@@ -55,6 +53,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event) {
     	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
+    	MinecraftForge.TERRAIN_GEN_BUS.register(new WorldGenLoader());
     	new WorldGenLoader();
         TileEntityRegistry.init();
         KimonoLoader.Init();

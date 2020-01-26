@@ -20,18 +20,15 @@ public class BlockWindBell extends BlockFacing {
 	  protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.35D, 0.275D, 0.35D, 0.65D, 1D, 0.65D);
 	public BlockWindBell() {
 		super(Material.WOOD, false);
-		this.setTickRandomly(true);
 		this.setSoundType(SoundType.CLOTH);
 	}
 	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if (rand.nextInt(200) == 0) {
-           worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1F, 1.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F), 
-        		   true);
-        }
-		super.updateTick(worldIn, pos, state, rand);
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (rand.nextInt(50) == 0) {
+	           worldIn.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 1F, 1.5F * ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.8F), 
+	        		   true);
+	        }
 	}
-	
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
     	return Block.NULL_AABB;

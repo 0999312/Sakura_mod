@@ -23,6 +23,7 @@ public class KimonoLoader {
 		registerKimono("kimono_3");
 		registerKimono("kimono_4");
 		registerKimono("kimono_5");
+		registerKimono("kimono_6");
 		registerHaori("haori_1");
 		registerHaori("haori_2");
 	}

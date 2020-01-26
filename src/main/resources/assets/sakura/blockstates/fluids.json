@@ -102,6 +102,18 @@
          "custom" : {
             "fluid" : "maple_syrup"
          }
+      },
+      "hot_spring_water" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "hot_spring_water"
+         }
+      },
+      "yeast_liquid" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "yeast_liquid"
+         }
       }
    }
 }

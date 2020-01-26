@@ -348,38 +348,38 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
     }
 
     private void DrainInput() {
-       ItemStack itemstack = this.inventory.get(3);
-       if(getRecipesResult()!=null){
-    	   
-    	   ItemStack itemstack1 = getRecipesResult().getResultItemStack();
-           if(itemstack1!=null){
-        	   ItemStack itemstack2 = this.inventory.get(4);
-               boolean not_full=(itemstack2.getCount()<itemstack2.getMaxStackSize()
-                   	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
-               if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
-               &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){ 
-            	   if (getRecipesResult().getResultFluid() != null && getRecipesResult().getResultFluid().amount>0) {
-            	   if(resultTank.getFluidAmount()>getRecipesResult().getResultFluid().amount){
-        		        if (itemstack2.isEmpty())
-        		        {
-        		            this.inventory.set(4, itemstack1.copy());
-        		        }
-        		        else if (itemstack2.getItem() == itemstack1.getItem())
-        		        {
-        		            itemstack2.grow(itemstack1.getCount());
-        		        }
-        		
-        		        if(!itemstack.getItem().hasContainerItem(itemstack))
-        		        	itemstack.shrink(1);
-        		        else  this.inventory.set(3, new ItemStack(itemstack.getItem().getContainerItem()));
-        		        resultTank.drain(getRecipesResult().getResultFluid().amount, true);
-        	        }
-           		}
+        ItemStack itemstack = this.inventory.get(3);
+        if(getRecipesResult()!=null){
+        	FluidStack fluidstack = getRecipesResult().getResultFluid();
+     	   ItemStack itemstack1 = getRecipesResult().getResultItemStack();
+            if(itemstack1!=null){
+         	   ItemStack itemstack2 = this.inventory.get(4);
+                boolean not_full=(itemstack2.getCount()<itemstack2.getMaxStackSize()
+                    	 &&itemstack2.getCount()+itemstack1.getCount()<=itemstack2.getMaxStackSize());
+                if(!(itemstack.isEmpty())&&!(itemstack1.isEmpty())
+                &&not_full&&(itemstack2.isEmpty()||itemstack2.getItem() == itemstack1.getItem())){
+                    if (fluidstack != null && fluidstack.amount>0) {
+         	        if(this.getResultTank()!=null&&this.getResultTank().getFluidAmount()>=fluidstack.amount){
+         		        if (itemstack2.isEmpty())
+         		        {
+         		            this.inventory.set(4, itemstack1.copy());
+         		        }
+         		        else if (itemstack2.getItem() == itemstack1.getItem())
+         		        {
+         		            itemstack2.grow(itemstack1.getCount());
+         		        }
+         		
+         		        if(!itemstack.getItem().hasContainerItem(itemstack))
+         		        	itemstack.shrink(1);
+         		        else  this.inventory.set(3, new ItemStack(itemstack.getItem().getContainerItem()));
+         		        
+         		        this.getResultTank().drain(fluidstack, true);
+         	        }
+            	}
+            }
            }
-           }
-       }
-       
-	}
+        }
+ 	}
     private LiquidToItemRecipe getRecipesResult() {
         if (this.getStackInSlot(3).isEmpty()) {
             return null;

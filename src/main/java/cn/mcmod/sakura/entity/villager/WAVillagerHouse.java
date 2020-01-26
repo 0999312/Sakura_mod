@@ -57,7 +57,7 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
             this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 9 - 1, 0);
         }
 
-        IBlockState iblockstate = Blocks.STONE.getDefaultState();
+        IBlockState iblockstate = Blocks.STONEBRICK.getDefaultState();
         IBlockState iblockstate1 = BlockLoader.STRAW_BLOCK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
         IBlockState iblockstate2 = BlockLoader.STRAW_BLOCK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH);
         IBlockState iblockstate000 = BlockLoader.BAMBOO_PLANK_STAIR.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH);
