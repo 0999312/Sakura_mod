@@ -6,8 +6,8 @@
   },
   "ingredients": [
     {
-      "item": "sakura:bamboo"
+      "item": "#BAMBOO"
     }
   ],
-  "type": "minecraft:crafting_shapeless"
+  "type": "forge:ore_shapeless"
 }

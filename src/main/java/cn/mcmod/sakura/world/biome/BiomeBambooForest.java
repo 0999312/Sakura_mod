@@ -1,9 +1,7 @@
 package cn.mcmod.sakura.world.biome;
 
-import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.world.gen.WorldGenBamboo;
 import cn.mcmod.sakura.world.gen.WorldGenBigSakura;
-import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import cn.mcmod.sakura.world.gen.WorldGenSakuraTree;
 import net.minecraft.block.BlockTallGrass;
 import net.minecraft.world.biome.Biome;

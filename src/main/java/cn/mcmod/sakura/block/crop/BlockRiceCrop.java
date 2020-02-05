@@ -33,7 +33,7 @@ public class BlockRiceCrop extends BlockCrops {
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return RICE_AABB[((Integer) state.getValue(this.getAgeProperty())).intValue()];
+        return RICE_AABB[state.getValue(this.getAgeProperty()).intValue()];
     }
 
     @Override
@@ -46,9 +46,8 @@ public class BlockRiceCrop extends BlockCrops {
                 }
             }
             return ret;
-        } else {
-            return 1;
         }
+		return 1;
     }
 
     @Override

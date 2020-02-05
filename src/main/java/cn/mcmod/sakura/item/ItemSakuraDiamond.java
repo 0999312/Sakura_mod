@@ -25,21 +25,20 @@ public class ItemSakuraDiamond extends Item {
 
         if (raytraceresult != null && raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && worldIn.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.END_PORTAL_FRAME) {
             return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
-        } else {
-            if (worldIn.isRemote) {
-                int j = worldIn.rand.nextInt(2) * 2 - 1;
-                int k = worldIn.rand.nextInt(2) * 2 - 1;
-
-                double d0 = (double) playerIn.getPosition().getX() + 0.25D * (double) j;
-                double d1 = (double) ((float) playerIn.getPosition().getY() + 1D);
-                double d2 = (double) playerIn.getPosition().getZ() + 0.25D * (double) k;
-                double d3 = (double) (worldIn.rand.nextFloat() * (float) j) * 0.1D;
-                double d4 = (((double) worldIn.rand.nextFloat()) * 0.055D) + 0.015D;
-                double d5 = (double) (worldIn.rand.nextFloat() * (float) k) * 0.1D;
-
-                SakuraMain.proxy.spawnParticle(SakuraParticleType.LEAVESSAKURA, d0, d1, d2, d3, -d4, d5);
-            }
-            return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
         }
+		if (worldIn.isRemote) {
+		    int j = worldIn.rand.nextInt(2) * 2 - 1;
+		    int k = worldIn.rand.nextInt(2) * 2 - 1;
+
+		    double d0 = playerIn.getPosition().getX() + 0.25D * j;
+		    double d1 = playerIn.getPosition().getY() + 1D;
+		    double d2 = playerIn.getPosition().getZ() + 0.25D * k;
+		    double d3 = worldIn.rand.nextFloat() * j * 0.1D;
+		    double d4 = (worldIn.rand.nextFloat() * 0.055D) + 0.015D;
+		    double d5 = worldIn.rand.nextFloat() * k * 0.1D;
+
+		    SakuraMain.proxy.spawnParticle(SakuraParticleType.LEAVESSAKURA, d0, d1, d2, d3, -d4, d5);
+		}
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
     }
 }

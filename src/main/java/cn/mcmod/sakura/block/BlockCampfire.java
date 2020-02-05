@@ -3,6 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfire;
+import cn.mcmod.sakura.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -13,9 +14,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -102,58 +103,52 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote)
-        {
             return true;
-        }
-        else {
-            ItemStack stack = playerIn.getHeldItem(hand);
-            TileEntity tile = worldIn.getTileEntity(pos);
-            if (hand == EnumHand.MAIN_HAND) {
-                if (tile instanceof TileEntityCampfire) {
-                    TileEntityCampfire tileEntityCampfire = (TileEntityCampfire) tile;
+        
+		ItemStack stack = playerIn.getHeldItem(hand);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (hand == EnumHand.MAIN_HAND) {
+		    if (tile instanceof TileEntityCampfire) {
+		        TileEntityCampfire tileEntityCampfire = (TileEntityCampfire) tile;
 
-                    if(tileEntityCampfire.getInventory().isItemValid(0,stack)&& tileEntityCampfire.getInventory().getStackInSlot(0).getCount() < 16){
-                        ItemStack campfireStack=new ItemStack(stack.getItem(),1);
+		        if(tileEntityCampfire.getInventory().isItemValid(0,stack)&& tileEntityCampfire.getInventory().getStackInSlot(0).getCount() < 16){
+		            ItemStack campfireStack=new ItemStack(stack.getItem(),1,stack.getMetadata());
+		            stack.shrink(1);
+		            tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
+		            return true;
+		        }
+		        if(stack.getItem()==ItemLoader.POT){
+					worldIn.setBlockToAir(pos);
+					worldIn.removeTileEntity(pos);
+					worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
+					stack.shrink(1);
+			        return true;
+		        }
+		        
+		        if (WorldUtil.isItemFuel(stack)) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
+		            setState(true, worldIn, pos);
+					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
+						else stack.shrink(1);
+		            return true;
+		        }
 
-                        stack.shrink(1);
+		        if (stack.getItem() == Items.FLINT_AND_STEEL) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000);
+		            setState(true, worldIn, pos);
+		            stack.damageItem(1, playerIn);
+		            return true;
+		        }
 
-                        tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
-                        return true;
-                    }
-                    if(stack.getItem()==ItemLoader.POT){
-        			worldIn.setBlockToAir(pos);
-        			worldIn.removeTileEntity(pos);
-        			worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
-        			stack.shrink(1);
-                    return true;
-                    }
-                    if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO)) {
-                        if (!playerIn.isCreative()) {
-                            stack.shrink(1);
-                        }
-                        if (worldIn.rand.nextInt(8) == 0) {
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 2000 + worldIn.rand.nextInt(400));
-                            
-                        }
-                        return true;
-                    }
+		        if(stack.isEmpty()){
+		            Block.spawnAsEntity(worldIn, pos, ((TileEntityCampfire) tile).getInventory().getStackInSlot(0));
+		            ((TileEntityCampfire) tile).getInventory().setStackInSlot(0, ItemStack.EMPTY);
+		            return true;
+		        }
+		    }
+		}
 
-                    if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
-                        tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000 + worldIn.rand.nextInt(800));
-
-                        return true;
-                    }
-
-                    if(stack.isEmpty()){
-                        Block.spawnAsEntity(worldIn, pos, ((TileEntityCampfire) tile).getInventory().getStackInSlot(0));
-                        ((TileEntityCampfire) tile).getInventory().setStackInSlot(0, ItemStack.EMPTY);
-                        return true;
-                    }
-                }
-            }
-
-            return true;
-        }
+		return true;
     }
 
     @Override
@@ -161,9 +156,7 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
         worldIn.getBlockState(pos.up()).getBlock().onNeighborChange(worldIn, pos.up(), pos);
     }
 
-
     public static void setState(boolean active, World worldIn, BlockPos pos) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;
 
@@ -185,8 +178,8 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        double d0 = (double)pos.getX() + 0.5D;
-        double d2 = (double)pos.getZ() + 0.5D;
+        double d0 = pos.getX() + 0.5D;
+        double d2 = pos.getZ() + 0.5D;
         double d4 = rand.nextDouble() * 0.4D - 0.2D;
         if (this.isBurning) {
             worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);

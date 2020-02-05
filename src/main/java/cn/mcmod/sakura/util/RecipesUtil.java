@@ -46,6 +46,8 @@ public class RecipesUtil {
         return false;
     }
 
+    
+    
     public static boolean itemMatches(@Nonnull ItemStack target, @Nonnull ItemStack input, boolean strict)
     {
         if (input.isEmpty() && !target.isEmpty() || !input.isEmpty() && target.isEmpty())

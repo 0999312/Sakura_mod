@@ -5,7 +5,6 @@ import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,15 +17,10 @@ public class GuiBarrel extends GuiContainer {
     private static final ResourceLocation mortarGuiTextures = new ResourceLocation("sakura:textures/gui/barrel.png");
 
     private TileEntityBarrel tilePot;
-    private final IInventory playerInventory;
 
     public GuiBarrel(InventoryPlayer inventory, TileEntityBarrel tile) {
-
         super(new ContainerBarrel(inventory, tile));
-
         this.tilePot = tile;
-        this.playerInventory = inventory;
-
     }
 
     @Override
@@ -44,9 +38,6 @@ public class GuiBarrel extends GuiContainer {
         int l = (this.height - this.ySize) / 2;
 
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
-        int var7;
-
 
         int l2 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 63, l + 35, 176, 0, l2 + 1, 16);

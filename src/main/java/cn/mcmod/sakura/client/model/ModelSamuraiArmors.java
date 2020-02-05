@@ -1,13 +1,8 @@
 package cn.mcmod.sakura.client.model;
 
-import java.util.HashMap;
-import java.util.List;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import org.lwjgl.opengl.GL11;
 
 public class ModelSamuraiArmors

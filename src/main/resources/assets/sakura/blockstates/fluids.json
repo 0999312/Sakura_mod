@@ -1,10 +1,10 @@
 {
    "forge_marker" : 1,
    "variants" : {
-      "foodoil" : {
+      "food_oil" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "foodoil"
+            "fluid" : "food_oil"
          }
       },
       "grape_fluid" : {
@@ -71,6 +71,48 @@
          "model" : "forge:fluid",
          "custom" : {
             "fluid" : "vodka"
+         }
+      },
+      "whiskey" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "whiskey"
+         }
+      },
+      "brandy" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "brandy"
+         }
+      },
+      "liqueur" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "liqueur"
+         }
+      },
+      "cocoa_liqueur" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "cocoa_liqueur"
+         }
+      },
+      "maple_syrup" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "maple_syrup"
+         }
+      },
+      "hot_spring_water" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "hot_spring_water"
+         }
+      },
+      "yeast_liquid" : {
+         "model" : "forge:fluid",
+         "custom" : {
+            "fluid" : "yeast_liquid"
          }
       }
    }

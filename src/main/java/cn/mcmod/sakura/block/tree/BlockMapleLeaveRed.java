@@ -8,7 +8,6 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -38,17 +37,17 @@ public class BlockMapleLeaveRed extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-
+    	Blocks.LEAVES.randomDisplayTick(stateIn, worldIn, pos, rand);
         if (rand.nextInt(40) == 0) {
             int j = rand.nextInt(2) * 2 - 1;
             int k = rand.nextInt(2) * 2 - 1;
 
-            double d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
-            double d1 = (double) ((float) pos.getY() - 0.15D);
-            double d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) k;
-            double d3 = (double) (rand.nextFloat() * (float) j) * 0.1D;
-            double d4 = (((double) rand.nextFloat()) * 0.055D) + 0.015D;
-            double d5 = (double) (rand.nextFloat() * (float) k) * 0.1D;
+            double d0 = pos.getX() + 0.5D + 0.25D * j;
+            double d1 = pos.getY() - 0.15D;
+            double d2 = pos.getZ() + 0.5D + 0.25D * k;
+            double d3 = rand.nextFloat() * j * 0.1D;
+            double d4 = ((rand.nextFloat()) * 0.055D) + 0.015D;
+            double d5 = rand.nextFloat() * k * 0.1D;
 
             SakuraMain.proxy.spawnParticle(SakuraParticleType.MAPLERED, d0, d1, d2, d3, -d4, d5);
         }
@@ -60,7 +59,6 @@ public class BlockMapleLeaveRed extends BlockLeaves {
     }
 
     @Override
-    @Deprecated
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
@@ -127,32 +125,20 @@ public class BlockMapleLeaveRed extends BlockLeaves {
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         return NonNullList.withSize(1, new ItemStack(this, 1));
     }
-
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 60;
-    }
-
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 30;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean isOpaqueCube(IBlockState state) {
-        return !Minecraft.getMinecraft().gameSettings.fancyGraphics;
+    public BlockRenderLayer getBlockLayer(){
+        return Blocks.LEAVES.getBlockLayer();
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+    public boolean isOpaqueCube(IBlockState state){
+        return Blocks.LEAVES.isOpaqueCube(state);
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return (Minecraft.getMinecraft().gameSettings.fancyGraphics || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) && Blocks.STONE.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    @Override
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side){
+        return Blocks.LEAVES.shouldSideBeRendered(state, world, pos, side);
     }
 }

@@ -80,54 +80,66 @@ public class ContainerStoneMortar extends Container {
         return tileCampfire.isUsableByPlayer(player);
     }
 
+    /**
+     * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
+     */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(slotIndex);
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
+    {
+        // 0-5: Contain inventory
+        // 6-32: Player inventory
+        // 33-42: Hot bar in the player inventory
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
 
-            switch (slotIndex) {
-			case 0:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 1:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 2:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 3:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 4:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 5:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
-			case 6:
-	              if (!this.mergeItemStack(itemstack1, 6, 42, true)) 
-	              return ItemStack.EMPTY;
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
 
-			default:
-	              if (!this.mergeItemStack(itemstack1, 0, 5, false)) {
-	                  return ItemStack.EMPTY;
-			}
+            if (index >= 0 && index <= 5){
+                if (!this.mergeItemStack(itemStack1, 6, 42, true))
+                {
+                    return ItemStack.EMPTY;
+                }
 
-                slot.onSlotChange(itemstack1, itemstack);
+                slot.onSlotChange(itemStack1, itemStack);
             }
-            if (itemstack1.getCount() == 0)
-                slot.putStack(ItemStack.EMPTY);
-            else
-                slot.onSlotChanged();
-            if (itemstack1.getCount() == itemstack.getCount())
+            else if (index >= 6){
+            	if (index >= 6 && index < 33){
+                    if (!this.mergeItemStack(itemStack1, 33, 42, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                else if (index >= 33 && index < 42 && !this.mergeItemStack(itemStack1, 6, 32, false))
+                {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (!this.mergeItemStack(itemStack1, 6, 42, false))
+            {
                 return ItemStack.EMPTY;
+            }
 
-            slot.onTake(player, itemstack1);
+            if (itemStack1.getCount() == 0)
+            {
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+
+            if (itemStack1.getCount() == itemStack.getCount())
+            {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(par1EntityPlayer, itemStack1);
         }
-        return itemstack;
+
+        return itemStack;
     }
 }

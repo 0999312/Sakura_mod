@@ -19,8 +19,8 @@ public class ItemKnifeNoodle extends ItemSword {
             ItemStack stack = itemStack.copy();
             stack.setItemDamage(dmg +1);
             return stack;
-        }else
-            return super.getContainerItem(itemStack);
+        }
+		return super.getContainerItem(itemStack);
     }
 
     @Override
@@ -30,10 +30,7 @@ public class ItemKnifeNoodle extends ItemSword {
         {
             return true;
         }
-        else
-        {
-            return super.hasContainerItem(stack);
-        }
+		return super.hasContainerItem(stack);
     }
     @Override
     public float getAttackDamage() {

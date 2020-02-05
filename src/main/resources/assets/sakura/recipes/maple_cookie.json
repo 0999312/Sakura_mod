@@ -8,10 +8,13 @@
     {
 	  "type": "forge:ore_dict",
       "ore": "cropWheat"
-    },
+    },    {
+    	  "type": "forge:ore_dict",
+          "ore": "cropWheat"
+        },
     {
-      "item": "sakura:maple_syrup",
-      "data": 32767
+ "type": "forge:ore_dict",
+   "ore": "cropMaplesyrup"
     }
   ],
   "type": "forge:ore_shapeless"

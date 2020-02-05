@@ -54,9 +54,6 @@ public class BlockHalfFacing extends BlockFacing {
         {
             return true;
         }
-        else
-        {
-            return blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? true : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-        }
+		return blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? true : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 }

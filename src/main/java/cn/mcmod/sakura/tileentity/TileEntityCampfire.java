@@ -42,16 +42,8 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
     /**
      * The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for
      */
-    private int currentItemBurnTime;
     private int cookTime;
     private boolean isFinishedCook;
-
-//    public void readFromNBT(NBTTagCompound compound) {
-//        super.readFromNBT(compound);
-
-//
-//    }
-
 
     public ItemStackHandler getInventory() {
         return this.inventory;
@@ -92,12 +84,9 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
             //check can cook
             if (this.isBurning() & this.isFinishedCook()) {
                 cookstack = getItemBurning();
-
                 ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(cookstack);
-
                 if (!cookstack.isEmpty()) {
                     if (!itemstack1.isEmpty()) {
-
                         if (this.isBurning() && this.cookTime >= 0) {
                             this.isFinishedCook = false;
                             flag1 = true;
@@ -116,7 +105,7 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
                 if (this.cookTime >= 700) {
                     if (!cookstack.isEmpty()) {
                         if (!itemstack1.isEmpty()) {
-                            this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount()));
+                            this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount(),itemstack1.getMetadata()));
 
                             this.cookTime = 0;
                             this.isFinishedCook = true;
@@ -164,7 +153,8 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-    @Override
+	@SuppressWarnings("unchecked")
+	@Override
     public <T> T getCapability(@Nonnull Capability<T> capability, EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) inventory : super.getCapability(capability, facing);
     }

@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,32 +15,25 @@ import java.util.Random;
 public class WorldGenMapleTree extends WorldGenAbstractTree {
     private static final IBlockState DEFAULT_TRUNK = BlockLoader.MAPLE_LOG.getDefaultState();
     private static final IBlockState DEFAULT_LEAF = BlockLoader.MAPLE_LEAVE_RED.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
-    /**
-     * The minimum height of a generated tree.
-     */
+    private static final IBlockState DEFAULT_FALLEN_LEAF = BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState();
+
     private final int minTreeHeight;
-    /**
-     * True if this tree should grow Vines.
-     */
+
     private final boolean generateSap;
-    /**
-     * The metadata value of the wood to use in tree generation.
-     */
     private final IBlockState metaWood;
-    /**
-     * The metadata value of the leaves to use in tree generation.
-     */
     private final IBlockState metaLeaves;
+    private final IBlockState metaFallenLeaves;
 
     public WorldGenMapleTree(boolean p_i2027_1_, boolean sap) {
-        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF, sap);
+        this(p_i2027_1_, 4, DEFAULT_TRUNK, DEFAULT_LEAF,DEFAULT_FALLEN_LEAF, sap);
     }
 
-    public WorldGenMapleTree(boolean notify, int minTreeHeightIn, IBlockState woodMeta, IBlockState p_i46446_4_, boolean sap) {
+    public WorldGenMapleTree(boolean notify, int minTreeHeightIn, IBlockState woodMeta, IBlockState p_i46446_4_,IBlockState fallenMeta, boolean sap) {
         super(notify);
         this.minTreeHeight = minTreeHeightIn;
         this.metaWood = woodMeta;
         this.metaLeaves = p_i46446_4_;
+        this.metaFallenLeaves = fallenMeta;
         this.generateSap = sap;
     }
 
@@ -76,62 +70,102 @@ public class WorldGenMapleTree extends WorldGenAbstractTree {
 
             if (!flag) {
                 return false;
-            } else {
-                IBlockState state = worldIn.getBlockState(position.down());
-
-                if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling) Blocks.SAPLING) && position.getY() < worldIn.getHeight() - i - 1) {
-                    state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
-                    int k2 = 3;
-                    int l2 = 0;
-
-                    for (int i3 = position.getY() - 3 + i; i3 <= position.getY() + i; ++i3) {
-                        int i4 = i3 - (position.getY() + i);
-                        int j1 = 1 - i4 / 2;
-
-                        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1) {
-                            int l1 = k1 - position.getX();
-
-                            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2) {
-                                int j2 = i2 - position.getZ();
-
-                                if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0) {
-                                    BlockPos blockpos = new BlockPos(k1, i3, i2);
-                                    state = worldIn.getBlockState(blockpos);
-
-                                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE) {
-                                        this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    for (int j3 = 0; j3 < i; ++j3) {
-                        BlockPos upN = position.up(j3);
-                        state = worldIn.getBlockState(upN);
-
-                        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE) {
-                            this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
-
-                            if (this.generateSap && j3 == 1) {
-                                if (worldIn.getBlockState(position.add(0, j3, 0))==this.metaWood) {
-                                    this.addSapLog(worldIn, position.add(0, j3, 0));
-                                }
-
-                            }
-                        }
-                    }
-
-                    return true;
-                } else {
-                    return false;
-                }
             }
-        } else {
-            return false;
+			IBlockState state = worldIn.getBlockState(position.down());
+
+			if (state.getBlock().canSustainPlant(state, worldIn, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling) Blocks.SAPLING) && position.getY() < worldIn.getHeight() - i - 1) {
+			    state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
+
+			    for (int i3 = position.getY() - 3 + i; i3 <= position.getY() + i; ++i3) {
+			        int i4 = i3 - (position.getY() + i);
+			        int j1 = 1 - i4 / 2;
+
+			        for (int k1 = position.getX() - j1; k1 <= position.getX() + j1; ++k1) {
+			            int l1 = k1 - position.getX();
+
+			            for (int i2 = position.getZ() - j1; i2 <= position.getZ() + j1; ++i2) {
+			                int j2 = i2 - position.getZ();
+
+			                if (Math.abs(l1) != j1 || Math.abs(j2) != j1 || rand.nextInt(2) != 0 && i4 != 0) {
+			                    BlockPos blockpos = new BlockPos(k1, i3, i2);
+			                    state = worldIn.getBlockState(blockpos);
+
+			                    if (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getMaterial() == Material.VINE) {
+			                        this.setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves);
+			                    }
+			                }
+			            }
+			        }
+			    }
+
+			    for (int j3 = 0; j3 < i; ++j3) {
+			        BlockPos upN = position.up(j3);
+			        state = worldIn.getBlockState(upN);
+
+			        if (state.getBlock().isAir(state, worldIn, upN) || state.getBlock().isLeaves(state, worldIn, upN) || state.getMaterial() == Material.VINE) {
+			            this.setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood);
+
+			            if (this.generateSap && j3 == 1) {
+			                if (worldIn.getBlockState(position.add(0, j3, 0))==this.metaWood) {
+			                    this.addSapLog(worldIn, position.add(0, j3, 0));
+			                }
+
+			            }
+			        }
+			    }
+			    fallenLeaves(worldIn, position,4,2,4, this.metaFallenLeaves);
+			    
+			    return true;
+			}
+			return false;
         }
+		return false;
     }
 
+    /**
+     * Fill the given area with the selected blocks
+     */
+    private void fallenLeaves(World worldIn,BlockPos pos, int xADD, int yADD, int zADD, IBlockState insideBlockState){
+    	int xx = pos.getX();
+        int yy = pos.getY();
+        int zz = pos.getZ();
+        
+        boolean setFlg = false;
+        int YEND = 4;
+        for (int xx1 = xx - xADD; xx1 <= xx + xADD; xx1++) {
+          for (int zz1 = zz - zADD; zz1 <= zz + zADD; zz1++) {
+            if (((xx1 != xx - xADD) || (zz1 != zz - zADD)) && ((xx1 != xx + xADD) || (zz1 != zz - zADD)) && ((xx1 != xx - xADD) || (zz1 != zz + zADD)) && ((xx1 != xx + xADD) || (zz1 != zz + zADD)) && (((xx1 >= xx - xADD + 1) && (xx1 <= xx + xADD - 1) && (zz1 >= zz - zADD + 1) && (zz1 <= zz + zADD - 1)) || (worldIn.rand.nextInt(2) != 0)))
+            {
+              setFlg = false;
+              int yy1 = yy + yADD;
+              Block cBl = worldIn.getBlockState(new BlockPos(xx1, yy + yADD, zz1)).getBlock();
+              
+              if ((cBl == Blocks.AIR) || (cBl instanceof BlockLeaves) || (cBl == BlockLoader.CHESTNUTBURR)) {
+                for (yy1 = yy + yADD; yy1 >= yy - YEND; yy1--)
+                {
+                  boolean cAir = worldIn.isAirBlock(new BlockPos(xx1, yy1, zz1));
+                  cBl = worldIn.getBlockState(new BlockPos(xx1, yy1 - 1, zz1)).getBlock();
+                  if ((cBl == Blocks.AIR) || ((cBl != Blocks.GRASS) && !(cBl instanceof BlockLeaves) && (!worldIn.getBlockState(new BlockPos(xx1, yy1 - 1, zz1)).isOpaqueCube())))
+                  {
+                    if (cBl != Blocks.AIR) {
+                      break;
+                    }
+                  }
+                  else if (cAir)
+                  {
+                    setFlg = true;
+                    break;
+                  }
+                }
+              }
+              if (setFlg) {
+                setBlockAndNotifyAdequately(worldIn, new BlockPos(xx1, yy1, zz1), insideBlockState);
+              }
+            }
+          }
+        }
+    }
+    
     private void addSapLog(World worldIn, BlockPos pos) {
         this.setBlockAndNotifyAdequately(worldIn, pos, BlockLoader.MAPLE_LOG_SAP.getDefaultState());
     }

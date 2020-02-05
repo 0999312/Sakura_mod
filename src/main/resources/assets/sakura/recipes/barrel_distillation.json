@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "sakura:barrel_distillation"
+  },
+  "pattern": [
+    "SQS",
+    "PPP",
+    "III"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#LOGWOOD"
+    },
+    "Q": {
+      "item": "minecraft:bucket"
+    },
+    "S": {
+      "item": "#WOODLUMBER"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

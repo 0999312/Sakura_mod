@@ -5,6 +5,7 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.gui.SakuraGuiHandler;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
+import cn.mcmod.sakura.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -20,6 +21,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -30,8 +32,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Random;
@@ -108,42 +108,39 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
-        } else {
-            ItemStack stack = playerIn.getHeldItem(hand);
-            TileEntity tile = worldIn.getTileEntity(pos);
-            if (hand == EnumHand.MAIN_HAND) {
-                if (tile instanceof TileEntityCampfirePot) {
-                    TileEntityCampfirePot tileEntityCampfire = (TileEntityCampfirePot) tile;
-                    IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
-                    if (handler != null) {
-                        FluidUtil.interactWithFluidHandler(playerIn, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing));
-                        return true;
-                    }
-
-                    if (stack.getItem() == Items.STICK || stack.getItem() == Item.getItemFromBlock(BlockLoader.BAMBOO) && !isBurning) {
-                        if (!playerIn.isCreative()) {
-                            stack.shrink(1);
-                        }
-                        if (worldIn.rand.nextInt(8) == 0){
-                            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 0 + worldIn.rand.nextInt(100));
-                            setState(true, worldIn, pos);
-                        }
-                        return true;
-                    }
-
-                    if (stack.getItem() == Items.FLINT_AND_STEEL && !isBurning) {
-                        tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 12000 + worldIn.rand.nextInt(800));
-                        setState(true, worldIn, pos);
-                        return true;
-                    }
-
-                    playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                    return true;
-                }
-            }
-
-            return true;
         }
+		ItemStack stack = playerIn.getHeldItem(hand);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (hand == EnumHand.MAIN_HAND) {
+		    if (tile instanceof TileEntityCampfirePot) {
+		        TileEntityCampfirePot tileEntityCampfire = (TileEntityCampfirePot) tile;
+		        IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1));
+		        if (handler != null) {
+		            FluidUtil.interactWithFluidHandler(playerIn, hand, tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing));
+		            return true;
+		        }
+		        
+		        if (WorldUtil.isItemFuel(stack)) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
+		            setState(true, worldIn, pos);
+					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
+						else stack.shrink(1);
+		            return true;
+		        }
+
+		        if (stack.getItem() == Items.FLINT_AND_STEEL) {
+		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000);
+		            setState(true, worldIn, pos);
+		            stack.damageItem(1, playerIn);
+		            return true;
+		        }
+
+		        playerIn.openGui(SakuraMain.instance, SakuraGuiHandler.ID_CAMPFIREPOT, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		        return true;
+		    }
+		}
+
+		return true;
     }
 
     @Override
@@ -152,7 +149,6 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
     }
 
     public static void setState(boolean active, World worldIn, BlockPos pos) {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;
         if (active) {
@@ -173,15 +169,15 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        double d0 = (double) pos.getX() + 0.5D;
-        double d2 = (double) pos.getZ() + 0.5D;
+        double d0 = pos.getX() + 0.5D;
+        double d2 = pos.getZ() + 0.5D;
         double d4 = rand.nextDouble() * 0.4D - 0.2D;
         if (this.isBurning) {
             worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
             worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, pos.getY() + 0.2D, d2 + d4, 0.0D, 0.0D, 0.0D);
 
             if (rand.nextDouble() < 0.15D) {
-                worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+                worldIn.playSound(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
         }
     }
@@ -190,11 +186,9 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
         if (!keepInventory) {
-            TileEntityCampfirePot te = (TileEntityCampfirePot) worldIn.getTileEntity(pos);
-            IItemHandler inventory = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-
+            TileEntity te = worldIn.getTileEntity(pos);
             if (te instanceof TileEntityCampfirePot) {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityCampfirePot) te);
+                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityCampfirePot)te);
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
 

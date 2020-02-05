@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:bamboo_fence_sunburnt",
+    "count": 3
+  },
+  "pattern": [
+    "   ",
+    "SPS",
+    "SPS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "sakura:bamboo_block_sunburnt"
+    },
+    "S": {
+      "item": "#BAMBOO"
+    }
+  }
+}

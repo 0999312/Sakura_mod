@@ -3,7 +3,6 @@ package cn.mcmod.sakura.inventory;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
@@ -18,22 +17,16 @@ public class ContainerBarrel extends Container {
 
     public ContainerBarrel(InventoryPlayer inventory, TileEntityBarrel tile) {
         tileBarrel = tile;
-        int i, j, k, l;
+        int i, j, k;
         for (k = 0; k < 3; ++k)
             addSlotToContainer(new Slot(tile, k, 42, 36 + (k - 1) * 18));
-        addSlotToContainer(new Slot(tile, 3, 131, 12) {
-            @Override
-            public boolean isItemValid(ItemStack stack) {
-                return stack.getItem() == Items.GLASS_BOTTLE;
-            }
-        });
+        addSlotToContainer(new Slot(tile, 3, 131, 12));
         addSlotToContainer(new Slot(tile, 4, 130, 56) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return false;
             }
         });
-
 
         for (i = 0; i < 3; ++i)
             for (j = 0; j < 9; ++j)
@@ -81,64 +74,66 @@ public class ContainerBarrel extends Container {
         return tileBarrel.isUsableByPlayer(player);
     }
 
+    /**
+     * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
+     */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
-        ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = inventorySlots.get(slotIndex);
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
+    {
+        // 0-4: Contain inventory
+        // 5-31: Player inventory
+        // 32-41: Hot bar in the player inventory
 
-        if (slot != null && slot.getHasStack()) {
-            ItemStack itemstack1 = slot.getStack();
-            itemstack = itemstack1.copy();
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
 
-            switch (slotIndex) {
-                case 0:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 1:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 2:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 3:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 4:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 5:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 6:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 7:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 8:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                case 9:
-                    if (!this.mergeItemStack(itemstack1, 6, 41, true))
-                        return ItemStack.EMPTY;
-                default:
-                    if (!this.mergeItemStack(itemstack1, 0, 9, false)) {
+        if (slot != null && slot.getHasStack())
+        {
+            ItemStack itemStack1 = slot.getStack();
+            itemStack = itemStack1.copy();
+
+            if (index >= 0 && index <= 4){
+                if (!this.mergeItemStack(itemStack1, 5, 41, true))
+                {
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onSlotChange(itemStack1, itemStack);
+            }
+            else if (index >= 5){
+            	if (index >= 5 && index < 32){
+                    if (!this.mergeItemStack(itemStack1, 32, 41, false))
+                    {
                         return ItemStack.EMPTY;
                     }
-
-                    slot.onSlotChange(itemstack1, itemstack);
+                }
+                else if (index >= 32 && index < 41 && !this.mergeItemStack(itemStack1, 5, 32, false))
+                {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (!this.mergeItemStack(itemStack1, 5, 41, false))
+            {
+                return ItemStack.EMPTY;
             }
 
-
-            if (itemstack1.getCount() == 0)
+            if (itemStack1.getCount() == 0)
+            {
                 slot.putStack(ItemStack.EMPTY);
+            }
             else
+            {
                 slot.onSlotChanged();
-            if (itemstack1.getCount() == itemstack.getCount())
-                return ItemStack.EMPTY;
+            }
 
-            slot.onTake(player, itemstack1);
+            if (itemStack1.getCount() == itemStack.getCount())
+            {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(par1EntityPlayer, itemStack1);
         }
-        return itemstack;
+
+        return itemStack;
     }
 }

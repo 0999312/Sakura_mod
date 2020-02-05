@@ -39,8 +39,7 @@ public class BlockDoorBase extends BlockDoor {
     {
         if(this == BlockLoader.BAMBOODOOR){
             return ItemLoader.BAMBOO_DOOR;
-        }else {
-            return ItemLoader.BAMBOO_DOOR;
         }
+		return ItemLoader.BAMBOO_DOOR;
     }
 }

@@ -1,9 +1,7 @@
 package cn.mcmod.sakura.block.tree;
 
 import cn.mcmod.sakura.CommonProxy;
-import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.world.gen.WorldGenBigSakura;
-import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import cn.mcmod.sakura.world.gen.WorldGenSakuraTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -34,14 +32,11 @@ public class BlockSakuraSapling extends BlockBush implements IGrowable {
 
     @Override
     public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = (WorldGenerator)(rand.nextInt(8) == 0 ? new WorldGenSakuraTree(true,5) : new WorldGenBigSakura(true));
+        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenSakuraTree(true,5) : new WorldGenBigSakura(true);
 
         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-
-        if (!treeGenerator.generate(world, rand, pos)) {
-
+        if (!treeGenerator.generate(world, rand, pos)) 
             world.setBlockState(pos, state, 4);
-        }
     }
     @Override
     protected boolean canSustainBush(IBlockState state) {

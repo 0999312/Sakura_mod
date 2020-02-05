@@ -1,18 +1,11 @@
 package cn.mcmod.sakura.item;
 
 import cn.mcmod.sakura.SakuraMain;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class ItemFoodBasic extends ItemFood {
@@ -25,6 +18,8 @@ public class ItemFoodBasic extends ItemFood {
 		this.setUnlocalizedName(SakuraMain.MODID+"."+name);
 		this.setHasSubtypes(subNames!=null&&subNames.length > 0);
 		this.setMaxStackSize(stackSize);
+		this.setMaxDamage(0);
+		this.setNoRepair();
 		this.subNames = subNames!=null&&subNames.length > 0?subNames: null;
 		this.amount = amounts!=null&&amounts.length > 0?amounts: null;
 		this.saturation = saturations!=null&&saturations.length > 0?saturations: null;

@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sakura:barrel_distillation"
+  },
+  "variants": {
+      "inventory" : {
+        "model": "sakura:barrel_distillation"
+      },
+        "facing": {
+            "north": { "y": 0 },
+            "south": { "y": 180 },
+            "west": { "y": 270 },
+            "east": { "y": 90 }
+        }
+  }
+}

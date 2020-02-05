@@ -1,8 +1,6 @@
 package cn.mcmod.sakura.api.recipes;
 
-import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.util.RecipesUtil;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
@@ -10,6 +8,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class BarrelRecipes {
@@ -30,10 +29,6 @@ public class BarrelRecipes {
 
     public BarrelRecipes(FluidStack input, FluidStack output, int duration) {
         this(input, output, null, duration);
-    }
-
-    public static void init() {
-
     }
 
     public static void register(BarrelRecipes recipes) {
@@ -108,4 +103,17 @@ public class BarrelRecipes {
     public List<ItemStack> getTransformed() {
         return transformed;
     }
+    
+    public static void ClearRecipe(FluidStack input) {
+    	Iterator<BarrelRecipes> iter = recipeRegistry.iterator();
+		while(iter.hasNext()){
+			BarrelRecipes recipes = iter.next();
+				if(input.equals(recipes.output))
+					iter.remove();
+		}
+	}
+    
+    public static void ClearAllRecipe() {
+    	recipeRegistry.clear();
+	}
 }

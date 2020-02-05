@@ -1,0 +1,37 @@
+{
+  "result": {
+    "nbt": "{FluidName:\"grape_fluid\",Amount:1000}",
+    "item": "forge:bucketfilled",
+    "type": "minecraft:item_nbt"
+  },
+  "ingredients": [
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "#CROPGRAPE"
+    },
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

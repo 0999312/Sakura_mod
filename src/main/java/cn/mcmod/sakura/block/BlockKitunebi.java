@@ -20,7 +20,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -81,7 +80,7 @@ public class BlockKitunebi extends Block {
     
     private void setVisibleFlg(World world, BlockPos pos,IBlockState state) {
         world.setBlockState(pos, state.withProperty(ISVISIBLE, false));
-    	EntityPlayer player = world.getClosestPlayer((double)((float)pos.getX() + 0.5F), (double)((float)pos.getY() + 0.5F), (double)((float)pos.getZ() + 0.5F), 5.0D, false);
+    	EntityPlayer player = world.getClosestPlayer(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, 5.0D, false);
     	if(player ==null){
     		world.setBlockState(pos, state.withProperty(ISVISIBLE, false));
     		return;

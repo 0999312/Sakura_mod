@@ -12,7 +12,8 @@
       "item": "#FOODKETCHUP"
     },
     {
-      "item": "#LISTALLVEGGIE"
+     "item": "sakura:foodset",
+      "data": 121
     }
   ],
   "type": "forge:ore_shapeless"

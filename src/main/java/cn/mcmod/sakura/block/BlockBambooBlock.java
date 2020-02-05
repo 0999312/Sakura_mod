@@ -1,8 +1,9 @@
 package cn.mcmod.sakura.block;
 
+import java.util.Random;
+
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.BlockRotatedPillar;
-import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -17,12 +18,22 @@ import net.minecraft.world.World;
 
 public class BlockBambooBlock extends BlockRotatedPillar {
     public static final PropertyEnum<EnumAxis> LOG_AXIS = PropertyEnum.<EnumAxis>create("axis", EnumAxis.class);
-
-    public BlockBambooBlock(Material material) {
+    private final boolean isSunburnt;
+    public BlockBambooBlock(Material material,boolean sunburnt) {
         super(material);
+        isSunburnt=sunburnt;
+        this.setTickRandomly(true);
         this.setCreativeTab(CommonProxy.tab);
     }
 
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		if(!isSunburnt&&(worldIn.canBlockSeeSky(pos)||worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBambooBlock)&&worldIn.isDaytime()){
+				worldIn.setBlockState(pos, (BlockLoader.BAMBOO_BLOCK_SUNBURNT).getDefaultState().withProperty(LOG_AXIS, state.getValue(LOG_AXIS)));
+		}
+		super.updateTick(worldIn, pos, state, rand);
+	}
+    
     @Override
     public int getMetaFromState(IBlockState state) {
         switch (state.getValue(LOG_AXIS)) {
@@ -74,13 +85,11 @@ public class BlockBambooBlock extends BlockRotatedPillar {
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        switch (rot)
-        {
+        switch (rot){
             case COUNTERCLOCKWISE_90:
             case CLOCKWISE_90:
 
-                switch ((EnumAxis)state.getValue(LOG_AXIS))
-                {
+                switch (state.getValue(LOG_AXIS)){
                     case X:
                         return state.withProperty(LOG_AXIS, EnumAxis.Z);
                     case Z:

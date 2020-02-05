@@ -1,12 +1,9 @@
 package cn.mcmod.sakura.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,17 +17,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFacing extends Block {
+public class BlockFacing extends BlockBase {
 	public final boolean isFull;
     public BlockFacing(Material materialIn,boolean isfull) {
 		super(materialIn);
 		isFull = isfull;
 	}
-	@Override
-	public Block setSoundType(SoundType sound) {
-		// TODO Auto-generated method stub
-		return super.setSoundType(sound);
-	}
+
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	   /**
      * Called after the block is set in the Chunk data, but before the Tile Entity is set
@@ -48,7 +41,7 @@ public class BlockFacing extends Block {
             IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
             IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
             IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
@@ -93,12 +86,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState getStateFromMeta(int meta)
     {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y)
-        {
-            enumfacing = EnumFacing.NORTH;
-        }
+        EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
 
         return this.getDefaultState().withProperty(FACING, enumfacing);
     }
@@ -108,7 +96,7 @@ public class BlockFacing extends Block {
      */
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     /**
@@ -117,7 +105,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
-        return state.withProperty(FACING, rot.rotate((EnumFacing)state.getValue(FACING)));
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     /**
@@ -126,7 +114,7 @@ public class BlockFacing extends Block {
      */
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
     {
-        return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue(FACING)));
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
     }
 
     protected BlockStateContainer createBlockState()

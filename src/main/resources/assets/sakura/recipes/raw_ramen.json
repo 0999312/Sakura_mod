@@ -1,18 +1,24 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "forge:ore_shapeless",
   "ingredients": [
-    {
-      "item": "sakura:knife_noodle",
-      "data":32767
-    },
-    {
-      "item": "sakura:materials",
-      "data": 6
-    }
+  {
+        "type": "forge:ore_dict",
+        "ore": "foodFlour"
+  },
+  {
+        "type": "forge:ore_dict",
+        "ore": "listAllwater"
+  },
+  {
+        "item": "sakura:materials",
+        "data": 35
+  },
+  {
+    "type": "forge:ore_dict",
+    "ore": "foodFlour"
+  }
   ],
   "result": {
-    "item": "sakura:materials",
-    "count": 2,
-    "data": 8
+    "item": "sakura:ramen_block"
   }
 }

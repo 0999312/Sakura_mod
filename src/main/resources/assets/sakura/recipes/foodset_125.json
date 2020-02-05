@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 125
+  },
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 62
+    },
+    {
+      "item": "#FOODKETCHUP"
+    },
+    {
+     "item": "sakura:foodset",
+      "data": 121
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

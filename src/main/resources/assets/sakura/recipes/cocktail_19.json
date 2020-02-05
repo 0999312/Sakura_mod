@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:cocktail",
+    "data": 19
+  },
+  "ingredients": [
+    {
+      "item": "sakura:alcoholic",
+      "data": 11
+    },
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 10
+    },
+    {
+      "item": "#FOODLIMEJUICE"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

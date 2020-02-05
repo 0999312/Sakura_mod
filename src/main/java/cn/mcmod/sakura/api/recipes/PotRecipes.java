@@ -1,9 +1,9 @@
 package cn.mcmod.sakura.api.recipes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import cn.mcmod.sakura.util.RecipesUtil;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -17,7 +17,6 @@ public class PotRecipes {
     public Object mainItem = ItemStack.EMPTY;
     public FluidStack fluid = null;
     public ArrayList<Object> subItems = new ArrayList<Object>();
-    public boolean enchantment = false;
 
     public PotRecipes() {
     }
@@ -31,16 +30,15 @@ public class PotRecipes {
 
     }
 
-//    public PotRecipes(ItemStack result, String main, FluidStack fluidStack) {
-//        this.setPotRecipes(result, main, new Object[]{}, fluidStack);
-//
-//    }
-//
-//    public PotRecipes(ItemStack result, String main, Object[] subList, FluidStack fluidStack) {
-//        this.setPotRecipes(result, main, subList, fluidStack);
-//
-//    }
+    public PotRecipes(ItemStack result, Object[] List, FluidStack fluidStack) {
+    	Object[] subList=new Object[List.length-1];
+    	for (int i = 0; i < subList.length; i++) {
+    		subList[i]=List[i+1];
+		}
+        this.setPotRecipes(result, List[0], subList, fluidStack);
 
+    }
+    
     public void setPotRecipes(ItemStack result, Object main, Object[] subList, FluidStack fluidStack) {
         this.clear();
         if(main instanceof ItemStack || main instanceof String)
@@ -52,25 +50,8 @@ public class PotRecipes {
 			else throw new IllegalArgumentException("Sub Item is not a ItemStack or Ore Dictionary");
         }
         resultItem = result.copy();
-        fluid = fluidStack.copy();
+        fluid = (fluidStack==null)?null:fluidStack.copy();
     }
-
-//    public void setPotRecipes(ItemStack result, String mainOreName, Object[] subList, FluidStack fluidStack) {
-//        if(!OreDictionary.getOres(mainOreName).isEmpty()){
-//    	for (int i2 = 0; i2 < OreDictionary.getOres(mainOreName).size(); i2++) {
-//            this.clear();
-//            mainItem = OreDictionary.getOres(mainOreName).get(i2).copy();
-//            	for (Object o : subList) {
-//        			if(o instanceof ItemStack||o instanceof String)
-//        				subItems.add(o);
-//        			else throw new IllegalArgumentException("Not a itemStack or Ore Dictionary");
-//                }
-//
-//            resultItem = result.copy();
-//            fluid = fluidStack.copy();
-//        }
-//        }else throw new IllegalArgumentException("Invalid Main Ore Dictionary");
-//    }
 
     /**
      * 初期化
@@ -86,15 +67,15 @@ public class PotRecipes {
         return resultItem.copy();
     }
 
-    public FluidStack getResultFluid() {
-        return fluid.copy();
+    public FluidStack getFluid() {
+        return (fluid==null)?null:fluid.copy();
     }
 
     public FluidStack getResultFluid(FluidStack fluidStack) {
-    	if(fluid.amount<=0) 
+    	if(fluid==null||fluid.amount<=0) 
     		return fluidStack;
     	else
-        if (fluidStack.isFluidEqual(fluid)) {
+        if (fluidStack!=null&&fluidStack.isFluidEqual(fluid)) {
             return fluidStack;
         } else {
             return null;
@@ -116,12 +97,7 @@ public class PotRecipes {
         	ItemStack result = inventory.getStackInSlot(0);
         	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
         	if(ore.isEmpty()) return retStack;
-        	if (!OreDictionary.containsMatch(true, ore, result)) return retStack;
-        }
-        if (this.enchantment) {
-            if (EnchantmentHelper.getEnchantments(inventory.getStackInSlot(0)).size() > 0) {
-                return retStack;
-            }
+        	if (!RecipesUtil.containsMatch(true, ore, result)) return retStack;
         }
 
         ArrayList<ItemStack> inventoryList = new ArrayList<ItemStack>();
@@ -146,7 +122,7 @@ public class PotRecipes {
             	if(obj1 instanceof ItemStack){
             		ItemStack stack1 = (ItemStack) obj1;
 	                if (ItemStack.areItemsEqual(stack1, inventoryList.get(i))) {
-	                    inventoryList.remove(i);
+//	                    inventoryList.remove(i);
 	                    flg2 = true;
 	                    break;
 	                }
@@ -154,7 +130,7 @@ public class PotRecipes {
                 	String dict = (String) obj1;
                 	NonNullList<ItemStack> ore =OreDictionary.getOres(dict);
                 	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, inventoryList.get(i))) {
-                        inventoryList.remove(obj1);
+//                        inventoryList.remove(obj1);
                         flg2 = true;
                         break;
                     }
@@ -175,11 +151,28 @@ public class PotRecipes {
 
     }
 
-    public static void addPotRecipe(PotRecipes recipes) {
+    public static void addRecipe(PotRecipes recipes) {
         potRecipesList.add(recipes);
     }
 
-
-
-
+    public static void ClearRecipe(Object input) {
+    	if(input instanceof ItemStack||input instanceof String){
+    		Iterator<PotRecipes> iter = potRecipesList.iterator();
+    		while(iter.hasNext()){
+    			PotRecipes recipes = iter.next();
+				if(input instanceof ItemStack&&ItemStack.areItemStacksEqual((ItemStack)input, recipes.resultItem)) 
+					iter.remove();
+				if(input instanceof String) {
+					NonNullList<ItemStack> ore = OreDictionary.getOres((String) input);
+					if(RecipesUtil.containsMatch(false, ore, recipes.resultItem))
+						iter.remove();
+				}
+			}
+		}
+		else throw new IllegalArgumentException("Not a itemStack or Ore Dictionary");
+	}
+	
+    public static void ClearAllRecipe() {
+    	potRecipesList.clear();
+	}
 }

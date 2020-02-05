@@ -5,13 +5,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
 
 public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEntityCampfire> {
 
     @Override
     public void render(TileEntityCampfire te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-    	if(!te.getItemBurning().isEmpty()){
+    	if(!te.getInventory().getStackInSlot(0).isEmpty()){
     	GlStateManager.pushMatrix();
         GlStateManager.translate((float) x + 0.5F, (float) y-0.25F, (float) z + 0.5F);
         renderItem(te, x, y, z, partialTicks);
@@ -29,7 +28,7 @@ public class RenderTileEntityCampfire extends TileEntitySpecialRenderer<TileEnti
         	EntityItem renderItemEntity = null;
 
             renderItemEntity = new EntityItem(te.getWorld());
-            renderItemEntity.setItem(te.getItemBurning().copy());
+            renderItemEntity.setItem(te.getInventory().getStackInSlot(0).copy());
             renderItemEntity.hoverStart = 0;
         	
             GlStateManager.scale(1.0F, 1.0F, 1.0F);

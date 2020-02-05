@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "normal": {
+      "model": "sakura:maple_cauldron"
+    },
+	"inventory": {
+      "model": "sakura:maple_cauldron"
+    }
+  }
+}

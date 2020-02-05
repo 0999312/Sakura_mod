@@ -4,7 +4,6 @@ import cn.mcmod.sakura.inventory.ContainerCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
 import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
@@ -52,11 +51,11 @@ public class GuiCampfirePot extends GuiContainer {
         if (this.tilePot.isBurning()) {
             var7 = this.tilePot.getBurnTimeRemainingScaled(12);
 
-            this.drawTexturedModalRect(k + 100, l + 47 + 12 + 19 - var7, 176, 12 - var7, 14, var7 + 2);
+            this.drawTexturedModalRect(k + 100, l + 67 - var7, 176, 12 - var7, 14, var7 + 2);
         }
 
         int l2 = this.getCookProgressScaled(24);
-        this.drawTexturedModalRect(k + 93, l + 45, 176, 14, l2 + 1, 16);
+        this.drawTexturedModalRect(k + 96, l + 37, 176, 14, l2 + 1, 16);
         
         if (this.tilePot.getTank().getFluid() != null) {
             FluidTank fluidTank = this.tilePot.getTank();

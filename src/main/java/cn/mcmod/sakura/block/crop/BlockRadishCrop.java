@@ -21,7 +21,7 @@ public class BlockRadishCrop extends BlockCrops {
 	@Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return CABBAGE_AABB[((Integer)state.getValue(this.getAgeProperty())).intValue()];
+        return CABBAGE_AABB[state.getValue(this.getAgeProperty()).intValue()];
     }
 	@Override
 	protected Item getCrop() {

@@ -1,0 +1,50 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "sakura:blocks/bamboo_sunburnt",
+		"particle": "sakura:blocks/bamboo_sunburnt"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 16, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 16], "texture": "#0"},
+				"up": {"uv": [10, 0, 16, 6], "texture": "#0"},
+				"down": {"uv": [10, 0, 16, 6], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"firstperson_righthand": {
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"ground": {
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"gui": {
+			"rotation": [27, 32, 0],
+			"translation": [0, -3.5, 0],
+			"scale": [0.49, 0.49, 0.49]
+		},
+		"head": {
+			"translation": [0, 8.75, 0],
+			"scale": [0.42, 0.42, 0.42]
+		},
+		"fixed": {
+			"scale": [0.49, 0.49, 0.49]
+		}
+	}
+}

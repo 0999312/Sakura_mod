@@ -2,14 +2,14 @@ package cn.mcmod.sakura.item.armors;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.api.kimono.KimonoLoader;
 import cn.mcmod.sakura.client.model.ModelHaori;
-import cn.mcmod.sakura.client.model.ModelKimono;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.util.ClientUtils;
 import cn.mcmod.sakura.util.RecipesUtil;
-import cn.mcmod.sakura.util.TagPropertyAccessor.TagPropertyInteger;
-import cn.mcmod.sakura.util.TagPropertyAccessor.TagPropertyString;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -30,8 +30,6 @@ public class ItemHaori extends ItemArmor {
         super(ItemLoader.KIMONO_MATERIAL, 0, EntityEquipmentSlot.CHEST);
         setUnlocalizedName(SakuraMain.MODID + "." + "haori");
     }
-
-    public static final TagPropertyString texture_name = new TagPropertyString("texture_name");
     
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
@@ -41,27 +39,25 @@ public class ItemHaori extends ItemArmor {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
     	NBTTagCompound nbt = RecipesUtil.getItemTagCompound(stack);
-    	String name = texture_name.get(nbt,"haori");
+    	String name = ItemKimono.texture_name.get(nbt,"haori");
     	tooltip.add(I18n.format("sakura.haori.texture.name", new Object())+":"+name);
     	super.addInformation(stack, worldIn, tooltip, flagIn);
     }
-    
+    public static final List<String> KimonoIDs = Lists.newArrayList();
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
     	if(this.isInCreativeTab(tab)){
-    		for(int i =1;i<2;i++){
-    		ItemStack stack =new ItemStack(this, 1, 0);
-    		NBTTagCompound nbt = RecipesUtil.getItemTagCompound(stack);
-    		texture_name.set(nbt, "haori_"+i);
-    		items.add(stack);
-    		}
+	        for(String name : KimonoIDs){
+	            ItemStack kimono = KimonoLoader.getCustomKimono(name);
+	            if(!kimono.isEmpty()) items.add(kimono);
+	        }
     	}
     	super.getSubItems(tab, items);
     }
     
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
     	NBTTagCompound nbt = RecipesUtil.getItemTagCompound(stack);
-        String name = texture_name.get(nbt,"haori");
+        String name = ItemKimono.texture_name.get(nbt,"haori");
     	return SakuraMain.MODID + ":" + "textures/models/armor/"+name+".png";
     }
 }

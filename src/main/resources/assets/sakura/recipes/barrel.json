@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "sakura:barrel"
+  },
+  "pattern": [
+    "SSS",
+    "PPP",
+    "SSS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#LOGWOOD"
+    },
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

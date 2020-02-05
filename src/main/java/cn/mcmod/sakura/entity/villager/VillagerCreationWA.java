@@ -21,7 +21,7 @@ public class VillagerCreationWA implements IVillageCreationHandler{
 	}
 	@Override
 	public PieceWeight getVillagePieceWeight(Random random, int i) {
-		return new PieceWeight(WAVillagerHouse.class, 20, MathHelper.getInt(random, i, 1 + i));
+		return new PieceWeight(WAVillagerHouse.class, 50, MathHelper.getInt(random, i, 4 + i));
 	}
 
 	@Override

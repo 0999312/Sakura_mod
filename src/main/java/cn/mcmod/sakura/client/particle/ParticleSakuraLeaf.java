@@ -1,14 +1,10 @@
 package cn.mcmod.sakura.client.particle;
 
 import cn.mcmod.sakura.ClientProxy;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -61,7 +57,6 @@ public class ParticleSakuraLeaf extends Particle {
 
     @Override
     public void onUpdate() {
-
         prevPosX = posX;
         prevPosY = posY;
         prevPosZ = posZ;

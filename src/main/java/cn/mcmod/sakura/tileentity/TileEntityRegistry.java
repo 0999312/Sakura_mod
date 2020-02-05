@@ -5,6 +5,8 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.TileEntityRenderHelper;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityCampfire;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityCampfirePot;
+import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityMapleCauldron;
+import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityOben;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityStoneMortar;
 import cn.mcmod.sakura.client.render.tileentity.ShojiRender;
 import net.minecraft.block.Block;
@@ -24,6 +26,9 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
         registerTileEntity(TileEntityShoji.class, "shoji");
         registerTileEntity(TileEntityBarrel.class, "barrel");
+        registerTileEntity(TileEntityDistillation.class, "barrel_distillation");
+        registerTileEntity(TileEntityMapleCauldron.class, "maple_cauldron");
+        registerTileEntity(TileEntityOben.class, "oben");
     }
 
     @SideOnly(Side.CLIENT)
@@ -31,8 +36,10 @@ public class TileEntityRegistry {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new RenderTileEntityCampfire());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMapleCauldron.class, new RenderTileEntityMapleCauldron());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShoji.class, new ShojiRender());
-        Item.getItemFromBlock(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOben.class, new RenderTileEntityOben());
+        getItem(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {

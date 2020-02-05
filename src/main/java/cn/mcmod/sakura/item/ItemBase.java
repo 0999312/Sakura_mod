@@ -15,12 +15,14 @@ import net.minecraft.world.World;
 
 public class ItemBase extends Item {
 	protected String[] subNames;
-	private Item containerItem;
+	public Item containerItem;
 	public ItemBase(String name, int stackSize, String... subNames) {
 		this.setUnlocalizedName(SakuraMain.MODID+"."+name);
 		this.setHasSubtypes(subNames!=null&&subNames.length > 0);
 		this.setMaxStackSize(stackSize);
 		this.subNames = subNames!=null&&subNames.length > 0?subNames: null;
+		this.setMaxDamage(0);
+		this.setNoRepair();
 	}
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {

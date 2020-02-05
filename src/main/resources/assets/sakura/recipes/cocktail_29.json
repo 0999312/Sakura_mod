@@ -1,0 +1,35 @@
+{
+  "result": {
+    "item": "sakura:cocktail",
+    "data": 29
+  },
+  "ingredients": [
+    {
+      "item": "sakura:alcoholic",
+      "data": 12
+    },
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 8
+    },
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 7
+    },
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 11
+    },
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 13
+    },
+    {
+      "item": "#FOODLIMEJUICE"
+    },
+    {
+      "item": "#DYEBROWN"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

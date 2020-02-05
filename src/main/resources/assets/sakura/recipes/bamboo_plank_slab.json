@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "sakura:plank_bamboo"
+    }
+  },
+  "result": {
+    "item": "sakura:slab_plank_bamboo",
+    "count": 6
+  }
+}

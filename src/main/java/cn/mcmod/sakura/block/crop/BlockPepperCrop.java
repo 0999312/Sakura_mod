@@ -11,7 +11,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
@@ -63,29 +62,20 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
     /**
      * Get the Item that this Block should drop when harvested.
      */
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return this.isMaxAge(state) ? this.getCrop() : this.getSeed();
+    public Item getItemDropped(IBlockState state, Random rand, int fortune){
+        return this.getSeed();
     }
 
     @Override
-    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        super.getDrops(drops, world, pos, state, 0);
+    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune){
         drops.clear();
         int age = getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
         drops.add(new ItemStack(BlockLoader.PEPPER_SPLINT));
-        if (age >= getMaxAge())
-        {
-            int k = 3 + fortune;
-
-            for (int i = 0; i < 3 + fortune; ++i)
-            {
+        if (age >= getMaxAge()) {
+            for (int i = 0; i < 3 + fortune; ++i) {
                 if (rand.nextInt(2 * getMaxAge()) <= age)
-                {
                     drops.add(new ItemStack(ItemLoader.MATERIAL,1,19));
-                }
             }
         }
     }
@@ -93,31 +83,21 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
     /**
      * Spawns this Block's drops into the World as EntityItems.
      */
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-    {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-
-        if (!worldIn.isRemote) // Forge: NOP all this.
-        {
+    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune){
+        if (!worldIn.isRemote) {
+        	spawnAsEntity(worldIn, pos, new ItemStack(this.getSeed()));
             int i = this.getAge(state);
-
-            if (i >= this.getMaxAge())
-            {
+            if (i >= this.getMaxAge()) {
                 int j = 3 + fortune;
-
-                for (int k = 0; k < j; ++k)
-                {
+                for (int k = 0; k < j; ++k){
                     if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
-                    {
                         spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.MATERIAL,1,19));
-                    }
                 }
             }
         }
     }
     
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return new ItemStack(BlockLoader.PEPPER_SPLINT);
     }
 	@Override
@@ -139,10 +119,9 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
 		return list;
 	}
 	@Override
-	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
-			IPlantable plantable) {
+	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,IPlantable plantable) {
         return state.getMaterial()==Material.GROUND||state.getMaterial()==Material.GRASS||
-        	(this.getAge(state)>=2&&state.getBlock() instanceof BlockPepperCrop)||(this.getAge(state)>=2&&state.getBlock() instanceof BlockPepperSplint);
+        	(state.getBlock() instanceof BlockPepperCrop&&this.getAge(state)>=2)||(state.getBlock() instanceof BlockPepperSplint);
 	}
 	
     public void grow(World worldIn, BlockPos pos, IBlockState state)

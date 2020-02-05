@@ -1,7 +1,6 @@
 package cn.mcmod.sakura.block.noodles;
 
 import cn.mcmod.sakura.item.ItemKnifeNoodle;
-import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -59,7 +58,7 @@ public abstract class BlockNoodle extends Block {
     
     public boolean isReady(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue() >= 7;
+        return state.getValue(this.getAgeProperty()).intValue() >= 7;
     }
     
     public abstract ItemStack getNoodle();
@@ -71,22 +70,21 @@ public abstract class BlockNoodle extends Block {
         {
             return true;
         }
-        else {
-        	int i = this.getCutting(state);
-            ItemStack stack = playerIn.getHeldItem(hand);
-            if(!isReady(state)){
-	            if(stack.getItem() instanceof ItemKnifeNoodle){
-	            	 if (worldIn.rand.nextInt(8) == 0) {
-	            		 worldIn.setBlockState(pos, this.withCutting(i + 1), 2);
-	            		 return true;
-	            	 }
-	            }
-            }else{
-            	worldIn.setBlockToAir(pos);
-            	spawnAsEntity(worldIn, pos, getNoodle());
-            }
-            return true;	
-        }
+		int i = this.getCutting(state);
+		ItemStack stack = playerIn.getHeldItem(hand);
+		if(!isReady(state)){
+		    if(stack.getItem() instanceof ItemKnifeNoodle){
+		    	if(!playerIn.isCreative()) stack.damageItem(1, playerIn);
+		    	 if (worldIn.rand.nextInt(8) == 0) {
+		    		 worldIn.setBlockState(pos, this.withCutting(i + 1), 2);
+		    		 return true;
+		    	 }
+		    }
+		}else{
+			worldIn.setBlockToAir(pos);
+			spawnAsEntity(worldIn, pos, getNoodle());
+		}
+		return true;
     }
     
     /**
@@ -96,16 +94,14 @@ public abstract class BlockNoodle extends Block {
     {
         if (!worldIn.isRemote && !stack.isEmpty() && worldIn.getGameRules().getBoolean("doTileDrops")&& !worldIn.restoringBlockSnapshots) // do not drop items while restoring blockstates, prevents item dupe
         {
-            if (captureDrops.get())
-            {
+            if (captureDrops.get()){
                 capturedDrops.get().add(stack);
                 return;
             }
-            float f = 0.5F;
-            double d0 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-            double d1 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-            double d2 = (double)(worldIn.rand.nextFloat() * 0.5F) + 0.25D;
-            EntityItem entityitem = new EntityItem(worldIn, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
+            double d0 = worldIn.rand.nextFloat() * 0.5F + 0.25D;
+            double d1 = worldIn.rand.nextFloat() * 0.5F + 0.25D;
+            double d2 = worldIn.rand.nextFloat() * 0.5F + 0.25D;
+            EntityItem entityitem = new EntityItem(worldIn, pos.getX() + d0, pos.getY() + d1, pos.getZ() + d2, stack);
             entityitem.setDefaultPickupDelay();
             worldIn.spawnEntity(entityitem);
         }
@@ -114,7 +110,7 @@ public abstract class BlockNoodle extends Block {
     
     protected int getCutting(IBlockState state)
     {
-        return ((Integer)state.getValue(this.getAgeProperty())).intValue();
+        return state.getValue(this.getAgeProperty()).intValue();
     }
 
     public IBlockState withCutting(int age)

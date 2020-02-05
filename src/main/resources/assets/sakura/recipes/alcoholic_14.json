@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:alcoholic",
+    "data": 14
+  },
+  "ingredients": [
+    {
+      "item": "sakura:bottle_alcoholic",
+      "data": 14
+    },
+    {
+      "item": "sakura:cup",
+      "data": 0
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

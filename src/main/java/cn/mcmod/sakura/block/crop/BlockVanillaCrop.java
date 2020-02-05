@@ -11,7 +11,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
@@ -70,16 +69,13 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
     @Override
     public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        super.getDrops(drops, world, pos, state, 0);
+//        super.getDrops(drops, world, pos, state, 0);
         drops.clear();
     	drops.add(new ItemStack(BlockLoader.VANILLA_SPLINT));
         int age = getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
 
-        if (this.isMaxAge(state))
-        {
-            int k = 3 + fortune;
-
+        if (this.isMaxAge(state)) {
             for (int i = 0; i < 3 + fortune; ++i)
             {
                 if (rand.nextInt(2 * getMaxAge()) <= age)
@@ -95,7 +91,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
      */
     public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
     {
-        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
+//        super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 
         if (!worldIn.isRemote) // Forge: NOP all this.
         {
@@ -125,7 +121,6 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 	}
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
-		int i = this.getAge(world.getBlockState(pos));
 		List<ItemStack> list = new ArrayList<ItemStack>();
 		if(this.isMaxAge(world.getBlockState(pos)))list.add(new ItemStack(ItemLoader.MATERIAL,1+fortune,21));
 		return list;
@@ -134,7 +129,7 @@ public class BlockVanillaCrop extends BlockCrops implements IShearable {
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
 			IPlantable plantable) {
         return state.getMaterial()==Material.GROUND||state.getMaterial()==Material.GRASS||
-        	(this.getAge(state)>=2&&state.getBlock() instanceof BlockVanillaCrop)||(this.getAge(state)>=2&&state.getBlock() instanceof BlockVanillaSplint);
+        	(state.getBlock() instanceof BlockVanillaCrop&&this.getAge(state)>=2)||(state.getBlock() instanceof BlockVanillaSplint);
 	}
 	
     public void grow(World worldIn, BlockPos pos, IBlockState state)
