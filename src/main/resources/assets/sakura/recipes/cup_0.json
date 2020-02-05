@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:cup",
+    "data": 0
+  },
+  "pattern": [
+    "P P",
+    "P P",
+    "SPS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:brick"
+    },
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}
