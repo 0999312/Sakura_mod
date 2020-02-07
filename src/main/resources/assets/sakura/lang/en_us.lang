@@ -481,6 +481,10 @@ sakura.config.pepper_weight=Pepper Weight
 sakura.config.pepper_weight.tooltip=Changes generate rate of Pepper. Increase value to gen more Pepper.
 sakura.config.bambooshot_weight=BambooShot Weight
 sakura.config.bambooshot_weight.tooltip=Changes generate rate of BambooShot. Increase value to gen more BambooShot.
+sakura.config.iron_sand_amount=Iron Sand Amount
+#Tooltip is set by Sakura Mod itself.
+sakura.config.harder_iron_recipe=Hardcore Iron Ingot Recipes
+#Tooltip is set by Sakura Mod itself.
 
 #Warning
 sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!
