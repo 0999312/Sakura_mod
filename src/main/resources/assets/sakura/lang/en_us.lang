@@ -402,27 +402,29 @@ item.sakura.glass_moscow_mule.name=Moscow Mule
 item.sakura.glass_boilermaker.name=Boilermaker
 
 #Fluid
-fluid.food_oil=Food Oil
-fluid.grape_fluid=Grape Fluid
-fluid.red_wine=Red Wine
-fluid.green_grape_fluid=Green Grape Fluid
-fluid.white_wine=White Wine
-fluid.champagne=Champagne
-fluid.doburoku=Doburoku
-fluid.sake=Sake
-fluid.shouchu=Shouchu
-fluid.beer=Beer
-fluid.vodka=Vodka
-fluid.rum=Rum
-fluid.brandy=Brandy
-fluid.whiskey=Whiskey
-fluid.liqueur=Liqueur
-fluid.cocoa_liqueur=Cocoa Liqueur
-fluid.maple_syrup=Maple Syrup
+fluid.sakura.food_oil=Food Oil
+fluid.sakura.grape_fluid=Grape Fluid
+fluid.sakura.red_wine=Red Wine
+fluid.sakura.green_grape_fluid=Green Grape Fluid
+fluid.sakura.white_wine=White Wine
+fluid.sakura.champagne=Champagne
+fluid.sakura.doburoku=Doburoku
+fluid.sakura.sake=Sake
+fluid.sakura.shouchu=Shouchu
+fluid.sakura.beer=Beer
+fluid.sakura.vodka=Vodka
+fluid.sakura.rum=Rum
+fluid.sakura.brandy=Brandy
+fluid.sakura.whiskey=Whiskey
+fluid.sakura.liqueur=Liqueur
+fluid.sakura.cocoa_liqueur=Cocoa Liqueur
+fluid.sakura.maple_syrup=Maple Syrup
+fluid.sakura.yeast_liquid=Yeast Liquid
+fluid.sakura.hot_spring_water=Hot Spring Water
 
 #Tooltips
-item.sakura.kimono.texture.name=Kimono
-item.sakura.haori.texture.name=Haori
+sakura.kimono.texture.name=Kimono Texture
+sakura.haori.texture.name=Haori Texture
 
 #Keybinding
 key.categories.sakura=Sakura

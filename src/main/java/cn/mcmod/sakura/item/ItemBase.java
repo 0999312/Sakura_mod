@@ -2,7 +2,6 @@ package cn.mcmod.sakura.item;
 
 import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -64,16 +63,4 @@ public class ItemBase extends Item {
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
-	@Override
-	public boolean onEntityItemUpdate(EntityItem entityItem) {
-		if (entityItem.isInWater()) {
-			if (entityItem.getItem().getMetadata() == 4) {
-				entityItem.getItem().setItemDamage(6);
-			}
-			if (entityItem.getItem().getMetadata() == 5) {
-				entityItem.getItem().setItemDamage(7);
-			}
-		}
-		return super.onEntityItemUpdate(entityItem);
-	}
 }

@@ -31,6 +31,7 @@ public class BlockUdonUnfinished extends Block {
      */
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
+    	if(worldIn.isRemote) return;
         if (worldIn.rand.nextInt(80)==0) {
             worldIn.setBlockState(pos, BlockLoader.UDON_BLOCK.getDefaultState());
         }

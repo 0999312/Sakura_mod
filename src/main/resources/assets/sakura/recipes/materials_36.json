@@ -6,7 +6,7 @@
   },
   "ingredients": [
     {
-      "nbt": "{FluidName:\"yeast_liquid\",Amount:1000}",
+      "nbt": "{FluidName:\"sakura.yeast_liquid\",Amount:1000}",
       "item": "forge:bucketfilled",
       "type": "minecraft:item_nbt"
     },

@@ -9,6 +9,27 @@
    {
       "ingredient" : {
          "type" : "forge:ore_dict",
+         "ore" : "oreIron"
+      },
+      "name" : "OREIRON"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "blockCoal"
+      },
+      "name" : "BLOCKCOAL"
+   },
+   {
+      "ingredient" : {
+         "type" : "sakura:wildcard_oredict",
+         "ore" : "toolForginghammer"
+      },
+      "name" : "TOOLFORGINGHAMMER"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
          "ore" : "paper"
       },
       "name" : "PAPER"

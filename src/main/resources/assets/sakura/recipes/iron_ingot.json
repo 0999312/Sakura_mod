@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "minecraft:iron_ingot"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:materials",
+      "data": 54
+    },
+    {
+      "item": "sakura:materials",
+      "data": 54
+    },
+    {
+      "item": "#TOOLFORGINGHAMMER"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

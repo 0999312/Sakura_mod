@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.item;
+package cn.mcmod.sakura.item.tool;
 
 import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.item.ItemStack;

@@ -12,6 +12,9 @@ import cn.mcmod.sakura.item.katana.ItemKotachi;
 import cn.mcmod.sakura.item.katana.ItemSheath;
 import cn.mcmod.sakura.item.katana.ItemSheathKatana;
 import cn.mcmod.sakura.item.katana.ItemShinai;
+import cn.mcmod.sakura.item.tool.ItemBroom;
+import cn.mcmod.sakura.item.tool.ItemHammer;
+import cn.mcmod.sakura.item.tool.ItemKnifeNoodle;
 import cn.mcmod.sakura.util.JSON_Creator;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
@@ -19,6 +22,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -362,7 +366,6 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "alkaline",//35
             SakuraMain.MODID + "." + "yeast",//36
             SakuraMain.MODID + "." + "hop",//37
-            
             SakuraMain.MODID + "." + "brown_rice",//38
             SakuraMain.MODID + "." + "green_tea_leaves",//39
             SakuraMain.MODID + "." + "black_tea_leaves",//40
@@ -374,9 +377,15 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "mint_tea_leaves",//46
             SakuraMain.MODID + "." + "empty_bottle",//47
             SakuraMain.MODID + "." + "bamboo_sunburnt",//48
-           
             SakuraMain.MODID + "." + "maple_syrup",//49
             SakuraMain.MODID + "." + "coin",//50
+            SakuraMain.MODID + "." + "bamboo_charcoal",//51
+            
+            SakuraMain.MODID + "." + "zuku",//52
+            SakuraMain.MODID + "." + "zuku_ingot",//53
+            SakuraMain.MODID + "." + "sagegane",//54
+            SakuraMain.MODID + "." + "tamahagane",//55
+            SakuraMain.MODID + "." + "steel_ingot",//56
             });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
@@ -395,6 +404,9 @@ public class ItemLoader {
     public static Item HAORI = new ItemHaori();
     public static ItemSheathKatana KATANA_SHEATH = new ItemSheathKatana(KATANA);
     public static ItemSheathKatana SAKURAKATANA_SHEATH = new ItemSheathKatana(SAKURAKATANA);
+    public static Item STONE_HAMMER = new ItemHammer(ToolMaterial.STONE).setUnlocalizedName(SakuraMain.MODID + "." + "stone_hammer");
+    public static Item IRON_HAMMER = new ItemHammer(ToolMaterial.IRON).setUnlocalizedName(SakuraMain.MODID + "." + "iron_hammer");
+    public static Item SAKURA_HAMMER = new ItemHammer(SAKURA_TOOLMATERIAL).setUnlocalizedName(SakuraMain.MODID + "." + "sakura_hammer");
     public ItemLoader(FMLPreInitializationEvent event) {
     	register(cup);
         register(POT);
@@ -436,7 +448,11 @@ public class ItemLoader {
         register(SAMURAI_CHEST);
         register(SAMURAI_PANTS);
         register(SAMURAI_SHOES);
+    	register(STONE_HAMMER);
+        register(IRON_HAMMER);
+        register(SAKURA_HAMMER);
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 2);
+        MinecraftForge.addGrassSeed(new ItemStack(ONION_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(CABBAGE_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(RADISH_SEEDS), 2);
@@ -448,6 +464,9 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+    	registerRender(STONE_HAMMER);
+    	registerRender(IRON_HAMMER);
+        registerRender(SAKURA_HAMMER);
     	registerRender(SHEATH);
     	registerRender(HAORI);
     	registerRender(KIMONO);

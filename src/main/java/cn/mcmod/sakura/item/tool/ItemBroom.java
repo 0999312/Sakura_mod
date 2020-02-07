@@ -1,4 +1,4 @@
-package cn.mcmod.sakura.item;
+package cn.mcmod.sakura.item.tool;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFarmland;

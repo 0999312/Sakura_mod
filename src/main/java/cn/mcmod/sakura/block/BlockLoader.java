@@ -90,6 +90,7 @@ public class BlockLoader {
     public static BlockBambooShoot BAMBOOSHOOT = new BlockBambooShoot();
     public static Block BAMBOO_BLOCK = new BlockBambooBlock(Material.WOOD,false).setHardness(1.6F).setResistance(6.0F);
     public static Block BAMBOO_BLOCK_SUNBURNT = new BlockBambooBlock(Material.WOOD,true).setHardness(1.6F).setResistance(5.5F);
+    public static Block BAMBOO_CHARCOAL_BLOCK = new BlockBambooBlock(Material.WOOD,true).setHardness(1F).setResistance(5F);
     public static BlockSlabBase BAMBOO_SLAB = new BlockBambooSlab(Material.WOOD);
     public static BlockSlabBase BAMBOO_SLAB_SUNBURNT = new BlockBambooSlab(Material.WOOD);
     public static Block BAMBOOLANTERN = new BlockBambooLantern();
@@ -189,6 +190,10 @@ public class BlockLoader {
 	public static Block MAPLE_SPILE = new BlockMapleSpile();
 	public static Block TAIKO = new BlockTaiko();
 //	public static Block OBON = new BlockOben();
+	public static Block TATARA = new BlockTatara().setHardness(1.75F).setResistance(10.0F);
+	public static Block TATARA_SMELTING = new BlockTataraSmelting().setHardness(1.75F).setResistance(10.0F);
+	public static BlockBase IRON_SAND = (BlockBase) new BlockBase(Material.SAND).setSoundType(SoundType.SAND).setHardness(1.25F).setResistance(5.0F);
+
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -257,7 +262,8 @@ public class BlockLoader {
 		LIQUEUR=registerFluidBlock(LIQUEUR_FLUID, new BlockFluidBasic(LIQUEUR_FLUID), "liqueur");
 		FluidRegistry.addBucketForFluid(COCOA_LIQUEUR_FLUID);
 		COCOA_LIQUEUR=registerFluidBlock(COCOA_LIQUEUR_FLUID, new BlockFluidBasic(COCOA_LIQUEUR_FLUID), "cocoa_liqueur");
-		
+		IRON_SAND.setHarvestLevel("shovel", 1);
+		register(IRON_SAND, new ItemBlock(IRON_SAND), "iron_sand");
         register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
         register(KAWARA, new ItemBlock(KAWARA), "kawara");
         register(BAMBOO, new ItemBlock(BAMBOO), "bamboo");
@@ -271,6 +277,7 @@ public class BlockLoader {
         register(BAMBOO_PLANK_STAIR, new ItemBlock(BAMBOO_PLANK_STAIR), "stairs_plank_bamboo");
         register(BAMBOO_PLANK_SLAB, new ItemBlock(BAMBOO_PLANK_SLAB), "slab_plank_bamboo");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
+        register(BAMBOO_CHARCOAL_BLOCK, new ItemBlock(BAMBOO_CHARCOAL_BLOCK), "bamboo_charcoal_block");
         register(BAMBOO_BLOCK_SUNBURNT, new ItemBlock(BAMBOO_BLOCK_SUNBURNT), "bamboo_block_sunburnt");
         register(BAMBOO_STAIR, new ItemBlock(BAMBOO_STAIR), "bamboo_stair");
         register(BAMBOO_SUNBURNT_STAIR, new ItemBlock(BAMBOO_SUNBURNT_STAIR), "bamboo_stair_sunburnt");
@@ -325,7 +332,8 @@ public class BlockLoader {
         register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
         register(SAKURA_PLANK_STAIR, new ItemBlock(SAKURA_PLANK_STAIR), "stairs_plank_sakura");
         register(SAKURA_PLANK_SLAB, new ItemBlock(SAKURA_PLANK_SLAB), "slab_plank_sakura");
-	
+        register(TATARA, new ItemBlock(TATARA), "tatara");
+        registerNoItem(TATARA_SMELTING,"tatara_smelting");
         register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
 //        register(OBON, new ItemBlock(OBON), "obon");
         register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
@@ -390,7 +398,11 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(IRON_SAND);
 		registerRender(TAIKO);
+		registerRender(BAMBOO_CHARCOAL_BLOCK);
+		registerRender(TATARA);
+		registerRender(TATARA_SMELTING);
 //		registerRender(OBON);
 		registerRender(FALLEN_LEAVES_MAPLE_GREEN);
 		registerRender(FALLEN_LEAVES_MAPLE_ORANGE);

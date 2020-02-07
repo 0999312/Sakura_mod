@@ -48,6 +48,9 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(worldIn.isRemote){
+			return true;
+		}
 		int i = this.getAge(state);
 		if(i>=6){
 			if(playerIn.getHeldItem(hand).getItem() instanceof ItemShears){
@@ -57,7 +60,7 @@ public class BlockPepperCrop extends BlockCrops implements IShearable {
 			worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, 2));
 			}
 		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+		return true;
 	}
     /**
      * Get the Item that this Block should drop when harvested.

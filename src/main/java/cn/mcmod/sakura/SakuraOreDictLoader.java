@@ -51,6 +51,7 @@ public class SakuraOreDictLoader {
 		registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
 
+		registerOre("foodShrimpraw", new ItemStack(ItemLoader.FOODSET, 1,78));
 		registerOre("cropRadish", new ItemStack(ItemLoader.RADISH, 1));
 		registerOre("cropCabbage", new ItemStack(ItemLoader.CABBAGE, 1));
 		registerOre("cropEggplant", new ItemStack(ItemLoader.EGGPLANT, 1));
@@ -105,6 +106,10 @@ public class SakuraOreDictLoader {
 		registerOre("cropAlmond", new ItemStack(ItemLoader.FOODSET, 1, 117));
 		registerOre("foodBlackberryjuice", new ItemStack(ItemLoader.FOODSET, 1, 118));
 		registerOre("foodOrangejuice", new ItemStack(ItemLoader.FOODSET, 1, 119));
+		registerOre("ingotSteel", new ItemStack(ItemLoader.MATERIAL, 1, 56));
+		registerOre("toolForginghammer", new ItemStack(ItemLoader.STONE_HAMMER, 1, Short.MAX_VALUE));
+		registerOre("toolForginghammer", new ItemStack(ItemLoader.IRON_HAMMER, 1, Short.MAX_VALUE));
+		registerOre("toolForginghammer", new ItemStack(ItemLoader.SAKURA_HAMMER, 1, Short.MAX_VALUE));
 		registerVanillaFoods();
 	}
 	

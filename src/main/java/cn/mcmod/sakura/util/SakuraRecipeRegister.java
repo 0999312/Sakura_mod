@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.api.recipes.DistillationRecipes;
@@ -25,6 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional.Method;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SakuraRecipeRegister {
 	public static List<IAction> actions = new ArrayList<IAction>();
@@ -100,6 +102,7 @@ public class SakuraRecipeRegister {
 	}
 	
     public static void furnaceRegister() {
+    	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.IRON_SAND), new ItemStack(Items.IRON_INGOT), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 38), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 21), new ItemStack(ItemLoader.MATERIAL, 1, 22), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
@@ -111,7 +114,13 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.MAPLE_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
-		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(BlockLoader.BAMBOO_CHARCOAL_BLOCK), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO, 1), new ItemStack(ItemLoader.MATERIAL, 1, 51), 0.1F);
+    	if(SakuraConfig.harder_iron_recipe)
+		FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,52));
+    	});
     }
 
     public static void barrelRegister() {
@@ -999,7 +1008,7 @@ public class SakuraRecipeRegister {
         PotRecipes.addRecipe(
                 new PotRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 79),
-                        new ItemStack(ItemLoader.FOODSET, 1, 78),
+                        "foodShrimpraw",
                         new Object[]{
                         new ItemStack(ItemLoader.MATERIAL, 1, 14),
                         },
@@ -1103,14 +1112,6 @@ public class SakuraRecipeRegister {
                         "listAllmeatraw"
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
-//        PotRecipes.addPotRecipe(
-//                new PotRecipes(
-//                        new ItemStack(ItemLoader.FOODSET, 2, 79),
-//                        new ItemStack(ItemLoader.FOODSET, 1, 78),
-//                        new Object[]{
-//                        new ItemStack(ItemLoader.MATERIAL, 1, 14)
-//                        },
-//                        new FluidStack(FluidRegistry.WATER, 200)));
         PotRecipes.addRecipe(
                 new PotRecipes(
                         new ItemStack(ItemLoader.MATERIAL, 2, 13),
@@ -1251,4 +1252,5 @@ public class SakuraRecipeRegister {
                         },
                         new FluidStack(FluidRegistry.WATER, 200)));
     }
+
 }
