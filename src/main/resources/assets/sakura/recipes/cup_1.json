@@ -11,7 +11,7 @@
   "type": "forge:ore_shaped",
   "key": {
     "P": {
-      "item": "minecraft:brick"
+      "item": "minecraft:netherbrick"
     },
     "S": {
       "item": "#WOODLUMBER"

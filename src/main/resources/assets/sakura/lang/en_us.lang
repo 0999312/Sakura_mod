@@ -90,6 +90,9 @@ tile.sakura.straw_block.name=Straw Block
 tile.sakura.straw_stair.name=Straw Stairs
 tile.sakura.bamboo_stair.name=Bamboo Stairs
 tile.sakura.bamboo_stair_sunburnt.name=Sunburnt Bamboo Stairs
+tile.sakura.bamboo_charcoal_block.name=Bamboo Charcoal Block
+tile.sakura.tatara.name=Tatara
+tile.sakura.iron_sand.name=Iron Sand
 
 #Item
 item.sakura.grape.name=Grape
@@ -267,6 +270,15 @@ item.sakura.haori.name=Haori
 item.sakura.kimono.name=Kimono
 item.sakura.coin.name=Sakura Coin
 item.sakura.bamboo_sunburnt.name=Sunburnt Bamboo
+item.sakura.stone_hammer.name=Stone Forging Hammer
+item.sakura.iron_hammer.name=Iron Forging Hammer
+item.sakura.sakura_hammer.name=Sakura Diamond Forging Hammer
+item.sakura.steel_ingot.name=Steel Ingot
+item.sakura.tamahagane.name=Tamahagane
+item.sakura.sagegane.name=Sagegane
+item.sakura.bamboo_charcoal.name=Bamboo Charcoal
+item.sakura.zuku.name=Zuku
+item.sakura.zuku_ingot.name=Zuku Ingot
 
 item.sakura:sakura_guide.name=Harvester Guide
 
@@ -469,3 +481,13 @@ sakura.config.pepper_weight=Pepper Weight
 sakura.config.pepper_weight.tooltip=Changes generate rate of Pepper. Increase value to gen more Pepper.
 sakura.config.bambooshot_weight=BambooShot Weight
 sakura.config.bambooshot_weight.tooltip=Changes generate rate of BambooShot. Increase value to gen more BambooShot.
+sakura.config.iron_sand_amount=Iron Sand Amount
+#Tooltip is set by Sakura Mod itself.
+sakura.config.harder_iron_recipe=Hardcore Iron Ingot Recipes
+#Tooltip is set by Sakura Mod itself.
+
+#Warning
+sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!
+
+#Waila Harvestability Support
+wailaharvestability.toolclass.forging_hammer=Forging Hammer

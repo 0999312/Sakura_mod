@@ -90,6 +90,9 @@ tile.sakura.straw_block.name=稻草方块
 tile.sakura.straw_stair.name=稻草楼梯
 tile.sakura.bamboo_stair.name=竹楼梯
 tile.sakura.bamboo_stair_sunburnt.name=日晒竹楼梯
+tile.sakura.bamboo_charcoal_block.name=竹炭块
+tile.sakura.tatara.name=锻铁炉
+tile.sakura.iron_sand.name=铁砂
 
 #物品
 item.sakura.grape.name=葡萄
@@ -267,6 +270,15 @@ item.sakura.haori.name=羽织
 item.sakura.kimono.name=和服
 item.sakura.coin.name=樱花钱币
 item.sakura.bamboo_sunburnt.name=日晒竹子
+item.sakura.stone_hammer.name=石锻造锤
+item.sakura.iron_hammer.name=铁锻造锤
+item.sakura.sakura_hammer.name=樱锻造锤
+item.sakura.steel_ingot.name=钢锭
+item.sakura.tamahagane.name=玉钢
+item.sakura.sagegane.name=左下铁
+item.sakura.bamboo_charcoal.name=竹炭
+item.sakura.zuku.name=碎生铁
+item.sakura.zuku_ingot.name=生铁锭
 
 item.sakura:sakura_guide.name=农夫指南
 
@@ -468,3 +480,13 @@ sakura.config.pepper_weight=胡椒世界生成率
 sakura.config.pepper_weight.tooltip=变更胡椒的生成率，数字越高生成越多。
 sakura.config.bambooshot_weight=竹笋世界生成率
 sakura.config.bambooshot_weight.tooltip=变更竹笋的生成率，数字越高生成越多。
+sakura.config.iron_sand_amount=铁砂世界生成量
+sakura.config.iron_sand_amount.tooltip=变更铁砂的生成量，数字越高生成越多。
+sakura.config.harder_iron_recipe=硬核和钢冶炼机制
+sakura.config.harder_iron_recipe.tooltip=设为true启用铁锭的硬核合成配方。
+
+#警告信息
+sakura.warning.harder_iron_recipe_enabled=硬核和钢冶炼机制启用，享受锻造的乐趣吧！
+
+#Waila Harvestability支持
+wailaharvestability.toolclass.forging_hammer=锻造锤
