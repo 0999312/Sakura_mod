@@ -491,3 +491,6 @@ sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting 
 
 #Waila Harvestability Support
 wailaharvestability.toolclass.forging_hammer=Forging Hammer
+
+#Potion Effects
+sakura.effect.scorpion=Scorpion Venom
