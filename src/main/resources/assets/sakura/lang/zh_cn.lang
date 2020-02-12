@@ -491,3 +491,6 @@ sakura.warning.harder_iron_recipe_enabled=硬核和钢冶炼机制启用，享�
 
 #Waila Harvestability支持
 wailaharvestability.toolclass.forging_hammer=锻造锤
+
+#药水效果
+sakura.effect.scorpion=蝎毒
