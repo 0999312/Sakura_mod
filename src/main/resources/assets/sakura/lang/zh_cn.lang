@@ -485,6 +485,8 @@ sakura.config.iron_sand_amount=铁砂世界生成量
 sakura.config.iron_sand_amount.tooltip=变更铁砂的生成量，数字越高生成越多。
 sakura.config.harder_iron_recipe=硬核和钢冶炼机制
 sakura.config.harder_iron_recipe.tooltip=设为true启用铁锭的硬核合成配方。
+sakura.config.hotspring_weight=温泉世界生成率
+sakura.config.hotspring_weight.tooltip=变更温泉的生成率，数字越高生成越多。
 
 #警告信息
 sakura.warning.harder_iron_recipe_enabled=硬核和钢冶炼机制启用，享受锻造的乐趣吧！
