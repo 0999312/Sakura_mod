@@ -294,6 +294,10 @@ item.sakura.white_stew.name=White Stew
 item.sakura.fruitsalad.name=Fruit Salad
 item.sakura.buggys_meat.name=Buggys Meat
 
+item.sakura.pasta_tomato.name=Tomato Pasta
+item.sakura.pasta_mushroom.name=Mushroom Pasta
+item.sakura.pasta_whitesauce.name=White Sauce Pasta
+
 item.sakura.cooking_pot.name=Cooking Pot
 
 item.sakura.earl_grey_leaves.name=Earl Grey Leaves
