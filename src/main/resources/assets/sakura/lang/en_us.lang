@@ -485,9 +485,19 @@ sakura.config.iron_sand_amount=Iron Sand Amount
 #Tooltip is set by Sakura Mod itself.
 sakura.config.harder_iron_recipe=Hardcore Iron Ingot Recipes
 #Tooltip is set by Sakura Mod itself.
+sakura.config.hotspring_weight=Hot Spring Weight
+#Tooltip is set by Sakura Mod itself.
 
 #Warning
 sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!
 
 #Waila Harvestability Support
 wailaharvestability.toolclass.forging_hammer=Forging Hammer
+
+#Potion Effects
+sakura.effect.scorpion=Scorpion Venom
+sakura.effect.cannon=Cannon
+sakura.effect.exp_up=Experience Up
+sakura.effect.fire_blade=Fire Blade
+sakura.effect.golden_heart=Golden Heart
+sakura.effect.poisom=Poisoning
