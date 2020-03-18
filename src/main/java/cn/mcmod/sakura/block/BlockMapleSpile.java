@@ -5,6 +5,7 @@ import java.util.Random;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.tree.BlockMapleSapLog;
 import cn.mcmod.sakura.client.SakuraParticleType;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

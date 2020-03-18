@@ -8,7 +8,7 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.armors.ItemHaori;
 import cn.mcmod.sakura.item.armors.ItemKimono;
-import cn.mcmod.sakura.util.RecipesUtil;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

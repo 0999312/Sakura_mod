@@ -3,6 +3,7 @@ package cn.mcmod.sakura.block.slab;
 import java.util.Random;
 
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod_mmf.mmlib.block.slab.BlockCarpetFacing;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

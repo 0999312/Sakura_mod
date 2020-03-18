@@ -2,8 +2,8 @@ package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.util.WorldUtil;
 import cn.mcmod.sakura.world.biome.SakuraBiomes;
+import cn.mcmod_mmf.mmlib.util.WorldUtil;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -12,6 +12,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate;
 import net.minecraftforge.event.terraingen.OreGenEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -37,11 +38,13 @@ public class WorldGenLoader {
 	}
     @SubscribeEvent
     public void HotSpringGen(Decorate event) {
+    	if(Loader.isModLoaded("tfc"))
+    		return;
     	BlockPos pos = event.getChunkPos().getBlock(event.getRand().nextInt(16) + 8, 0, event.getRand().nextInt(16) + 8);
     	BlockPos newPos = WorldUtil.findGround(event.getWorld(),pos, true, false, true);
     	Biome biome = event.getWorld().getBiome(pos);
         
-    	if (newPos != null&&event.getWorld().provider instanceof WorldProviderSurface&&biome != Biomes.DESERT && biome != Biomes.DESERT_HILLS && event.getRand().nextInt(500) == 0) {
+    	if (newPos != null&&event.getWorld().provider instanceof WorldProviderSurface&&biome != Biomes.DESERT && biome != Biomes.DESERT_HILLS && event.getRand().nextFloat() < SakuraConfig.hotspring_weight / 10000.0F) {
             new WorldGenHotSpring().generate(event.getWorld(), event.getRand(), newPos);
         }
 	}

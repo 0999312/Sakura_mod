@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.tileentity.TileEntityShoji;
-import cn.mcmod.sakura.util.RecipesUtil;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 
 public class BlockShoji extends Block implements ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing");

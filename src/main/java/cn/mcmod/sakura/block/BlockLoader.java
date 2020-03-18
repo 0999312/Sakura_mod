@@ -9,36 +9,39 @@ import cn.mcmod.sakura.block.door.BlockDoorBase;
 import cn.mcmod.sakura.block.door.BlockShoji;
 import cn.mcmod.sakura.block.fluid.BlockFluidBasic;
 import cn.mcmod.sakura.block.fluid.FluidBasic;
+import cn.mcmod.sakura.block.noodles.BlockPasta;
 import cn.mcmod.sakura.block.noodles.BlockRamen;
 import cn.mcmod.sakura.block.noodles.BlockSoba;
 import cn.mcmod.sakura.block.noodles.BlockUdon;
 import cn.mcmod.sakura.block.noodles.BlockUdonUnfinished;
 import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
-import cn.mcmod.sakura.item.ItemSlabBase;
-import cn.mcmod.sakura.util.JSON_Creator;
-import cn.mcmod.sakura.util.RecipesUtil;
+import cn.mcmod_mmf.mmlib.block.BlockBase;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
+import cn.mcmod_mmf.mmlib.block.slab.BlockCarpetFacing;
+import cn.mcmod_mmf.mmlib.block.slab.BlockHalfFacing;
+import cn.mcmod_mmf.mmlib.block.slab.BlockSlabBase;
+import cn.mcmod_mmf.mmlib.item.ItemSlabBase;
+import cn.mcmod_mmf.mmlib.register.BlockRegister;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -168,6 +171,7 @@ public class BlockLoader {
 	public static Block UDON_BLOCK = new BlockUdon();
 	public static Block RAMEN_BLOCK = new BlockRamen();
 	public static Block SOBA_BLOCK = new BlockSoba();
+	public static Block PASTA_BLOCK = new BlockPasta();
 	
 	public static Block STRAW_BLOCK = new BlockBase(Material.CLOTH).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
 	public static Block STRAW_BLOCK_STAIR = new BlockStairBasic(STRAW_BLOCK.getDefaultState());
@@ -189,11 +193,15 @@ public class BlockLoader {
 	
 	public static Block MAPLE_SPILE = new BlockMapleSpile();
 	public static Block TAIKO = new BlockTaiko();
-//	public static Block OBON = new BlockOben();
+	public static Block OBON = new BlockOben();
 	public static Block TATARA = new BlockTatara().setHardness(1.75F).setResistance(10.0F);
 	public static Block TATARA_SMELTING = new BlockTataraSmelting().setHardness(1.75F).setResistance(10.0F);
 	public static BlockBase IRON_SAND = (BlockBase) new BlockBase(Material.SAND).setSoundType(SoundType.SAND).setHardness(1.25F).setResistance(5.0F);
 
+	public static Block NOREN_WHITE = new BlockNoren();
+	public static Block NOREN_BLUE = new BlockNoren();
+	public static Block NOREN_PINK = new BlockNoren();
+	
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -263,6 +271,7 @@ public class BlockLoader {
 		FluidRegistry.addBucketForFluid(COCOA_LIQUEUR_FLUID);
 		COCOA_LIQUEUR=registerFluidBlock(COCOA_LIQUEUR_FLUID, new BlockFluidBasic(COCOA_LIQUEUR_FLUID), "cocoa_liqueur");
 		IRON_SAND.setHarvestLevel("shovel", 1);
+
 		register(IRON_SAND, new ItemBlock(IRON_SAND), "iron_sand");
         register(KAWARA_BLOCK, new ItemBlock(KAWARA_BLOCK), "kawara_block");
         register(KAWARA, new ItemBlock(KAWARA), "kawara");
@@ -271,6 +280,7 @@ public class BlockLoader {
         register(UDON_UNFINISHED, new ItemBlock(UDON_UNFINISHED), "udon_unfinished_block");
         registerNoItem(UDON_BLOCK, "udon_block");
         register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
+        register(PASTA_BLOCK, new ItemBlock(PASTA_BLOCK), "pasta_block");
 
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
@@ -335,7 +345,7 @@ public class BlockLoader {
         register(TATARA, new ItemBlock(TATARA), "tatara");
         registerNoItem(TATARA_SMELTING,"tatara_smelting");
         register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
-//        register(OBON, new ItemBlock(OBON), "obon");
+        register(OBON, new ItemBlock(OBON), "obon");
         register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
 		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(BARREL_DISTILLATION, new ItemBlock(BARREL_DISTILLATION), "barrel_distillation");
@@ -348,6 +358,9 @@ public class BlockLoader {
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
         register(TAIKO, new ItemBlock(TAIKO), "taiko");
+		register(NOREN_WHITE, new ItemBlock(NOREN_WHITE), "noren_white");
+		register(NOREN_BLUE, new ItemBlock(NOREN_BLUE), "noren_blue");
+		register(NOREN_PINK, new ItemBlock(NOREN_PINK), "noren_pink");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
@@ -377,33 +390,27 @@ public class BlockLoader {
     }
 
 	private static void register(Block block, Item itemBlock, String string) {
-		block.setRegistryName(string);
-		block.setUnlocalizedName(SakuraMain.MODID+"."+string);
 		block.setCreativeTab(CommonProxy.tab);
-		ForgeRegistries.BLOCKS.register(block);
-		if (itemBlock != null) {
-			itemBlock.setRegistryName(string);
-			itemBlock.setUnlocalizedName(SakuraMain.MODID+"."+string);
-			ForgeRegistries.ITEMS.register(itemBlock);
-		}
+		BlockRegister.register(SakuraMain.MODID, block, itemBlock, string);
 	}
 
 	private static void registerNoItem(Block block, String string) {
-		block.setRegistryName(string);
-		block.setUnlocalizedName(SakuraMain.MODID+"."+string);
-
-		ForgeRegistries.BLOCKS.register(block);
+		BlockRegister.registerNoItem(SakuraMain.MODID, block, string);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(NOREN_WHITE);
+		registerRender(NOREN_BLUE);
+		registerRender(NOREN_PINK);
 		registerRender(IRON_SAND);
+		registerRender(PASTA_BLOCK);
 		registerRender(TAIKO);
 		registerRender(BAMBOO_CHARCOAL_BLOCK);
 		registerRender(TATARA);
 		registerRender(TATARA_SMELTING);
-//		registerRender(OBON);
+		registerRender(OBON);
 		registerRender(FALLEN_LEAVES_MAPLE_GREEN);
 		registerRender(FALLEN_LEAVES_MAPLE_ORANGE);
 		registerRender(FALLEN_LEAVES_MAPLE_RED);
@@ -540,41 +547,27 @@ public class BlockLoader {
 	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
-		fluidBlock.setRegistryName(new ResourceLocation(SakuraMain.MODID, name));
-		ForgeRegistries.BLOCKS.register(fluidBlock);
-		fluid.setBlock(fluidBlock);
-		return fluidBlock;
+		return BlockRegister.registerFluidBlock(SakuraMain.MODID, fluid, fluidBlock, name);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerFluidBlockRendering(Block block, String name) {
-		final ModelResourceLocation fluidLocation = new ModelResourceLocation(SakuraMain.MODID + ":fluids", name);
-		ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
-			@Override
-			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return fluidLocation;
-			}
-		});
+		BlockRegister.registerFluidBlockRendering(SakuraMain.MODID, block, name);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public static void registerRender(Block block) {
-		ModelResourceLocation model = new ModelResourceLocation(SakuraMain.MODID + ":" + block.getRegistryName().getResourcePath(), "inventory");
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
+		BlockRegister.registerRender(block);
 	}
 
 
 	@SideOnly(Side.CLIENT)
 	public static void registerCakeRender(Block block, String name) {
-		JSON_Creator.genCake(block.getRegistryName().toString().substring(1 + SakuraMain.MODID.length()), name, "json_create");
-		ModelResourceLocation model = new ModelResourceLocation(block.getRegistryName(), "inventory");
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
+		BlockRegister.registerCakeRender(SakuraMain.MODID, block, name);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerRender(Block block, String name) {
-		JSON_Creator.genBlock(block.getRegistryName().toString().substring(1 + SakuraMain.MODID.length()), name, "json_create");
-		ModelResourceLocation model = new ModelResourceLocation(block.getRegistryName(), "inventory");
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
+		BlockRegister.registerRender(SakuraMain.MODID, block, name);
 	}
 }

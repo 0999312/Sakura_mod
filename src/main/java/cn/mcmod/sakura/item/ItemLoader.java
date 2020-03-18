@@ -15,8 +15,10 @@ import cn.mcmod.sakura.item.katana.ItemShinai;
 import cn.mcmod.sakura.item.tool.ItemBroom;
 import cn.mcmod.sakura.item.tool.ItemHammer;
 import cn.mcmod.sakura.item.tool.ItemKnifeNoodle;
-import cn.mcmod.sakura.util.JSON_Creator;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import cn.mcmod_mmf.mmlib.item.ItemBase;
+import cn.mcmod_mmf.mmlib.item.food.FoodInfo;
+import cn.mcmod_mmf.mmlib.item.food.ItemFoodBase;
+import cn.mcmod_mmf.mmlib.register.ItemRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -24,12 +26,9 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -40,7 +39,7 @@ public class ItemLoader {
     public static final ItemTool.ToolMaterial STRAW_TOOLMATERIAL = EnumHelper.addToolMaterial("STRAW_TOOLMATERIAL", 0, 256, 2F, 1.0F, 8);
     public static final ItemArmor.ArmorMaterial SAMURAI_MATERIAL = EnumHelper.addArmorMaterial("SAMURAI_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/samurai_armor.png", 33, new int[]{5, 8, 9, 5}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.0F);
     public static final ItemArmor.ArmorMaterial KIMONO_MATERIAL = EnumHelper.addArmorMaterial("KIMONO_MATERIAL", SakuraMain.MODID + ":" + "textures/models/armor/kimono.png", -1, new int[]{0, 0, 0, 0}, 0, net.minecraft.init.SoundEvents.BLOCK_CLOTH_PLACE, 0);
-    public static ItemBase cup = new ItemBase("cup", 32, new String[]{
+    public static ItemBase cup = new ItemBase(SakuraMain.MODID,"cup", 32, new String[]{
     		SakuraMain.MODID + "." + "cup"
     });
     
@@ -66,275 +65,150 @@ public class ItemLoader {
     public static Item ONION = new ItemFood(2, false).setUnlocalizedName(SakuraMain.MODID + "." + "onion");
     public static Item ONION_SEEDS = new ItemSeeds(BlockLoader.ONIONCROP, Blocks.FARMLAND).setUnlocalizedName(SakuraMain.MODID + "." + "onion_seeds");
 //    public static Item MAPLE_SYRUP = new ItemSeasoning(SakuraMain.MODID + "." + "maple_syrup", 15);
-    public static ItemFoodBasic FOODSET = new ItemFoodBasic("foodset", 64,
-            new int[]{
-                    1, 3, 5,//2
-                    4, 5, 2,
-                    9, 4, 5,
-                    7, 9, 7,
-                    6, 5, 10,
-                    9, 10, 9,
-                    9, 4, 9,
-                    6, 9, 10,
-                    10, 14, 4,
-                    9, 6, 9,
-                    10, 10, 14,
-                    8, 4, 9,
-                    6, 9, 10,
-                    10, 14, 8,
-                    5, 6, 8,
-                    7, 6, 10,
-                    2, 8, 10,
-                    7, 12, 12,
-                    9, 14, 14,
-                    5, 4, 6,
-                    7, 8, 8,
-                    2, 7, 9,
-                    12, 12, 8,
-                    7, 8, 10,
-                    10, 3, 6,
-                    6, 5, 8,
-                    1, 5, 4,
-                    2, 5, 6,
-                    5, 5, 5,
-                    4, 6, 6,
-                    8, 6, 8,
-
-                    8, 8, 8,
-                    8, 8, 8,
-                    4, 6, 6,
-                    7, 5, 6,
-                    6, 6, 4,//107
-                    3, 6, 6,//110
-                    6, 2, 6,
-                    1, 2, 2,
-                    2, 2, 2,
-                    
-                    1, 4, 1,
-                    8, 8, 8,
-            },
-            new float[]{
-                    1F * 0.25F, 3F * 0.25F, 5F * 0.25F,
-                    4F * 0.25F, 5F * 0.25F, 2F * 0.25F,
-                    9F * 0.1F, 4F * 0.25F, 5F * 0.25F,
-                    7F * 0.15F, 9F * 0.1F, 7F * 0.15F,
-                    6F * 0.25F, 5F * 0.25F, 10F * 0.05F,
-                    9F * 0.1F, 10F * 0.05F, 9F * 0.1F,
-                    9F * 0.1F, 4F * 0.25F, 9F * 0.1F,
-                    6F * 0.25F, 9F * 0.1F, 10F * 0.05F,
-                    10F * 0.05F, 14F * 0.05F, 4F * 0.25F,
-                    9F * 0.1F, 6F * 0.25F, 9F * 0.1F,
-                    10F * 0.05F, 10F * 0.05F, 14F * 0.05F,
-                    8F * 0.15F, 4F * 0.25F, 9F * 0.1F,
-                    6F * 0.25F, 9F * 0.1F, 10F * 0.05F,
-                    10F * 0.05F, 14F * 0.05F, 8F * 0.15F,
-                    5F * 0.25F, 6F * 0.25F, 8F * 0.15F,
-                    7F * 0.2F, 6F * 0.25F, 10F * 0.05F,
-                    2F * 0.25F, 8F * 0.15F, 10F * 0.05F,
-                    7F * 0.2F, 12F * 0.05F, 12F * 0.05F,
-                    9F * 0.1F, 14F * 0.05F, 14F * 0.05F,
-                    5F * 0.25F, 4F * 0.25F, 6F * 0.25F,
-                    7F * 0.15F, 8F * 0.15F, 8F * 0.15F,
-                    2F * 0.25F, 7F * 0.15F, 9F * 0.1F,
-                    12F * 0.01F, 12F * 0.01F, 8F * 0.15F,
-                    7F * 0.15F, 8F * 0.15F, 10F * 0.05F,
-                    10F * 0.05F, 3F * 0.25F, 6F * 0.25F,
-                    6F * 0.25F, 5F * 0.25F, 8F * 0.15F,
-                    1F * 0.25F, 5F * 0.25F, 4F * 0.25F,
-                    2F * 0.25F, 5F * 0.25F, 6F * 0.25F,
-                    5F * 0.25F, 5F * 0.25F, 5F * 0.25F,
-                    4F * 0.25F, 6F * 0.25F, 6F * 0.25F,
-                    0.8F, 0.6F, 0.8F,
-                    8F * 0.15F, 8F * 0.15F, 8F * 0.15F,
-                    8F * 0.15F, 8F * 0.15F, 8F * 0.15F,
-                    4F * 0.25F, 6F * 0.25F, 6F * 0.25F,
-                    7F * 0.15F, 5F * 0.25F, 6F * 0.25F,
-                    6F * 0.25F, 6F * 0.25F, 4F * 0.25F,//107
-                    2F * 0.25F, 5F * 0.25F, 4F * 0.25F,//110
-                    5F * 0.25F, 2F * 0.01F, 6F * 0.25F,
-                    0.2F      , 0.2F      , 0.2F,
-                    0.2F      , 0.2F      , 0.2F,
-                    0.1F, 0.5F, 0.2F,
-                    8F * 0.15F, 8F * 0.15F, 8F * 0.15F,
-            },
-            new String[]{
-                    SakuraMain.MODID + "." + "grape",
-                    SakuraMain.MODID + "." + "maple_cookie",
-                    SakuraMain.MODID + "." + "rice_bread",
-                    //1
-                    SakuraMain.MODID + "." + "red_bean_paste",
-                    SakuraMain.MODID + "." + "bun",
-                    SakuraMain.MODID + "." + "cheese",
-                    //2
-                    SakuraMain.MODID + "." + "katsu",
-                    SakuraMain.MODID + "." + "rice_cooked",
-                    SakuraMain.MODID + "." + "rice_bamboo",
-                    //3
-                    SakuraMain.MODID + "." + "rice_fish",
-                    SakuraMain.MODID + "." + "rice_beef",//7
-                    SakuraMain.MODID + "." + "rice_pork",//8
-                    //4
-                    SakuraMain.MODID + "." + "rice_mushroom",//9
-                    SakuraMain.MODID + "." + "rice_egg",//10
-                    SakuraMain.MODID + "." + "rice_beef_egg",//11
-                    //5
-                    SakuraMain.MODID + "." + "rice_pork_egg",//12
-                    SakuraMain.MODID + "." + "rice_pork_fried",//13
-                    SakuraMain.MODID + "." + "rice_oyako",//14
-                    //6
-                    SakuraMain.MODID + "." + "rice_oyako_fish",//15
-                    SakuraMain.MODID + "." + "ramen",//16
-                    SakuraMain.MODID + "." + "ramen_beef",//17
-                    //7
-                    SakuraMain.MODID + "." + "ramen_egg",//18
-                    SakuraMain.MODID + "." + "ramen_tempura",//19
-                    SakuraMain.MODID + "." + "ramen_friedtofu",//20
-                    //8
-                    SakuraMain.MODID + "." + "ramen_katsu",//21
-                    SakuraMain.MODID + "." + "ramen_large",//22
-                    SakuraMain.MODID + "." + "udon",//23
-                    //9
-                    SakuraMain.MODID + "." + "udon_beef",//24
-                    SakuraMain.MODID + "." + "udon_egg",//25
-                    SakuraMain.MODID + "." + "udon_tempura",//26
-                    //10
-                    SakuraMain.MODID + "." + "udon_friedtofu",//27
-                    SakuraMain.MODID + "." + "udon_katsu",//28
-                    SakuraMain.MODID + "." + "udon_large",//29
-                    //11
-                    SakuraMain.MODID + "." + "yaki_udon",//30
-                    SakuraMain.MODID + "." + "soba",//31
-                    SakuraMain.MODID + "." + "soba_beef",//32
-                    //12
-                    SakuraMain.MODID + "." + "soba_egg",//33
-                    SakuraMain.MODID + "." + "soba_tempura",//34
-                    SakuraMain.MODID + "." + "soba_friedtofu",//35
-                    //13
-                    SakuraMain.MODID + "." + "soba_katsu",//36
-                    SakuraMain.MODID + "." + "soba_large",//37
-                    SakuraMain.MODID + "." + "soba_zaru",//38
-                    //14
-                    SakuraMain.MODID + "." + "onigiri",//39
-                    SakuraMain.MODID + "." + "onigiri_bamboo",//40
-                    SakuraMain.MODID + "." + "onigiri_fish",//41
-
-                    SakuraMain.MODID + "." + "onigiri_mushroom",//39
-                    SakuraMain.MODID + "." + "onigiri_seaweed",//40
-                    SakuraMain.MODID + "." + "onigiri_tempura",//41
-
-                    SakuraMain.MODID + "." + "burger_raw",//42
-                    SakuraMain.MODID + "." + "burger",//43
-                    SakuraMain.MODID + "." + "burger_dish",//44
-
-                    SakuraMain.MODID + "." + "rice_curry",//45
-                    SakuraMain.MODID + "." + "rice_curry_katsu",//46
-                    SakuraMain.MODID + "." + "rice_curry_burger",//47
-
-                    SakuraMain.MODID + "." + "rice_curry_cheese",//48
-                    SakuraMain.MODID + "." + "rice_curry_cheese_katsu",//49
-                    SakuraMain.MODID + "." + "rice_curry_cheese_burger",//50
-
-                    SakuraMain.MODID + "." + "mashed_potato",//51
-                    SakuraMain.MODID + "." + "mochi",//52
-                    SakuraMain.MODID + "." + "mochi_toasted",//53
-
-                    SakuraMain.MODID + "." + "mochi_sakura",//54
-                    SakuraMain.MODID + "." + "ohagi",//55
-                    SakuraMain.MODID + "." + "croquette",//56
-
-                    SakuraMain.MODID + "." + "natto",//57
-                    SakuraMain.MODID + "." + "rice_natto",//58
-                    SakuraMain.MODID + "." + "rice_natto_egg",//59
-
-                    SakuraMain.MODID + "." + "nikujaga",//60
-                    SakuraMain.MODID + "." + "omurice",//61
-                    SakuraMain.MODID + "." + "rice_fried",//62
-
-                    SakuraMain.MODID + "." + "hamburger",//60
-                    SakuraMain.MODID + "." + "cheese_burger",//61
-                    SakuraMain.MODID + "." + "mabodofu",//62
-
-                    SakuraMain.MODID + "." + "maboqiezi",//63
-                    SakuraMain.MODID + "." + "chestnut_toasted",//64
-                    SakuraMain.MODID + "." + "soup_red_bean",//65
-
-                    SakuraMain.MODID + "." + "pound_cake",//63
-                    SakuraMain.MODID + "." + "osuimono",//64
-                    SakuraMain.MODID + "." + "ochazuke",//65
-
-                    SakuraMain.MODID + "." + "shrimp",//77
-                    SakuraMain.MODID + "." + "tempura",//78
-                    SakuraMain.MODID + "." + "fishcake",//79
-
-                    SakuraMain.MODID + "." + "tofu",//81
-                    SakuraMain.MODID + "." + "tofu_fried",//82
-                    SakuraMain.MODID + "." + "oden",//83
-
-                    SakuraMain.MODID + "." + "dananko",//84
-                    SakuraMain.MODID + "." + "danmitarashi",//85
-                    SakuraMain.MODID + "." + "dansansyoku",//86
-
-                    SakuraMain.MODID + "." + "eggplant_baked",//87
-                    SakuraMain.MODID + "." + "fried_chicken",//88
-                    SakuraMain.MODID + "." + "sashimi",//89
-
-                    SakuraMain.MODID + "." + "beef_stick",//90
-                    SakuraMain.MODID + "." + "chicken_stick",//91
-                    SakuraMain.MODID + "." + "pork_stick",//92
-
-                    SakuraMain.MODID + "." + "ramen_croquette",//93
-                    SakuraMain.MODID + "." + "udon_croquette",//94
-                    SakuraMain.MODID + "." + "soba_croquette",//95
-
-                    SakuraMain.MODID + "." + "ramen_chicken",//96
-                    SakuraMain.MODID + "." + "udon_chicken",//97
-                    SakuraMain.MODID + "." + "soba_chicken",//98
-
-                    SakuraMain.MODID + "." + "tamagoyaki",//99
-                    SakuraMain.MODID + "." + "sushi",//100
-                    SakuraMain.MODID + "." + "sushi_tamago",//101
-
-                    SakuraMain.MODID + "." + "ehoumaki",//102
-                    SakuraMain.MODID + "." + "pudding",//103
-                    SakuraMain.MODID + "." + "pudding_maple",//104
-
-                    SakuraMain.MODID + "." + "rice_redbean",//105
-                    SakuraMain.MODID + "." + "fish_bake",//106
-                    SakuraMain.MODID + "." + "fries",//107
-                    
-                    SakuraMain.MODID + "." + "furofuki_daikon",//108
-                    SakuraMain.MODID + "." + "cabbage_roll",//109
-                    SakuraMain.MODID + "." + "white_stew",//110
-                    
-                    SakuraMain.MODID + "." + "fruitsalad",//111
-                    SakuraMain.MODID + "." + "raw_taiyaki",//112
-                    SakuraMain.MODID + "." + "taiyaki",//113
-                    
-                    SakuraMain.MODID + "." + "lemon",//114
-                    SakuraMain.MODID + "." + "lemon_juice",//115
-                    SakuraMain.MODID + "." + "soda_water",//116
-                    
-                    SakuraMain.MODID + "." + "almond",//117
-                    SakuraMain.MODID + "." + "blackcurrant_juice",//118
-                    SakuraMain.MODID + "." + "orange_juice",//119
-                    
-                    SakuraMain.MODID + "." + "grape_green",//120
-                    SakuraMain.MODID + "." + "sliced_cabbage",//121
-                    SakuraMain.MODID + "." + "sushi_shrimp",//122
-                    
-                    SakuraMain.MODID + "." + "curry_omurice",//123
-                    SakuraMain.MODID + "." + "katsu_dish",//124
-                    SakuraMain.MODID + "." + "croquette_dish",//125
-            });
+    public static ItemFoodBase FOODSET = new ItemFoodBase(SakuraMain.MODID,"foodset", 64,
+           new FoodInfo[]{
+        		new FoodInfo(SakuraMain.MODID + "." + "grape", 1, 0.25f, false, 4F, 0.25F, 0F, 0F, 0.5F, 0F, 5F, 0, -1),  
+        		new FoodInfo(SakuraMain.MODID + "." + "maple_cookie", 3, 0.25f, false, 0.75F, 1F, 0.1F, 0F, 0F, 0.2F, 0.8F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_bread", 5, 0.6f, false, 0f, 1.5f, 0.5f, 0f, 0f, 0f, 0.8f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "red_bean_paste", 4, 0.25f, false, 4F, 0.25F, 0F, 0F, 0.5F, 0F, 4F, 0, -1),  
+        		new FoodInfo(SakuraMain.MODID + "." + "bun", 5, 0.6f, false, 0F, 1.5F, 0.1F, 0F, 0F, 0.2F, 0.8F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "cheese", 2, 0.2f, false, 3f, 0f, 2.5f, 2f, 0f, 2f, 2f, 0, -1),	
+        		new FoodInfo(SakuraMain.MODID + "." + "katsu", 9, 0.6f, false, 4F, 0.25F, 2F, 1F, 0F, 0.5F, 1.25F, 0, -1),  
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_cooked", 4, 0.5f, false, 0.5F, 1.5F, 0F, 0F, 0F, 0F, 2F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_bamboo", 5, 0.6f, false, 0.5F, 1.5F, 0f, 0f, 1f, 0f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_fish", 7, 0.7f, false, 0.5F, 1.5F, 0f, 2f, 0f, 0.5f, 2.25f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_beef", 9, 0.8f, false, 0.5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 2.25f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_pork", 7, 0.7f, false, 0.5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_mushroom", 6, 0.6f, false, 0.5F, 1.5F, 0F, 1F, 0F, 1F, 2F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_egg", 5, 0.6f, false, 0.5F, 1.5F, 0.5f, 1f, 0f, 1f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_beef_egg", 10, 1f, false, 0.5F, 1.5F, 2.5f, 3.5f, 0f, 1.5f, 2.25f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_pork_egg", 9, 0.8f, false, 0.5F, 1.5F, 2.5F, 3.5F, 0F, 1.5F, 2.25f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_pork_fried", 10, 1f, false, 0.5F, 2F, 4F, 4F, 0F, 1F, 2.25f, 1f, 480f),	
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_oyako", 9, 0.8f, false, 0.5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 2.25f, 1f, 480f),	
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_oyako_fish", 9, 0.8f, false, 0.5F, 1.5F, 2F, 2.5F, 0F, 1.5F, 2.25f, 1f, 480f),	
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen", 4, 0.5f, false, 35F, 1.5F, 0F, 0F, 0F, 0F, 4F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_beef", 9, 0.8f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_egg", 5, 0.6f, false, 35F, 1.5F, 0.5f, 1f, 0f, 1f, 5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_tempura", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_friedtofu", 9, 0.7f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_katsu", 10, 0.8f, false, 35F, 2F, 4F, 4F, 0F, 1F, 5F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_large", 12, 1f, false, 35F, 2F, 4F, 4F, 2F, 2F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "udon", 4, 0.5f, false, 35F, 1.5F, 0F, 0F, 0F, 0F, 4F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_beef", 9, 0.8f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_egg", 5, 0.6f, false, 35F, 1.5F, 0.5f, 1f, 0f, 1f, 5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_tempura", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_friedtofu", 9, 0.7f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_katsu", 10, 0.8f, false, 35F, 2F, 4F, 4F, 0F, 1F, 5F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_large", 12, 1f, false, 35F, 2F, 4F, 4F, 2F, 2F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "yaki_udon", 9, 0.7f, false, 2.5F, 1.5F, 1.5F, 2.5F, 1F, 0.5F, 3.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "soba", 4, 0.5f, false, 35F, 1.5F, 0F, 0F, 0F, 0F, 4F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_beef", 9, 0.8f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_egg", 5, 0.6f, false, 35F, 1.5F, 0.5f, 1f, 0f, 1f, 5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_tempura", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_friedtofu", 9, 0.7f, false, 35F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_katsu", 10, 0.8f, false, 35F, 2F, 4F, 4F, 0F, 1F, 5F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_large", 12, 1f, false, 35F, 2F, 4F, 4F, 2F, 2F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_zaru", 6, 0.7f, false, 5F, 2F, 0F, 0.5F, 0F, 0.5F, 3.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri", 6, 0.6f, false, 0.5F, 1.5F, 0F, 0F, 0.5F, 0.5F, 2F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri_bamboo", 7, 0.7f, false, 0.5F, 1.5F, 0f, 0f, 1.5f, 0.5f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri_fish", 8, 0.7f, false, 0.5F, 1.5F, 0f, 2f, 0.5f, 1f, 2.25f, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri_mushroom", 7, 0.7f, false, 0.5F, 1.5F, 0F, 0F, 0F, 0.5F, 2F, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri_seaweed", 7, 0.7f, false, 0.5F, 1.5F, 0f, 0f, 1f, 1f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "onigiri_tempura", 10, 0.8f, false, 0.5F, 1.5F, 2F, 3F, 0.5F, 1F, 2.25f, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "burger_raw", 2, 0.2f, false, 1f, 0f, 2f, 2.5f, 0f, 0f, 2f, 1f, 200f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "burger", 6, 0.6f, false, 2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "burger_dish", 10, 0.8f, false, 2.5F, 1F, 2F, 3F, 1F, 1F, 2.5f, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry", 6, 0.6f, false, 0.5F, 1.5F, 1f, 1f, 1f, 0.5f, 2.25f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry_katsu", 10, 0.8f, false, 0.5F, 2F, 3f, 3f, 1f, 1.5f, 2.25f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry_burger", 10, 0.8f, false, 0.5F, 2F, 3f, 3f, 1f, 1.5f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry_cheese", 8, 0.8f, false, 0.5F, 1.5F, 2f, 2f, 1f, 1.5f, 2.25f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry_cheese_katsu", 12, 0.8f, false, 0.5F, 2F, 3f, 4f, 1f, 2.5f, 2.25f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_curry_cheese_burger", 12, 0.8f, false, 0.5F, 2F, 3f, 4f, 1f, 2.5f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "mashed_potato", 5, 0.6f, false, 0.5F, 2F, 0f, 0f, 2f, 0.5f, 4f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "mochi", 2, 0.5f, false, 0.5F, 2F, 0f, 0f, 0f, 0f, 2f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "mochi_toasted", 4, 0.6f, false, 0.5F, 2F, 0f, 0f, 0f, 0f, 1.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "mochi_sakura", 4, 0.6f, false, 0.5F, 2F, 0f, 0f, 1f, 0.5f, 2f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "ohagi", 6, 0.6f, false, 0.5F, 3F, 0.5f, 0f, 0f, 0.5f, 2.25f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "croquette", 6, 0.6f, false, 2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "natto", 2, 0.5f, false, 0.5F, 1F, 0.5f, 2f, 0f, 0.5f, 2f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_natto", 5, 0.6f, false, 0.5F, 2.5F, 0.5f, 2f, 0f, 1f, 2.25f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_natto_egg", 6, 0.6f, false, 0.5F, 2.5F, 1f, 3f, 0f, 1.5f, 2.25f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "nikujaga", 8, 0.6f, false, 0.5F, 1F, 2f, 3f, 1f, 1f, 3f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "omurice", 8, 0.6f, false, 0.5F, 2F, 3f, 4f, 2f, 2f, 2.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_fried", 8, 0.6f, false, 0.5F, 1.5F, 2f, 2f, 2f, 2f, 2.5f, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "hamburger", 8, 0.6f, false, 0.5F, 2F, 2f, 4f, 0f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "cheese_burger", 10, 0.8f, false, 0.5F, 2.5F, 2.5f, 5f, 0f, 1f, 3f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "mabodofu", 8, 0.6f, false, 1F, 1F, 2f, 3f, 1f, 1f, 4f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "maboqiezi", 8, 0.6f, false, 1F, 1F, 1f, 3f, 2f, 1f, 4f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "chestnut_toasted", 4, 0.4f, false, 0.5F, 2F, 0f, 0f, 1f, 0f, 2.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "soup_red_bean", 6, 0.6f, false, 5F, 2F, 2f, 2f, 2f, 2f, 5f, 0f, 0f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "pound_cake", 5, 0.6f, false, 0.5F, 4F, 1f, 2f, 1f, 1f, 3f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "osuimono", 4, 0.5f, false, 50F, 0F, 0f, 0f, 0f, 1f, 5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "ochazuke", 6, 0.6f, false, 50F, 0F, 0f, 2f, 0f, 2f, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "shrimp", 2, 0.6f, false, 0.5F, 0F, 0f, 2f, 0f, 0.5f, 2f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "tempura", 5, 0.6f, false, 0F, 1F, 1f, 2f, 0f, 0.5f, 1.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "fishcake", 4, 0.6f, false, 1f, 2f, 1f, 2.5f, 0f, 1f, 1.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "tofu", 2, 0.4f, false, 0.5F, 0F, 0f, 2f, 0f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "tofu_fried", 4, 0.5f, false, 0.5F, 0.5F, 1f, 2f, 0f, 0.5f, 2f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "oden", 8, 0.6f, false, 1F, 1F, 2f, 3f, 1f, 1f, 4f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "dananko", 6, 0.6f, false, 1F, 3F, 1f, 0f, 0f, 1f, 2f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "danmitarashi", 6, 0.4f, false, 1F, 3F, 1f, 0f, 0f, 1f, 2f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "dansansyoku", 6, 0.6f, false, 1F, 3F, 1f, 0f, 0f, 1f, 2f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "eggplant_baked", 4, 0.5f, false, 1F, 0F, 0f, 0f, 2f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "fried_chicken", 6, 0.6f, false, 2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "sashimi", 6, 0.6f, false, 1F, 0F, 0f, 3f, 0f, 1f, 4f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "beef_stick", 8, 0.8f, false,2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "chicken_stick", 6, 0.4f, false, 2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "pork_stick", 6, 0.6f, false, 2f, 0f, 2f, 2.5f, 0f, 0f, 1.5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_croquette", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),       
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_croquette", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),        
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_croquette", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),       
+        		new FoodInfo(SakuraMain.MODID + "." + "ramen_chicken", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "udon_chicken", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),            
+        		new FoodInfo(SakuraMain.MODID + "." + "soba_chicken", 9, 0.8f, false, 35F, 1.5F, 2F, 3F, 0F, 0.5F, 5f, 1f, 480f),    
+        		new FoodInfo(SakuraMain.MODID + "." + "tamagoyaki", 6, 0.6f, false, 0.5F, 0.5F, 1f, 2f, 0f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "sushi", 5, 0.6f, false, 1F, 1F, 0f, 2f, 0f, 1f, 4f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "sushi_tamago", 4, 0.6f, false, 1F, 1F, 1f, 2f, 0f, 1f, 4f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "ehoumaki", 8, 0.6f, false, 1F, 2F, 1f, 3f, 2f, 1f, 4f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "pudding", 4, 0.4f, false, 2F, 2F, 1f, 2f, 0f, 0f, 2.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "pudding_maple", 6, 0.6f, false, 2F, 3F, 2f, 2f, 0f, 0f, 2.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "rice_redbean", 6, 0.6f, false, 0.5F, 4F, 1f, 0f, 0f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "fish_bake", 8, 0.8f, false, 0.5F, 0.5F, 0.5f, 3f, 0f, 1f, 3f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "fries", 5, 0.6f, false, 1F, 2F, 2f, 0f, 1f, 1f, 1f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "furofuki_daikon", 5, 0.6f, false, 25F, 1F, 0f, 2f, 4f, 1f, 5f, 1f, 480f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "cabbage_roll", 4, 0.4f, false, 25F, 1F, 0f, 2f, 4f, 1f, 5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "white_stew", 6, 0.6f, false, 35F, 2F, 2f, 2f, 2f, 2f, 5f, 0f, 0f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "fruitsalad", 6, 0.6f, false, 15F, 2F, 0f, 0f, 4f, 0.5f, 5.5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "raw_taiyaki", 2, 0.2f, false, 0.5F, 0.5F, 0.5f, 0f, 0f, 0f, 2f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "taiyaki", 6, 0.6f, false, 0.5F, 4F, 2f, 3f, 0f, 0f, 1f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "lemon",  1, 0.1f, false, 5f, 0f, 0f, 0f, 1f, 0f, 3.5f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "lemon_juice",  1, 0.1f, false, 40F, 0F, 0f, 2f, 0f, 0f, 5f, 0f, 0f),            
+        		new FoodInfo(SakuraMain.MODID + "." + "soda_water", 1, 0.1f, false, 50F, 0F, 0f, 0f, 0f, 0f, 5f, 0f, 0f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "almond", 1, 0.1f, false, 0F, 0F, 2f, 0f, 0f, 0f, 2f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "blackcurrant_juice", 1, 0.1f, false, 40F, 0F, 0f, 2f, 0f, 0f, 5f, 0f, 0f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "orange_juice", 1, 0.1f, false, 40F, 0F, 0f, 2f, 0f, 0f, 5f, 0f, 0f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "grape_green", 2, 0.2f, false, 4F, 0.25F, 0F, 0F, 0.5F, 0F, 5F, 0f, 0f),  
+        		new FoodInfo(SakuraMain.MODID + "." + "sliced_cabbage", 2, 0.2f, false, 5f, 0f, 0f, 0f, 1f, 0f, 2.5f, 1f, 480f),         
+        		new FoodInfo(SakuraMain.MODID + "." + "sushi_shrimp", 5, 0.6f, false, 1F, 1F, 0f, 2f, 0f, 1f, 4f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "curry_omurice", 8, 0.6f, false, 0.5F, 2F, 2f, 4f, 0f, 0.5f, 3f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "katsu_dish", 10, 0.8f, false, 0.5F, 2.5F, 2.5f, 5f, 0f, 1f, 3f, 1f, 480f),     
+        		new FoodInfo(SakuraMain.MODID + "." + "croquette_dish", 8, 0.6f, false, 1F, 1F, 2f, 3f, 1f, 1f, 4f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "pasta_tomato", 9, 0.8f, false, 5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "pasta_mushroom", 9, 0.8f, false, 5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),        
+        		new FoodInfo(SakuraMain.MODID + "." + "pasta_whitesauce", 9, 0.8f, false, 5F, 1.5F, 2F, 2.5F, 0F, 0.5F, 5f, 1f, 480f),
+        		new FoodInfo(SakuraMain.MODID + "." + "egg_soft", 2, 0.6F, false, 1F, 2.0F, 2.0F, 1.5F, 0.0F, 1.0F, 2F, 1f, 480f), 
+        		new FoodInfo(SakuraMain.MODID + "." + "egg_soysauce", 4, 0.6F, false, 1F, 2.0F, 2.0F, 2F, 0.0F, 1.5F, 1.0F, 1f, 480f), 
+    	}
+    );
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
-    public static ItemBase MATERIAL = new ItemBase("materials", 64, new String[]{
+    public static ItemBase MATERIAL = new ItemBase(SakuraMain.MODID,"materials", 64, new String[]{
             SakuraMain.MODID + "." + "straw",//0
             SakuraMain.MODID + "." + "rice",//1
-            SakuraMain.MODID + "." + "salt",
-            SakuraMain.MODID + "." + "curry_powder",
-            SakuraMain.MODID + "." + "flour",
-            SakuraMain.MODID + "." + "flour_buckwheat",
-            SakuraMain.MODID + "." + "dough",
+            SakuraMain.MODID + "." + "salt",//2
+            SakuraMain.MODID + "." + "curry_powder",//3
+            SakuraMain.MODID + "." + "flour",//4
+            SakuraMain.MODID + "." + "flour_buckwheat",//5
+            SakuraMain.MODID + "." + "dough",//6
             SakuraMain.MODID + "." + "dough_buckwheat",
             SakuraMain.MODID + "." + "ramen_raw",
             SakuraMain.MODID + "." + "udon_raw",
@@ -386,6 +260,7 @@ public class ItemLoader {
             SakuraMain.MODID + "." + "sagegane",//54
             SakuraMain.MODID + "." + "tamahagane",//55
             SakuraMain.MODID + "." + "steel_ingot",//56
+            SakuraMain.MODID + "." + "pasta_raw",//57
             });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle();
@@ -464,110 +339,53 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
-    	registerRender(STONE_HAMMER);
-    	registerRender(IRON_HAMMER);
-        registerRender(SAKURA_HAMMER);
-    	registerRender(SHEATH);
-    	registerRender(HAORI);
-    	registerRender(KIMONO);
-    	registerRender(BROOM);
-    	registerRender(SAMURAI_HELMET);
-        registerRender(SAMURAI_CHEST);
-        registerRender(SAMURAI_PANTS);
-        registerRender(SAMURAI_SHOES);
-    	registerRender(TACHI);
-    	registerRender(ONION);
-        registerRender(ONION_SEEDS);
-    	registerRender(SHINAI);
-    	registerRender(KODACHI);
-        registerRender(SAKURAKODACHI);
-        registerRender(KNIFE_NOODLE);
-        registerRender(POT);
-        registerRender(CABBAGE);
-        registerRender(CABBAGE_SEEDS);
-        registerRender(TOMATO);
-        registerRender(TOMATO_SEEDS);
-        registerRender(EGGPLANT);
-        registerRender(EGGPLANT_SEEDS);
-        registerRender(RADISH);
-        registerRender(RADISH_SEEDS);
-        registerRender(BUCKWHEAT);
-        registerRender(MATERIAL);
-        registerRender(RAPESEED);
-        registerRender(RICE_SEEDS);
-        registerRender(RED_BEAN);
-        registerRender(BAMBOO_DOOR);
-        registerRender(FOODSET);
-        registerRender(HYDRA_RAMEN);
-        registerRender(BUGGYS_MEAT);
-        registerRender(STRAW_HAT);
-        registerRender(SAKURA_DIAMOND);
-        registerRender(KATANA);
-        registerRender(SAKURAKATANA);
-        registerRender(KATANA_SHEATH);
-        registerRender(SAKURAKATANA_SHEATH);
-        registerRender(cup);
+    	ItemRegister.registerRender(STONE_HAMMER);
+    	ItemRegister.registerRender(IRON_HAMMER);
+    	ItemRegister.registerRender(SAKURA_HAMMER);
+    	ItemRegister.registerRender(SHEATH);
+    	ItemRegister.registerRender(HAORI);
+    	ItemRegister.registerRender(KIMONO);
+    	ItemRegister.registerRender(BROOM);
+    	ItemRegister.registerRender(SAMURAI_HELMET);
+    	ItemRegister.registerRender(SAMURAI_CHEST);
+    	ItemRegister.registerRender(SAMURAI_PANTS);
+    	ItemRegister.registerRender(SAMURAI_SHOES);
+    	ItemRegister.registerRender(TACHI);
+    	ItemRegister.registerRender(ONION);
+    	ItemRegister.registerRender(ONION_SEEDS);
+    	ItemRegister.registerRender(SHINAI);
+    	ItemRegister.registerRender(KODACHI);
+    	ItemRegister.registerRender(SAKURAKODACHI);
+    	ItemRegister.registerRender(KNIFE_NOODLE);
+    	ItemRegister.registerRender(POT);
+    	ItemRegister.registerRender(CABBAGE);
+    	ItemRegister.registerRender(CABBAGE_SEEDS);
+    	ItemRegister.registerRender(TOMATO);
+    	ItemRegister.registerRender(TOMATO_SEEDS);
+    	ItemRegister.registerRender(EGGPLANT);
+    	ItemRegister.registerRender(EGGPLANT_SEEDS);
+    	ItemRegister.registerRender(RADISH);
+    	ItemRegister.registerRender(RADISH_SEEDS);
+    	ItemRegister.registerRender(BUCKWHEAT);
+    	ItemRegister.registerRender(MATERIAL);
+    	ItemRegister.registerRender(RAPESEED);
+    	ItemRegister.registerRender(RICE_SEEDS);
+    	ItemRegister.registerRender(RED_BEAN);
+    	ItemRegister.registerRender(BAMBOO_DOOR);
+    	ItemRegister.registerRender(FOODSET);
+    	ItemRegister.registerRender(HYDRA_RAMEN);
+    	ItemRegister.registerRender(BUGGYS_MEAT);
+    	ItemRegister.registerRender(STRAW_HAT);
+    	ItemRegister.registerRender(SAKURA_DIAMOND);
+    	ItemRegister.registerRender(KATANA);
+    	ItemRegister.registerRender(SAKURAKATANA);
+    	ItemRegister.registerRender(KATANA_SHEATH);
+    	ItemRegister.registerRender(SAKURAKATANA_SHEATH);
+    	ItemRegister.registerRender(cup);
     }
 
     private static void register(Item item) {
         item.setCreativeTab(CommonProxy.tab);
-        ForgeRegistries.ITEMS.register(item.setRegistryName(item.getUnlocalizedName().substring(5 + SakuraMain.MODID.length() + 1)));
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(ItemBase item) {
-        registerRender(item, false);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(ItemFoodBasic item) {
-        registerRender(item, false);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(ItemBase item, boolean json_create) {
-        for (int i = 0; i < item.getSubNames().length; i++) {
-            String name = item.getSubNames()[i].substring(SakuraMain.MODID.length() + 1);
-            if (json_create) JSON_Creator.genItem(name, name, "json_create");
-            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(SakuraMain.MODID, name), "inventory");
-            ModelLoader.setCustomModelResourceLocation(item, i, model);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(ItemFoodBasic item, boolean json_create) {
-
-        for (int i = 0; i < item.getSubNames().length; i++) {
-            String name = item.getSubNames()[i].substring(SakuraMain.MODID.length() + 1);
-            if (json_create) JSON_Creator.genItem(name, name, "json_create");
-            ModelResourceLocation model = new ModelResourceLocation(new ResourceLocation(SakuraMain.MODID, name), "inventory");
-            ModelLoader.setCustomModelResourceLocation(item, i, model);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(Item item, int meta, String name) {
-        ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
-        ModelLoader.setCustomModelResourceLocation(item, meta, model);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(Item item, int meta, String name, String textureName) {
-        JSON_Creator.genItem(name, textureName, "json_create");
-        ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
-        ModelLoader.setCustomModelResourceLocation(item, meta, model);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(Item item, String textureName) {
-        JSON_Creator.genItem(item.getRegistryName().toString().substring(SakuraMain.MODID.length() + 1), textureName, "json_create");
-        ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
-        ModelLoader.setCustomModelResourceLocation(item, 0, model);
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void registerRender(Item item) {
-        ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");
-        ModelLoader.setCustomModelResourceLocation(item, 0, model);
+        ItemRegister.register(SakuraMain.MODID, item);
     }
 }

@@ -21,12 +21,10 @@ public class CTSakuraStoneMortar {
 		if(input.length>0){
 			Object[] array = new Object[input.length];
 		    for(int i = 0; i < input.length;i++){
-		    	if (input[i] instanceof IItemStack) {
+		    	if (input[i] instanceof IItemStack)
 		    		array[i]=CraftTweakerMC.getItemStack(input[i]);
-				} 
-				else if(input[i] instanceof IOreDictEntry) {
-					array[i]=((IOreDictEntry)input[i]).getName();
-				}
+				else if(input[i] instanceof IOreDictEntry) 
+					array[i]=((IOreDictEntry)input[i]).getName();	
 			}
 		    SakuraRecipeRegister.actions.add(new Removal(array));
 		}
@@ -42,6 +40,7 @@ public class CTSakuraStoneMortar {
 				else if(input[i] instanceof IOreDictEntry) 
 					array[i]=((IOreDictEntry)input[i]).getName();	
 			}
+		    
 		    for(int i = 0; i < output.length;i++)
 		    		array2[i]=CraftTweakerMC.getItemStack(output[i]);
 			
@@ -66,7 +65,7 @@ public class CTSakuraStoneMortar {
         @Override
         public void apply()
         {
-        	MortarRecipes.ClearRecipe(itemInput);
+        	MortarRecipes.instance().ClearRecipe(itemInput);
         }
 
         @Override
@@ -90,7 +89,7 @@ public class CTSakuraStoneMortar {
         @Override
         public void apply()
         {
-        	MortarRecipes.addRecipe(new MortarRecipes(itemOutput, itemInput));
+        	MortarRecipes.instance().addMortarRecipes(itemOutput, itemInput);
         }
 
         @Override
@@ -106,7 +105,7 @@ public class CTSakuraStoneMortar {
         @Override
         public void apply()
         {
-        	MortarRecipes.ClearAllRecipe();
+        	MortarRecipes.instance().ClearAllRecipe();
         }
 
         @Override

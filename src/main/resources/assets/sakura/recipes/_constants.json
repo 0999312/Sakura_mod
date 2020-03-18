@@ -22,7 +22,7 @@
    },
    {
       "ingredient" : {
-         "type" : "sakura:wildcard_oredict",
+         "type" : "mm_lib:wildcard_oredict",
          "ore" : "toolForginghammer"
       },
       "name" : "TOOLFORGINGHAMMER"
@@ -499,7 +499,7 @@
    {
       "ingredient" : {
          "type" : "forge:ore_dict",
-         "ore" : "woodLumber"
+         "ore" : "lumber"
       },
       "name" : "WOODLUMBER"
    },

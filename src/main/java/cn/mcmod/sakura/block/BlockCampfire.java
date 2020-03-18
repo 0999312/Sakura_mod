@@ -3,7 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfire;
-import cn.mcmod.sakura.util.WorldUtil;
+import cn.mcmod_mmf.mmlib.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;

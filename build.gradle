@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "V0.0.9pre-MC1.12.2"
+version = "V0.0.9-MC1.12.2"
 group = "cn.mcmod.sakura" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Sakura"
 
@@ -20,7 +20,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     mappings = "snapshot_20171003"
     replace "@version@", project.version
@@ -61,7 +61,8 @@ repositories {
 }
 
 dependencies {
-    compile "vazkii.patchouli:Patchouli:1.0-10.51"
+    compile "vazkii.patchouli:Patchouli:1.0-16.84"
+	compile "blusunrize:ImmersiveEngineering:0.12-89-515"
 	// compile against the JEI API but do not include it at runtime
     deobfProvided "mezz.jei:jei_1.12.2:4.14.3.238:api"
     // at runtime, use the full JEI jar

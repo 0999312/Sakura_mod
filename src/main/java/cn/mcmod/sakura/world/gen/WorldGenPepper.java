@@ -2,7 +2,7 @@ package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.block.BlockLoader;
-import cn.mcmod.sakura.util.WorldUtil;
+import cn.mcmod_mmf.mmlib.util.WorldUtil;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;

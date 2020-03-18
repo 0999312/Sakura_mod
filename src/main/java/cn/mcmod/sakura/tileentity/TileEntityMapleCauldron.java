@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.block.BlockMapleSpile;
 import cn.mcmod.sakura.item.ItemLoader;
-import cn.mcmod.sakura.util.WorldUtil;
+import cn.mcmod.sakura.util.HeatUtil;
 
 public class TileEntityMapleCauldron extends TileEntity implements ITickable, IInventory {
 
@@ -81,7 +81,7 @@ public class TileEntityMapleCauldron extends TileEntity implements ITickable, II
     public boolean isBurning() {
         return this.getTank().canDrainFluidType(new FluidStack(BlockLoader.MAPLE_SYRUP_FLUID, 500))
         		&&this.getTank().getFluidAmount()>=500
-        		&&WorldUtil.getHeatStrength(getWorld(), getPos()) > 0;
+        		&&HeatUtil.getHeatStrength(getWorld(), getPos()) > 0;
     }
 
     public boolean canDraw() {
@@ -250,7 +250,7 @@ public class TileEntityMapleCauldron extends TileEntity implements ITickable, II
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return true;
+        return false;
     }
 
     public int getField(int id) {

@@ -32,7 +32,7 @@ public class BlockSakuraLeave extends BlockLeaves {
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setCreativeTab(CommonProxy.tab);
-        this.setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+        this.setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
     }
 
     @SideOnly(Side.CLIENT)

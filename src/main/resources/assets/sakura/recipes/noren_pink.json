@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "SSS",
+    "HHH",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "type": "forge:ore_dict",
+      "ore": "woolPink"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    }
+  },
+  "result": {
+    "item": "sakura:noren_pink",
+    "count": 1
+  }
+}

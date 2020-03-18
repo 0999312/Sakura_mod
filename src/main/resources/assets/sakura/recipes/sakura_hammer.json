@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:sakura_hammer",
+    "data": 0
+  },
+  "pattern": [
+    "PPP",
+    " S ",
+    "S  "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+	"item": "sakura:sakura_diamond"
+    },
+    "S": {
+      "item": "#WOODLUMBER"
+    }
+  }
+}

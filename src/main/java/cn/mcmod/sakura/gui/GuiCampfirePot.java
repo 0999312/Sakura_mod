@@ -2,7 +2,7 @@ package cn.mcmod.sakura.gui;
 
 import cn.mcmod.sakura.inventory.ContainerCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
-import cn.mcmod.sakura.util.ClientUtils;
+import cn.mcmod_mmf.mmlib.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;

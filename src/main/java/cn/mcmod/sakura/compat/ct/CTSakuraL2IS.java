@@ -19,7 +19,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenRegister
 public class CTSakuraL2IS {
 	@ZenMethod
-	public static void RemoveRecipe(IIngredient input) {
+	public static void RemoveRecipe(ILiquidStack input_fluid,IIngredient input) {
 		Object itemInput=null;
 		if (input instanceof IItemStack) {
 			itemInput=CraftTweakerMC.getItemStack(input);
@@ -28,11 +28,11 @@ public class CTSakuraL2IS {
 			itemInput=((IOreDictEntry)input).getName();
 		}
 		if(itemInput!=null)
-			SakuraRecipeRegister.actions.add(new Removal(itemInput));
+			SakuraRecipeRegister.actions.add(new Removal(CraftTweakerMC.getLiquidStack(input_fluid),itemInput));
 	}
 	@ZenMethod
 	public static void AddRecipe(IItemStack input,IItemStack output,ILiquidStack input_fluid) {
-		    SakuraRecipeRegister.actions.add(new Addition(CraftTweakerMC.getItemStack(input), CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
+		SakuraRecipeRegister.actions.add(new Addition(CraftTweakerMC.getItemStack(input), CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
 	}
 	
 	@ZenMethod
@@ -43,16 +43,17 @@ public class CTSakuraL2IS {
     private static final class Removal implements IAction
     {
         private final Object itemInput;
-
-        private Removal(Object itemInput)
+        private final FluidStack fluid;
+        private Removal(FluidStack fluid,Object itemInput)
         {
+        	this.fluid = fluid;
             this.itemInput = itemInput;
         }
 
         @Override
         public void apply()
         {
-        	LiquidToItemRecipe.ClearRecipe(itemInput);
+        	LiquidToItemRecipe.instance().ClearRecipe(fluid,itemInput);
         }
 
         @Override
@@ -78,7 +79,7 @@ public class CTSakuraL2IS {
         @Override
         public void apply()
         {
-        	LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(itemOutput, itemInput, fluidInput));
+        	LiquidToItemRecipe.instance().addRecipes(itemInput, itemOutput, fluidInput);
         }
 
         @Override
@@ -94,7 +95,7 @@ public class CTSakuraL2IS {
         @Override
         public void apply()
         {
-        	LiquidToItemRecipe.ClearAllRecipe();
+        	LiquidToItemRecipe.instance().ClearAllRecipe();
         }
 
         @Override

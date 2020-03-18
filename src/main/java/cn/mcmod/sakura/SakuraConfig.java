@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = SakuraMain.MODID)
 @Mod.EventBusSubscriber(modid = SakuraMain.MODID)
 public class SakuraConfig {
-    private final static String config = SakuraMain.MODID + ".config.";
+    private final static String config = "sakura.config.";
 
     @Config.LangKey(config + "vanilla_weight")
     @Config.RequiresMcRestart
@@ -34,6 +34,12 @@ public class SakuraConfig {
     @Config.RangeInt(min = 1, max = 5120)
     @Config.Comment("Changes generate amount of Iron Sand. Increase value to gen more Iron Sand.")
     public static int iron_sand_amount = 128;
+    
+    @Config.LangKey(config + "hotspring_weight")
+    @Config.RequiresMcRestart
+    @Config.RangeInt(min = 0, max = 5000)
+    @Config.Comment("Changes generate rate of Hot Spring. Increase value to gen more Hot Spring.")
+    public static int hotspring_weight = 10;
     
     @Config.LangKey(config + "harder_iron_recipe")
     @Config.RequiresMcRestart

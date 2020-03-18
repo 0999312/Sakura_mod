@@ -12,8 +12,6 @@ import net.minecraft.util.math.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import cn.mcmod.sakura.util.ClientUtils;
-
 public class ModelHaori extends ModelCustomArmor
 {
 	ModelRenderer body;
@@ -107,7 +105,7 @@ public class ModelHaori extends ModelCustomArmor
   public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
   {
     if ((entityIn instanceof EntityLivingBase)) {
-      this.swingProgress = ((EntityLivingBase)entityIn).getSwingProgress(ClientUtils.sysPartialTicks);
+      this.swingProgress = ((EntityLivingBase)entityIn).getSwingProgress(0f);
     }
     if ((entityIn instanceof EntityArmorStand))
     {

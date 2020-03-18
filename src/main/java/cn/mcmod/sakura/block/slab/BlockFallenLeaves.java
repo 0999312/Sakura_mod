@@ -3,7 +3,7 @@ package cn.mcmod.sakura.block.slab;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.mcmod.sakura.block.BlockBase;
+import cn.mcmod_mmf.mmlib.block.BlockBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

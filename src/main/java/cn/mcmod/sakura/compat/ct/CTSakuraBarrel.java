@@ -79,7 +79,7 @@ public class CTSakuraBarrel {
         @Override
         public void apply()
         {
-        	BarrelRecipes.register(new BarrelRecipes(fluidInput, fluidOutput, itemInput, 1200));
+        	BarrelRecipes.getInstance().register(fluidInput, fluidOutput, itemInput);
         }
 
         @Override

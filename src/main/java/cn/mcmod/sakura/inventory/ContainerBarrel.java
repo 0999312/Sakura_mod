@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ContainerBarrel extends Container {
     private TileEntityBarrel tileBarrel;
     private int processTime;
-    private int maxprocessTime;
 
     public ContainerBarrel(InventoryPlayer inventory, TileEntityBarrel tile) {
         tileBarrel = tile;
@@ -27,6 +26,7 @@ public class ContainerBarrel extends Container {
                 return false;
             }
         });
+
 
         for (i = 0; i < 3; ++i)
             for (j = 0; j < 9; ++j)
@@ -50,17 +50,12 @@ public class ContainerBarrel extends Container {
         for (int i = 0; i < this.listeners.size(); ++i) {
             IContainerListener icontainerlistener = this.listeners.get(i);
 
-            if (this.maxprocessTime != this.tileBarrel.getField(1)) {
-                icontainerlistener.sendWindowProperty(this, 1, this.tileBarrel.getField(1));
-            }
-
             if (this.processTime != this.tileBarrel.getField(0)) {
                 icontainerlistener.sendWindowProperty(this, 0, this.tileBarrel.getField(0));
             }
         }
 
         this.processTime = this.tileBarrel.getField(0);
-        this.maxprocessTime = this.tileBarrel.getField(1);
     }
 
     @Override

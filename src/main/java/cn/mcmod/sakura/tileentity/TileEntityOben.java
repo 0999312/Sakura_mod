@@ -19,14 +19,19 @@ public class TileEntityOben extends TileEntity implements ITickable {
     private ItemStackHandler inventory = new ItemStackHandler() {
         @Override
         protected void onContentsChanged(int slot) {
-            TileEntityOben.this.markDirty();
+            TileEntityOben.this.refresh();
         }
     };
     
     public ItemStackHandler getInventory() {
         return this.inventory;
     }
-
+    protected void refresh() {
+        if (hasWorld() && !world.isRemote) {
+            IBlockState state = world.getBlockState(pos);
+            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+        }
+    }
     @Override
     public boolean hasCapability(@Nonnull Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
@@ -86,5 +91,6 @@ public class TileEntityOben extends TileEntity implements ITickable {
 
 	@Override
 	public void update() {
+		
 	}
 }

@@ -3,16 +3,19 @@
   "pattern": [
     "##",
     "##",
-    "S "
+    "SH"
   ],
   "key": {
     "#": {
       "type": "forge:ore_dict",
-      "ore": "ingotIron"
+      "ore": "ingotSteel"
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "ore": "lumber"
+    },
+    "H": {
+      "item": "#TOOLFORGINGHAMMER"
     }
   },
   "result": {

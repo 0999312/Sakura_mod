@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
+public class BlockBambooShoot extends BlockBush implements IPlantable, IGrowable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 8);
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
 

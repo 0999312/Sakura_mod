@@ -2,7 +2,7 @@ package cn.mcmod.sakura.item.armors;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.client.model.ModelSamuraiArmors;
-import cn.mcmod.sakura.util.ClientUtils;
+import cn.mcmod_mmf.mmlib.util.ClientUtils;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

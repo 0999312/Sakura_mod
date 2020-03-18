@@ -19,16 +19,15 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenRegister
 public class CTSakuraCampfirePot {
 	@ZenMethod
-	public static void RemoveRecipe(IIngredient input) {
-		Object itemInput=null;
-		if (input instanceof IItemStack) {
-			itemInput=CraftTweakerMC.getItemStack(input);
-		} 
-		else if(input instanceof IOreDictEntry) {
-			itemInput=((IOreDictEntry)input).getName();
-		}
-		if(itemInput!=null)
-			SakuraRecipeRegister.actions.add(new Removal(itemInput));
+	public static void RemoveRecipe(ILiquidStack input_fluid,IIngredient[] input) {
+			Object[] array = new Object[input.length];
+		    for(int i = 0; i < input.length;i++){
+		    	if (input[i] instanceof IItemStack) 
+		    		array[i]=CraftTweakerMC.getItemStack(input[i]);
+				else if(input[i] instanceof IOreDictEntry) 
+					array[i]=((IOreDictEntry)input[i]).getName();	
+			}
+		    SakuraRecipeRegister.actions.add(new Removal(CraftTweakerMC.getLiquidStack(input_fluid),array));
 	}
 	@ZenMethod
 	public static void AddRecipe(IIngredient[] input,IItemStack output,ILiquidStack input_fluid) {
@@ -50,19 +49,20 @@ public class CTSakuraCampfirePot {
 		SakuraRecipeRegister.actions.add(new ClearAllRecipe());
 	}
 	
-    private static final class Removal implements IAction
-    {
-        private final Object itemInput;
+    private static final class Removal implements IAction {
+    	private final FluidStack fluid;
+        private final Object[] itemInput;
 
-        private Removal(Object itemInput)
+        private Removal(FluidStack fluid,Object[] itemInput)
         {
+        	this.fluid = fluid;
             this.itemInput = itemInput;
         }
 
         @Override
         public void apply()
         {
-        	PotRecipes.ClearRecipe(itemInput);
+        	PotRecipes.ClearRecipe(fluid,itemInput);
         }
 
         @Override
@@ -88,7 +88,7 @@ public class CTSakuraCampfirePot {
         @Override
         public void apply()
         {
-        	PotRecipes.addRecipe(new PotRecipes(itemOutput, itemInput, fluidInput));
+        	PotRecipes.getInstance().addRecipes(itemOutput, itemInput, fluidInput);
         }
 
         @Override

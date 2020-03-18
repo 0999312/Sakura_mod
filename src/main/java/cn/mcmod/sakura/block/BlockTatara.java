@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.block;
 
+import cn.mcmod_mmf.mmlib.block.BlockBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;

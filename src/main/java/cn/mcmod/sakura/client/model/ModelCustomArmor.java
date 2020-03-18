@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.client.model;
 
-import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -22,7 +21,7 @@ public class ModelCustomArmor
   public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
   {
     if ((entityIn instanceof EntityLivingBase)) {
-      this.swingProgress = ((EntityLivingBase)entityIn).getSwingProgress(ClientUtils.sysPartialTicks);
+      this.swingProgress = ((EntityLivingBase)entityIn).getSwingProgress(0F);
     }
     if ((entityIn instanceof EntityArmorStand))
     {

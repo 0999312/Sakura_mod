@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "   ",
+    "SSS",
+    "SHS"
+  ],
+  "key": {
+    "H": {
+      "type": "forge:ore_dict",
+      "ore": "sakuraLeaves"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    }
+  },
+  "result": {
+    "item": "sakura:obon",
+    "count": 1
+  }
+}

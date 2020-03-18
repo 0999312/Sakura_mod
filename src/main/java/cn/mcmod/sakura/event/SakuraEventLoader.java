@@ -11,7 +11,6 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.packet.PacketKeyMessage;
-import cn.mcmod.sakura.util.ClientUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -29,7 +28,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -67,12 +65,7 @@ public class SakuraEventLoader {
 
         FishinglootPools.add(entry);
     }
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public static void renderTick(TickEvent.RenderTickEvent event){
-      if (event.phase == TickEvent.Phase.START)
-        ClientUtils.sysPartialTicks = event.renderTickTime;
-    }
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
 	public static void KeyInput(InputEvent.KeyInputEvent event) {

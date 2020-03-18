@@ -13,6 +13,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenHotSpring extends WorldGenerator{
     public boolean generate(World worldIn, Random rand, BlockPos position) {
+        for (position = position.add(-8, 0, -8); position.getY() > 5 && worldIn.isAirBlock(position); position = position.down()) {
+            ;
+        }
 		position = position.down(4);
 		boolean[] aboolean = new boolean[2048];
 		int i = rand.nextInt(4) + 4;

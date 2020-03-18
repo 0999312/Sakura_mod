@@ -2,7 +2,7 @@ package cn.mcmod.sakura.gui;
 
 import cn.mcmod.sakura.inventory.ContainerBarrel;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;
-import cn.mcmod.sakura.util.ClientUtils;
+import cn.mcmod_mmf.mmlib.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -13,7 +13,6 @@ import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class GuiBarrel extends GuiContainer {
-
     private static final ResourceLocation mortarGuiTextures = new ResourceLocation("sakura:textures/gui/barrel.png");
 
     private TileEntityBarrel tilePot;
@@ -24,13 +23,7 @@ public class GuiBarrel extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y) {
-//        this.fontRenderer.drawString(this.playerInventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
-    }
-
-    @Override
     protected void drawGuiContainerBackgroundLayer(float partialTickTime, int x, int y) {
-
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(mortarGuiTextures);
 
@@ -38,7 +31,6 @@ public class GuiBarrel extends GuiContainer {
         int l = (this.height - this.ySize) / 2;
 
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
         int l2 = this.getCookProgressScaled(24);
         this.drawTexturedModalRect(k + 63, l + 35, 176, 0, l2 + 1, 16);
 
@@ -68,18 +60,14 @@ public class GuiBarrel extends GuiContainer {
 
     private int getCookProgressScaled(int pixels) {
         int i = this.tilePot.getField(0);
-        int j = this.tilePot.getField(1);
-        return j != 0 && i != 0 ? i * pixels / j : 0;
+        return i != 0 ? i * pixels / 1000 : 0;
     }
-
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
-
     }
 
 }

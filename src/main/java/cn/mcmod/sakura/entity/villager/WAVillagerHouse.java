@@ -3,8 +3,8 @@ package cn.mcmod.sakura.entity.villager;
 import java.util.List;
 import java.util.Random;
 
-import cn.mcmod.sakura.block.BlockFacing;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
