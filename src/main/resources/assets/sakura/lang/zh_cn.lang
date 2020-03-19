@@ -93,6 +93,11 @@ tile.sakura.bamboo_stair_sunburnt.name=日晒竹楼梯
 tile.sakura.bamboo_charcoal_block.name=竹炭块
 tile.sakura.tatara.name=锻铁炉
 tile.sakura.iron_sand.name=铁砂
+tile.sakura.pasta_block.name=意面面团
+tile.sakura.obon.name=供盘
+tile.sakura.noren_white.name=白色暖帘
+tile.sakura.noren_pink.name=粉色暖帘
+tile.sakura.noren_blue.name=蓝色暖帘
 
 #物品
 item.sakura.grape.name=葡萄
@@ -294,9 +299,13 @@ item.sakura.white_stew.name=奶油炖汤
 item.sakura.fruitsalad.name=水果沙拉
 item.sakura.buggys_meat.name=Bagu爱吃的肉
 
+item.sakura.pasta_raw.name=生意面
 item.sakura.pasta_tomato.name=番茄意面
 item.sakura.pasta_mushroom.name=蘑菇意面
 item.sakura.pasta_whitesauce.name=白酱意面
+
+item.sakura.egg_soft.name=温泉蛋
+item.sakura.egg_soysauce.name=酱油温泉蛋
 
 item.sakura.cooking_pot.name=烹饪锅
 
