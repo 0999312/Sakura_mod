@@ -6,8 +6,7 @@
   ],
   "key": {
     "#": {
-      "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "item": "#WOODLUMBER"
     },
     "S": {
       "type": "forge:ore_dict",

@@ -32,6 +32,8 @@ public class EntitySamuraiIllager extends AbstractIllager {
 	protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new EntityAIRestrictOpenDoor(this));
+        this.tasks.addTask(2, new EntityAIOpenDoor(this, true));
         this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.0D, false));
         this.tasks.addTask(8, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 3.0F, 1.0F));
