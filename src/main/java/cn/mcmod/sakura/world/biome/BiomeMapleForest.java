@@ -5,7 +5,6 @@ import cn.mcmod.sakura.entity.EntityDeer;
 import cn.mcmod.sakura.world.gen.WorldGenBigMaple;
 import cn.mcmod.sakura.world.gen.WorldGenMapleTree;
 import cn.mcmod.sakura.world.gen.WorldGenMapleTreeGreen;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -13,14 +12,14 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.Random;
 
 public class BiomeMapleForest extends Biome {
-    public static final WorldGenerator RED_MAPLETREE = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),false);
-    public static final WorldGenerator RED_MAPLETREE_SAP = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),true);
-    public static final WorldGenerator YELLOW_MAPLETREE = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_YELLOW.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_YELLOW.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),false);
-    public static final WorldGenerator YELLOW_MAPLETREE_SAP = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_YELLOW.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_YELLOW.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),true);
-    public static final WorldGenerator ORANGE_MAPLETREE = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),false);
-    public static final WorldGenerator ORANGE_MAPLETREE_SAP = new WorldGenMapleTree(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),true);
-    public static final WorldGenerator GREEN_MAPLETREE = new WorldGenMapleTreeGreen(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),false);
-    public static final WorldGenerator GREEN_MAPLETREE_SAP = new WorldGenMapleTreeGreen(false,5, BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true),true);
+	public static final WorldGenerator RED_MAPLETREE = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState(), false);
+	public static final WorldGenerator RED_MAPLETREE_SAP = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState(), true);
+	public static final WorldGenerator YELLOW_MAPLETREE = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_YELLOW.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_YELLOW.getDefaultState(), false);
+	public static final WorldGenerator YELLOW_MAPLETREE_SAP = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_YELLOW.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_YELLOW.getDefaultState(), true);
+	public static final WorldGenerator ORANGE_MAPLETREE = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(), false);
+	public static final WorldGenerator ORANGE_MAPLETREE_SAP = new WorldGenMapleTree(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_ORANGE.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_ORANGE.getDefaultState(), true);
+	public static final WorldGenerator GREEN_MAPLETREE = new WorldGenMapleTreeGreen(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState(), false);
+	public static final WorldGenerator GREEN_MAPLETREE_SAP = new WorldGenMapleTreeGreen(false, 5, BlockLoader.MAPLE_LOG.getDefaultState(), BlockLoader.MAPLE_LEAVE_GREEN.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_GREEN.getDefaultState(), true);
     
     public static final WorldGenerator BIG_RED_MAPLETREE = new WorldGenBigMaple(false,BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_SAPLING_RED.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState(),false);
     public static final WorldGenerator BIG_RED_MAPLETREE_SAP = new WorldGenBigMaple(false,BlockLoader.MAPLE_LOG.getDefaultState(),BlockLoader.MAPLE_SAPLING_RED.getDefaultState(),BlockLoader.MAPLE_LEAVE_RED.getDefaultState(), BlockLoader.FALLEN_LEAVES_MAPLE_RED.getDefaultState(),true);
