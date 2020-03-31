@@ -3,15 +3,18 @@
   "pattern": [
     "  #",
     " # ",
-    "S  "
+    "S H"
   ],
   "key": {
     "#": {
-      "item": "sakura:sakura_diamond"
+       "item": "sakura:sakura_diamond"
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "ore": "lumber"
+    },
+    "H": {
+      "item": "#TOOLFORGINGHAMMER"
     }
   },
   "result": {
@@ -19,3 +22,4 @@
     "count": 1
   }
 }
+
