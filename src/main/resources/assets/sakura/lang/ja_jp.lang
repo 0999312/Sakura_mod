@@ -56,7 +56,7 @@ tile.sakura.grapevine.name=ブドウのつる
 tile.sakura.grapeleaves.name=ブドウの葉
 tile.sakura.maple_syrup_caudron.name=メープルシロップの大釜
 tile.sakura.ricecrop.name=米の作物
-tile.sakura.chestnut_burr.name=栗のイガ
+tile.sakura.chestnut_burr.name=イガ栗
 tile.sakura.sakura_diamond_ore.name=桜ダイヤモンド
 tile.sakura.plank_sakura.name=桜の木材
 tile.sakura.plank_maple.name=カエデの木材
@@ -73,7 +73,7 @@ tile.sakura.soba_block.name=そば生地
 tile.sakura.udon_unfinished_block.name=うどん生地
 tile.sakura.ramen_block.name=ラーメン生地
 tile.sakura.taiko.name=太鼓
-tile.sakura.maple_spile.name=カエデの杭
+tile.sakura.maple_spile.name=スパイル
 tile.sakura.slab_plank_bamboo.name=竹のハーフブロック
 tile.sakura.stairs_plank_bamboo.name=竹の階段
 tile.sakura.slab_plank_sakura.name=桜のハーフブロック
@@ -275,8 +275,8 @@ item.sakura.haori.name=羽織
 item.sakura.kimono.name=着物
 item.sakura.coin.name=桜の小判
 item.sakura.bamboo_sunburnt.name=竹(日焼け)
-item.sakura.stone_hammer.name=石頭ハンマー
-item.sakura.iron_hammer.name=金槌
+item.sakura.stone_hammer.name=石製ハンマー
+item.sakura.iron_hammer.name=鉄製ハンマー
 item.sakura.sakura_hammer.name=桜ダイヤモンドハンマー
 item.sakura.steel_ingot.name=鋼鉄インゴット
 item.sakura.tamahagane.name=玉鋼
@@ -318,7 +318,7 @@ item.sakura.mint_tea_leaves.name=ミントティーの茶葉
 item.sakura.mocha.name=モカ
 item.sakura.brown_rice.name=玄米
 item.sakura.hop.name=麦
-item.sakura.yeast.name=イースト
+item.sakura.yeast.name=酵母
 item.sakura.alkaline.name=かんすい
 item.sakura.mint.name=ミント
 item.sakura.empty_bottle.name=空のボトル
@@ -332,7 +332,7 @@ item.sakura.grape_green.name=マスカット
 item.sakura.sliced_cabbage.name=カットキャベツ
 item.sakura.sushi_shrimp.name=海老寿司
 item.sakura.curry_omurice.name=オムカレー
-item.sakura.katsu_dish.name=とんカツプレート
+item.sakura.katsu_dish.name=トンカツプレート
 item.sakura.croquette_dish.name=コロッケプレート
 item.sakura.sheath.name=鞘
 item.sakura.katana_sheath.name=刀の鞘
@@ -477,10 +477,10 @@ jei.sakura.category.liquid_item=液体
 #Entities
 entity.sakura.Deer.name=シカ
 entity.sakura.SamuraiIllager.name=邪悪な侍
-entity.Villager.wa_farmer=日本の農家
-entity.Villager.wa_fisher=日本の釣り人
-entity.Villager.wa_trader=日本の商人
-entity.Villager.wine_trader=リキュールトレーダー
+entity.Villager.wa_farmer=農家
+entity.Villager.wa_fisher=釣り人
+entity.Villager.wa_trader=商人
+entity.Villager.wine_trader=酒屋
 
 guide.sakura_guide.landing_text=この世界にはたくさんの植物がある。この本では、主に収穫者必見のものを紹介していく。
 
@@ -489,14 +489,14 @@ itemGroup.sakura_tabs=Sakura
 
 #Config
 sakura.config.vanilla_weight=バニラの生成率
-sakura.config.vanilla_weight.tooltip=バニラの生成率を変更します。値を増やすと、バニラが多く生成されるようになります。
+sakura.config.vanilla_weight.tooltip=バニラの生成率を変更します。値を増やすと、バニラの生成率が上昇します。
 sakura.config.pepper_weight=コショウの生成率
-sakura.config.pepper_weight.tooltip=コショウの生成率を変更します。値を増やすと、コショウが多く生成されるようになります。
+sakura.config.pepper_weight.tooltip=コショウの生成率を変更します。値を増やすと、コショウの生成率が上昇します。
 sakura.config.bambooshot_weight=タケノコの生成率
-sakura.config.bambooshot_weight.tooltip=タケノコの生成率を変更します。値を増やすと、タケノコが多く生成されるようになります。
+sakura.config.bambooshot_weight.tooltip=タケノコの生成率を変更します。値を増やすと、タケノコの生成率が上昇します。
 sakura.config.iron_sand_amount=砂鉄の生成量
 #Tooltip is set by Sakura Mod itself.
-sakura.config.harder_iron_recipe=Modによる鉄インゴットのハードコアレシピを適用する
+sakura.config.harder_iron_recipe=鉄インゴットへModの和風ハードコアレシピを適用する
 #Tooltip is set by Sakura Mod itself.
 sakura.config.hotspring_weight=温泉の生成率
 #Tooltip is set by Sakura Mod itself.
@@ -505,7 +505,7 @@ sakura.config.hotspring_weight=温泉の生成率
 sakura.warning.harder_iron_recipe_enabled=日本の製鉄技術のようなハードコアレシピが有効になります。鍛造をお楽しみください！
 
 #Waila Harvestability Support
-wailaharvestability.toolclass.forging_hammer=Forging Hammer
+wailaharvestability.toolclass.forging_hammer=ハンマー
 
 #Potion Effects
 sakura.effect.scorpion=サソリの毒
