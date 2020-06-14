@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockTatara extends BlockBase {
 	public BlockTatara() {
-		super(Material.ROCK);
+		super(Material.ROCK,true);
 		this.setHarvestLevel("forging_hammer", 1);
 	}
 	@Override

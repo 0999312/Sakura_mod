@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class BlockTataraSmelting extends BlockBase {
 	public static final PropertyInteger Timer = PropertyInteger.create("timer", 0, 3);
 	public BlockTataraSmelting() {
-		super(Material.IRON);
+		super(Material.IRON,true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getTimerProperty(), Integer.valueOf(0)));
 		this.setTickRandomly(true);
 		this.setHarvestLevel("forging_hammer", 1);

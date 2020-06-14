@@ -14,6 +14,7 @@ public class ItemHammer extends ItemTool {
 
 	public ItemHammer(ToolMaterial materialIn) {
 		super(materialIn, EFFECTIVE_ON);
+		this.setNoRepair();
 		this.setHarvestLevel("forging_hammer", materialIn.getHarvestLevel());
 	}
 	@Override

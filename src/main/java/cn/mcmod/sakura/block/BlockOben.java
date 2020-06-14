@@ -1,7 +1,7 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.tileentity.TileEntityOben;
-import cn.mcmod_mmf.mmlib.block.BlockBase;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -19,10 +19,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class BlockOben extends BlockBase implements ITileEntityProvider  {
+public class BlockOben extends BlockFacing implements ITileEntityProvider  {
 	protected static final AxisAlignedBB CARPET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	public BlockOben() {
-		super(Material.WOOD);
+		super(Material.WOOD, false);
 	}
     @Override
     public boolean isOpaqueCube(IBlockState state) {

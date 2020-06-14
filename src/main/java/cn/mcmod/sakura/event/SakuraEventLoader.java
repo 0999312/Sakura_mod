@@ -39,6 +39,8 @@ public class SakuraEventLoader {
     private final static Set<LootEntry> FishinglootPools = new HashSet<LootEntry>();
     @SubscribeEvent
     public static void onFuelRegister(FurnaceFuelBurnTimeEvent event) {
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO)))
+    		event.setBurnTime(400);
     	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(ItemLoader.MATERIAL, 1,51)))
     		event.setBurnTime(1600);
     	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_CHARCOAL_BLOCK)))

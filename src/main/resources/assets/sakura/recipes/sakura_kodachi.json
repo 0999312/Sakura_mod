@@ -4,7 +4,7 @@
   },
   "pattern": [
     " I",
-    "L "
+    "LH"
   ],
   "type": "forge:ore_shaped",
   "key": {
@@ -13,6 +13,9 @@
     },
     "L": {
       "item": "#WOODLUMBER"
+    },
+    "H": {
+      "item": "#TOOLFORGINGHAMMER"
     }
   }
 }

@@ -43,7 +43,8 @@ public class SakuraOreDictLoader {
 		
 		OreDictionary.registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		OreDictionary.registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
-
+		
+		OreDictionary.registerOre("listAlltofuFried", new ItemStack(ItemLoader.FOODSET, 1,82));
 		OreDictionary.registerOre("foodShrimpraw", new ItemStack(ItemLoader.FOODSET, 1,78));
 		OreDictionary.registerOre("cropRadish", new ItemStack(ItemLoader.RADISH, 1));
 		OreDictionary.registerOre("cropCabbage", new ItemStack(ItemLoader.CABBAGE, 1));
@@ -85,6 +86,8 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("cropTea", new ItemStack(ItemLoader.MATERIAL, 1, 39));
 		OreDictionary.registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		OreDictionary.registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
+		OreDictionary.registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 131));
+		OreDictionary.registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 131));
 		OreDictionary.registerOre("foodWhitepepper", new ItemStack(ItemLoader.MATERIAL, 1, 28));
 		OreDictionary.registerOre("foodCheese", new ItemStack(ItemLoader.FOODSET, 1, 5));
 		OreDictionary.registerOre("foodYeast", new ItemStack(ItemLoader.MATERIAL, 1, 36));

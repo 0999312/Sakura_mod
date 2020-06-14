@@ -75,9 +75,9 @@ public class ContainerMapleCauldron extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
     {
-        // 0-0: Contain inventory
+        // 0: Contain inventory
         // 1-27: Player inventory
-        // 28-37: Hot bar in the player inventory
+        // 28-36: Hot bar in the player inventory
 
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
@@ -87,7 +87,7 @@ public class ContainerMapleCauldron extends Container {
             ItemStack itemStack1 = slot.getStack();
             itemStack = itemStack1.copy();
 
-            if (index >= 0 && index <= 9){
+            if (index == 0){
                 if (!this.mergeItemStack(itemStack1, 1, 37, true))
                 {
                     return ItemStack.EMPTY;
@@ -102,7 +102,7 @@ public class ContainerMapleCauldron extends Container {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 28 && index < 37 && !this.mergeItemStack(itemStack1, 1, 37, false))
+                else if (index >= 28 && index < 37 && !this.mergeItemStack(itemStack1, 1, 28, false))
                 {
                     return ItemStack.EMPTY;
                 }

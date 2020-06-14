@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "sakura:maple_sapling_green"
+  },
+  "ingredients": [
+    {
+        "type" : "forge:ore_dict",
+        "ore" : "treeSapling"
+    },    {
+        "type" : "forge:ore_dict",
+        "ore" : "dyeGreen"
+    }
+  ],
+ "type" : "forge:ore_shapeless"
+}

@@ -1,10 +1,17 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sakura:oben"
+  },
   "variants": {
-    "normal": {
-      "model": "sakura:oben"
-    },
-	"inventory": {
-      "model": "sakura:oben"
-    }
+      "inventory" : {
+        "model": "sakura:oben"
+      },
+        "facing": {
+            "north": { "y": 0 },
+            "south": { "y": 180 },
+            "west": { "y": 270 },
+            "east": { "y": 90 }
+        }
   }
 }

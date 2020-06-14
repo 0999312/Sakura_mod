@@ -51,10 +51,10 @@ public class BlockBambooShoot extends BlockBush implements IPlantable, IGrowable
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                 if (j == 6) {
                     if(rand.nextInt() ==0){
-                        worldIn.setBlockState(blockpos.up(2), BlockLoader.BAMBOO.getDefaultState());
+                    	if(worldIn.isAirBlock(blockpos.up(2)))worldIn.setBlockState(blockpos.up(2), BlockLoader.BAMBOO.getDefaultState());
                     }
-                    worldIn.setBlockState(blockpos.up(), BlockLoader.BAMBOO.getDefaultState());
-                    worldIn.setBlockState(blockpos, BlockLoader.BAMBOO.getDefaultState());
+                	if(worldIn.isAirBlock(blockpos.up()))worldIn.setBlockState(blockpos.up(), BlockLoader.BAMBOO.getDefaultState());
+                	if(worldIn.isAirBlock(blockpos)) worldIn.setBlockState(blockpos, BlockLoader.BAMBOO.getDefaultState());
                     worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
                 } else {
                     worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
@@ -166,11 +166,12 @@ public class BlockBambooShoot extends BlockBush implements IPlantable, IGrowable
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+
         if(rand.nextInt() ==0){
             worldIn.setBlockState(pos.up(3), BlockLoader.BAMBOO.getDefaultState());
         }
-        worldIn.setBlockState(pos.up(), BlockLoader.BAMBOO.getDefaultState());
-        worldIn.setBlockState(pos.up(2), BlockLoader.BAMBOO.getDefaultState());
-        worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
+    	if(worldIn.isAirBlock(pos.up()))worldIn.setBlockState(pos.up(), BlockLoader.BAMBOO.getDefaultState());
+    	if(worldIn.isAirBlock(pos.up(2))) worldIn.setBlockState(pos.up(2), BlockLoader.BAMBOO.getDefaultState());
+    	worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
     }
 }

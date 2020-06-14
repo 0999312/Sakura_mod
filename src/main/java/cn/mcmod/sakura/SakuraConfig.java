@@ -45,6 +45,12 @@ public class SakuraConfig {
     @Config.RequiresMcRestart
     @Config.Comment("Whether to enable a more difficult iron ingot recipe.")
     public static boolean harder_iron_recipe=true;
+    
+    @Config.LangKey(config + "every_where_sakura_diamond")
+    @Config.RequiresMcRestart
+    @Config.Comment("Whether to enable spawn sakura diamond in every biome.")
+    public static boolean every_where_sakura_diamond=false;
+
 
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {

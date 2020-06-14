@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tfc"
+    }
+  ],
+  "result": {
+    "item": "sakura:materials",
+    "data": 25,
+    "count": 4
+  },
+  "ingredients": [
+    {
+      "item": "sakura:sakura_log"
+    },
+	{
+		"type" : "forge:ore_dict",
+		"ore" : "saw"
+	}
+  ],
+"type" : "tfc:damage_item_shapeless"
+}

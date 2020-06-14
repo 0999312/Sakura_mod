@@ -3,6 +3,7 @@ package cn.mcmod.sakura;
 import cn.mcmod.sakura.api.kimono.KimonoLoader;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
+import cn.mcmod.sakura.compat.tfc.TFCCompat;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
 import cn.mcmod.sakura.item.ItemLoader;
@@ -19,6 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -44,7 +46,7 @@ public class CommonProxy {
         new ItemLoader(event);
         new DrinksLoader();
         SakuraEntityRegister.entityRegister();
-
+        
         new SakuraOreDictLoader();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
@@ -58,6 +60,9 @@ public class CommonProxy {
         TileEntityRegistry.init();
         KimonoLoader.Init();
         SakuraRecipeRegister.Init();
+        if(Loader.isModLoaded("tfc")){
+        	TFCCompat.registerTFCFuel();
+        }
         network = NetworkRegistry.INSTANCE.newSimpleChannel(SakuraMain.MODID);
     	network.registerMessage(new PacketKeyMessageHandler(),PacketKeyMessage.class,0,Side.SERVER);
     }

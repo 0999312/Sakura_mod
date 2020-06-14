@@ -1,0 +1,67 @@
+{
+    "variants": {
+        "facing=north,occupied=false,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 180
+        },
+        "facing=east,occupied=false,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 270
+        },
+        "facing=south,occupied=false,part=foot": {
+            "model": "sakura:futon_bottom"
+        },
+        "facing=west,occupied=false,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 90
+        },
+        "facing=north,occupied=false,part=head": {
+            "model": "sakura:futon_top",
+            "y": 180
+        },
+        "facing=east,occupied=false,part=head": {
+            "model": "sakura:futon_top",
+            "y": 270
+        },
+        "facing=south,occupied=false,part=head": {
+            "model": "sakura:futon_top"
+        },
+        "facing=west,occupied=false,part=head": {
+            "model": "sakura:futon_top",
+            "y": 90
+        },
+        "facing=north,occupied=true,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 180
+        },
+        "facing=east,occupied=true,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 270
+        },
+        "facing=south,occupied=true,part=foot": {
+            "model": "sakura:futon_bottom"
+        },
+        "facing=west,occupied=true,part=foot": {
+            "model": "sakura:futon_bottom",
+            "y": 90
+        },
+        "facing=north,occupied=true,part=head": {
+            "model": "sakura:futon_top",
+            "y": 180
+        },
+        "facing=east,occupied=true,part=head": {
+            "model": "sakura:futon_top",
+            "y": 270
+        },
+        "facing=south,occupied=true,part=head": {
+            "model": "sakura:futon_top"
+        },
+        "facing=west,occupied=true,part=head": {
+            "model": "sakura:futon_top",
+            "y": 90
+        },
+        "inventory": {
+            "model": "sakura:futon"
+        }
+    }
+}

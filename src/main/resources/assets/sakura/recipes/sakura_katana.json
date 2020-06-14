@@ -3,7 +3,7 @@
   "pattern": [
     "  #",
     " # ",
-    "S  "
+    "S H"
   ],
   "key": {
     "#": {
@@ -11,7 +11,10 @@
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "ore": "lumber"
+    },
+    "H": {
+      "item": "#TOOLFORGINGHAMMER"
     }
   },
   "result": {

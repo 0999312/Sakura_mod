@@ -173,7 +173,7 @@ public class BlockLoader {
 	public static Block SOBA_BLOCK = new BlockSoba();
 	public static Block PASTA_BLOCK = new BlockPasta();
 	
-	public static Block STRAW_BLOCK = new BlockBase(Material.CLOTH).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+	public static Block STRAW_BLOCK = new BlockBase(Material.CLOTH,true).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
 	public static Block STRAW_BLOCK_STAIR = new BlockStairBasic(STRAW_BLOCK.getDefaultState());
 	public static Block SAKURA_PLANK_STAIR = new BlockStairBasic(SAKURA_PLANK.getDefaultState());
 	public static Block BAMBOO_PLANK_STAIR = new BlockStairBasic(BAMBOO_PLANK.getDefaultState());
@@ -196,12 +196,19 @@ public class BlockLoader {
 	public static Block OBON = new BlockOben();
 	public static Block TATARA = new BlockTatara().setHardness(1.75F).setResistance(10.0F);
 	public static Block TATARA_SMELTING = new BlockTataraSmelting().setHardness(1.75F).setResistance(10.0F);
-	public static BlockBase IRON_SAND = (BlockBase) new BlockBase(Material.SAND).setSoundType(SoundType.SAND).setHardness(1.25F).setResistance(5.0F);
+	public static BlockBase IRON_SAND = (BlockBase) new BlockBase(Material.SAND,true).setSoundType(SoundType.SAND).setHardness(1.25F).setResistance(5.0F);
 
 	public static Block NOREN_WHITE = new BlockNoren();
 	public static Block NOREN_BLUE = new BlockNoren();
 	public static Block NOREN_PINK = new BlockNoren();
+	public static Block FUTON = new BlockFuton();
 	
+	public static BlockBase STONE_LANTERN =  (BlockBase)new BlockBase(Material.ROCK,false).setSoundType(SoundType.STONE).setHardness(1.25F).setResistance(5.0F).setLightLevel(1F);
+	public static BlockBase MOSSY_STONE_LANTERN =  (BlockBase)new BlockBase(Material.ROCK,false).setSoundType(SoundType.STONE).setHardness(1.25F).setResistance(5.0F).setLightLevel(1F);
+	public static BlockBase COBBLESTONE_LANTERN =  (BlockBase)new BlockBase(Material.ROCK,false).setSoundType(SoundType.STONE).setHardness(1.25F).setResistance(5.0F).setLightLevel(1F);
+	
+	public static Block RED_LANTERN =  new BlockPaperLantern();
+	public static Block WHITE_LANTERN =  new BlockPaperLantern();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -281,7 +288,6 @@ public class BlockLoader {
         registerNoItem(UDON_BLOCK, "udon_block");
         register(SOBA_BLOCK, new ItemBlock(SOBA_BLOCK), "soba_block");
         register(PASTA_BLOCK, new ItemBlock(PASTA_BLOCK), "pasta_block");
-
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
         register(BAMBOO_PLANK_STAIR, new ItemBlock(BAMBOO_PLANK_STAIR), "stairs_plank_bamboo");
@@ -298,7 +304,11 @@ public class BlockLoader {
 		
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
         register(WINDBELL, new ItemBlock(WINDBELL), "windbell");
-        
+        register(STONE_LANTERN, new ItemBlock(STONE_LANTERN), "stone_lantern");
+        register(COBBLESTONE_LANTERN, new ItemBlock(COBBLESTONE_LANTERN), "cobblestone_lantern");
+        register(MOSSY_STONE_LANTERN, new ItemBlock(MOSSY_STONE_LANTERN), "mossy_stone_lantern");
+        register(RED_LANTERN, new ItemBlock(RED_LANTERN), "red_lantern");
+        register(WHITE_LANTERN, new ItemBlock(WHITE_LANTERN), "white_lantern");
         register(STRAW_BLOCK, new ItemBlock(STRAW_BLOCK), "straw_block");
         register(STRAW_BLOCK_STAIR, new ItemBlock(STRAW_BLOCK_STAIR), "straw_stair");
         register(STRAW_BLOCK_SLAB, new ItemBlock(STRAW_BLOCK_SLAB), "slab_straw_block");
@@ -362,6 +372,7 @@ public class BlockLoader {
 		register(NOREN_BLUE, new ItemBlock(NOREN_BLUE), "noren_blue");
 		register(NOREN_PINK, new ItemBlock(NOREN_PINK), "noren_pink");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
+		registerNoItem(FUTON, "futon");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
@@ -401,6 +412,11 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(RED_LANTERN);
+		registerRender(WHITE_LANTERN);
+		registerRender(STONE_LANTERN);
+		registerRender(COBBLESTONE_LANTERN);
+		registerRender(MOSSY_STONE_LANTERN);
 		registerRender(NOREN_WHITE);
 		registerRender(NOREN_BLUE);
 		registerRender(NOREN_PINK);

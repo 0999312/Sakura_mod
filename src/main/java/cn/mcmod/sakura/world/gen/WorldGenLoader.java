@@ -28,8 +28,8 @@ public class WorldGenLoader {
 	public void onOreGen(OreGenEvent.Post event) {
 		World worldIn = event.getWorld();
         int genY = 10 + event.getRand().nextInt(24);
-		if (worldIn.getBiome(new BlockPos(event.getPos().getX(), 0, event.getPos().getZ())) == SakuraBiomes.BAMBOOFOREST ||
-			worldIn.getBiome(new BlockPos(event.getPos().getX(), 0, event.getPos().getZ())) == SakuraBiomes.MAPLEFOREST) {
+		if (SakuraConfig.every_where_sakura_diamond||(worldIn.getBiome(new BlockPos(event.getPos().getX(), 0, event.getPos().getZ())) == SakuraBiomes.BAMBOOFOREST ||
+			worldIn.getBiome(new BlockPos(event.getPos().getX(), 0, event.getPos().getZ())) == SakuraBiomes.MAPLEFOREST)) {
 			BlockPos pos=new BlockPos(event.getPos().getX(),genY, event.getPos().getZ());
                 for (int i = 0; i < 2; i++) {
                     new WorldGenMinable(BlockLoader.SAKURA_DIAMOND_ORE.getDefaultState(),3 + event.getRand().nextInt(5)).generate(worldIn, event.getRand(), pos);

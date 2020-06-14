@@ -39,15 +39,15 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
 
 	public BlockPepperCrop() {
-		super(Material.WOOD);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
+		super(Material.WOOD,false);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, 0));
 		this.setTickRandomly(true);
 		this.setCreativeTab((CreativeTabs) null);
 		this.setHardness(2.0F);
 		this.setSoundType(SoundType.WOOD);
 	}
 
-	protected PropertyInteger getAgeProperty() {
+	public PropertyInteger getAgeProperty() {
 		return AGE;
 	}
 
@@ -79,19 +79,26 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 		this.grow(worldIn, pos, state);
 	}
 
 	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
+	public IBlockState getStateFromMeta(int meta) {
+		return this.withAge(meta);
+	}
+
+	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
-	@Override
 	public int getMetaFromState(IBlockState state) {
 		return this.getAge(state);
 	}
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, new IProperty[] { AGE });
@@ -102,14 +109,17 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
+
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
 		return BlockFaceShape.UNDEFINED;
 	}
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
+
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -129,7 +139,7 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote) {
-			return true;
+			return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 		}
 		int i = this.getAge(state);
 		if (i >= 6) {
@@ -227,8 +237,6 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		super.updateTick(worldIn, pos, state, rand);
-
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return; // Forge: prevent loading unloaded chunks when checking
 					// neighbor's light
@@ -248,6 +256,7 @@ public class BlockPepperCrop extends BlockBase implements IPlantable, IGrowable,
 				}
 			}
 		}
+		super.updateTick(worldIn, pos, state, rand);
 	}
 
 	protected int getBonemealAgeIncrease(World worldIn) {

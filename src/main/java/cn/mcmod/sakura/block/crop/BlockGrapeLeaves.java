@@ -39,7 +39,7 @@ public class BlockGrapeLeaves extends BlockBase implements IPlantable, IGrowable
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
 
 	public BlockGrapeLeaves() {
-		super(Material.WOOD);
+		super(Material.WOOD,false);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
 		this.setTickRandomly(true);
 		this.setCreativeTab((CreativeTabs) null);
@@ -83,6 +83,13 @@ public class BlockGrapeLeaves extends BlockBase implements IPlantable, IGrowable
 	}
 
 	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
+	public IBlockState getStateFromMeta(int meta) {
+		return this.withAge(meta);
+	}
+
+	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
 	public int getMetaFromState(IBlockState state) {
@@ -109,153 +116,165 @@ public class BlockGrapeLeaves extends BlockBase implements IPlantable, IGrowable
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
 	}
-	@Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
-    }
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(worldIn.isRemote){
-			return true;
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return new AxisAlignedBB(0.0D, 0.5D, 0.0D, 1.0D, 1.0D, 1.0D);
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) {
+			return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 		}
 		int i = this.getAge(state);
-		if(i>=6){
-			if(playerIn.getHeldItem(hand).getItem() instanceof ItemShears){
-			List<ItemStack> list = onSheared(playerIn.getHeldItem(hand), worldIn, pos, 0);
-			for(ItemStack stackresult:list)
-                spawnAsEntity(worldIn, pos.down(), stackresult);
-			worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, 2));
+		if (i >= 6) {
+			if (playerIn.getHeldItem(hand).getItem() instanceof ItemShears) {
+				List<ItemStack> list = onSheared(playerIn.getHeldItem(hand), worldIn, pos, 0);
+				for (ItemStack stackresult : list)
+					spawnAsEntity(worldIn, pos.down(), stackresult);
+				worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, 2));
 			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
-    /**
-     * Get the Item that this Block should drop when harvested.
-     */
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Item.getItemFromBlock(BlockLoader.GRAPE_SPLINT);
-    }
 
-    @Override
-    public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune){
-        drops.clear();
-        int age = getAge(state);
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
-        drops.add(new ItemStack(BlockLoader.GRAPE_SPLINT));
-        if (age >= getMaxAge()) {
-            for (int i = 0; i < 3 + fortune; ++i) {
-                if (rand.nextInt(2 * getMaxAge()) <= age)
-                    drops.add(new ItemStack(ItemLoader.MATERIAL,1,23));
-            }
-        }
-    }
-    
-    /**
-     * Spawns this Block's drops into the World as EntityItems.
-     */
-    public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune){
-        if (!worldIn.isRemote) {
-        	spawnAsEntity(worldIn, pos, new ItemStack(BlockLoader.GRAPE_SPLINT));
-            int i = this.getAge(state);
-            if (i >= this.getMaxAge()) {
-                int j = 3 + fortune;
-                for (int k = 0; k < j; ++k){
-                    if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
-                        spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.MATERIAL,1,23));
-                }
-            }
-        }
-    }
-    
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
-        return new ItemStack(BlockLoader.GRAPE_SPLINT);
-    }
+	/**
+	 * Get the Item that this Block should drop when harvested.
+	 */
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(BlockLoader.GRAPE_SPLINT);
+	}
+
+	@Override
+	public void getDrops(net.minecraft.util.NonNullList<ItemStack> drops, net.minecraft.world.IBlockAccess world,
+			BlockPos pos, IBlockState state, int fortune) {
+		drops.clear();
+		int age = getAge(state);
+		Random rand = world instanceof World ? ((World) world).rand : new Random();
+		drops.add(new ItemStack(BlockLoader.GRAPE_SPLINT));
+		if (age >= getMaxAge()) {
+			for (int i = 0; i < 3 + fortune; ++i) {
+				if (rand.nextInt(2 * getMaxAge()) <= age)
+					drops.add(new ItemStack(ItemLoader.MATERIAL, 1, 23));
+			}
+		}
+	}
+
+	/**
+	 * Spawns this Block's drops into the World as EntityItems.
+	 */
+	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
+		if (!worldIn.isRemote) {
+			spawnAsEntity(worldIn, pos, new ItemStack(BlockLoader.GRAPE_SPLINT));
+			int i = this.getAge(state);
+			if (i >= this.getMaxAge()) {
+				int j = 3 + fortune;
+				for (int k = 0; k < j; ++k) {
+					if (worldIn.rand.nextInt(2 * this.getMaxAge()) <= i)
+						spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.MATERIAL, 1, 23));
+				}
+			}
+		}
+	}
+
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+		return new ItemStack(BlockLoader.GRAPE_SPLINT);
+	}
+
 	@Override
 	public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos) {
 		return true;
 	}
+
 	@Override
 	public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 		int i = this.getAge(world.getBlockState(pos));
 		List<ItemStack> list = new ArrayList<ItemStack>();
-		if(i==6){
+		if (i == 6) {
 			list.clear();
-			list.add(new ItemStack(ItemLoader.FOODSET,1+fortune,120));
-		}else 
-		if(i==7){
+			list.add(new ItemStack(ItemLoader.FOODSET, 1 + fortune, 120));
+		} else if (i == 7) {
 			list.clear();
-			list.add(new ItemStack(ItemLoader.FOODSET,1+fortune,0));
+			list.add(new ItemStack(ItemLoader.FOODSET, 1 + fortune, 0));
 		}
 		return list;
 	}
 
 	public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction,
 			IPlantable plantable) {
-        return true;
+		return true;
 	}
-	
-    public void grow(World worldIn, BlockPos pos, IBlockState state) {
-        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
-        int j = this.getMaxAge();
-        if(i>= 2 && worldIn.getBlockState(pos.east()).getBlock() == BlockLoader.GRAPE_SPLINT)
-    		worldIn.setBlockState(pos.east(), this.withAge(0), 2);
-        if(i>= 2 && worldIn.getBlockState(pos.north()).getBlock() == BlockLoader.GRAPE_SPLINT)
-    		worldIn.setBlockState(pos.north(), this.withAge(0), 2);
-        if(i>= 2 && worldIn.getBlockState(pos.west()).getBlock() == BlockLoader.GRAPE_SPLINT)
-    		worldIn.setBlockState(pos.west(), this.withAge(0), 2);
-        if(i>= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
-    		worldIn.setBlockState(pos.south(), this.withAge(0), 2);
-        if (i > j)
-            i = j;
-        worldIn.setBlockState(pos, this.withAge(i), 2);
-    }
-	@Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        super.updateTick(worldIn, pos, state, rand);
 
-        if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
-        {
-            int i = this.getAge(state);
-            if(i>= 2 && worldIn.getBlockState(pos.east()).getBlock() == BlockLoader.GRAPE_SPLINT)
-        		worldIn.setBlockState(pos.east(), this.withAge(0), 2);
-            if(i>= 2 && worldIn.getBlockState(pos.north()).getBlock() == BlockLoader.GRAPE_SPLINT)
-        		worldIn.setBlockState(pos.north(), this.withAge(0), 2);
-            if(i>= 2 && worldIn.getBlockState(pos.west()).getBlock() == BlockLoader.GRAPE_SPLINT)
-        		worldIn.setBlockState(pos.west(), this.withAge(0), 2);
-            if(i>= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
-        		worldIn.setBlockState(pos.south(), this.withAge(0), 2);
-            if (i < this.getMaxAge()){
-                float f = getGrowthChance(this, worldIn, pos);
-                if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)){
-                    worldIn.setBlockState(pos, this.withAge(i + 1), 2);
-                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
-                }
-            }
-        }
-    }
+	public void grow(World worldIn, BlockPos pos, IBlockState state) {
+		int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+		int j = this.getMaxAge();
+		if (i >= 2 && worldIn.getBlockState(pos.east()).getBlock() == BlockLoader.GRAPE_SPLINT)
+			worldIn.setBlockState(pos.east(), this.withAge(0), 2);
+		if (i >= 2 && worldIn.getBlockState(pos.north()).getBlock() == BlockLoader.GRAPE_SPLINT)
+			worldIn.setBlockState(pos.north(), this.withAge(0), 2);
+		if (i >= 2 && worldIn.getBlockState(pos.west()).getBlock() == BlockLoader.GRAPE_SPLINT)
+			worldIn.setBlockState(pos.west(), this.withAge(0), 2);
+		if (i >= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
+			worldIn.setBlockState(pos.south(), this.withAge(0), 2);
+		if (i > j)
+			i = j;
+		worldIn.setBlockState(pos, this.withAge(i), 2);
+	}
+
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		super.updateTick(worldIn, pos, state, rand);
+
+		if (!worldIn.isAreaLoaded(pos, 1))
+			return; // Forge: prevent loading unloaded chunks when checking
+					// neighbor's light
+		if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
+			int i = this.getAge(state);
+			if (i >= 2 && worldIn.getBlockState(pos.east()).getBlock() == BlockLoader.GRAPE_SPLINT)
+				worldIn.setBlockState(pos.east(), this.withAge(0), 2);
+			if (i >= 2 && worldIn.getBlockState(pos.north()).getBlock() == BlockLoader.GRAPE_SPLINT)
+				worldIn.setBlockState(pos.north(), this.withAge(0), 2);
+			if (i >= 2 && worldIn.getBlockState(pos.west()).getBlock() == BlockLoader.GRAPE_SPLINT)
+				worldIn.setBlockState(pos.west(), this.withAge(0), 2);
+			if (i >= 2 && worldIn.getBlockState(pos.south()).getBlock() == BlockLoader.GRAPE_SPLINT)
+				worldIn.setBlockState(pos.south(), this.withAge(0), 2);
+			if (i < this.getMaxAge()) {
+				float f = getGrowthChance(this, worldIn, pos);
+				if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state,
+						rand.nextInt((int) (25.0F / f) + 1) == 0)) {
+					worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state,
+							worldIn.getBlockState(pos));
+				}
+			}
+		}
+	}
 
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
-        if (state.getBlock() == this) {
-            IBlockState n = worldIn.getBlockState(pos.north());
-            IBlockState s = worldIn.getBlockState(pos.south());
-            IBlockState w = worldIn.getBlockState(pos.west());
-            IBlockState e = worldIn.getBlockState(pos.east());
-            return 
-            (n.getBlock() instanceof BlockGrapeLeaves||n.getBlock() instanceof BlockGrapeSplint||n.getBlock() instanceof BlockGrapeVine)||
-            (s.getBlock() instanceof BlockGrapeLeaves||s.getBlock() instanceof BlockGrapeSplint||s.getBlock() instanceof BlockGrapeVine)||
-            (w.getBlock() instanceof BlockGrapeLeaves||w.getBlock() instanceof BlockGrapeSplint||w.getBlock() instanceof BlockGrapeVine)||
-            (e.getBlock() instanceof BlockGrapeLeaves||e.getBlock() instanceof BlockGrapeSplint||e.getBlock() instanceof BlockGrapeVine);
-        }
-        return false;
+		if (state.getBlock() == this) {
+			IBlockState n = worldIn.getBlockState(pos.north());
+			IBlockState s = worldIn.getBlockState(pos.south());
+			IBlockState w = worldIn.getBlockState(pos.west());
+			IBlockState e = worldIn.getBlockState(pos.east());
+			return (n.getBlock() instanceof BlockGrapeLeaves || n.getBlock() instanceof BlockGrapeSplint
+					|| n.getBlock() instanceof BlockGrapeVine)
+					|| (s.getBlock() instanceof BlockGrapeLeaves || s.getBlock() instanceof BlockGrapeSplint
+							|| s.getBlock() instanceof BlockGrapeVine)
+					|| (w.getBlock() instanceof BlockGrapeLeaves || w.getBlock() instanceof BlockGrapeSplint
+							|| w.getBlock() instanceof BlockGrapeVine)
+					|| (e.getBlock() instanceof BlockGrapeLeaves || e.getBlock() instanceof BlockGrapeSplint
+							|| e.getBlock() instanceof BlockGrapeVine);
+		}
+		return false;
 	}
+
 	protected int getBonemealAgeIncrease(World worldIn) {
 		return MathHelper.getInt(worldIn.rand, 2, 5);
 	}
@@ -310,15 +329,17 @@ public class BlockGrapeLeaves extends BlockBase implements IPlantable, IGrowable
 
 		return f;
 	}
+
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
 		return EnumPlantType.Plains;
 	}
 
-    @Override
-    public IBlockState getPlant(net.minecraft.world.IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        if (state.getBlock() != this) return getDefaultState();
-        return state;
-    }
+	@Override
+	public IBlockState getPlant(net.minecraft.world.IBlockAccess world, BlockPos pos) {
+		IBlockState state = world.getBlockState(pos);
+		if (state.getBlock() != this)
+			return getDefaultState();
+		return state;
+	}
 }

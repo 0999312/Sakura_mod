@@ -39,7 +39,7 @@ public class BlockVanillaCrop extends BlockBase implements IPlantable, IGrowable
 	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
 
 	public BlockVanillaCrop() {
-		super(Material.WOOD);
+		super(Material.WOOD,false);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
 		this.setTickRandomly(true);
 		this.setCreativeTab((CreativeTabs) null);
@@ -90,6 +90,13 @@ public class BlockVanillaCrop extends BlockBase implements IPlantable, IGrowable
 
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
 		this.grow(worldIn, pos, state);
+	}
+
+	/**
+	 * Convert the given metadata into a BlockState for this Block
+	 */
+	public IBlockState getStateFromMeta(int meta) {
+		return this.withAge(meta);
 	}
 
 	/**
@@ -298,15 +305,17 @@ public class BlockVanillaCrop extends BlockBase implements IPlantable, IGrowable
 
 		return f;
 	}
+
 	@Override
 	public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
 		return EnumPlantType.Plains;
 	}
 
-    @Override
-    public IBlockState getPlant(net.minecraft.world.IBlockAccess world, BlockPos pos) {
-        IBlockState state = world.getBlockState(pos);
-        if (state.getBlock() != this) return getDefaultState();
-        return state;
-    }
+	@Override
+	public IBlockState getPlant(net.minecraft.world.IBlockAccess world, BlockPos pos) {
+		IBlockState state = world.getBlockState(pos);
+		if (state.getBlock() != this)
+			return getDefaultState();
+		return state;
+	}
 }
