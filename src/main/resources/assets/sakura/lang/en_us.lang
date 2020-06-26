@@ -98,6 +98,11 @@ tile.sakura.obon.name=Obon
 tile.sakura.noren_white.name=White Noren
 tile.sakura.noren_pink.name=Pink Noren
 tile.sakura.noren_blue.name=Blue Noren
+tile.sakura.stone_lantern.name=Stone Lantern
+tile.sakura.cobblestone_lantern.name=Cobblestone Lantern
+tile.sakura.mossy_stone_lantern.name=Mossy Stone Lantern
+tile.sakura.red_lantern.name=Red Lantern
+tile.sakura.white_lantern.name=White Lantern
 
 #Item
 item.sakura.grape.name=Grape
