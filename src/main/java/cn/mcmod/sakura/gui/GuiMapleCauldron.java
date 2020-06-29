@@ -52,7 +52,7 @@ public class GuiMapleCauldron extends GuiContainer {
 
     private int getProgressScaled(int pixels) {
         int i = this.tilePot.getField(1);
-        return i != 0 ? i * pixels / 500 : 0;
+        return i != 0 ? i * pixels / 1200 : 0;
     }
 
     @Override
