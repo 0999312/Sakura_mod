@@ -3,7 +3,10 @@ package cn.mcmod.sakura.entity;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.client.render.RenderDeer;
 import cn.mcmod.sakura.client.render.RenderSamuraiIllager;
+import cn.mcmod.sakura.world.biome.SakuraBiomes;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,6 +29,6 @@ public class SakuraEntityRegister {
     }
 
     public static void entitySpawn() {
-
+    	EntityRegistry.addSpawn(EntitySamuraiIllager.class, 105, 5, 10, EnumCreatureType.MONSTER, new Biome[]{SakuraBiomes.BAMBOOFOREST,SakuraBiomes.MAPLEFOREST});
     }
 }

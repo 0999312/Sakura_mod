@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "0.0.9.4-1.12.2"
+version = "1.0.0.0-1.12.2-pre3"
 group = "cn.mcmod.sakura" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Sakura"
 
@@ -79,7 +79,6 @@ dependencies {
     }
     deobfCompile "CraftTweaker2:CraftTweaker2-API:4.1.19.547"
     deobfCompile "CraftTweaker2:ZenScript:4.1.19.547"
-	deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
 }
 
 

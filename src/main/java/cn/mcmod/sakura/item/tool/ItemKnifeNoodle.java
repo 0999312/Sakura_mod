@@ -6,10 +6,11 @@ import net.minecraft.item.ItemSword;
 
 public class ItemKnifeNoodle extends ItemSword {
 
-	public ItemKnifeNoodle() {
-		super(ToolMaterial.IRON);
+	public ItemKnifeNoodle(ToolMaterial material) {
+//		ToolMaterial.IRON
+		super(material);
 		this.setUnlocalizedName(SakuraMain.MODID+"."+"knife_noodle");
-		this.setMaxDamage(ToolMaterial.DIAMOND.getMaxUses());
+		this.setMaxDamage(ToolMaterial.WOOD.getMaxUses());
 	}
     @Override
     public ItemStack getContainerItem(ItemStack itemStack) {

@@ -5,6 +5,44 @@
          "ore" : "bamboo"
       },
       "name" : "BAMBOO"
+   },{
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "wool"
+      },
+      "name" : "WOOL"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "stone"
+      },
+      "name" : "STONE"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "cobblestone"
+      },
+      "name" : "COBBLESTONE"
+   },{
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "foodMocha"
+      },
+      "name" : "FOODMOCHA"
+   },{
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "string"
+      },
+      "name" : "STRING"
+   },{
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "listAllsoup"
+      },
+      "name" : "LISTALLSOUP"
    },
    {
       "ingredient" : {
@@ -26,6 +64,12 @@
          "ore" : "toolForginghammer"
       },
       "name" : "TOOLFORGINGHAMMER"
+   },   {
+      "ingredient" : {
+         "type" : "mm_lib:wildcard_oredict",
+         "ore" : "toolKnifefish"
+      },
+      "name" : "TOOLKNIFEFISH"
    },
    {
       "ingredient" : {
@@ -54,6 +98,20 @@
          "ore" : "dyeBlue"
       },
       "name" : "DYEBLUE"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "dyeRed"
+      },
+      "name" : "DYERED"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "dyeBlack"
+      },
+      "name" : "DYEBLACK"
    },
    {
       "ingredient" : {
@@ -110,6 +168,13 @@
          "ore" : "cropBeet"
       },
       "name" : "CROPBEET"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "torch"
+      },
+      "name" : "TORCH"
    },
    {
       "ingredient" : {

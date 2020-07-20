@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -26,17 +26,6 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
     private static final ResourceLocation TEXTURES = new ResourceLocation(SakuraMain.MODID, "textures/entity/tileentity/pot.png");
 
     private final ModelPot model = new ModelPot();
-
-    protected ItemStack renderItemStack = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity = null;
-    protected ItemStack renderItemStack2 = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity2 = null;
-    protected ItemStack renderItemStack3 = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity3 = null;
-    protected ItemStack renderItemStack4 = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity4 = null;
-    protected ItemStack renderItemStack5 = ItemStack.EMPTY;
-    protected EntityItem renderItemEntity5 = null;
 
     @Override
     public void render(TileEntityCampfirePot te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
@@ -140,15 +129,6 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
         ItemStack itemstack = te.getStackInSlot(0);
         if (itemstack != ItemStack.EMPTY) {
             GlStateManager.pushMatrix();
-            if (itemstack != renderItemStack) {
-                renderItemStack = itemstack;
-                renderItemEntity = new EntityItem(te.getWorld());
-                renderItemEntity.setItem(itemstack.copy());
-
-                //これを設定しないとEntityItemがあらぶる
-                renderItemEntity.hoverStart = 0;
-            }
-
             float scale = 1.0F;
 
             GlStateManager.scale(scale, scale, scale);
@@ -157,24 +137,13 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
             rot = rot * 2;
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
 
-            partialTicks = 0;
-
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
+            Minecraft.getMinecraft().getRenderItem().renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
 
         ItemStack itemstack2 = te.getStackInSlot(1);
         if (itemstack2 != ItemStack.EMPTY) {
             GlStateManager.pushMatrix();
-
-            if (itemstack2 != renderItemStack2) {
-                renderItemStack2 = itemstack2;
-                renderItemEntity2 = new EntityItem(te.getWorld());
-                renderItemEntity2.setItem(itemstack2.copy());
-
-                //これを設定しないとEntityItemがあらぶる
-                renderItemEntity2.hoverStart = 0;
-            }
 
             float scale = 1.0F;
 
@@ -184,25 +153,13 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
             rot = rot * 2;
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
 
-            partialTicks = 0;
-
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity2, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
-
+            Minecraft.getMinecraft().getRenderItem().renderItem(itemstack2, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
 
         ItemStack itemstack3 = te.getStackInSlot(2);
         if (itemstack3 != ItemStack.EMPTY) {
             GlStateManager.pushMatrix();
-
-            if (itemstack3 != renderItemStack3) {
-                renderItemStack3 = itemstack3;
-                renderItemEntity3 = new EntityItem(te.getWorld());
-                renderItemEntity3.setItem(itemstack3.copy());
-
-                //これを設定しないとEntityItemがあらぶる
-                renderItemEntity3.hoverStart = 0;
-            }
 
             float scale = 1.0F;
 
@@ -212,26 +169,13 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
             rot = rot * 2;
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
 
-            partialTicks = 0;
-
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity3, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
-
+            Minecraft.getMinecraft().getRenderItem().renderItem(itemstack3, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
 
         ItemStack itemstack4 = te.getStackInSlot(3);
         if (itemstack4 != ItemStack.EMPTY) {
             GlStateManager.pushMatrix();
-
-            if (itemstack4 != renderItemStack4) {
-                renderItemStack4 = itemstack4;
-                renderItemEntity4 = new EntityItem(te.getWorld());
-                renderItemEntity4.setItem(itemstack4.copy());
-
-                //これを設定しないとEntityItemがあらぶる
-                renderItemEntity4.hoverStart = 0;
-            }
-
             float scale = 1.0F;
 
             GlStateManager.scale(scale, scale, scale);
@@ -240,25 +184,13 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
             rot = rot * 2;
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
 
-            partialTicks = 0;
-
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity4, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
-
+            Minecraft.getMinecraft().getRenderItem().renderItem(itemstack4, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
 
         ItemStack itemstack5 = te.getStackInSlot(4);
         if (itemstack5 != ItemStack.EMPTY) {
             GlStateManager.pushMatrix();
-
-            if (itemstack5 != renderItemStack5) {
-                renderItemStack5 = itemstack5;
-                renderItemEntity5 = new EntityItem(te.getWorld());
-                renderItemEntity5.setItem(itemstack5.copy());
-
-                //これを設定しないとEntityItemがあらぶる
-                renderItemEntity5.hoverStart = 0;
-            }
 
             float scale = 1.0F;
 
@@ -267,11 +199,7 @@ public class RenderTileEntityCampfirePot extends TileEntitySpecialRenderer<TileE
             float rot = te.getWorld().getTotalWorldTime() % 360;
             rot = rot * 2;
             GlStateManager.rotate(rot, 0.0F, 1.0F, 0.0F);
-
-            partialTicks = 0;
-
-            Minecraft.getMinecraft().getRenderManager().renderEntity(renderItemEntity5, 0.0D, 0.0D, 0.0D, 0.0F, partialTicks, false);
-
+            Minecraft.getMinecraft().getRenderItem().renderItem(itemstack5, ItemCameraTransforms.TransformType.FIXED);
             GlStateManager.popMatrix();
         }
     }

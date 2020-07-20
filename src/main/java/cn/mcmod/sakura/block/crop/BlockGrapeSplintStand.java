@@ -44,6 +44,11 @@ public class BlockGrapeSplintStand extends Block {
 			if(!playerIn.isCreative())heldSeed.shrink(1);
 			return true;
 		}
+		if(ItemStack.areItemsEqual(heldSeed, new ItemStack(ItemLoader.MATERIAL, 1, 37))){
+			worldIn.setBlockState(pos, BlockLoader.HOPS.getDefaultState().withProperty(BlockVanillaCrop.AGE, 0));
+			if(!playerIn.isCreative())heldSeed.shrink(1);
+			return true;
+		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
     /**

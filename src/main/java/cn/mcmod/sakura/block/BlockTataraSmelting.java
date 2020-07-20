@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block;
 
 import java.util.Random;
 
+import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod_mmf.mmlib.block.BlockBase;
 import net.minecraft.block.material.Material;
@@ -44,9 +45,23 @@ public class BlockTataraSmelting extends BlockBase {
            
         } else
         for (int i = 0; i < 9 + fortune; ++i){
-        	if (rand.nextInt(9) <= 7){
-                drops.add(new ItemStack(ItemLoader.MATERIAL, 1, 52));
-            }
+        	switch (SakuraConfig.harder_iron_difficult) {
+			case 1:
+	        	if (rand.nextInt(9) <= 7){
+	                drops.add(new ItemStack(ItemLoader.MATERIAL, 1, 54));
+	            }
+				break;
+			case 2:
+	        	if (rand.nextInt(9) <= 7){
+	                drops.add(new ItemStack(ItemLoader.MATERIAL, 1, 53));
+	            }
+				break;
+			default:
+	        	if (rand.nextInt(9) <= 7){
+	                drops.add(new ItemStack(ItemLoader.MATERIAL, 1, 52));
+	            }
+				break;
+			}
         }
     }
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand){
@@ -60,7 +75,6 @@ public class BlockTataraSmelting extends BlockBase {
                     worldIn.setBlockState(pos, this.withTime(i + 1), 2);
                 }
             }
-        
     }
     
     public int getFinishTime(){

@@ -24,8 +24,18 @@ public class KimonoLoader {
 		registerKimono("kimono_4");
 		registerKimono("kimono_5");
 		registerKimono("kimono_6");
+		
+		registerKimono("kimono_miko");
+		registerKimono("yukata_0");
+		registerKimono("yukata_1");
+		registerKimono("yukata_2");
+		registerKimono("yukata_3");
+		registerKimono("yukata_4");
+		
 		registerHaori("haori_1");
 		registerHaori("haori_2");
+		registerHaori("haori_3");
+		registerHaori("haori_4");
 	}
 	
 	private static void registerKimono(String texture_name) {

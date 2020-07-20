@@ -13,10 +13,10 @@ public class BlockPaperLantern extends BlockBase {
 
 	public BlockPaperLantern() {
 		super(Material.WOOD,false);
-		this.setSoundType(SoundType.CLOTH)
-		.setHardness(0.25F)
-		.setResistance(0.1F)
-		.setLightLevel(1.1F);
+		setSoundType(SoundType.CLOTH);
+		setHardness(0.25F);
+		setResistance(0.1F);
+		setLightLevel(1F);
 	}
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

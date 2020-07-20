@@ -9,6 +9,8 @@ import cn.mcmod.sakura.block.door.BlockDoorBase;
 import cn.mcmod.sakura.block.door.BlockShoji;
 import cn.mcmod.sakura.block.fluid.BlockFluidBasic;
 import cn.mcmod.sakura.block.fluid.FluidBasic;
+import cn.mcmod.sakura.block.foods.BlockTeishokoFinished;
+import cn.mcmod.sakura.block.foods.BlockTeishoku;
 import cn.mcmod.sakura.block.noodles.BlockPasta;
 import cn.mcmod.sakura.block.noodles.BlockRamen;
 import cn.mcmod.sakura.block.noodles.BlockSoba;
@@ -202,6 +204,7 @@ public class BlockLoader {
 	public static Block NOREN_BLUE = new BlockNoren();
 	public static Block NOREN_PINK = new BlockNoren();
 	public static Block FUTON = new BlockFuton();
+	public static Block ZABUTON = new BlockZabuton();
 	
 	public static BlockBase STONE_LANTERN =  (BlockBase)new BlockBase(Material.ROCK,false).setSoundType(SoundType.STONE).setHardness(1.25F).setResistance(5.0F).setLightLevel(1F);
 	public static BlockBase MOSSY_STONE_LANTERN =  (BlockBase)new BlockBase(Material.ROCK,false).setSoundType(SoundType.STONE).setHardness(1.25F).setResistance(5.0F).setLightLevel(1F);
@@ -209,6 +212,26 @@ public class BlockLoader {
 	
 	public static Block RED_LANTERN =  new BlockPaperLantern();
 	public static Block WHITE_LANTERN =  new BlockPaperLantern();
+	
+	public static Block TEISHOKO_FISH_COOKED =  new BlockTeishoku(8, 0.8f, false);
+	public static Block TEISHOKO_FISH_RAW =  new BlockTeishoku(6, 0.8f, false);
+	public static Block TEISHOKO_YAKINIKKU =  new BlockTeishoku(8, 0.8f, false);
+	public static Block TEISHOKO_TAMAGOYAKI =  new BlockTeishoku(6, 0.8f, false);
+	
+	public static Block TEISHOKO_TEMPURA =  new BlockTeishoku(8, 0.8f, false);
+	public static Block TEISHOKO_FRIED =  new BlockTeishoku(8, 0.8f, false);
+	public static Block TEISHOKO_KATSU =  new BlockTeishoku(10, 0.8f, false);
+	public static Block TEISHOKO_BURGER =  new BlockTeishoku(8, 0.8f, false);
+	
+	public static Block SUSHI_PLATE =  new BlockTeishoku(6, 0.8f, true);
+	public static Block TEMPURA_PLATE =  new BlockTeishoku(6, 0.8f, true);
+	
+	public static Block TEISHOKO_FINISHED =  new BlockTeishokoFinished();
+	public static Block MUSHROOM_FALLEN_LEAVES =  new BlockMushroomBush();
+	public static Block STRAW_WEB = new BlockStrawWeb();
+	
+	public static Block HOPS = new BlockHopsCrop();
+	public static Block SEAWEED = new BlockSeaweedCrop();
 	public BlockLoader(FMLPreInitializationEvent event) {
 //		register blocks
 //		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
@@ -301,7 +324,7 @@ public class BlockLoader {
         register(BAMBOO_SLAB_SUNBURNT, new ItemSlabBase(BAMBOO_SLAB_SUNBURNT), "bamboo_slab_sunburnt");
 		register(BAMBOO_FENCE, new ItemBlock(BAMBOO_FENCE), "bamboo_fence");
 	    register(BAMBOO_FENCE_SUNBURNT, new ItemBlock(BAMBOO_FENCE_SUNBURNT), "bamboo_fence_sunburnt");
-		
+
         register(BAMBOOLANTERN, new ItemBlock(BAMBOOLANTERN), "bamboo_lantern");
         register(WINDBELL, new ItemBlock(WINDBELL), "windbell");
         register(STONE_LANTERN, new ItemBlock(STONE_LANTERN), "stone_lantern");
@@ -357,6 +380,7 @@ public class BlockLoader {
         register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
         register(OBON, new ItemBlock(OBON), "obon");
         register(STONEMORTAR, new ItemBlock(STONEMORTAR), "stone_mortar");
+        register(STRAW_WEB, new ItemBlock(STRAW_WEB), "straw_web");
 		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(BARREL_DISTILLATION, new ItemBlock(BARREL_DISTILLATION), "barrel_distillation");
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
@@ -368,11 +392,30 @@ public class BlockLoader {
 		register(SHOJI, new ItemBlock(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
         register(TAIKO, new ItemBlock(TAIKO), "taiko");
-		register(NOREN_WHITE, new ItemBlock(NOREN_WHITE), "noren_white");
+        register(ZABUTON, new ItemBlock(ZABUTON), "zabuton");
+        register(NOREN_WHITE, new ItemBlock(NOREN_WHITE), "noren_white");
 		register(NOREN_BLUE, new ItemBlock(NOREN_BLUE), "noren_blue");
 		register(NOREN_PINK, new ItemBlock(NOREN_PINK), "noren_pink");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
-		registerNoItem(FUTON, "futon");
+	    register(TEISHOKO_FISH_COOKED, new ItemBlock(TEISHOKO_FISH_COOKED), "teishoku_fish_cooked");
+	    register(TEISHOKO_FISH_RAW, new ItemBlock(TEISHOKO_FISH_RAW), "teishoku_fish_raw");
+	    register(TEISHOKO_YAKINIKKU, new ItemBlock(TEISHOKO_YAKINIKKU), "teishoku_yakiniku");
+	    register(TEISHOKO_TAMAGOYAKI, new ItemBlock(TEISHOKO_TAMAGOYAKI), "teishoku_tamagoyaki");
+	    
+	    register(TEISHOKO_FRIED, new ItemBlock(TEISHOKO_FRIED), "teishoku_fried");
+	    register(TEISHOKO_TEMPURA, new ItemBlock(TEISHOKO_TEMPURA), "teishoku_tempura");
+	    register(TEISHOKO_BURGER, new ItemBlock(TEISHOKO_BURGER), "teishoku_burger");
+	    register(TEISHOKO_KATSU, new ItemBlock(TEISHOKO_KATSU), "teishoku_katsu");
+	    
+	    register(SUSHI_PLATE, new ItemBlock(SUSHI_PLATE), "sushi_plate");
+	    register(TEMPURA_PLATE, new ItemBlock(TEMPURA_PLATE), "tempura_plate");
+	    
+	    register(MUSHROOM_FALLEN_LEAVES, new ItemBlock(MUSHROOM_FALLEN_LEAVES), "mushroom_fallen_leaves");
+	    
+	    registerNoItem(TEISHOKO_FINISHED, "teishoku_finished");
+	    registerNoItem(HOPS, "hops");
+	    registerNoItem(SEAWEED, "seaweed");
+	    registerNoItem(FUTON, "futon");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
@@ -412,6 +455,20 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(MUSHROOM_FALLEN_LEAVES);
+		registerRender(STRAW_WEB);
+		registerRender(TEISHOKO_FRIED);
+		registerRender(TEISHOKO_TEMPURA);
+	    registerRender(TEISHOKO_BURGER);
+	    registerRender(TEISHOKO_KATSU);
+	    registerRender(SUSHI_PLATE);
+	    registerRender(TEMPURA_PLATE);
+	    
+		registerRender(ZABUTON);
+		registerRender(TEISHOKO_YAKINIKKU);
+		registerRender(TEISHOKO_TAMAGOYAKI);
+		registerRender(TEISHOKO_FISH_RAW);
+		registerRender(TEISHOKO_FISH_COOKED);
 		registerRender(RED_LANTERN);
 		registerRender(WHITE_LANTERN);
 		registerRender(STONE_LANTERN);
@@ -561,6 +618,10 @@ public class BlockLoader {
         });
 		
 	}
+	@SideOnly(Side.CLIENT)
+	public static void registerRender(Block block, int i) {
+		BlockRegister.registerRender(block,i);
+	}
 
 	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
 		return BlockRegister.registerFluidBlock(SakuraMain.MODID, fluid, fluidBlock, name);
@@ -575,7 +636,6 @@ public class BlockLoader {
 	public static void registerRender(Block block) {
 		BlockRegister.registerRender(block);
 	}
-
 
 	@SideOnly(Side.CLIENT)
 	public static void registerCakeRender(Block block, String name) {

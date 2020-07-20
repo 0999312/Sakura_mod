@@ -9,6 +9,11 @@ import net.minecraftforge.oredict.OreDictionary;
 public class SakuraOreDictLoader {
 
 	public SakuraOreDictLoader() {
+		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 74));
+		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 76));
+		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 77));
+		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 161));
+		
 		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.MATERIAL, 1, 1));
 		OreDictionary.registerOre("foodFlour", new ItemStack(ItemLoader.MATERIAL, 1, 4));
 		OreDictionary.registerOre("foodBreadcrumbs", new ItemStack(ItemLoader.MATERIAL, 1, 30));
@@ -20,6 +25,11 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("bamboo", new ItemStack(BlockLoader.BAMBOO));
 		OreDictionary.registerOre("bamboo", new ItemStack(ItemLoader.MATERIAL,1,48));
 		OreDictionary.registerOre("listAlltofu", new ItemStack(ItemLoader.FOODSET,1,81));
+		OreDictionary.registerOre("listAllfishraw",  new ItemStack(ItemLoader.FOODSET,1,141));
+//		OreDictionary.registerOre("listAllfishfresh",  new ItemStack(ItemLoader.FOODSET,1,141));
+//		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,135));
+		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,136));
+		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,137));
 
 		OreDictionary.registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));
 		OreDictionary.registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.SAKURA_LOG), 1));
@@ -43,7 +53,6 @@ public class SakuraOreDictLoader {
 		
 		OreDictionary.registerOre("seedRice", new ItemStack(ItemLoader.RICE_SEEDS, 1));
 		OreDictionary.registerOre("foodSoysauce", new ItemStack(ItemLoader.MATERIAL, 1,33));
-		
 		OreDictionary.registerOre("listAlltofuFried", new ItemStack(ItemLoader.FOODSET, 1,82));
 		OreDictionary.registerOre("foodShrimpraw", new ItemStack(ItemLoader.FOODSET, 1,78));
 		OreDictionary.registerOre("cropRadish", new ItemStack(ItemLoader.RADISH, 1));
@@ -84,6 +93,10 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("listAllseed", new ItemStack(ItemLoader.ONION_SEEDS, 1));
 		
 		OreDictionary.registerOre("cropTea", new ItemStack(ItemLoader.MATERIAL, 1, 39));
+		
+		OreDictionary.registerOre("foodMocha", new ItemStack(ItemLoader.MATERIAL, 1, 43));
+		OreDictionary.registerOre("foodMiso", new ItemStack(ItemLoader.MATERIAL, 1, 29));
+		
 		OreDictionary.registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		OreDictionary.registerOre("foodBread", new ItemStack(ItemLoader.FOODSET, 1, 2));
 		OreDictionary.registerOre("bread", new ItemStack(ItemLoader.FOODSET, 1, 131));
@@ -107,9 +120,15 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("foodDough", new ItemStack(ItemLoader.MATERIAL, 1, 6));
 		OreDictionary.registerOre("foodDough", new ItemStack(ItemLoader.MATERIAL, 1, 7));
 		
+		OreDictionary.registerOre("foodHoisinsause", new ItemStack(ItemLoader.MATERIAL, 1, 60));
+		OreDictionary.registerOre("foodMayo", new ItemStack(ItemLoader.MATERIAL, 1, 61));
+		OreDictionary.registerOre("foodVinegar", new ItemStack(ItemLoader.MATERIAL, 1, 62));
+		
 		OreDictionary.registerOre("toolForginghammer", new ItemStack(ItemLoader.STONE_HAMMER, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolForginghammer", new ItemStack(ItemLoader.IRON_HAMMER, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolForginghammer", new ItemStack(ItemLoader.SAKURA_HAMMER, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.KNIFE_FISH, 1, Short.MAX_VALUE));
+		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.SAKURA_KNIFE_FISH, 1, Short.MAX_VALUE));
 	}
 	
 

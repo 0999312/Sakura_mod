@@ -1,0 +1,22 @@
+{
+   "result" : {
+      "item" : "sakura:foodset",
+      "data" : 158,
+      "count" : 3
+   },
+   "ingredients" : [
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "cropWheat"
+      },
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "cropWheat"
+      },
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "foodMocha"
+      }
+   ],
+   "type" : "forge:ore_shapeless"
+}

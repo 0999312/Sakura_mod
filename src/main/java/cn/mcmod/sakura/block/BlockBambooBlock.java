@@ -28,7 +28,7 @@ public class BlockBambooBlock extends BlockRotatedPillar {
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if(!isSunburnt&&(worldIn.canBlockSeeSky(pos)||worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBambooBlock)&&worldIn.isDaytime()){
+		if(!isSunburnt&&(worldIn.canSeeSky(pos)||worldIn.getBlockState(pos.up()).getBlock() instanceof BlockBambooBlock)&&worldIn.isDaytime()){
 				worldIn.setBlockState(pos, (BlockLoader.BAMBOO_BLOCK_SUNBURNT).getDefaultState().withProperty(LOG_AXIS, state.getValue(LOG_AXIS)));
 		}
 		super.updateTick(worldIn, pos, state, rand);

@@ -38,8 +38,8 @@ public class ItemHaori extends ItemArmor {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
     	NBTTagCompound nbt = RecipesUtil.getItemTagCompound(stack);
-    	String name = ItemKimono.texture_name.get(nbt,"haori");
-    	tooltip.add(I18n.format("sakura.haori.texture.name", new Object())+":"+name);
+    	String name = ItemKimono.texture_name.get(nbt,"haori_base");
+    	tooltip.add(I18n.format("sakura.haori.texture.name")+":"+I18n.format("item.sakura."+name+".name"));
     	super.addInformation(stack, worldIn, tooltip, flagIn);
     }
     public static final List<String> KimonoIDs = Lists.newArrayList();
@@ -56,7 +56,7 @@ public class ItemHaori extends ItemArmor {
     
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
     	NBTTagCompound nbt = RecipesUtil.getItemTagCompound(stack);
-        String name = ItemKimono.texture_name.get(nbt,"haori");
+        String name = ItemKimono.texture_name.get(nbt,"haori_base");
     	return SakuraMain.MODID + ":" + "textures/models/armor/"+name+".png";
     }
  

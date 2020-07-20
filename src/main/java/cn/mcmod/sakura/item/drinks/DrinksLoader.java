@@ -162,6 +162,9 @@ public class DrinksLoader {
 				new FoodInfo(SakuraMain.MODID + "." +"glass_black_russian", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo(SakuraMain.MODID + "." +"glass_godfather", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo(SakuraMain.MODID + "." +"glass_godmother", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				
+				new FoodInfo(SakuraMain.MODID + "." +"glass_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				
 				new FoodInfo(SakuraMain.MODID + "." +"glass_mint_julep", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo(SakuraMain.MODID + "." +"glass_mojito", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo(SakuraMain.MODID + "." +"glass_rusty_nail", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
@@ -192,7 +195,7 @@ public class DrinksLoader {
 				new FoodInfo(SakuraMain.MODID + "." +"glass_scorpion", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo(SakuraMain.MODID + "." +"glass_moscow_mule", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
     		},
-       		new PotionEffect[][]{
+    		new PotionEffect[][]{
 	    		new PotionEffect[]{
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "night_vision")), 200, 0),		
 	    			new PotionEffect(PotionLoader.exp_up, 200, 0),

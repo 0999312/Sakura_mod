@@ -3,23 +3,23 @@
    "defaults" : {
       "model" : "sakura:lantern",
       "textures" : {
-		"0": "sakura:models/white_lantern",
-		"particle": "sakura:models/white_lantern"
+         "0" : "sakura:models/white_lantern",
+         "particle" : "sakura:models/white_lantern"
       }
    },
    "variants" : {
       "inventory" : {
          "model" : "sakura:lantern",
          "textures" : {
-		"0": "sakura:models/white_lantern",
-		"particle": "sakura:models/white_lantern"
+            "0" : "sakura:models/white_lantern",
+            "particle" : "sakura:models/white_lantern"
          }
       },
       "normal" : {
          "model" : "sakura:lantern",
          "textures" : {
-		"0": "sakura:models/white_lantern",
-		"particle": "sakura:models/white_lantern"
+            "0" : "sakura:models/white_lantern",
+            "particle" : "sakura:models/white_lantern"
          }
       }
    }

@@ -3,6 +3,7 @@ package cn.mcmod.sakura.entity.villager;
 import java.util.Random;
 
 import cn.mcmod.sakura.SakuraMain;
+import cn.mcmod.sakura.api.kimono.KimonoLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import net.minecraft.entity.IMerchant;
@@ -24,10 +25,38 @@ public class VillagerLoader {
 	public static VillagerProfession wa_villager = new VillagerRegistry.VillagerProfession(SakuraMain.MODID+":wa_profession", 
 			SakuraMain.MODID+":textures/entity/villager/wa_farmer.png", 
 			SakuraMain.MODID+":textures/entity/villager/wa_zombie_farmer.png");
-	
+	public static VillagerProfession wa_kimono_villager = new VillagerRegistry.VillagerProfession(SakuraMain.MODID+":wa_silk", 
+			SakuraMain.MODID+":textures/entity/villager/wa_silk.png", 
+			SakuraMain.MODID+":textures/entity/villager/wa_zombie_silk.png");
 	@SubscribeEvent
 	public static void onVillagerProfessionRegistration(RegistryEvent.Register<VillagerRegistry.VillagerProfession> event) {
-		event.getRegistry().registerAll(wa_villager);
+		event.getRegistry().registerAll(wa_villager,wa_kimono_villager);
+		VillagerRegistry.VillagerCareer silk = new VillagerRegistry.VillagerCareer(wa_kimono_villager, "wa_silk");
+		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.MATERIAL,2,59),new PriceInfo(1, 3)));
+		silk.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.MATERIAL,4,59),new PriceInfo(2, 5)));
+		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.HAORI),new PriceInfo(10, 14)));
+		
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_1"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_2"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_3"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_4"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_5"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_6"),new PriceInfo(10, 14)));
+		
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_1"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_2"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_3"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_4"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_5"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_6"),new PriceInfo(10, 14)));
+		
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("kimono_miko"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_0"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_1"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_2"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_3"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_4"),new PriceInfo(15, 18)));
 
 	    VillagerRegistry.VillagerCareer farmer = new VillagerRegistry.VillagerCareer(wa_villager, "wa_farmer");
 	    farmer.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.CABBAGE,8),new PriceInfo(2, 4)));

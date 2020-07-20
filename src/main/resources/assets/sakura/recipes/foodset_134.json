@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 134,
+    "count": 2
+  },
+  "ingredients": [
+    {
+		"type" : "forge:ore_dict",
+        "ore" : "listAllfishfresh"
+    },
+	{
+      "item": "#sakura:TOOLKNIFEFISH"
+    }
+
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

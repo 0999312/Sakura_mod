@@ -12,6 +12,7 @@ import cn.mcmod.sakura.api.recipes.DistillationRecipes;
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.api.recipes.PotRecipes;
+import cn.mcmod.sakura.api.recipes.WebRecipe;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
@@ -104,6 +105,11 @@ public class SakuraRecipeRegister {
 	}
 	
     public static void furnaceRegister() {
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,135), new ItemStack(ItemLoader.FOODSET,1,138), 0.1F);
+    	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,147), new ItemStack(ItemLoader.FOODSET,1,148), 0.1F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,144), new ItemStack(ItemLoader.FOODSET,1,145), 0.1F);
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,143), new ItemStack(ItemLoader.FOODSET,1,144));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.FOODSET,1,144));
     	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.IRON_SAND), new ItemStack(Items.IRON_INGOT), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 38), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 21), new ItemStack(ItemLoader.MATERIAL, 1, 22), 0.1F);
@@ -120,11 +126,29 @@ public class SakuraRecipeRegister {
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(BlockLoader.BAMBOO_CHARCOAL_BLOCK), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO, 1), new ItemStack(ItemLoader.MATERIAL, 1, 51), 0.1F);
-    	if(SakuraConfig.harder_iron_recipe)
-		FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
-    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
-    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,52));
-    	});
+    	
+		if(SakuraConfig.harder_iron_recipe){
+			switch (SakuraConfig.harder_iron_difficult) {
+			case 1:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,54));
+		    	});
+				break;
+			case 2:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,53));
+		    	});
+				break;
+			default:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,52));
+		    	});
+				break;
+			}
+		}
     }
 
     public static void barrelRegister() {
@@ -267,6 +291,14 @@ public class SakuraRecipeRegister {
     
     public static void mortarRegister() {
     	MortarRecipes.instance().addMortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.FOODSET, 32, 146)},
+    			new ItemStack[]{
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145)
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 6, 43)},
     			new Object[]{
     					"cropTea",
@@ -356,6 +388,21 @@ public class SakuraRecipeRegister {
     }
 
     public static void potRegister() {
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL, 2, 61),
+                new Object[]{
+                		"listAllsugar",
+                		"cropLemon",
+                		"listAllegg",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL, 2, 60),
+                new Object[]{
+                		"listAllsugar",
+                		"listAllfruit",
+                		"foodSoysauce",
+                		"foodSoysauce",
+                },
+                getWater(200));
         PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 2, 129),
                 new Object[]{
                 		"listAllegg",
@@ -530,12 +577,20 @@ public class SakuraRecipeRegister {
                         },
                         getWater( 200));
         PotRecipes.getInstance().addRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 2, 10),
-                        new Object[]{
-                        		"cropRice",
-                                "listAllbeefraw"
-                        },
-                        getWater( 200));
+                new ItemStack(ItemLoader.FOODSET, 2, 10),
+                new Object[]{
+                		"cropRice",
+                        "listAllbeefraw"
+                },
+                getWater( 200));
+        
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 139),
+                new Object[]{
+                		"cropRice",
+                		 new ItemStack(ItemLoader.FOODSET, 1, 135),
+                },
+                getWater( 200));
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 8),
                         new Object[]{
@@ -629,6 +684,14 @@ public class SakuraRecipeRegister {
                         getWater( 200));
         
         //fantuan
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 140),
+                new Object[]{
+                		"cropRice",
+                		new ItemStack(ItemLoader.FOODSET, 1, 135),
+                		"cropSeaweed"
+                },
+                getWater( 200));
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 42),
                         new Object[]{
@@ -872,6 +935,7 @@ public class SakuraRecipeRegister {
                                 "listAllegg"
                         },
                         getWater( 200));
+        
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 37),
                         new Object[]{
@@ -970,7 +1034,34 @@ public class SakuraRecipeRegister {
                 		new ItemStack(ItemLoader.MATERIAL, 1, 9),
                 		"listAllmeatraw",
                 		"listAllveggie",
-                		"foodSoysauce"
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 155),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 8),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 155),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 10),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 156),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 57),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
                 },
                getOil( 200));
         PotRecipes.getInstance().addRecipes(
@@ -1047,12 +1138,21 @@ public class SakuraRecipeRegister {
                         new Object[]{
                         new ItemStack(ItemLoader.MATERIAL, 1, 3),
                         "cropOnion",
-                        "cropTomato",
                         "cropPotato",
                         "cropCarrot",
                         "listAllmeatraw"
                         },
                         getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.MATERIAL, 2, 11),
+                new Object[]{
+                new ItemStack(ItemLoader.MATERIAL, 1, 3),
+                "cropOnion",
+                "cropPotato",
+                "cropCarrot",
+                "listAllmeatraw"
+                },
+                getWater( 200));
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.MATERIAL, 2, 13),
                         new Object[]{
@@ -1073,6 +1173,43 @@ public class SakuraRecipeRegister {
                         },
                         getWater( 200));
         PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 151),
+                new Object[]{
+                "cropPumpkin",
+                "cropPumpkin",
+                "listAllsugar",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 152),
+                new Object[]{
+                "cropRadish",
+                "cropRadish",
+                "listAllsugar",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 153),
+                new Object[]{
+                "listAllfishraw",
+                "dustSalt",
+                "foodMiso",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 154),
+                new Object[]{
+                "listAllchickenraw",
+                "listAllveggie",
+                "listAllveggie",
+                "dustSalt",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 109),
                         new Object[]{
                         "cropCabbage",
@@ -1086,7 +1223,7 @@ public class SakuraRecipeRegister {
                         new ItemStack(ItemLoader.FOODSET, 2, 108),
                         new Object[]{
                         "cropRadish",
-                        new ItemStack(ItemLoader.MATERIAL, 1, 29),
+                        "foodMiso",
                         "dustSalt"
                         },
                         getWater( 200));
@@ -1099,6 +1236,16 @@ public class SakuraRecipeRegister {
                         "foodVanilla"
                         },
                         getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 159),
+                new Object[]{
+                "listAllmilk",
+                "listAllsugar",
+                "listAllegg",
+                "foodVanilla",
+                "foodMocha"
+                },
+                getWater( 200));
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 104),
                         new Object[]{
@@ -1120,11 +1267,12 @@ public class SakuraRecipeRegister {
                        getOil( 200));
 
         PotRecipes.getInstance().addRecipes(
-                        new ItemStack(ItemLoader.MATERIAL, 2, 32),
+                        new ItemStack(ItemLoader.MATERIAL, 4, 32),
                         new Object[]{
-                                "foodSoysauce",
-                                "listAllsugar",
-                                "dustSalt"
+                        	new ItemStack(ItemLoader.FOODSET, 1, 146),
+                            "foodSoysauce",
+                            "cropSeaweed",
+                            "dustSalt"
                         },
                         getWater( 200));
 		PotRecipes.getInstance().addRecipes(
@@ -1188,6 +1336,30 @@ public class SakuraRecipeRegister {
 		                		 new ItemStack(Blocks.TALLGRASS,1,2)
 		                },
 		                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 161),
+                new Object[]{
+                "listAlltofu",
+                "foodMiso",
+                "dustSalt"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 1, 143),
+                new Object[]{
+                new ItemStack(ItemLoader.FOODSET, 1, 142)
+                },
+                getWater( 100));
+        
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 132),
+                new Object[]{
+                        "listAllegg",
+                        "listAllveggie",
+                        new ItemStack(ItemLoader.MATERIAL, 1, 32),
+
+                },
+                getWater( 200));
     }
     private static FluidStack getWater(int amount){
     	if(Loader.isModLoaded("tfc"))

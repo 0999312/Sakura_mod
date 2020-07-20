@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "age=0": { "model": "sakura:hops_0" },
+    "age=1": { "model": "sakura:hops_1" },
+    "age=2": { "model": "sakura:hops_1" },
+    "age=3": { "model": "sakura:hops_1" },
+    "age=4": { "model": "sakura:hops_2" },
+    "age=5": { "model": "sakura:hops_2" },
+    "age=6": { "model": "sakura:hops_2" },
+    "age=7": {
+      "model": "sakura:hops_3"
+    },
+    "inventory": {
+      "model": "sakura:hops_3"
+    }
+  }
+}

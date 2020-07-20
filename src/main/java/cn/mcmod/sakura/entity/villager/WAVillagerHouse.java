@@ -148,10 +148,19 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
         return true;
     }
 
-    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
-    {
+    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
 		ForgeRegistry<VillagerRegistry.VillagerProfession> registry = (ForgeRegistry<VillagerProfession>) ForgeRegistries.VILLAGER_PROFESSIONS;
+		
 		int id = registry.getID(VillagerLoader.wa_villager);
-		return id < 0 ? currentVillagerProfession : id;
+		int id1 = registry.getID(VillagerLoader.wa_kimono_villager);
+		if(id <0 ||id1 < 0) 
+			return currentVillagerProfession;
+		Random rand = new Random();
+		switch (rand.nextInt()) {
+		case 0:
+			return id1;
+		default:
+			return id;
+		}
     }
 }

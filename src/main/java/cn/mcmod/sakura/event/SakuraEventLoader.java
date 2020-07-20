@@ -49,8 +49,9 @@ public class SakuraEventLoader {
     
     @SubscribeEvent
 	public static void OnRecipeRegister(RegistryEvent.Register<IRecipe> event) {
-    	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,78),35);
-    	addFishingLoot(new ItemStack(ItemLoader.MATERIAL,1,34),25);
+    	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,78),45);
+    	addFishingLoot(new ItemStack(ItemLoader.FOODSET,1,141),45);
+    	addFishingLoot(new ItemStack(ItemLoader.SEAWEED_RAW),15);
     }
     
 	@SubscribeEvent

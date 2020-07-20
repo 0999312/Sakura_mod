@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "sakura:zabuton"
+  },
+  "pattern": [
+    "BBB",
+    "WWW"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#DYEBLUE"
+    },
+    "W": {
+      "item": "#WOOL"
+    }
+  }
+}

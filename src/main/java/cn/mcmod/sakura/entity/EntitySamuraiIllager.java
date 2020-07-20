@@ -28,7 +28,7 @@ public class EntitySamuraiIllager extends AbstractIllager {
         super(p_i47509_1_);
         this.setSize(0.6F, 1.95F);
     }
-
+    
 	protected void initEntityAI() {
         super.initEntityAI();
         this.tasks.addTask(0, new EntityAISwimming(this));

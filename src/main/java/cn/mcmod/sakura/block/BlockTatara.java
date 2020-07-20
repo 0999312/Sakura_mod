@@ -37,7 +37,6 @@ public class BlockTatara extends BlockBase {
 	}
 	@Override
 	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-		// TODO Auto-generated method stub
 		super.onNeighborChange(world, pos, neighbor);
 	}
 

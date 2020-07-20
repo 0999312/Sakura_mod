@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 142,
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 141
+    },{
+      "item": "#sakura:TOOLKNIFEFISH"
+    }
+
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

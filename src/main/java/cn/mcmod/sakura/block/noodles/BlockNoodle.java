@@ -1,6 +1,6 @@
 package cn.mcmod.sakura.block.noodles;
 
-import cn.mcmod.sakura.item.tool.ItemKnifeNoodle;
+import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -72,7 +72,7 @@ public abstract class BlockNoodle extends Block {
 		int i = this.getCutting(state);
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if(!isReady(state)){
-		    if(stack.getItem() instanceof ItemKnifeNoodle){
+		    if(stack.getItem()==ItemLoader.KNIFE_NOODLE||stack.getItem()==ItemLoader.SAKURA_KNIFE_NOODLE){
 		    	if(!playerIn.isCreative()) stack.damageItem(1, playerIn);
 		    	 if (worldIn.rand.nextInt(8) == 0) {
 		    		 worldIn.setBlockState(pos, this.withCutting(i + 1), 2);

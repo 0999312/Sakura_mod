@@ -14,8 +14,10 @@ import cn.mcmod.sakura.potion.PotionLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import cn.mcmod.sakura.world.gen.WorldGenLoader;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -46,8 +48,9 @@ public class CommonProxy {
         new ItemLoader(event);
         new DrinksLoader();
         SakuraEntityRegister.entityRegister();
-        
+        SakuraEntityRegister.entitySpawn();
         new SakuraOreDictLoader();
+        KimonoLoader.Init();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
@@ -58,7 +61,7 @@ public class CommonProxy {
     	MinecraftForge.TERRAIN_GEN_BUS.register(new WorldGenLoader());
     	new WorldGenLoader();
         TileEntityRegistry.init();
-        KimonoLoader.Init();
+
         SakuraRecipeRegister.Init();
         if(Loader.isModLoaded("tfc")){
         	TFCCompat.registerTFCFuel();
@@ -68,7 +71,8 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-
+    	RecipesUtil.addShapelessRecipe(KimonoLoader.getCustomKimono("kimono_1"), new ItemStack(ItemLoader.KIMONO),"dyeBlack");
+    	RecipesUtil.addShapelessRecipe(KimonoLoader.getCustomKimono("haori_1"), new ItemStack(ItemLoader.HAORI),"dyeBlack");
     }
 
     public void registerFluidBlockRendering(Block block, String name) {
