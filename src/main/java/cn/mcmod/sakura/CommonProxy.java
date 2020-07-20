@@ -14,10 +14,8 @@ import cn.mcmod.sakura.potion.PotionLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import cn.mcmod.sakura.world.gen.WorldGenLoader;
-import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +23,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -66,13 +65,16 @@ public class CommonProxy {
         if(Loader.isModLoaded("tfc")){
         	TFCCompat.registerTFCFuel();
         }
+        if (Loader.isModLoaded("waila")){
+            FMLInterModComms.sendMessage("waila", "register", "cn.mcmod.sakura.compat.waila.CampfirePlugin.register");
+            FMLInterModComms.sendMessage("waila", "register", "cn.mcmod.sakura.compat.waila.CampfirePotPlugin.register");
+        }
         network = NetworkRegistry.INSTANCE.newSimpleChannel(SakuraMain.MODID);
     	network.registerMessage(new PacketKeyMessageHandler(),PacketKeyMessage.class,0,Side.SERVER);
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-    	RecipesUtil.addShapelessRecipe(KimonoLoader.getCustomKimono("kimono_1"), new ItemStack(ItemLoader.KIMONO),"dyeBlack");
-    	RecipesUtil.addShapelessRecipe(KimonoLoader.getCustomKimono("haori_1"), new ItemStack(ItemLoader.HAORI),"dyeBlack");
+
     }
 
     public void registerFluidBlockRendering(Block block, String name) {

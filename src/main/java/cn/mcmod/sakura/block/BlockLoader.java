@@ -18,6 +18,7 @@ import cn.mcmod.sakura.block.noodles.BlockUdon;
 import cn.mcmod.sakura.block.noodles.BlockUdonUnfinished;
 import cn.mcmod.sakura.block.slab.*;
 import cn.mcmod.sakura.block.tree.*;
+import cn.mcmod.sakura.item.ItemShoji;
 import cn.mcmod_mmf.mmlib.block.BlockBase;
 import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import cn.mcmod_mmf.mmlib.block.slab.BlockCarpetFacing;
@@ -389,7 +390,7 @@ public class BlockLoader {
 		register(GRAPE_SPLINT_STAND, new ItemBlock(GRAPE_SPLINT_STAND), "grape_splint_stand");
 		register(GRAPE_SPLINT, new ItemBlock(GRAPE_SPLINT), "grape_splint");
 		register(KITUNEBI, new ItemBlock(KITUNEBI), "kitunebi");
-		register(SHOJI, new ItemBlock(SHOJI), "shoji");
+		register(SHOJI, new ItemShoji(SHOJI), "shoji");
 		register(ANDON, new ItemBlock(ANDON), "andon");
         register(TAIKO, new ItemBlock(TAIKO), "taiko");
         register(ZABUTON, new ItemBlock(ZABUTON), "zabuton");

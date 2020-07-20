@@ -31,6 +31,8 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipes(BarrelRecipeMaker.getRecipes(jeiHelpers),"sakura.barrel");
 		registry.addRecipes(DistillationRecipeMaker.getRecipes(jeiHelpers),"sakura.distillation");
 		registry.addRecipes(L2ISRecipeMaker.getRecipes(jeiHelpers),"sakura.liquid_item");
+		
+		registry.addRecipes(L2ISRecipeMaker.getRecipes(jeiHelpers),"sakura.liquid_item");
 
 		registry.addRecipeClickArea(GuiCampfirePot.class, 91, 41, 28, 23,"sakura.cooking_pot");
 		registry.addRecipeClickArea(GuiStoneMortar.class, 77, 32, 28, 23,"sakura.mortar");
@@ -48,7 +50,7 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.STONEMORTAR),"sakura.mortar");
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.BARREL),"sakura.barrel");
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.BARREL_DISTILLATION),"sakura.distillation");
-		
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.STRAW_WEB),"sakura.straw_web");
 	}
 	
 	@Override
@@ -59,6 +61,7 @@ public class JEICompat implements IModPlugin {
 				new CategoryBarrel(registry.getJeiHelpers().getGuiHelper()),
 				new CategoryDistillation(registry.getJeiHelpers().getGuiHelper()),
 				new CategoryL2IS(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryWeb(registry.getJeiHelpers().getGuiHelper()),
 			}
 		);
 	}

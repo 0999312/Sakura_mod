@@ -6,8 +6,8 @@
   ],
   "key": {
     "#": {
-      "item": "sakura:materials",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "cropStraw"
     }
   },
   "result": {

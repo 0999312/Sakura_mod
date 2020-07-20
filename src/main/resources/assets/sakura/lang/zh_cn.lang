@@ -186,7 +186,7 @@ item.sakura.rice_matsutake.name=松茸饭
 item.sakura.rice_egg.name=鸡蛋饭
 item.sakura.rice_beef_egg.name=牛肉鸡蛋饭
 item.sakura.rice_pork_egg.name=猪肉鸡蛋饭
-item.sakura.rice_pork_fried.name=猪肉炒饭
+item.sakura.rice_pork_fried.name=猪排饭
 item.sakura.rice_oyako.name=亲子饭
 item.sakura.rice_oyako_fish.name=亲子鱼肉饭
 item.sakura.ramen.name=拉面
@@ -563,6 +563,7 @@ jei.sakura.category.mortar=石磨
 jei.sakura.category.barrel=酿造桶
 jei.sakura.category.distillation=蒸馏桶
 jei.sakura.category.liquid_item=液体装桶
+jei.sakura.category.straw_web=风干
 
 #实体
 entity.sakura.Deer.name=鹿
@@ -571,6 +572,7 @@ entity.Villager.wa_farmer=日本农民
 entity.Villager.wa_fisher=日本渔夫
 entity.Villager.wa_trader=日本商人
 entity.Villager.wine_trader=酒品贩子
+entity.Villager.wa_silk=丝绸商人
 
 guide.sakura_guide.landing_text=世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。
 
@@ -596,8 +598,11 @@ sakura.config.every_where_sakura_diamond.tooltip=设为true使樱色钻石生成
 #警告信息
 sakura.warning.harder_iron_recipe_enabled=硬核和钢冶炼机制启用，享受锻造的乐趣吧！
 
-#Waila Harvestability支持
+#Waila 支持
 wailaharvestability.toolclass.forging_hammer=锻造锤
+
+sakura.tooltip.campfire.fire_remain=剩余燃料: %1$s Ticks
+sakura.tooltip.campfire.item_in=篝火里的物品: %1$s
 
 #药水效果
 sakura.effect.scorpion=蝎毒

@@ -5,12 +5,26 @@
          "ore" : "bamboo"
       },
       "name" : "BAMBOO"
-   },{
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "cropStraw"
+      },
+      "name" : "CROPSTRAW"
+   },
+   {
       "ingredient" : {
          "type" : "forge:ore_dict",
          "ore" : "wool"
       },
       "name" : "WOOL"
+   },  {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "blockMossy"
+      },
+      "name" : "BLOCKMOSSY"
    },
    {
       "ingredient" : {
@@ -25,19 +39,22 @@
          "ore" : "cobblestone"
       },
       "name" : "COBBLESTONE"
-   },{
+   },
+   {
       "ingredient" : {
          "type" : "forge:ore_dict",
          "ore" : "foodMocha"
       },
       "name" : "FOODMOCHA"
-   },{
+   },
+   {
       "ingredient" : {
          "type" : "forge:ore_dict",
          "ore" : "string"
       },
       "name" : "STRING"
-   },{
+   },
+   {
       "ingredient" : {
          "type" : "forge:ore_dict",
          "ore" : "listAllsoup"
@@ -64,7 +81,8 @@
          "ore" : "toolForginghammer"
       },
       "name" : "TOOLFORGINGHAMMER"
-   },   {
+   },
+   {
       "ingredient" : {
          "type" : "mm_lib:wildcard_oredict",
          "ore" : "toolKnifefish"

@@ -29,7 +29,7 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 
         @Override
         protected void onContentsChanged(int slot) {
-            TileEntityCampfire.this.markDirty();
+            TileEntityCampfire.this.refresh();
         }
 
         @Override
@@ -37,14 +37,18 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
             return 16;
         }
     };
-    
+	protected void refresh() {
+		if (hasWorld() && !world.isRemote) {
+			IBlockState state = world.getBlockState(pos);
+			world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+		}
+	}
     private int burnTime;
     /**
      * The number of ticks that a fresh copy of the currently-burning item would keep the furnace burning for
      */
     private int cookTime;
-    private boolean isFinishedCook;
-
+    
     public ItemStackHandler getInventory() {
         return this.inventory;
     }
@@ -65,10 +69,6 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
         return this.cookTime;
     }
 
-    public boolean isFinishedCook() {
-        return this.isFinishedCook;
-    }
-
     public ItemStack getItemBurning() {
 		return this.inventory.getStackInSlot(0);
 	}
@@ -77,63 +77,25 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
     public void update() {
         ItemStack cookstack;
         boolean flag = this.isBurning();
-
         boolean flag1 = false;
-
+        
+        if (this.isBurning()) {
+            --this.burnTime;
+        }
         if (!world.isRemote) {
             //check can cook
-            if (this.isBurning() & this.isFinishedCook()) {
-                cookstack = getItemBurning();
-                ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(cookstack);
-                if (!cookstack.isEmpty()) {
-                    if (!itemstack1.isEmpty()) {
-                        if (this.isBurning() && this.cookTime >= 0) {
-                            this.isFinishedCook = false;
-                            flag1 = true;
-                        }
-                    }
-                }
-            }
-
-            //cook finished
-            if (this.isBurning() & !this.isFinishedCook()) {
-                ++this.cookTime;
-
-                cookstack = getItemBurning();
-
-                ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(cookstack);
-                if (this.cookTime >= 700) {
-                    if (!cookstack.isEmpty()) {
-                        if (!itemstack1.isEmpty()) {
-                            this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount(),itemstack1.getMetadata()));
-
-                            this.cookTime = 0;
-                            this.isFinishedCook = true;
-                            flag1 = true;
-                        }
-                    }
-
-                } else {
-                    if (cookstack.isEmpty()) {
-                        this.cookTime = 0;
-                        this.isFinishedCook = true;
-                    }
-                    if (itemstack1.isEmpty()) {
-                        this.cookTime = 0;
-                        this.isFinishedCook = true;
-                    }
-                }
-
-            }
-
-
             if (this.isBurning()) {
-                --this.burnTime;
-                flag1 = true;
-            }
+                cookstack = getItemBurning();
+                ItemStack itemstack1 = FurnaceRecipes.instance().getSmeltingResult(cookstack);
+                if (!cookstack.isEmpty()&&!(itemstack1.isEmpty())) {
+                	++this.cookTime;
+                    if (this.cookTime >= 700) {
+                        this.inventory.setStackInSlot(0, new ItemStack(itemstack1.getItem(), cookstack.getCount(),itemstack1.getMetadata()));
 
-            if (flag) {
-                BlockCampfire.setState(this.isBurning(), this.world, this.pos);
+                        this.cookTime = 0;
+                        flag1 = true;
+                    }
+                }else this.cookTime = 0;
             }
 
             if (flag != this.isBurning()) {
@@ -188,14 +150,12 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 	public void writePacketNBT(NBTTagCompound cmp) {
 		cmp.setInteger("BurnTime", (short) this.burnTime);
         cmp.setInteger("CookTime", (short) this.cookTime);
-        cmp.setBoolean("FinishCook", this.isFinishedCook);
         cmp.setTag("Inventory", inventory.serializeNBT());
 	}
 
 	public void readPacketNBT(NBTTagCompound cmp) {
         this.burnTime = cmp.getInteger("BurnTime");
         this.cookTime = cmp.getInteger("CookTime");
-        this.isFinishedCook = cmp.getBoolean("FinishCook");
         inventory.deserializeNBT(cmp.getCompoundTag("Inventory"));
 	}
 
@@ -206,6 +166,8 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 		return new SPacketUpdateTileEntity(pos, -999, tag);
 	}
 
+	
+	
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
 		super.onDataPacket(net, packet);

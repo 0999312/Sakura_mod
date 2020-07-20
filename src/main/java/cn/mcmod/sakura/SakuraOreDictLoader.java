@@ -30,7 +30,7 @@ public class SakuraOreDictLoader {
 //		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,135));
 		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,136));
 		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,137));
-
+		OreDictionary.registerOre("cropStraw", new ItemStack(ItemLoader.MATERIAL,1,0));
 		OreDictionary.registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LOG), 1));
 		OreDictionary.registerOre("logWood", new ItemStack(Item.getItemFromBlock(BlockLoader.SAKURA_LOG), 1));
 		OreDictionary.registerOre("foodNatto", new ItemStack(ItemLoader.FOODSET, 1, 63));

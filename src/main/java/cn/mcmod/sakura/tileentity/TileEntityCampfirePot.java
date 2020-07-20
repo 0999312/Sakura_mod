@@ -86,19 +86,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     }
 
     public boolean isBurning() {
-        return this.burnTime > 0;
-    }
-
-    public void setBurningTime(int tick) {
-        this.burnTime = tick;
-    }
-
-    public int getBurningTime() {
-        return this.burnTime;
-    }
-
-    public int getCookTime() {
-        return this.cookTime;
+        return this.getField(0) > 0;
     }
 
     protected void refresh() {
@@ -155,14 +143,16 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 			    	    }
 			            flag1 = true;
 			        }
-			        if (flag != this.isBurning()) {
+
+
+		        }else cookTime = 0;
+		        if (flag != this.isBurning()) {
 			           flag1 = true;
 			           BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
 			        }
-			        if (flag1)
-			        	this.markDirty();
-		        }else cookTime = 0;
         	}
+	        if (flag1)
+	        	this.markDirty();
         }
     }
 
@@ -258,7 +248,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         return index<9;
     }
-
+    @Override
     public int getField(int id) {
         switch (id) {
             case 0:
@@ -273,7 +263,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
     }
 
-
+    @Override
     public void setField(int id, int value) {
         switch (id) {
             case 0:

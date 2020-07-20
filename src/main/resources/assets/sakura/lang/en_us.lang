@@ -564,6 +564,8 @@ jei.sakura.category.mortar=Stone Mortar
 jei.sakura.category.barrel=Barrel
 jei.sakura.category.distillation=Distillation Barrel
 jei.sakura.category.liquid_item=Liquid to Bucket
+jei.sakura.category.straw_web=Open-air Drying
+
 
 #Entities
 entity.sakura.Deer.name=Deer
@@ -572,6 +574,7 @@ entity.Villager.wa_farmer=Japanese Farmer
 entity.Villager.wa_fisher=Japanese Fisher
 entity.Villager.wa_trader=Japanese Trader
 entity.Villager.wine_trader=Liquor Trader
+entity.Villager.wa_silk=Silk Trader
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
@@ -593,6 +596,9 @@ sakura.config.hotspring_weight=Hot Spring Weight
 #Tooltip is set by Sakura Mod itself.
 sakura.config.every_where_sakura_diamond=Sakura Diamond Generated Everywhere
 #Tooltip is set by Sakura Mod itself.
+
+sakura.tooltip.campfire.fire_remain=Remaining fuel: %1$s Ticks
+sakura.tooltip.campfire.item_in=Item in campfire: %1$s
 
 #Warning
 sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!

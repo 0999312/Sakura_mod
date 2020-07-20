@@ -204,6 +204,11 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
     }
 
     @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+    	return new ItemStack(BlockLoader.CAMPFIRE_IDLE);
+    }
+    
+    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityCampfire();
     }
