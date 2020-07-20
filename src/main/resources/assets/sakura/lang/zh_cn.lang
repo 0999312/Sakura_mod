@@ -1,4 +1,4 @@
-﻿# 方块
+# 方块
 tile.sakura.kawara_block.name=瓦块
 tile.sakura.kawara.name=瓦
 tile.sakura.tatami_tan.name=榻榻米（日晒）
@@ -119,6 +119,7 @@ tile.sakura.teishoku_fish_raw.name=生鱼片定食
 tile.sakura.teishoku_fish_cooked.name=烤鱼定食
 
 #物品
+item.sakura.machined_fish.name=加工鱼肉
 item.sakura.futon.name=布团
 item.sakura.silk.name=丝绸
 item.sakura.bento_box.name=便当盒
@@ -308,6 +309,7 @@ item.sakura.miso.name=味噌
 item.sakura.breadcrumbs.name=面包屑
 item.sakura.chestnut.name=板栗
 item.sakura.bamboo_door.name=竹门
+item.sakura.seaweed_raw.name=新鲜海草
 item.sakura.seaweed.name=海草
 item.sakura.rice_seeds.name=水稻种子
 item.sakura.tomato.name=番茄
@@ -334,15 +336,22 @@ item.sakura.sakura_kodachi.name=樱之小太刀
 item.sakura.shinai.name=竹刀
 item.sakura.tachi.name=太刀
 item.sakura.knife_noodle.name=切面刀
+item.sakura.sakura_knife_noodle.name=樱钻切面刀
+item.sakura.knife_fish.name=切鱼刀
+item.sakura.sakura_knife_fish.name=樱钻切鱼刀
 item.sakura.samurai_shoes.name=武士靴子
 item.sakura.samurai_pants.name=武士护腿
 item.sakura.samurai_chest.name=武士胸甲
 item.sakura.samurai_helmet.name=武士头盔
 item.sakura.broom.name=扫帚
 item.sakura.haori.name=羽织
+item.sakura.haori_base.name=棕色羽织
 item.sakura.haori_1.name=黑色羽织
 item.sakura.haori_2.name=青色羽织
+item.sakura.haori_3.name=白色羽织
+item.sakura.haori_4.name=绿色羽织
 item.sakura.kimono.name=和服
+item.sakura.kimono_base.name=棕色和服
 item.sakura.kimono_1.name=黑色和服
 item.sakura.kimono_2.name=绿色和服
 item.sakura.kimono_3.name=青色和服
@@ -353,6 +362,7 @@ item.sakura.yukata_0.name=红色浴衣
 item.sakura.yukata_1.name=蓝色浴衣
 item.sakura.yukata_2.name=品红色浴衣
 item.sakura.yukata_3.name=黄绿色浴衣
+item.sakura.yukata_4.name=黄色浴衣
 item.sakura.kimono_miko.name=巫女服
 item.sakura.coin.name=樱花钱币
 item.sakura.bamboo_sunburnt.name=日晒竹子
