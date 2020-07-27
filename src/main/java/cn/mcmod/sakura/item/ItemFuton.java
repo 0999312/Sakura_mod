@@ -3,11 +3,12 @@ package cn.mcmod.sakura.item;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockFuton;
 import cn.mcmod.sakura.block.BlockLoader;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -22,10 +23,13 @@ public class ItemFuton extends Item {
 	public ItemFuton() {
 		setUnlocalizedName(SakuraMain.MODID + "." + "futon");
 	}
-
+	@Override
+	public int getMetadata(int meta) {
+		return meta;
+	}
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ) {
+									  EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		} else if (facing != EnumFacing.UP) {
@@ -51,20 +55,24 @@ public class ItemFuton extends Item {
 
 				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid()
 						&& worldIn.getBlockState(blockpos.down()).isFullCube()) {
+
 					IBlockState iblockstate1 = BlockLoader.FUTON.getDefaultState()
 							.withProperty(BlockFuton.OCCUPIED, Boolean.valueOf(false))
-							.withProperty(BlockHorizontal.FACING, enumfacing)
+							.withProperty(BlockFuton.FACING, enumfacing)
 							.withProperty(BlockFuton.PART, BlockFuton.EnumPartType.FOOT);
-
-					if (worldIn.setBlockState(pos, iblockstate1, 11)) {
-						IBlockState iblockstate2 = iblockstate1.withProperty(BlockFuton.PART,
-								BlockFuton.EnumPartType.HEAD);
-						worldIn.setBlockState(blockpos, iblockstate2, 11);
-					}
+					IBlockState iblockstate2 = BlockLoader.FUTON.getDefaultState()
+							.withProperty(BlockFuton.OCCUPIED, Boolean.valueOf(false))
+							.withProperty(BlockFuton.FACING, enumfacing)
+							.withProperty(BlockFuton.PART, BlockFuton.EnumPartType.HEAD);
+					worldIn.setBlockState(pos, iblockstate1, 10);
+					worldIn.setBlockState(blockpos, iblockstate2, 10);
 
 					SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
 					worldIn.playSound(null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS,
 							(soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+					if (playerIn instanceof EntityPlayerMP) {
+						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) playerIn, pos, itemstack);
+					}
 					itemstack.shrink(1);
 					return EnumActionResult.SUCCESS;
 				}

@@ -4,15 +4,15 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import cn.mcmod.sakura.entity.TileEntityFuton;
 import cn.mcmod.sakura.item.ItemLoader;
-import cn.mcmod_mmf.mmlib.block.BlockFacing;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -20,25 +20,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFuton extends BlockFacing {
+public class BlockFuton extends BlockHorizontal implements ITileEntityProvider {
 	public static final PropertyEnum<EnumPartType> PART = PropertyEnum.create("part", EnumPartType.class);
 	public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 	protected static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.28125D, 1.0D);
 
 	public BlockFuton() {
-		super(Material.CLOTH, false);
+		super(Material.CLOTH);
 		this.setSoundType(SoundType.CLOTH);
 		this.setHardness(0.2F);
-		this.disableStats();
+		this.hasTileEntity = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(PART, EnumPartType.FOOT).withProperty(OCCUPIED,false));
 	}
 
@@ -49,7 +50,7 @@ public class BlockFuton extends BlockFacing {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+									EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote) {
 			return true;
 		}
@@ -187,6 +188,9 @@ public class BlockFuton extends BlockFacing {
     public EnumPushReaction getMobilityFlag(IBlockState state) {
         return EnumPushReaction.DESTROY;
     }
+	public EnumPushReaction getMobilityFlag(IBlockState state) {
+		return EnumPushReaction.DESTROY;
+	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
@@ -214,7 +218,7 @@ public class BlockFuton extends BlockFacing {
 		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
 		return (meta & 8) > 0
 				? this.getDefaultState().withProperty(PART, EnumPartType.HEAD).withProperty(FACING, enumfacing)
-						.withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0))
+				.withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0))
 				: this.getDefaultState().withProperty(PART, EnumPartType.FOOT).withProperty(FACING, enumfacing);
 	}
 
@@ -247,6 +251,31 @@ public class BlockFuton extends BlockFacing {
 		return i;
 	}
 
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return BlockFaceShape.UNDEFINED;
+	}
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
+	@SideOnly(Side.CLIENT)
+	public static boolean isHeadPiece(int hp) {
+		return (hp & 8) != 0;
+	}
+	@Nullable
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return new TileEntityFuton();
+	}
 	public enum EnumPartType implements IStringSerializable {
 		HEAD("head"), FOOT("foot");
 
