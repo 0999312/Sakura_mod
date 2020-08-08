@@ -66,7 +66,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 
     private static ItemStack getDefaultItemStack() {
         ItemStack stack = new ItemStack(BlockLoader.SHOJI);
-        RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
+        RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", 0);
         return stack;
     }
 
@@ -75,9 +75,9 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         ItemStack stack = new ItemStack(this);
         TileEntityShoji te = (TileEntityShoji) world.getTileEntity(pos);
         if (te != null) {
-        	RecipesUtil.getItemTagCompound(stack).setInteger("type", te.getType());
+        	RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", te.getType());
         } else {
-        	RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
+        	RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", 0);
         }
         return stack;
     }
@@ -135,9 +135,9 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 	    ItemStack stack = getDefaultItemStack();
 	    TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
 	    if (te != null) {
-	    	RecipesUtil.getItemTagCompound(stack).setInteger("type", te.getType());
+	    	RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", te.getType());
 	    } else {
-	    	RecipesUtil.getItemTagCompound(stack).setInteger("type", 0);
+	    	RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", 0);
 	    }
         worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack));
         super.breakBlock(worldIn, pos, state);
@@ -160,7 +160,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
         if (!worldIn.isRemote) {
             TileEntityShoji te = (TileEntityShoji) worldIn.getTileEntity(pos);
             if (te != null) {
-                te.setType(RecipesUtil.getItemTagCompound(stack).getInteger("type"));
+                te.setType(RecipesUtil.getInstance().getItemTagCompound(stack).getInteger("type"));
                 te.setFacing(EnumFacing.getDirectionFromEntityLiving(pos, placer));
                 te.setOpen(false);
             }
@@ -169,7 +169,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 
     public static ItemStack getItemStackWithType(int type) {
         ItemStack stack = getDefaultItemStack();
-        RecipesUtil.getItemTagCompound(stack).setInteger("type", type);
+        RecipesUtil.getInstance().getItemTagCompound(stack).setInteger("type", type);
         return stack;
     }
 

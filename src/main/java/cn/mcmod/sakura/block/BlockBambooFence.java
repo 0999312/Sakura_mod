@@ -19,6 +19,7 @@ public class BlockBambooFence extends BlockFence {
 	public BlockBambooFence() {
 		super(Material.WOOD, MapColor.WOOD);
 		this.setCreativeTab(CommonProxy.tab);
+		this.setHardness(1.2F).setResistance(5.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 	}
 

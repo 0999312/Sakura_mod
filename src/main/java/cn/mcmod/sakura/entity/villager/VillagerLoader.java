@@ -37,26 +37,26 @@ public class VillagerLoader {
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.KIMONO),new PriceInfo(10, 14)));
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.HAORI),new PriceInfo(10, 14)));
 		
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_1"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_2"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_3"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_4"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_5"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("kimono_6"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_1"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_2"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_3"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_4"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_5"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_6"),new PriceInfo(10, 14)));
 		
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_1"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_2"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_3"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_4"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_5"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getCustomKimono("haori_6"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_1"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_2"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_3"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_4"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_5"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_6"),new PriceInfo(10, 14)));
 		
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("kimono_miko"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_0"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_1"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_2"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_3"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getCustomKimono("yukata_4"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_miko"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_0"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_1"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_2"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_3"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_4"),new PriceInfo(15, 18)));
 
 	    VillagerRegistry.VillagerCareer farmer = new VillagerRegistry.VillagerCareer(wa_villager, "wa_farmer");
 	    farmer.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.CABBAGE,8),new PriceInfo(2, 4)));

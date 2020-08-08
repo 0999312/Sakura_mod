@@ -12,13 +12,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class MortarRecipes {
-
-    public static final Map<Object[], ItemStack[]> RecipesList = Maps.newHashMap();
-
+    public final Map<Object[], ItemStack[]> RecipesList = Maps.newHashMap();
 	private static final MortarRecipes RECIPE_BASE = new MortarRecipes();
-    /**
-     * Returns an instance of FurnaceRecipes.
-     */
+	private MortarRecipes() {
+		// TODO Auto-generated constructor stub
+	}
     public static MortarRecipes instance() {
         return RECIPE_BASE;
     }
@@ -47,7 +45,7 @@ public class MortarRecipes {
     	                }
                     }else if(obj1 instanceof String){
                     	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
-                    	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, input)) {
+                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
     	                	inputs.remove(input);
                             flg2 = true;
     	                    break;

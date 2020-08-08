@@ -15,7 +15,7 @@ public final class PotRecipeMaker {
 	  public static List<ItemFluidRecipe> getRecipes(IJeiHelpers helpers) {
 	    IStackHelper stackHelper = helpers.getStackHelper();
 	    List<ItemFluidRecipe> recipes = new ArrayList<ItemFluidRecipe>();
-	    for (Entry<FluidStack, Map<Object[], ItemStack>> entry : PotRecipes.RecipesList.entrySet()) {
+	    for (Entry<FluidStack, Map<Object[], ItemStack>> entry : PotRecipes.getInstance().RecipesList.entrySet()) {
 	    	for(Entry<Object[], ItemStack> entry2 : entry.getValue().entrySet()){
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();

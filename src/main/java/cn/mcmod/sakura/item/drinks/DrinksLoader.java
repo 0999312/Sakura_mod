@@ -17,21 +17,23 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DrinksLoader {
+	private static final DrinksLoader instance = new DrinksLoader();
+	
     public static ItemDrinkBase tea = new ItemDrinkBase(SakuraMain.MODID,"tea",
     		new FoodInfo[]{
-    			new FoodInfo(SakuraMain.MODID + "." +"black_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"green_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 0, 5F, 0, 0),		
-    			new FoodInfo(SakuraMain.MODID + "." +"milk_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 1F, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"milk_green_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 1F, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"earl_grey", 1, 0.5F, false, 50F, 0, 0, 2F, 0, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"milk_earl_grey", 1, 0.5F, false, 50F, 0, 0, 2F, 0, 2F, 5F, 0, 0),	
-    			new FoodInfo(SakuraMain.MODID + "." +"fruit_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"milk_fruit_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0, 2F, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"lemon_black_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0f, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"lemon_green_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0f, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"mint_tea", 1, 0.5F, false, 50F, 0, 0F, 3F, 0f, 0, 5F, 0, 0),		
-    			new FoodInfo(SakuraMain.MODID + "." +"barley_tea", 1, 0.5F, false, 50F, 1f, 0, 2F, 0f, 0, 5F, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"brown_rice_tea", 1, 0.5F, false, 50F, 1f, 0, 2F, 0f, 0, 5F, 0, 0),
+    			new FoodInfo("black_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 0, 5F, 0, 0),
+    			new FoodInfo("green_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 0, 5F, 0, 0),		
+    			new FoodInfo("milk_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 1F, 5F, 0, 0),
+    			new FoodInfo("milk_green_tea", 1, 0.5F, false, 50F, 0, 0, 1F, 0, 1F, 5F, 0, 0),
+    			new FoodInfo("earl_grey", 1, 0.5F, false, 50F, 0, 0, 2F, 0, 0, 5F, 0, 0),
+    			new FoodInfo("milk_earl_grey", 1, 0.5F, false, 50F, 0, 0, 2F, 0, 2F, 5F, 0, 0),	
+    			new FoodInfo("fruit_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0, 0, 5F, 0, 0),
+    			new FoodInfo("milk_fruit_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0, 2F, 5F, 0, 0),
+    			new FoodInfo("lemon_black_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0f, 0, 5F, 0, 0),
+    			new FoodInfo("lemon_green_tea", 1, 0.5F, false, 50F, 0, 2F, 2F, 0f, 0, 5F, 0, 0),
+    			new FoodInfo("mint_tea", 1, 0.5F, false, 50F, 0, 0F, 3F, 0f, 0, 5F, 0, 0),		
+    			new FoodInfo("barley_tea", 1, 0.5F, false, 50F, 1f, 0, 2F, 0f, 0, 5F, 0, 0),
+    			new FoodInfo("brown_rice_tea", 1, 0.5F, false, 50F, 1f, 0, 2F, 0f, 0, 5F, 0, 0),
     		},
     		new PotionEffect[][]{
 	    		new PotionEffect[]{
@@ -82,21 +84,21 @@ public class DrinksLoader {
     );
     public static DrinksAlcoholic alcoholic = new DrinksAlcoholic("alcoholic",
     		new FoodInfo[]{
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_beer", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_doburoku", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_sake", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_shouchu", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_red_wine", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_white_wine", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_champagne", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_rum", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_vodka", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_whiskey", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_brandy", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_gin", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_tequila", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_liqueur", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-    			new FoodInfo(SakuraMain.MODID + "." +"glass_cocoa_liqueur", 2, 0.5F, false, 5F, 2F, 1F, 0, 0F, 0, 0, 0, 0),
+    			new FoodInfo("glass_beer", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_doburoku", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_sake", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_shouchu", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_red_wine", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_white_wine", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_champagne", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_rum", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_vodka", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_whiskey", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_brandy", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+    			new FoodInfo("glass_gin", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_tequila", 2, 0.5F, false, 50F, 2F, 0, 0, 0, 0, 0, 0, 0),
+    			new FoodInfo("glass_liqueur", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+    			new FoodInfo("glass_cocoa_liqueur", 2, 0.5F, false, 5F, 2F, 1F, 0, 0F, 0, 0, 0, 0),
     		},
     		new PotionEffect[][]{
 	    		new PotionEffect[]{
@@ -150,50 +152,50 @@ public class DrinksLoader {
     );
     public static DrinksAlcoholic cocktail = new DrinksAlcoholic("cocktail",
     		new FoodInfo[]{
-				new FoodInfo(SakuraMain.MODID + "." +"glass_kir", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_royal_kir", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_paradise", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_sidecar", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_french_sevenfive", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_john_collins", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_daiquiri", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_between_the_sheets", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_black_russian", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_godfather", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_godmother", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_kir", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_royal_kir", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_paradise", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_sidecar", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_french_sevenfive", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_john_collins", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_daiquiri", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_between_the_sheets", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_black_russian", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_godfather", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_godmother", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				
-				new FoodInfo(SakuraMain.MODID + "." +"glass_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				
-				new FoodInfo(SakuraMain.MODID + "." +"glass_mint_julep", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_mojito", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_rusty_nail", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_lemon_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_russian_spring", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_alexander", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_aviation", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_porto_flip", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_red_eyes", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_spritzer", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_panache", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_bloody_mary", 2, 0.5F, false, 50F, 2F, 1F, 1F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_screw_driver", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_saketini", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_boilermaker", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_beer_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_long_island_iced_tea", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_highball", 2, 0.5F, false, 50F, 2F, 0, 0,1F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_porchcrawler", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_stinger", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_negroni", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_old_fashioned", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_whiskey_sour", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_gimlet", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_tequila_sunrise", 2, 0.5F, false, 50F, 2F, 0, 0,1F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_flying_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_eggnog", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 1F, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_scorpion", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
-				new FoodInfo(SakuraMain.MODID + "." +"glass_moscow_mule", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_mint_julep", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_mojito", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_rusty_nail", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_lemon_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_russian_spring", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_alexander", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_aviation", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_porto_flip", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_red_eyes", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_spritzer", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_panache", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_bloody_mary", 2, 0.5F, false, 50F, 2F, 1F, 1F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_screw_driver", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_saketini", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_boilermaker", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_beer_margarita", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_long_island_iced_tea", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_highball", 2, 0.5F, false, 50F, 2F, 0, 0,1F, 0, 0, 0, 0),
+				new FoodInfo("glass_porchcrawler", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_stinger", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_negroni", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_old_fashioned", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_whiskey_sour", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_gimlet", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_tequila_sunrise", 2, 0.5F, false, 50F, 2F, 0, 0,1F, 0, 0, 0, 0),
+				new FoodInfo("glass_flying_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_eggnog", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 1F, 0, 0, 0),
+				new FoodInfo("glass_scorpion", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_moscow_mule", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
     		},
     		new PotionEffect[][]{
 	    		new PotionEffect[]{
@@ -366,38 +368,44 @@ public class DrinksLoader {
     public static ItemMetaDurability bottle_alcoholic = new ItemMetaDurability(SakuraMain.MODID,
     		"bottle_alcoholic", 4, new ItemStack(ItemLoader.MATERIAL,1,47),
     		new String[]{
-	    		SakuraMain.MODID + "." +"beer_bottle",
-	    		SakuraMain.MODID + "." +"doburoku_bottle",
-	    		SakuraMain.MODID + "." +"sake_bottle",
-	    		SakuraMain.MODID + "." +"shouchu_bottle",
-	    		SakuraMain.MODID + "." +"red_wine_bottle",
-	    		SakuraMain.MODID + "." +"white_wine_bottle",
-	    		SakuraMain.MODID + "." +"champagne_bottle",
-	    		SakuraMain.MODID + "." +"rum_bottle",
-	    		SakuraMain.MODID + "." +"vodka_bottle",
-	    		SakuraMain.MODID + "." +"whiskey_bottle",
-	    		SakuraMain.MODID + "." +"brandy_bottle",
-	    		SakuraMain.MODID + "." +"gin_bottle",
-	    		SakuraMain.MODID + "." +"tequila_bottle",
-	    		SakuraMain.MODID + "." +"liqueur_bottle",
-	    		SakuraMain.MODID + "." +"cocoa_liqueur_bottle",
+	    		"beer_bottle",
+	    		"doburoku_bottle",
+	    		"sake_bottle",
+	    		"shouchu_bottle",
+	    		"red_wine_bottle",
+	    		"white_wine_bottle",
+	    		"champagne_bottle",
+	    		"rum_bottle",
+	    		"vodka_bottle",
+	    		"whiskey_bottle",
+	    		"brandy_bottle",
+	    		"gin_bottle",
+	    		"tequila_bottle",
+	    		"liqueur_bottle",
+	    		"cocoa_liqueur_bottle",
 			});
-    public DrinksLoader() {
+    public void registerItems() {
     	register(bottle_alcoholic);
 		register(tea);
 		register(alcoholic);
 		register(cocktail);
 	}
-    @SideOnly(Side.CLIENT)
-    public static void registerRender() {
-    	ItemRegister.registerRender(tea);
-    	ItemRegister.registerRender(alcoholic);
-    	ItemRegister.registerRender(cocktail);
-    	ItemRegister.registerRender(bottle_alcoholic);
+    private DrinksLoader() {
+
 	}
-    private static void register(Item item) {
+    @SideOnly(Side.CLIENT)
+    public void registerRender() {
+    	ItemRegister.getInstance().registerRender(tea);
+    	ItemRegister.getInstance().registerRender(alcoholic);
+    	ItemRegister.getInstance().registerRender(cocktail);
+    	ItemRegister.getInstance().registerRender(bottle_alcoholic);
+	}
+    private void register(Item item) {
         item.setCreativeTab(CommonProxy.tab);
-        ItemRegister.register(SakuraMain.MODID, item);
+        ItemRegister.getInstance().register(SakuraMain.MODID, item);
     }
+	public static DrinksLoader getInstance() {
+		return instance;
+	}
  
 }

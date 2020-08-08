@@ -35,31 +35,30 @@ import net.minecraftforge.fml.relauncher.Side;
 @EventBusSubscriber
 public class CommonProxy {
 	public static final SoundEvent TAIKO = new SoundEvent(new ResourceLocation(SakuraMain.MODID, "taiko"));
-    public static CreativeTabs tab;
+    public static CreativeTabs tab = new CreativeTabsSakura();
     private static SimpleNetworkWrapper network;
     public static SimpleNetworkWrapper getNetwork() {
         return network;
     }
     public void preInit(FMLPreInitializationEvent event) {
-        tab = new CreativeTabsSakura();
         new PotionLoader(event);
-        new BlockLoader(event);
-        new ItemLoader(event);
-        new DrinksLoader();
+        BlockLoader.getInstance().registerBlock();
+        ItemLoader.getInstance().registerItem();
+        DrinksLoader.getInstance().registerItems();
         SakuraEntityRegister.entityRegister();
         SakuraEntityRegister.entitySpawn();
-        new SakuraOreDictLoader();
-        KimonoLoader.Init();
+        SakuraOreDictLoader.getInstance().registerOre();
+        KimonoLoader.getInstance().Init();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
     }
 
     public void init(FMLInitializationEvent event) {
-    	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
-    	MinecraftForge.TERRAIN_GEN_BUS.register(new WorldGenLoader());
-    	new WorldGenLoader();
-        TileEntityRegistry.init();
+    	MinecraftForge.ORE_GEN_BUS.register(WorldGenLoader.getInstance());
+    	MinecraftForge.TERRAIN_GEN_BUS.register(WorldGenLoader.getInstance());
+    	WorldGenLoader.getInstance().WorldGenRegister();
+        TileEntityRegistry.getInstance().init();
 
         SakuraRecipeRegister.Init();
         if(Loader.isModLoaded("tfc")){

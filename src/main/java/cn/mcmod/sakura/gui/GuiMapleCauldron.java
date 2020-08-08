@@ -45,7 +45,7 @@ public class GuiMapleCauldron extends GuiContainer {
             FluidTank fluidTank = this.tilePot.getTank();
             int heightInd = (int) (68 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 35, l + 78 - heightInd , 16f, heightInd);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 35, l + 78 - heightInd , 16f, heightInd);
             }
         }
     }

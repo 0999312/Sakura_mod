@@ -12,6 +12,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -68,22 +69,23 @@ public class BlockTeishoku extends BlockFacing {
 	}
 
 	private boolean eatGohan(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-//		if (!player.canEat(false)) {
-//			return false;
-//		}
-		if (Loader.isModLoaded("tfc"))
-			addTFCStats(player);
-		else
-			player.getFoodStats().addStats(amount, saturation);
-		int i = state.getValue(BITES).intValue();
-		worldIn.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP,
-				SoundCategory.PLAYERS, 0.4F, worldIn.rand.nextFloat() * 0.1F + 0.8F);
-		if (i < 3) {
-			worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
-		} else {
-			worldIn.setBlockState(pos,
-					BlockLoader.TEISHOKO_FINISHED.getDefaultState().withProperty(BlockTeishokoFinished.isPlate, this.isPlate).withProperty(FACING, state.getValue(FACING)), 3);
+		if (!player.canEat(false)) {
+			return false;
 		}
+
+		int i = state.getValue(BITES).intValue();
+		if(!worldIn.isRemote) {
+			if (Loader.isModLoaded("tfc"))
+				addTFCStats(player);
+			else
+				player.getFoodStats().addStats(amount, saturation);
+			if (i < 3) {
+				worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
+			} else {
+				worldIn.setBlockState(pos,BlockLoader.TEISHOKO_FINISHED.getDefaultState().withProperty(BlockTeishokoFinished.isPlate, this.isPlate).withProperty(FACING, state.getValue(FACING)), 3);
+			}
+		}
+		worldIn.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP,SoundCategory.PLAYERS, 0.4F, worldIn.rand.nextFloat() * 0.1F + 0.8F);
 		return true;
 	}
 
@@ -120,6 +122,13 @@ public class BlockTeishoku extends BlockFacing {
 		return this.getDefaultState().withProperty(FACING, facing).withProperty(BITES, (meta & 3));
 	}
 
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY,
+			float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(BITES, 0);
+	}
+	
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */

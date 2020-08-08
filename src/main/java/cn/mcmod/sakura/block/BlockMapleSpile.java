@@ -54,12 +54,19 @@ public class BlockMapleSpile extends BlockFacing {
                 return true;
         return false;
     }
-	@Override
-	public void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
+    
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+    	super.onBlockAdded(worldIn, pos, state);
+    	this.setDefaultFacing(worldIn, pos, state);
+    }
+	
+    public void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state) {
 		 for (EnumFacing enumfacing : FACING.getAllowedValues())
 	            if (this.canPlaceAt(worldIn, pos, enumfacing))
 	                worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
 	}
+    
     private boolean canPlaceAt(World worldIn, BlockPos pos, EnumFacing facing) {
         BlockPos blockpos = pos.offset(facing.getOpposite());
         IBlockState iblockstate = worldIn.getBlockState(blockpos);

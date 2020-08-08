@@ -32,7 +32,7 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipes(DistillationRecipeMaker.getRecipes(jeiHelpers),"sakura.distillation");
 		registry.addRecipes(L2ISRecipeMaker.getRecipes(jeiHelpers),"sakura.liquid_item");
 		
-		registry.addRecipes(L2ISRecipeMaker.getRecipes(jeiHelpers),"sakura.liquid_item");
+		registry.addRecipes(WebRecipeMaker.getRecipes(jeiHelpers),"sakura.straw_web");
 
 		registry.addRecipeClickArea(GuiCampfirePot.class, 91, 41, 28, 23,"sakura.cooking_pot");
 		registry.addRecipeClickArea(GuiStoneMortar.class, 77, 32, 28, 23,"sakura.mortar");

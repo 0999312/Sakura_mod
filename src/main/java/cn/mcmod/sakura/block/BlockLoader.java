@@ -44,7 +44,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -233,9 +232,8 @@ public class BlockLoader {
 	
 	public static Block HOPS = new BlockHopsCrop();
 	public static Block SEAWEED = new BlockSeaweedCrop();
-	public BlockLoader(FMLPreInitializationEvent event) {
-//		register blocks
-//		DON'T REGISTER RENDERS IN THIS VOID,PLEASE!!!
+	private static final BlockLoader instance = new BlockLoader();
+	public void registerBlock() {
 
 		FluidRegistry.addBucketForFluid(HOT_SPRING_WATER_FLUID);
 		HOT_SPRING_WATER=registerFluidBlock(HOT_SPRING_WATER_FLUID, new BlockFluidBasic(HOT_SPRING_WATER_FLUID){
@@ -442,19 +440,22 @@ public class BlockLoader {
 		Blocks.FIRE.setFireInfo(BAMBOO_BLOCK, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO, 5, 20);
 		
+	}
+	private BlockLoader() {
+// singleton
     }
 
-	private static void register(Block block, Item itemBlock, String string) {
+	private void register(Block block, Item itemBlock, String string) {
 		block.setCreativeTab(CommonProxy.tab);
-		BlockRegister.register(SakuraMain.MODID, block, itemBlock, string);
+		BlockRegister.getInstance().register(SakuraMain.MODID, block, itemBlock, string);
 	}
 
-	private static void registerNoItem(Block block, String string) {
-		BlockRegister.registerNoItem(SakuraMain.MODID, block, string);
+	private void registerNoItem(Block block, String string) {
+		BlockRegister.getInstance().registerNoItem(SakuraMain.MODID, block, string);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerRenders() {
+	public void registerRenders() {
 //		please register blocks' renders in THIS void!
 		registerRender(MUSHROOM_FALLEN_LEAVES);
 		registerRender(STRAW_WEB);
@@ -601,7 +602,7 @@ public class BlockLoader {
         		icons_5
         		);
         ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(SHOJI), stack -> {
-            switch (RecipesUtil.getItemTagCompound(stack).getInteger("type")) {
+            switch (RecipesUtil.getInstance().getItemTagCompound(stack).getInteger("type")) {
                 case 0:
                 default:
                     return icons_0;
@@ -620,31 +621,35 @@ public class BlockLoader {
 		
 	}
 	@SideOnly(Side.CLIENT)
-	public static void registerRender(Block block, int i) {
-		BlockRegister.registerRender(block,i);
+	public void registerRender(Block block, int i) {
+		BlockRegister.getInstance().registerRender(block,i);
 	}
 
-	public static Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
-		return BlockRegister.registerFluidBlock(SakuraMain.MODID, fluid, fluidBlock, name);
+	public Block registerFluidBlock(Fluid fluid, Block fluidBlock, String name) {
+		return BlockRegister.getInstance().registerFluidBlock(SakuraMain.MODID, fluid, fluidBlock, name);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerFluidBlockRendering(Block block, String name) {
-		BlockRegister.registerFluidBlockRendering(SakuraMain.MODID, block, name);
+	public void registerFluidBlockRendering(Block block, String name) {
+		BlockRegister.getInstance().registerFluidBlockRendering(SakuraMain.MODID, block, name);
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public static void registerRender(Block block) {
-		BlockRegister.registerRender(block);
+	public void registerRender(Block block) {
+		BlockRegister.getInstance().registerRender(block);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerCakeRender(Block block, String name) {
-		BlockRegister.registerCakeRender(SakuraMain.MODID, block, name);
+	public void registerCakeRender(Block block, String name) {
+		BlockRegister.getInstance().registerCakeRender(SakuraMain.MODID, block, name);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public static void registerRender(Block block, String name) {
-		BlockRegister.registerRender(SakuraMain.MODID, block, name);
+	public void registerRender(Block block, String name) {
+		BlockRegister.getInstance().registerRender(SakuraMain.MODID, block, name);
+	}
+
+	public static BlockLoader getInstance() {
+		return instance;
 	}
 }

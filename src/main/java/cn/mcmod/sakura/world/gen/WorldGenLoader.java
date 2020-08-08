@@ -17,8 +17,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class WorldGenLoader {
-	
-	public WorldGenLoader() {
+	private static final WorldGenLoader instance = new WorldGenLoader();
+	private WorldGenLoader() {
+	}
+	public void WorldGenRegister() {
 		GameRegistry.registerWorldGenerator(new WorldGenBambooShot(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenPepper(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenVanilla(), 1);
@@ -41,12 +43,15 @@ public class WorldGenLoader {
     	if(Loader.isModLoaded("tfc"))
     		return;
     	BlockPos pos = event.getChunkPos().getBlock(event.getRand().nextInt(16) + 8, 0, event.getRand().nextInt(16) + 8);
-    	BlockPos newPos = WorldUtil.findGround(event.getWorld(),pos, true, false, true);
+    	BlockPos newPos = WorldUtil.getInstance().findGround(event.getWorld(),pos, true, false, true);
     	Biome biome = event.getWorld().getBiome(pos);
         
     	if (newPos != null&&event.getWorld().provider instanceof WorldProviderSurface&&biome != Biomes.DESERT && biome != Biomes.DESERT_HILLS && event.getRand().nextFloat() < SakuraConfig.hotspring_weight / 10000.0F) {
             new WorldGenHotSpring().generate(event.getWorld(), event.getRand(), newPos);
         }
+	}
+	public static WorldGenLoader getInstance() {
+		return instance;
 	}
 
 }

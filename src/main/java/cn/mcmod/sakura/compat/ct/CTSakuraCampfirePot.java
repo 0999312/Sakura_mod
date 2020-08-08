@@ -62,7 +62,7 @@ public class CTSakuraCampfirePot {
         @Override
         public void apply()
         {
-        	PotRecipes.ClearRecipe(fluid,itemInput);
+        	PotRecipes.getInstance().ClearRecipe(fluid,itemInput);
         }
 
         @Override
@@ -104,7 +104,7 @@ public class CTSakuraCampfirePot {
         @Override
         public void apply()
         {
-        	PotRecipes.ClearAllRecipe();
+        	PotRecipes.getInstance().ClearAllRecipe();
         }
 
         @Override

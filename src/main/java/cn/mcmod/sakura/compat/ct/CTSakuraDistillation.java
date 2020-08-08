@@ -53,7 +53,7 @@ public class CTSakuraDistillation {
         @Override
         public void apply()
         {
-        	DistillationRecipes.ClearRecipe(itemInput);
+        	DistillationRecipes.getInstance().ClearRecipe(itemInput);
         }
 
         @Override
@@ -95,7 +95,7 @@ public class CTSakuraDistillation {
         @Override
         public void apply()
         {
-        	DistillationRecipes.ClearAllRecipe();
+        	DistillationRecipes.getInstance().ClearAllRecipe();
         }
 
         @Override

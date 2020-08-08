@@ -34,6 +34,10 @@
                "all" : "sakura:blocks/tatara_finished"
             }
          }
-      ]
+      ],
+      "inventory" : {
+         "model" : "cube_all",
+         "all" : "sakura:blocks/tatara_smelting"
+      }
    }
 }

@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.item;
 
-import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockLiquid;
@@ -25,7 +24,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class ItemRiceSeeds extends Item implements IPlantable {
     public ItemRiceSeeds() {
-        this.setUnlocalizedName(SakuraMain.MODID + "." + "rice_seeds");
+        this.setUnlocalizedName("sakura.rice_seeds");
     }
 
     @Override

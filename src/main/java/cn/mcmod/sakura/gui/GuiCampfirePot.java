@@ -61,7 +61,7 @@ public class GuiCampfirePot extends GuiContainer {
             FluidTank fluidTank = this.tilePot.getTank();
             int heightInd = (int) (72 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167- heightInd, l + 11 , heightInd, 16f);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167- heightInd, l + 11 , heightInd, 16f);
             }
 
         }

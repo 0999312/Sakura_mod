@@ -50,9 +50,9 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
 
         ItemStack[] result = MortarRecipes.instance().getResult(inventoryList);
         if (result.length>0) {
-        	if(RecipesUtil.canIncrease(result[0], output1)){
+        	if(RecipesUtil.getInstance().canIncrease(result[0], output1)){
 	        	if(result.length>1){
-	        		if(RecipesUtil.canIncrease(result[1], output2))
+	        		if(RecipesUtil.getInstance().canIncrease(result[1], output2))
 	        			processTimer += 1;
 	        		else processTimer = 0;
 	       		}else processTimer += 1;	
@@ -79,6 +79,8 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
             input2.shrink(1);
             input3.shrink(1);
             input4.shrink(1);
+            
+            markDirty();
         }
     }
     

@@ -13,7 +13,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class PotRecipes {
-	public static final Map<FluidStack, Map<Object[], ItemStack>> RecipesList = Maps.newHashMap();
+	public final Map<FluidStack, Map<Object[], ItemStack>> RecipesList = Maps.newHashMap();
 	private static final PotRecipes RECIPE_BASE = new PotRecipes();
     
 	public static PotRecipes getInstance() {
@@ -57,7 +57,7 @@ public class PotRecipes {
 		    	                }
 		                    }else if(obj1 instanceof String){
 		                    	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
-		                    	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, input)) {
+		                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
 		                            flg2 = true;
 		    	                    break;
 		                        }
@@ -78,11 +78,11 @@ public class PotRecipes {
 		return ItemStack.EMPTY;
 	}
 
-    public static void ClearRecipe(FluidStack fluid,Object[] input) {
+    public void ClearRecipe(FluidStack fluid,Object[] input) {
     	RecipesList.get(fluid).remove(input);
 	}
 	
-    public static void ClearAllRecipe() {
+    public void ClearAllRecipe() {
     	RecipesList.clear();
 	}
 

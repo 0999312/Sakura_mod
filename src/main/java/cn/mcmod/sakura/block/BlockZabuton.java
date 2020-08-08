@@ -21,11 +21,11 @@ public class BlockZabuton extends BlockBase {
 	}
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+		return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
 	}
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		return SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0D);
+		return SeatUtil.getInstance().sitOnBlock(worldIn, pos.getX(), pos.getY()+0.1f, pos.getZ(), playerIn, 0D);
 	}
 }

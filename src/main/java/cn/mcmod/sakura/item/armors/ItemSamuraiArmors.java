@@ -38,7 +38,7 @@ public class ItemSamuraiArmors extends ItemArmor {
 	      this.model2 = new ModelSamuraiArmors(armorSlot,3,0.5F);
 	    }
 	    
-	    this.model = ClientUtils.getCustomArmorModel(entityLiving, itemStack, armorSlot, this.model, this.model1, this.model2);
+	    this.model = ClientUtils.getInstance().getCustomArmorModel(entityLiving, itemStack, armorSlot, this.model, this.model1, this.model2);
 	    return this.model;
 	  }
 }

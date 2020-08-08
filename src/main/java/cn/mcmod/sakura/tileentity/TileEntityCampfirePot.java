@@ -3,6 +3,7 @@ package cn.mcmod.sakura.tileentity;
 import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockCampfirePot;
 import cn.mcmod_mmf.mmlib.util.RecipesUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -118,7 +119,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 		        if (isRecipes(this.getTank().getFluid(),inventoryList)){
 	            	ItemStack result = PotRecipes.getInstance().getResultItemStack(this.getTank().getFluid(), inventoryList);
 	             	FluidStack fluidStack = PotRecipes.getInstance().getResultFluid(this.getTank().getFluid());
-	             	if(RecipesUtil.canIncrease(result, itemstack)&&isBurning()) {
+	             	if(RecipesUtil.getInstance().canIncrease(result, itemstack)&&isBurning()) {
 		                cookTime += 1;
 	             	}else cookTime = 0;
 		        
@@ -136,10 +137,13 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 			            }
 			            
 			    	    for(int i=0;i<9;i++){
-			    	    	if(this.inventory.get(i).getCount()==1&&
-			    	    	this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i))!=null)
+			    	    	if(!(this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).isEmpty())){
+			    	    		if(this.inventory.get(i).getCount()==1){
 			    	    		this.inventory.set(i, this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
-			    	    	else this.decrStackSize(i, 1);
+			    	    		}
+			    	    		else this.decrStackSize(i, 1);
+			    	    		Block.spawnAsEntity(getWorld(), getPos(), this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i).copy()));
+			    	    	}else this.decrStackSize(i, 1);
 			    	    }
 			            flag1 = true;
 			        }

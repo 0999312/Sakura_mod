@@ -29,7 +29,7 @@ public class WorldGenVanilla implements IWorldGenerator {
 	    {
 	      int posX = x + world.rand.nextInt(16) + 8;
 	      int posZ = z + world.rand.nextInt(16) + 8;
-	      BlockPos newPos = WorldUtil.findGround(world, new BlockPos(posX, 0, posZ), true, true, true);
+	      BlockPos newPos = WorldUtil.getInstance().findGround(world, new BlockPos(posX, 0, posZ), true, true, true);
 	      if ((newPos != null) && (BlockLoader.VANILLA_SPLINT.canPlaceBlockAt(world, newPos))) {
 	        world.setBlockState(newPos, BlockLoader.VANILLACROP.getDefaultState(), 2);
 	      }

@@ -17,7 +17,7 @@ public final class DistillationRecipeMaker {
 
 	    List<BarrelRecipe> recipes = new ArrayList<BarrelRecipe>();
 
-	    for (Entry<FluidStack, Map<Object[], FluidStack>> entry : DistillationRecipes.RecipesList.entrySet()) {
+	    for (Entry<FluidStack, Map<Object[], FluidStack>> entry : DistillationRecipes.getInstance().RecipesList.entrySet()) {
 	    	for(Entry<Object[], FluidStack> entry2 : entry.getValue().entrySet()){
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();

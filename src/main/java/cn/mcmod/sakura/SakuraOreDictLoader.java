@@ -7,8 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SakuraOreDictLoader {
-
-	public SakuraOreDictLoader() {
+	private static final SakuraOreDictLoader instance = new SakuraOreDictLoader();
+	private SakuraOreDictLoader() {
+	}
+	public void registerOre() {
 		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 74));
 		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 76));
 		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 77));
@@ -129,6 +131,9 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("toolForginghammer", new ItemStack(ItemLoader.SAKURA_HAMMER, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.KNIFE_FISH, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.SAKURA_KNIFE_FISH, 1, Short.MAX_VALUE));
+	}
+	public static SakuraOreDictLoader getInstance() {
+		return instance;
 	}
 	
 

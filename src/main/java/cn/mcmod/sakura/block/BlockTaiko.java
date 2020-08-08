@@ -25,7 +25,7 @@ public class BlockTaiko extends BlockFacing {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("stickWood"), playerIn.getHeldItem(hand))){
+		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("stickWood"), playerIn.getHeldItem(hand))){
 			worldIn.playSound(playerIn, pos, CommonProxy.TAIKO, SoundCategory.BLOCKS, 1.2F, 1.2F);
 			playerIn.swingArm(hand);
 			}

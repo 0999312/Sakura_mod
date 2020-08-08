@@ -125,7 +125,7 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
 			        return true;
 		        }
 		        
-		        if (WorldUtil.isItemFuel(stack)) {
+		        if (WorldUtil.getInstance().isItemFuel(stack)) {
 		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
 		            setState(true, worldIn, pos);
 					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);

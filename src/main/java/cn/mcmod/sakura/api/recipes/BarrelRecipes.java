@@ -13,9 +13,10 @@ import com.google.common.collect.Maps;
 import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 
 public class BarrelRecipes {
-	public static final Map<FluidStack, Map<Object[], FluidStack>> RecipesList = Maps.newHashMap();
+	public final Map<FluidStack, Map<Object[], FluidStack>> RecipesList = Maps.newHashMap();
 	private static final BarrelRecipes RECIPE_BASE = new BarrelRecipes();
-    
+	private BarrelRecipes() {
+	}
 	public static BarrelRecipes getInstance() {
 		return RECIPE_BASE;
 	}
@@ -57,7 +58,7 @@ public class BarrelRecipes {
 		    	                }
 		                    }else if(obj1 instanceof String){
 		                    	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
-		                    	if (!ore.isEmpty()&&RecipesUtil.containsMatch(false, ore, input)) {
+		                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
 		                            flg2 = true;
 		    	                    break;
 		                        }
@@ -78,11 +79,11 @@ public class BarrelRecipes {
 		return null;
 	}
   
-    public static void ClearRecipe(FluidStack input) {
+    public void ClearRecipe(FluidStack input) {
     	RecipesList.remove(input);
 	}
     
-    public static void ClearAllRecipe() {
+    public void ClearAllRecipe() {
     	RecipesList.clear();
 	}
 }

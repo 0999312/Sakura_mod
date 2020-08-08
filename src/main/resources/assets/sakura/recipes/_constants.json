@@ -12,6 +12,19 @@
          "ore" : "cropStraw"
       },
       "name" : "CROPSTRAW"
+   },   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "foodDough"
+      },
+      "name" : "FOODDOUGH"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "listAllmeat"
+      },
+      "name" : "LISTALLMEAT"
    },
    {
       "ingredient" : {

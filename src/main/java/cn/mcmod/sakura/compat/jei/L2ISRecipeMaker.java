@@ -15,7 +15,7 @@ public final class L2ISRecipeMaker {
 	  public static List<ItemFluidRecipe> getRecipes(IJeiHelpers helpers) {
 	    IStackHelper stackHelper = helpers.getStackHelper();
 	    List<ItemFluidRecipe> recipes = new ArrayList<ItemFluidRecipe>();
-	    for (Entry<FluidStack, Map<Object, ItemStack>> entry : LiquidToItemRecipe.RecipesList.entrySet()) {
+	    for (Entry<FluidStack, Map<Object, ItemStack>> entry : LiquidToItemRecipe.instance().RecipesList.entrySet()) {
 			for (Entry<Object, ItemStack> entry2 : entry.getValue().entrySet()) {
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	List<ItemStack> main = stackHelper.toItemStackList(entry2.getKey());

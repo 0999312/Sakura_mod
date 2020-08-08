@@ -16,13 +16,16 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -39,17 +42,26 @@ public class BlockFuton extends BlockFacing {
 		this.setSoundType(SoundType.CLOTH);
 		this.setHardness(0.2F);
 		this.disableStats();
-		this.setDefaultState(this.blockState.getBaseState().withProperty(PART, EnumPartType.FOOT).withProperty(OCCUPIED,false));
+		this.setDefaultState(
+				this.blockState.getBaseState().withProperty(PART, EnumPartType.FOOT).withProperty(OCCUPIED, false));
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING,PART,OCCUPIED });
+		return new BlockStateContainer(this, new IProperty[] { FACING, PART, OCCUPIED });
+	}
+
+	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		return ;
 	}
 	
+	/**
+	 * Called when the block is right clicked by a player.
+	 */
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote) {
 			return true;
 		}
@@ -62,12 +74,15 @@ public class BlockFuton extends BlockFacing {
 			}
 		}
 
-		if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL) {
+		net.minecraft.world.WorldProvider.WorldSleepResult sleepResult = worldIn.provider.canSleepAt(playerIn, pos);
+		if (sleepResult != net.minecraft.world.WorldProvider.WorldSleepResult.BED_EXPLODES) {
+			if (sleepResult == net.minecraft.world.WorldProvider.WorldSleepResult.DENY)
+				return true;
 			if (state.getValue(OCCUPIED).booleanValue()) {
-				EntityPlayer entityplayer = this.getPlayerInBlanket(worldIn, pos);
+				EntityPlayer entityplayer = this.getPlayerInBed(worldIn, pos);
 
 				if (entityplayer != null) {
-					playerIn.sendMessage(new TextComponentTranslation("tile.bed.occupied"));
+					playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.occupied", new Object[0]), true);
 					return true;
 				}
 
@@ -83,9 +98,11 @@ public class BlockFuton extends BlockFacing {
 				return true;
 			}
 			if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW) {
-				playerIn.sendMessage(new TextComponentTranslation("tile.bed.noSleep"));
+				playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]), true);
 			} else if (entityplayer$sleepresult == EntityPlayer.SleepResult.NOT_SAFE) {
-				playerIn.sendMessage(new TextComponentTranslation("tile.bed.notSafe"));
+				playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]), true);
+			} else if (entityplayer$sleepresult == EntityPlayer.SleepResult.TOO_FAR_AWAY) {
+				playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.tooFarAway", new Object[0]), true);
 			}
 
 			return true;
@@ -97,12 +114,12 @@ public class BlockFuton extends BlockFacing {
 			worldIn.setBlockToAir(blockpos);
 		}
 
-		worldIn.newExplosion(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
+		worldIn.newExplosion((Entity) null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, 5.0F, true, true);
 		return true;
 	}
 
 	@Nullable
-	private EntityPlayer getPlayerInBlanket(World worldIn, BlockPos pos) {
+	private EntityPlayer getPlayerInBed(World worldIn, BlockPos pos) {
 		for (EntityPlayer entityplayer : worldIn.playerEntities) {
 			if (entityplayer.isPlayerSleeping() && entityplayer.bedLocation.equals(pos)) {
 				return entityplayer;
@@ -184,9 +201,9 @@ public class BlockFuton extends BlockFacing {
 	}
 
 	@Override
-    public EnumPushReaction getMobilityFlag(IBlockState state) {
-        return EnumPushReaction.DESTROY;
-    }
+	public EnumPushReaction getMobilityFlag(IBlockState state) {
+		return EnumPushReaction.DESTROY;
+	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
@@ -209,7 +226,6 @@ public class BlockFuton extends BlockFacing {
 		}
 	}
 
-	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
 		return (meta & 8) > 0
@@ -245,6 +261,36 @@ public class BlockFuton extends BlockFacing {
 		}
 
 		return i;
+	}
+
+	public IBlockState withRotation(IBlockState state, Rotation rot) {
+		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+	}
+
+	/**
+	 * Returns the blockstate with the given mirror of the passed blockstate. If
+	 * inapplicable, returns the passed blockstate.
+	 */
+	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
+	}
+
+	/**
+	 * Called by ItemBlocks after a block is set in the world, to allow
+	 * post-place logic
+	 */
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+	}
+	
+	/**
+	 * The type of render function called. MODEL for mixed tesr and static
+	 * model, MODELBLOCK_ANIMATED for TESR-only, LIQUID for vanilla liquids,
+	 * INVISIBLE to skip all rendering
+	 */
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
 
 	public enum EnumPartType implements IStringSerializable {

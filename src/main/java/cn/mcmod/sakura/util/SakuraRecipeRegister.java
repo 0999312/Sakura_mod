@@ -109,7 +109,7 @@ public class SakuraRecipeRegister {
     	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,147), new ItemStack(ItemLoader.FOODSET,1,148), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,144), new ItemStack(ItemLoader.FOODSET,1,145), 0.1F);
     	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,143), new ItemStack(ItemLoader.FOODSET,1,144));
-    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.FOODSET,1,144));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.MATERIAL,1,34));
     	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.IRON_SAND), new ItemStack(Items.IRON_INGOT), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 38), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 21), new ItemStack(ItemLoader.MATERIAL, 1, 22), 0.1F);
@@ -131,19 +131,19 @@ public class SakuraRecipeRegister {
 			switch (SakuraConfig.harder_iron_difficult) {
 			case 1:
 				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
-		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
 		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,54));
 		    	});
 				break;
 			case 2:
 				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
-		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
 		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,53));
 		    	});
 				break;
 			default:
 				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
-		    		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
 		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,52));
 		    	});
 				break;

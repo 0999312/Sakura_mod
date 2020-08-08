@@ -20,8 +20,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityRegistry {
-
-    public static void init() {
+	private static final TileEntityRegistry instance = new TileEntityRegistry();
+	private TileEntityRegistry() {
+	}
+    public void init() {
         registerTileEntity(TileEntityCampfire.class, "campfire");
         registerTileEntity(TileEntityCampfirePot.class, "campfirepot");
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
@@ -34,7 +36,7 @@ public class TileEntityRegistry {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void render() {
+    public void render() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new RenderTileEntityCampfire());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
@@ -45,13 +47,16 @@ public class TileEntityRegistry {
         getItem(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 
-    private static void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
+    private void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
         GameRegistry.registerTileEntity(cls, new ResourceLocation(SakuraMain.MODID, baseName));
 
     }
 
-    private static Item getItem(final Block block) {
+    private Item getItem(final Block block) {
         return Item.getItemFromBlock(block);
     }
+	public static TileEntityRegistry getInstance() {
+		return instance;
+	}
 
 }

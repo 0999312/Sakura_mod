@@ -12,11 +12,10 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class LiquidToItemRecipe {
-	public static final Map<FluidStack, Map<Object, ItemStack>> RecipesList = Maps.newHashMap();
+	public final Map<FluidStack, Map<Object, ItemStack>> RecipesList = Maps.newHashMap();
 	private static final LiquidToItemRecipe RECIPE_BASE = new LiquidToItemRecipe();
-    /**
-     * Returns an instance of FurnaceRecipes.
-     */
+	private LiquidToItemRecipe() {
+	}
     public static LiquidToItemRecipe instance() {
         return RECIPE_BASE;
     }
@@ -43,7 +42,7 @@ public class LiquidToItemRecipe {
 				} else if (entry2.getKey() instanceof String) {
 					String dict = (String) entry2.getKey();
 					NonNullList<ItemStack> ore = OreDictionary.getOres(dict);
-					if (!ore.isEmpty() && RecipesUtil.containsMatch(true, ore, stack))
+					if (!ore.isEmpty() && RecipesUtil.getInstance().containsMatch(true, ore, stack))
 						return entry2.getValue();
 				}
 			}

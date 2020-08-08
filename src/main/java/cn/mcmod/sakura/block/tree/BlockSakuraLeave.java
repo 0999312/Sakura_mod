@@ -30,7 +30,8 @@ public class BlockSakuraLeave extends BlockLeaves {
 
     public BlockSakuraLeave() {
         this.setHardness(0.2F);
-        this.setLightOpacity(1);
+        this.setLightOpacity(0);
+        this.setLightLevel(0.8F);
         this.setCreativeTab(CommonProxy.tab);
         this.setDefaultState(blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
     }

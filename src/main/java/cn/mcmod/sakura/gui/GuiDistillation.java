@@ -40,7 +40,7 @@ public class GuiDistillation extends GuiContainer {
             int heightInd = (int) (68 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
 
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 18, l + 78 - heightInd, 16f, heightInd);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 18, l + 78 - heightInd, 16f, heightInd);
             }
 
         }
@@ -53,7 +53,7 @@ public class GuiDistillation extends GuiContainer {
             }*/
 
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 89, l + 78 - heightInd, 16f, heightInd);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 89, l + 78 - heightInd, 16f, heightInd);
             }
 
         }

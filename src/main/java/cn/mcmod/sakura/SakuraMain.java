@@ -19,8 +19,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-//@[1.3.0,) @[V2.0.0-MC1.12.2,)
-@Mod(modid = SakuraMain.MODID, name = SakuraMain.NAME, version = SakuraMain.VERSION,dependencies = "required-after:mm_lib;after:tls;")
+// @[1.4.1,)
+@Mod(modid = SakuraMain.MODID, name = SakuraMain.NAME, version = SakuraMain.VERSION,dependencies = "required-after:mm_lib@[1.5.0,);after:tls@[2.0.4-MC1.12.2,);")
 public class SakuraMain {
     public static final String MODID = "sakura";
     public static final String NAME = "Sakura";

@@ -1,13 +1,13 @@
 package cn.mcmod.sakura.item;
 
-import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockFuton;
 import cn.mcmod.sakura.block.BlockLoader;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -20,57 +20,69 @@ import net.minecraft.world.World;
 
 public class ItemFuton extends Item {
 	public ItemFuton() {
-		setUnlocalizedName(SakuraMain.MODID + "." + "futon");
+		setUnlocalizedName("sakura.futon");
 	}
 
+    /**
+     * Called when a Block is right-clicked with this Item
+     */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand,
-			EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote) {
-			return EnumActionResult.SUCCESS;
-		} else if (facing != EnumFacing.UP) {
-			return EnumActionResult.FAIL;
-		} else {
-			IBlockState iblockstate = worldIn.getBlockState(pos);
-			Block block = iblockstate.getBlock();
-			boolean flag = block.isReplaceable(worldIn, pos);
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
+            return EnumActionResult.SUCCESS;
+        }
+        else if (facing != EnumFacing.UP)
+        {
+            return EnumActionResult.FAIL;
+        }
+        else
+        {
+            IBlockState iblockstate = worldIn.getBlockState(pos);
+            Block block = iblockstate.getBlock();
+            boolean flag = block.isReplaceable(worldIn, pos);
 
-			if (!flag) {
-				pos = pos.up();
-			}
+            if (!flag)
+            {
+                pos = pos.up();
+            }
 
-			int i = MathHelper.floor(playerIn.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			EnumFacing enumfacing = EnumFacing.getHorizontal(i);
-			BlockPos blockpos = pos.offset(enumfacing);
-			ItemStack itemstack = playerIn.getHeldItem(hand);
+            int i = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+            EnumFacing enumfacing = EnumFacing.getHorizontal(i);
+            BlockPos blockpos = pos.offset(enumfacing);
+            ItemStack itemstack = player.getHeldItem(hand);
 
-			if (playerIn.canPlayerEdit(pos, facing, itemstack) && playerIn.canPlayerEdit(blockpos, facing, itemstack)) {
-				boolean flag1 = worldIn.getBlockState(blockpos).getBlock().isReplaceable(worldIn, blockpos);
-				boolean flag2 = flag || worldIn.isAirBlock(pos);
-				boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
+            if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(blockpos, facing, itemstack))
+            {
+                IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
+                boolean flag1 = iblockstate1.getBlock().isReplaceable(worldIn, blockpos);
+                boolean flag2 = flag || worldIn.isAirBlock(pos);
+                boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
 
-				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid()
-						&& worldIn.getBlockState(blockpos.down()).isFullCube()) {
-					IBlockState iblockstate1 = BlockLoader.FUTON.getDefaultState()
-							.withProperty(BlockFuton.OCCUPIED, Boolean.valueOf(false))
-							.withProperty(BlockHorizontal.FACING, enumfacing)
-							.withProperty(BlockFuton.PART, BlockFuton.EnumPartType.FOOT);
+                if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isTopSolid())
+                {
+                    IBlockState iblockstate2 = BlockLoader.FUTON.getDefaultState().withProperty(BlockFuton.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockFuton.FACING, enumfacing).withProperty(BlockFuton.PART, BlockFuton.EnumPartType.FOOT);
+                    worldIn.setBlockState(pos, iblockstate2, 10);
+                    worldIn.setBlockState(blockpos, iblockstate2.withProperty(BlockFuton.PART, BlockFuton.EnumPartType.HEAD), 10);
+                    SoundType soundtype = iblockstate2.getBlock().getSoundType(iblockstate2, worldIn, pos, player);
+                    worldIn.playSound((EntityPlayer)null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    
+                    worldIn.notifyNeighborsRespectDebug(pos, block, false);
+                    worldIn.notifyNeighborsRespectDebug(blockpos, iblockstate1.getBlock(), false);
 
-					if (worldIn.setBlockState(pos, iblockstate1, 11)) {
-						IBlockState iblockstate2 = iblockstate1.withProperty(BlockFuton.PART,
-								BlockFuton.EnumPartType.HEAD);
-						worldIn.setBlockState(blockpos, iblockstate2, 11);
-					}
+                    if (player instanceof EntityPlayerMP)
+                    {
+                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos, itemstack);
+                    }
 
-					SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, playerIn);
-					worldIn.playSound(null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS,
-							(soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					itemstack.shrink(1);
-					return EnumActionResult.SUCCESS;
-				}
+                    itemstack.shrink(1);
+                    return EnumActionResult.SUCCESS;
+                }
 				return EnumActionResult.FAIL;
-			}
+            }
 			return EnumActionResult.FAIL;
-		}
-	}
+        }
+    }
+
 }

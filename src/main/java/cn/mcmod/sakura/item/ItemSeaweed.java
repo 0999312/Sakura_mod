@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.item;
 
-import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.block.BlockLoader;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.BlockLiquid;
@@ -25,7 +24,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class ItemSeaweed extends Item implements IPlantable {
     public ItemSeaweed() {
-        this.setUnlocalizedName(SakuraMain.MODID + "." + "seaweed_raw");
+        this.setUnlocalizedName("sakura.seaweed_raw");
     }
 
     @Override
