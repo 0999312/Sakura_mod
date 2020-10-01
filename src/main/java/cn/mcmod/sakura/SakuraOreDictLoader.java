@@ -28,8 +28,7 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("bamboo", new ItemStack(ItemLoader.MATERIAL,1,48));
 		OreDictionary.registerOre("listAlltofu", new ItemStack(ItemLoader.FOODSET,1,81));
 		OreDictionary.registerOre("listAllfishraw",  new ItemStack(ItemLoader.FOODSET,1,141));
-//		OreDictionary.registerOre("listAllfishfresh",  new ItemStack(ItemLoader.FOODSET,1,141));
-//		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,135));
+
 		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,136));
 		OreDictionary.registerOre("listAllmushroom", new ItemStack(ItemLoader.FOODSET,1,137));
 		OreDictionary.registerOre("cropStraw", new ItemStack(ItemLoader.MATERIAL,1,0));
@@ -43,6 +42,18 @@ public class SakuraOreDictLoader {
         OreDictionary.registerOre("plankWood", new ItemStack(BlockLoader.MAPLE_PLANK, 1));
         OreDictionary.registerOre("plankWood", new ItemStack(BlockLoader.SAKURA_PLANK, 1));
         OreDictionary.registerOre("plankWood", new ItemStack(BlockLoader.BAMBOO_PLANK, 1));
+        
+        OreDictionary.registerOre("stairWood", new ItemStack(BlockLoader.MAPLE_PLANK_STAIR, 1));
+        OreDictionary.registerOre("stairWood", new ItemStack(BlockLoader.SAKURA_PLANK_STAIR, 1));
+        OreDictionary.registerOre("stairWood", new ItemStack(BlockLoader.BAMBOO_PLANK_STAIR, 1));
+        
+        OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.MAPLE_LOG, 1));
+        OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.MAPLE_LOG_SAP, 1));
+        OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.SAKURA_LOG, 1));
+        
+        OreDictionary.registerOre("slabWood", new ItemStack(BlockLoader.MAPLE_PLANK_SLAB, 1));
+        OreDictionary.registerOre("slabWood", new ItemStack(BlockLoader.SAKURA_PLANK_SLAB, 1));
+        OreDictionary.registerOre("slabWood", new ItemStack(BlockLoader.BAMBOO_PLANK_SLAB, 1));
 
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_GREEN, 1));
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_ORANGE, 1));

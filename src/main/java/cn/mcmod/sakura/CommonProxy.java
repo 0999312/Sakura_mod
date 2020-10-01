@@ -1,6 +1,6 @@
 package cn.mcmod.sakura;
 
-import cn.mcmod.sakura.api.kimono.KimonoLoader;
+import cn.mcmod.sakura.api.armor.ArmorLoader;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
 import cn.mcmod.sakura.compat.tfc.TFCCompat;
@@ -48,7 +48,7 @@ public class CommonProxy {
         SakuraEntityRegister.entityRegister();
         SakuraEntityRegister.entitySpawn();
         SakuraOreDictLoader.getInstance().registerOre();
-        KimonoLoader.getInstance().Init();
+        ArmorLoader.getInstance().Init();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);

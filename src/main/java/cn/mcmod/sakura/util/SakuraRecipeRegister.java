@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import com.google.common.collect.Lists;
+
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
@@ -153,7 +155,7 @@ public class SakuraRecipeRegister {
 
     public static void barrelRegister() {
 		BarrelRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.YEAST_FLUID, 50), 
 				new Object[]{
 				"listAllfruit",
@@ -161,7 +163,7 @@ public class SakuraRecipeRegister {
 				"listAllsugar"
 				});
 		BarrelRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.BEER_FLUID, 100), 
 				new Object[]{
 				"cropWheat",
@@ -190,7 +192,7 @@ public class SakuraRecipeRegister {
 				"foodYeast"
 				});
 		BarrelRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.DOBUROKU_FLUID, 50), 
 				new Object[]{
 				new ItemStack(ItemLoader.FOODSET,1,7),
@@ -203,7 +205,7 @@ public class SakuraRecipeRegister {
 				new FluidStack(BlockLoader.SAKE_FLUID, 100),
 				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50));
 		DistillationRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.WHISKEY_FLUID, 50), 
 				new Object[]{
 				"listAllgrain",
@@ -223,7 +225,7 @@ public class SakuraRecipeRegister {
 				"listAllsugar"
 				});
 		DistillationRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.VODKA_FLUID, 50), 
 				new Object[]{
 				"cropPotato",
@@ -231,7 +233,7 @@ public class SakuraRecipeRegister {
 				"cropPotato"
 				});
 		DistillationRecipes.getInstance().register(
-				getWater( 100),
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.RUM_FLUID, 50), 
 				new Object[]{
 				"sugarcane",
@@ -553,22 +555,19 @@ public class SakuraRecipeRegister {
                         new Object[]{
                         		"listAllbeefraw",
                                 "bamboo"
-                        },
-                       getOil( 100));
+                        });
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 91),
                         new Object[]{
                         		"listAllchickenraw",
                                 "bamboo"
-                        },
-                       getOil( 100));
+                        });
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 92),
                         new Object[]{
                                 "listAllporkraw",
                                 "bamboo"
-                        },
-                       getOil( 100));
+                        });
 
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 7),
@@ -1361,14 +1360,18 @@ public class SakuraRecipeRegister {
                 },
                 getWater( 200));
     }
-    private static FluidStack getWater(int amount){
+    private static List<FluidStack> getWater(int amount){
+    	List<FluidStack> list = Lists.newArrayList(); 
     	if(Loader.isModLoaded("tfc"))
-    		return new FluidStack(FluidsTFC.FRESH_WATER.get(), amount);
-		return new FluidStack(FluidRegistry.WATER, amount);
+    		list.add(new FluidStack(FluidsTFC.FRESH_WATER.get(), amount));
+    	list.add(new FluidStack(FluidRegistry.WATER, amount));
+		return list;
     }
-    private static FluidStack getOil(int amount){
+    private static List<FluidStack> getOil(int amount){
+    	List<FluidStack> list = Lists.newArrayList(); 
     	if(Loader.isModLoaded("tfc"))
-    		return new FluidStack(FluidsTFC.OLIVE_OIL.get(), amount);
-		return  new FluidStack(BlockLoader.FOODOIL_FLUID, amount);
+    		list.add(new FluidStack(FluidsTFC.OLIVE_OIL.get(), amount));
+    	list.add(new FluidStack(BlockLoader.FOODOIL_FLUID, amount));
+		return list;
     }
 }

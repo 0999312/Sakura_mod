@@ -3,7 +3,7 @@ package cn.mcmod.sakura.entity.villager;
 import java.util.Random;
 
 import cn.mcmod.sakura.SakuraMain;
-import cn.mcmod.sakura.api.kimono.KimonoLoader;
+import cn.mcmod.sakura.api.armor.ArmorLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
 import net.minecraft.entity.IMerchant;
@@ -37,26 +37,26 @@ public class VillagerLoader {
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.KIMONO),new PriceInfo(10, 14)));
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.HAORI),new PriceInfo(10, 14)));
 		
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_1"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_2"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_3"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_4"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_5"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_6"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_1",ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_2",ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_3",ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_4",ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_5",ItemLoader.KIMONO),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_6",ItemLoader.KIMONO),new PriceInfo(10, 14)));
 		
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_1"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_2"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_3"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_4"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_5"),new PriceInfo(10, 14)));
-		silk.addTrade(2, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("haori_6"),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_1",ItemLoader.HAORI),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_2",ItemLoader.HAORI),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_3",ItemLoader.HAORI),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_4",ItemLoader.HAORI),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_5",ItemLoader.HAORI),new PriceInfo(10, 14)));
+		silk.addTrade(2, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("haori_6",ItemLoader.HAORI),new PriceInfo(10, 14)));
 		
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("kimono_miko"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_0"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_1"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_2"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_3"),new PriceInfo(15, 18)));
-		silk.addTrade(3, new SimpleSell(KimonoLoader.getInstance().getCustomKimono("yukata_4"),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("kimono_miko",ItemLoader.KIMONO),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("yukata_0",ItemLoader.KIMONO),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("yukata_1",ItemLoader.KIMONO),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("yukata_2",ItemLoader.KIMONO),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("yukata_3",ItemLoader.KIMONO),new PriceInfo(15, 18)));
+		silk.addTrade(3, new SimpleSell(ArmorLoader.getInstance().getCustomArmor("yukata_4",ItemLoader.KIMONO),new PriceInfo(15, 18)));
 
 	    VillagerRegistry.VillagerCareer farmer = new VillagerRegistry.VillagerCareer(wa_villager, "wa_farmer");
 	    farmer.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.CABBAGE,8),new PriceInfo(2, 4)));

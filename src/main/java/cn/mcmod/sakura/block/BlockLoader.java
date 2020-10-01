@@ -110,6 +110,11 @@ public class BlockLoader {
 	public static Block MAPLE_LEAVE_GREEN = new BlockMapleLeaveGreen();
 	public static Block MAPLE_LOG = new BlockMapleLog();
 	public static Block MAPLE_LOG_SAP = new BlockMapleSapLog();
+	
+	public static Block UME_LEAVES = new BlockUmeLeave();
+	public static Block UME_LOG = new BlockMapleLog();
+	public static Block UME_SAPLING = new BlockUmeSapling();
+	
     public static Block BAMBOO_PLANK = new BlockSakuraPlank(Material.WOOD);
     public static Block MAPLE_PLANK = new BlockSakuraPlank(Material.WOOD);
 	public static Block MAPLE_CAULDRON = new BlockMapleSyrupCauldron();
@@ -141,6 +146,7 @@ public class BlockLoader {
 	public static Block GRAPE_SPLINT_STAND = new BlockGrapeSplintStand();
 	public static Block GRAPE_VINE = new BlockGrapeVine();
 	public static Block GRAPE_SPLINT = new BlockGrapeSplint();
+	public static Block TARO_CROP = new BlockTaroCrop();
 	public static BlockGrapeLeaves GRAPE_LEAVES = new BlockGrapeLeaves();
 	public static Block SHOJI =new BlockShoji();
 	public static Block ANDON =new BlockAndon();
@@ -232,6 +238,9 @@ public class BlockLoader {
 	
 	public static Block HOPS = new BlockHopsCrop();
 	public static Block SEAWEED = new BlockSeaweedCrop();
+	
+	public static Block SAKURA_DIAMOND_BLOCK = new BlockBase(Material.IRON, true).setBeaconBase(true).setSoundType(SoundType.METAL).setHardness(5.0F).setResistance(10.0F);
+	
 	private static final BlockLoader instance = new BlockLoader();
 	public void registerBlock() {
 
@@ -374,6 +383,11 @@ public class BlockLoader {
         register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
         register(SAKURA_PLANK_STAIR, new ItemBlock(SAKURA_PLANK_STAIR), "stairs_plank_sakura");
         register(SAKURA_PLANK_SLAB, new ItemBlock(SAKURA_PLANK_SLAB), "slab_plank_sakura");
+        
+        register(UME_LEAVES, new ItemBlock(UME_LEAVES), "umeleaves");
+		register(UME_SAPLING, new ItemBlock(UME_SAPLING), "ume_sapling");
+		register(UME_LOG, new ItemBlock(UME_LOG), "ume_log");
+        
         register(TATARA, new ItemBlock(TATARA), "tatara");
         registerNoItem(TATARA_SMELTING,"tatara_smelting");
         register(MAPLE_SPILE, new ItemBlock(MAPLE_SPILE), "maple_spile");
@@ -396,6 +410,7 @@ public class BlockLoader {
 		register(NOREN_BLUE, new ItemBlock(NOREN_BLUE), "noren_blue");
 		register(NOREN_PINK, new ItemBlock(NOREN_PINK), "noren_pink");
 		register(SAKURA_DIAMOND_ORE, new ItemBlock(SAKURA_DIAMOND_ORE), "sakura_diamond_ore");
+		register(SAKURA_DIAMOND_BLOCK, new ItemBlock(SAKURA_DIAMOND_BLOCK), "sakura_diamond_block");
 	    register(TEISHOKO_FISH_COOKED, new ItemBlock(TEISHOKO_FISH_COOKED), "teishoku_fish_cooked");
 	    register(TEISHOKO_FISH_RAW, new ItemBlock(TEISHOKO_FISH_RAW), "teishoku_fish_raw");
 	    register(TEISHOKO_YAKINIKKU, new ItemBlock(TEISHOKO_YAKINIKKU), "teishoku_yakiniku");
@@ -415,6 +430,7 @@ public class BlockLoader {
 	    registerNoItem(HOPS, "hops");
 	    registerNoItem(SEAWEED, "seaweed");
 	    registerNoItem(FUTON, "futon");
+	    registerNoItem(TARO_CROP, "taro_crop");
 		registerNoItem(CAMPFIRE_LIT,"campfire_lit");
 		registerNoItem(CAMPFIRE_POT_IDLE, "campfire_pot_idle");
         registerNoItem(CAMPFIRE_POT_LIT, "campfire_pot_lit");
@@ -439,6 +455,11 @@ public class BlockLoader {
 		Blocks.FIRE.setFireInfo(MAPLE_LOG_SAP, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO_BLOCK, 5, 5);
 		Blocks.FIRE.setFireInfo(BAMBOO, 5, 20);
+		Blocks.FIRE.setFireInfo(MAPLE_LEAVE_GREEN, 30, 60);
+		Blocks.FIRE.setFireInfo(MAPLE_LEAVE_ORANGE, 30, 60);
+		Blocks.FIRE.setFireInfo(MAPLE_LEAVE_RED, 30, 60);
+		Blocks.FIRE.setFireInfo(MAPLE_LEAVE_YELLOW, 30, 60);
+		Blocks.FIRE.setFireInfo(SAKURA_LEAVES, 30, 60);
 		
 	}
 	private BlockLoader() {
@@ -457,6 +478,10 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(UME_SAPLING);
+		registerRender(UME_LEAVES);
+		registerRender(UME_LOG);
+		registerRender(SAKURA_DIAMOND_BLOCK);
 		registerRender(MUSHROOM_FALLEN_LEAVES);
 		registerRender(STRAW_WEB);
 		registerRender(TEISHOKO_FRIED);

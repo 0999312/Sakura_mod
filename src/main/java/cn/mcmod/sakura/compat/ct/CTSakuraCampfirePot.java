@@ -62,13 +62,13 @@ public class CTSakuraCampfirePot {
         @Override
         public void apply()
         {
-        	PotRecipes.getInstance().ClearRecipe(fluid,itemInput);
+//        	PotRecipes.getInstance().ClearRecipe(fluid,itemInput);
         }
 
         @Override
         public String describe()
         {
-            return "Removing a recipe for Campfire Pot";
+            return "DO NOTHING RIGHT NOW, WIP NOW";
         }
     }
 	

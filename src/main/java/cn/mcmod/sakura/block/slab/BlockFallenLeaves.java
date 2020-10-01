@@ -13,9 +13,11 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -32,6 +34,7 @@ public class BlockFallenLeaves extends BlockBase implements IShearable, IGrowabl
 	protected static final AxisAlignedBB CARPET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 	public BlockFallenLeaves(Material material) {
 		super(material,false);
+		Blocks.FIRE.setFireInfo(this, 30, 60);
 	}
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
@@ -100,7 +103,6 @@ public class BlockFallenLeaves extends BlockBase implements IShearable, IGrowabl
 	}
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-//		worldIn.setBlockState(pos, BlockLoader.MUSHROOM_FALLEN_LEAVES.getDefaultState(), 3);
 		IBlockState log = worldIn.getBlockState(pos.down());
 		if(log.getBlock() instanceof BlockLog){
 			if(log.getBlock() instanceof BlockMapleLog){
@@ -113,5 +115,13 @@ public class BlockFallenLeaves extends BlockBase implements IShearable, IGrowabl
 			worldIn.setBlockState(pos, BlockLoader.MUSHROOM_FALLEN_LEAVES.getDefaultState().withProperty(BlockMushroomBush.isMatsutake, false), 3);
 			return ;
 		}
+	}
+	@Override
+	public PathNodeType getAiPathNodeType(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving entity) {
+		return isBurning(world, pos) ? PathNodeType.DAMAGE_FIRE : PathNodeType.OPEN;
+	}
+	@Override
+	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+		return true;
 	}
 }

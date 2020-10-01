@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import cn.mcmod.sakura.SakuraMain;
-import cn.mcmod.sakura.api.kimono.KimonoLoader;
+import cn.mcmod.sakura.api.armor.ArmorLoader;
 import cn.mcmod.sakura.client.model.ModelKimono;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod_mmf.mmlib.util.RecipesUtil;
@@ -53,7 +53,7 @@ public class ItemKimono extends ItemArmor {
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
     	if(this.isInCreativeTab(tab)){
 	        for(String name : KimonoIDs){
-	            ItemStack kimono = KimonoLoader.getInstance().getCustomKimono(name);
+	            ItemStack kimono = ArmorLoader.getInstance().getCustomArmor(name,this);
 	            if(!kimono.isEmpty()) items.add(kimono);
 	        }
     	}
