@@ -2,6 +2,8 @@ package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockCampfirePot;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -22,8 +24,14 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 
 public class TileEntityCampfirePot extends TileEntity implements ITickable, IInventory {
 
@@ -79,29 +87,16 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     }
 
     public boolean isBurning() {
-        return this.burnTime > 0;
-    }
-
-    public void setBurningTime(int tick) {
-        this.burnTime = tick;
-    }
-
-    public int getBurningTime() {
-        return this.burnTime;
-    }
-
-    public int getCookTime() {
-        return this.cookTime;
+        return this.getField(0) > 0;
     }
 
     protected void refresh() {
         if (hasWorld() && !world.isRemote) {
             IBlockState state = world.getBlockState(pos);
             world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
-
         }
     }
-
+    
     @Override
     public void update() {
         boolean flag = this.isBurning();
@@ -112,55 +107,60 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
         //check can cook
         if (!this.world.isRemote) {
-	        if (!isRecipes()) {
-	            cookTime = 0;
-	        } else {
-        	  ItemStack itemstack = this.inventory.get(9);
-              ItemStack result = getRecipesResult().getResultItemStack();
-              	if(!itemstack.isEmpty()&&!itemstack.isItemEqual(result))  cookTime = 0;
-              	else if (isBurning()) {
-	                cookTime += 1;
-	            }
-	        }
-	        if (cookTime >= maxCookTimer) {
-	            cookTime = 0;
-	            this.cooking();
-	            flag1 = true;
-	        }
-	        if (flag != this.isBurning()) {
-	           flag1 = true;
-	           BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
-	        }
+        	if (this.getTank() != null) {
+
+                ArrayList<ItemStack> inventoryList = Lists.newArrayList();
+                for (int i = 0; i < 9; i++) {
+                  if (!this.inventory.get(i).isEmpty()) {
+                    inventoryList.add(this.inventory.get(i).copy());
+                  }
+                }
+        		ItemStack itemstack = this.inventory.get(9);
+        		FluidStack tank_fluid = this.getTank().getFluid();
+		        if (isRecipes(tank_fluid,inventoryList)){
+	            	ItemStack result = PotRecipes.getInstance().getResultItemStack(tank_fluid, inventoryList);
+	             	FluidStack fluidStack = PotRecipes.getInstance().getResultFluid(tank_fluid, inventoryList);
+	             	if(RecipesUtil.getInstance().canIncrease(result, itemstack)&&isBurning()) {
+		                cookTime += 1;
+	             	}else cookTime = 0;
+		        
+			        if (cookTime >= maxCookTimer) {
+			            cookTime = 0;
+			            if (itemstack.isEmpty()) {
+			                this.inventory.set(9, result.copy());
+			            } else if (itemstack.isItemEqual(result)) {
+			                itemstack.grow(result.getCount());
+			            }
+			            
+			            //If pot is a recipe that uses a liquid, it consumes only that amount of liquid
+			            if (fluidStack != null && fluidStack.amount > 0) {
+			                this.tank.drain(fluidStack, true);
+			            }
+			            
+			    	    for(int i=0;i<9;i++){
+			    	    	if(!(this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).isEmpty())){
+			    	    		if(this.inventory.get(i).getCount()==1){
+			    	    		this.inventory.set(i, this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
+			    	    		}
+			    	    		else this.decrStackSize(i, 1);
+			    	    		Block.spawnAsEntity(getWorld(), getPos(), this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i).copy()));
+			    	    	}else this.decrStackSize(i, 1);
+			    	    }
+			            flag1 = true;
+			        }
+
+
+		        }else cookTime = 0;
+		        if (flag != this.isBurning()) {
+			           flag1 = true;
+			           BlockCampfirePot.setState(this.isBurning(), this.world, this.pos);
+			        }
+        	}
 	        if (flag1)
 	        	this.markDirty();
-      }
+        }
     }
 
-    private void cooking() {
-        ItemStack itemstack = this.inventory.get(9);
-        ItemStack result = getRecipesResult().getResultItemStack();
-        FluidStack fluidStack = getRecipesResult().getFluid();
-
-        if (itemstack.isEmpty()) {
-            this.inventory.set(9, result.copy());
-        } else if (itemstack.isItemEqual(result)) {
-            itemstack.grow(result.getCount());
-        }
-        
-        //If pot is a recipe that uses a liquid, it consumes only that amount of liquid
-        if (fluidStack != null && fluidStack.amount>0) {
-            this.tank.drain(fluidStack, true);
-        }
-        
-	    for(int i=0;i<9;i++){
-	    	if(this.inventory.get(i).getCount()==1&&
-	    	this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i))!=null)
-	    		this.inventory.set(i,
-	    		this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
-	    	else this.decrStackSize(i, 1);
-	    }
-
-	}
 
     @Override
     public void markDirty() {
@@ -251,9 +251,9 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return true;
+        return index<9;
     }
-
+    @Override
     public int getField(int id) {
         switch (id) {
             case 0:
@@ -268,7 +268,7 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
         }
     }
 
-
+    @Override
     public void setField(int id, int value) {
         switch (id) {
             case 0:
@@ -307,35 +307,12 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
     /**
      * @return
      */
-    protected boolean isRecipes() {
-        if (getRecipesResult() == null) {
-            return false;
-        }
-        return true;
+    protected boolean isRecipes(FluidStack fluid,List<ItemStack> items) {
+    	ItemStack result = PotRecipes.getInstance().getResultItemStack(fluid, items);
+        if (!result.isEmpty()) 
+            return true;
+        return false;
     }
-
-    /**
-     * @return
-     */
-    public PotRecipes getRecipesResult() {
-        if (this.getStackInSlot(0).isEmpty()) {
-            return null;
-        }
-        
-        for (PotRecipes recipes : PotRecipes.potRecipesList) {
-            FluidStack tankStack = this.getTank().getFluid();
-            ItemStack stack = recipes.getResult(this);
-            if(recipes.getFluid()==null && !stack.isEmpty())
-            	return recipes;
-			if (tankStack == null && recipes.getFluid()!=null && recipes.getFluid().amount>0) 
-			    return null;
-			FluidStack fluidStack =(tankStack!=null)?recipes.getFluid():null;
-			if ((fluidStack != null && recipes.getFluid().getFluid() == tankStack.getFluid()) && !stack.isEmpty()) 
-			    return recipes;
-        }
-		return null;
-    }
-
 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing) {

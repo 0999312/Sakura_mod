@@ -158,7 +158,7 @@ public class WorldGenBigSakura extends WorldGenAbstractTree
     {
         for (int i = 0; i < this.leafDistanceLimit; ++i)
         {
-            this.crosSection(pos.up(i), this.leafSize(i), BlockLoader.SAKURA_LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
+            this.crosSection(pos.up(i), this.leafSize(i), BlockLoader.SAKURA_LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true).withProperty(BlockLeaves.DECAYABLE, true));
         }
     }
 

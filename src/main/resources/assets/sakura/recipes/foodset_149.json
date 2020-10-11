@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 149
+  },
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 148
+    },
+    {
+		"type" : "forge:ore_dict",
+        "ore" : "foodHoisinsause"
+    },
+    {
+      "type" : "forge:ore_dict",
+         "ore" : "foodMayo"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

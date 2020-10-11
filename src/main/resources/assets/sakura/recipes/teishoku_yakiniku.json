@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "sakura:teishoku_yakiniku"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:obon"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 7
+    },
+    {
+      "item": "#LISTALLSOUP"
+    },
+    {
+      "item": "#FOODSOYSAUCE"
+    },
+    {
+      "item": "#LISTALLBEEFCOOKED"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

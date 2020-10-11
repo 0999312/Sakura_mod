@@ -1,0 +1,17 @@
+{
+   "result" : {
+      "nbt" : "{texture_name:\"kimono_4\"}",
+      "item" : "sakura:kimono",
+      "type" : "minecraft:item_nbt"
+   },
+   "ingredients" : [
+      {
+         "item" : "sakura:kimono"
+      },
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "dyePurple"
+      }
+   ],
+   "type" : "forge:ore_shapeless"
+}

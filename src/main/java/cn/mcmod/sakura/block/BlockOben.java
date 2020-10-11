@@ -1,8 +1,10 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.tileentity.TileEntityOben;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,10 +20,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class BlockOben extends BlockBase implements ITileEntityProvider  {
+public class BlockOben extends BlockFacing implements ITileEntityProvider  {
 	protected static final AxisAlignedBB CARPET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
 	public BlockOben() {
-		super(Material.WOOD);
+		super(Material.WOOD, false);
+		this.setSoundType(SoundType.WOOD);
 	}
     @Override
     public boolean isOpaqueCube(IBlockState state) {
@@ -62,18 +65,18 @@ public class BlockOben extends BlockBase implements ITileEntityProvider  {
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (hand == EnumHand.MAIN_HAND) {
 		    if (tile instanceof TileEntityOben) {
-		    	TileEntityOben tileEntityCampfire = (TileEntityOben) tile;
-		        if(!(((TileEntityOben) tile).getInventory().getStackInSlot(0)).isEmpty()&&!(stack.equals(((TileEntityOben) tile).getInventory().getStackInSlot(0)))){
-		            Block.spawnAsEntity(worldIn, pos, ((TileEntityOben) tile).getInventory().getStackInSlot(0));
-		            ((TileEntityOben) tile).getInventory().setStackInSlot(0, ItemStack.EMPTY);
-		            ((TileEntityOben) tile).markDirty();
+		    	TileEntityOben tileEntity = (TileEntityOben) tile;
+		        if(!(tileEntity.getInventory().getStackInSlot(0)).isEmpty()&&!(stack.equals(tileEntity.getInventory().getStackInSlot(0)))){
+		            Block.spawnAsEntity(worldIn, pos, tileEntity.getInventory().getStackInSlot(0));
+		            tileEntity.getInventory().setStackInSlot(0, ItemStack.EMPTY);
+		            tileEntity.markDirty();
 		            return true;
 		        }
 				ItemStack campfireStack=stack.copy();
 				campfireStack.setCount(1);
 				stack.shrink(1);
-				tileEntityCampfire.getInventory().insertItem(0,campfireStack,false);
-	            ((TileEntityOben) tile).markDirty();
+				tileEntity.getInventory().insertItem(0,campfireStack,false);
+				tileEntity.markDirty();
 				return true;
 		    }
 		}

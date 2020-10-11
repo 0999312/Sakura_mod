@@ -1,8 +1,9 @@
 package cn.mcmod.sakura;
 
-import cn.mcmod.sakura.api.kimono.KimonoLoader;
+import cn.mcmod.sakura.api.armor.ArmorLoader;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.client.SakuraParticleType;
+import cn.mcmod.sakura.compat.tfc.TFCCompat;
 import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
 import cn.mcmod.sakura.item.ItemLoader;
@@ -19,8 +20,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,32 +35,39 @@ import net.minecraftforge.fml.relauncher.Side;
 @EventBusSubscriber
 public class CommonProxy {
 	public static final SoundEvent TAIKO = new SoundEvent(new ResourceLocation(SakuraMain.MODID, "taiko"));
-    public static CreativeTabs tab;
+    public static CreativeTabs tab = new CreativeTabsSakura();
     private static SimpleNetworkWrapper network;
     public static SimpleNetworkWrapper getNetwork() {
         return network;
     }
     public void preInit(FMLPreInitializationEvent event) {
-        tab = new CreativeTabsSakura();
         new PotionLoader(event);
-        new BlockLoader(event);
-        new ItemLoader(event);
-        new DrinksLoader();
+        BlockLoader.getInstance().registerBlock();
+        ItemLoader.getInstance().registerItem();
+        DrinksLoader.getInstance().registerItems();
         SakuraEntityRegister.entityRegister();
-
-        new SakuraOreDictLoader();
+        SakuraEntityRegister.entitySpawn();
+        SakuraOreDictLoader.getInstance().registerOre();
+        ArmorLoader.getInstance().Init();
         VillagerCreationWA.registerComponents();
 		VillagerCreationWA villageHandler = new VillagerCreationWA();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
     }
 
     public void init(FMLInitializationEvent event) {
-    	MinecraftForge.ORE_GEN_BUS.register(new WorldGenLoader());
-    	MinecraftForge.TERRAIN_GEN_BUS.register(new WorldGenLoader());
-    	new WorldGenLoader();
-        TileEntityRegistry.init();
-        KimonoLoader.Init();
+    	MinecraftForge.ORE_GEN_BUS.register(WorldGenLoader.getInstance());
+    	MinecraftForge.TERRAIN_GEN_BUS.register(WorldGenLoader.getInstance());
+    	WorldGenLoader.getInstance().WorldGenRegister();
+        TileEntityRegistry.getInstance().init();
+
         SakuraRecipeRegister.Init();
+        if(Loader.isModLoaded("tfc")){
+        	TFCCompat.registerTFCFuel();
+        }
+        if (Loader.isModLoaded("waila")){
+            FMLInterModComms.sendMessage("waila", "register", "cn.mcmod.sakura.compat.waila.CampfirePlugin.register");
+            FMLInterModComms.sendMessage("waila", "register", "cn.mcmod.sakura.compat.waila.CampfirePotPlugin.register");
+        }
         network = NetworkRegistry.INSTANCE.newSimpleChannel(SakuraMain.MODID);
     	network.registerMessage(new PacketKeyMessageHandler(),PacketKeyMessage.class,0,Side.SERVER);
     }

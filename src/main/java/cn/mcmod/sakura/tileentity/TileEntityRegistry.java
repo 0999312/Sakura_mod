@@ -8,6 +8,7 @@ import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityCampfirePot;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityMapleCauldron;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityOben;
 import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityStoneMortar;
+import cn.mcmod.sakura.client.render.tileentity.RenderTileEntityWeb;
 import cn.mcmod.sakura.client.render.tileentity.ShojiRender;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -19,8 +20,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityRegistry {
-
-    public static void init() {
+	private static final TileEntityRegistry instance = new TileEntityRegistry();
+	private TileEntityRegistry() {
+	}
+    public void init() {
         registerTileEntity(TileEntityCampfire.class, "campfire");
         registerTileEntity(TileEntityCampfirePot.class, "campfirepot");
         registerTileEntity(TileEntityStoneMortar.class, "stonemortar");
@@ -29,26 +32,31 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityDistillation.class, "barrel_distillation");
         registerTileEntity(TileEntityMapleCauldron.class, "maple_cauldron");
         registerTileEntity(TileEntityOben.class, "oben");
+        registerTileEntity(TileEntityWeb.class, "straw_web");
     }
 
     @SideOnly(Side.CLIENT)
-    public static void render() {
+    public void render() {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new RenderTileEntityCampfire());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStoneMortar.class, new RenderTileEntityStoneMortar());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfirePot.class, new RenderTileEntityCampfirePot());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMapleCauldron.class, new RenderTileEntityMapleCauldron());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityShoji.class, new ShojiRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOben.class, new RenderTileEntityOben());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWeb.class, new RenderTileEntityWeb());
         getItem(BlockLoader.STONEMORTAR).setTileEntityItemStackRenderer(new TileEntityRenderHelper());
     }
 
-    private static void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
+    private void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
         GameRegistry.registerTileEntity(cls, new ResourceLocation(SakuraMain.MODID, baseName));
 
     }
 
-    private static Item getItem(final Block block) {
+    private Item getItem(final Block block) {
         return Item.getItemFromBlock(block);
     }
+	public static TileEntityRegistry getInstance() {
+		return instance;
+	}
 
 }

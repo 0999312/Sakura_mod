@@ -13,7 +13,7 @@ public class CreativeTabsSakura extends CreativeTabs {
 
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(Item.getItemFromBlock(BlockLoader.MAPLE_LEAVE_RED));
+		return new ItemStack(Item.getItemFromBlock(BlockLoader.SAKURA_LEAVES));
 	}
 
 }

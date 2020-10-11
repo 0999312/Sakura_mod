@@ -8,11 +8,11 @@
   "key": {
     "S": {
       "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "ore": "lumber"
     },
     "#": {
-      "item": "minecraft:stone_slab",
-      "data": 3
+      "type": "forge:ore_dict",
+      "ore": "slabCobblestone"
     }
   },
   "result": {

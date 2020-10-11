@@ -1,0 +1,19 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "sakura:fallen_leaves_mushroom"
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "sakura:fallen_leaves_mushroom"
+      },
+      "is_matsutake" : {
+         "false" : {
+            "model" : "sakura:fallen_leaves_mushroom"
+         },
+         "true" : {
+            "model" : "sakura:fallen_leaves_matsutake"
+         }
+      }
+   }
+}

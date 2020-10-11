@@ -3,8 +3,8 @@ package cn.mcmod.sakura.entity.villager;
 import java.util.List;
 import java.util.Random;
 
-import cn.mcmod.sakura.block.BlockFacing;
 import cn.mcmod.sakura.block.BlockLoader;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -148,10 +148,19 @@ public class WAVillagerHouse extends StructureVillagePieces.Village {
         return true;
     }
 
-    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession)
-    {
+    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
 		ForgeRegistry<VillagerRegistry.VillagerProfession> registry = (ForgeRegistry<VillagerProfession>) ForgeRegistries.VILLAGER_PROFESSIONS;
+		
 		int id = registry.getID(VillagerLoader.wa_villager);
-		return id < 0 ? currentVillagerProfession : id;
+		int id1 = registry.getID(VillagerLoader.wa_kimono_villager);
+		if(id <0 ||id1 < 0) 
+			return currentVillagerProfession;
+		Random rand = new Random();
+		switch (rand.nextInt()) {
+		case 0:
+			return id1;
+		default:
+			return id;
+		}
     }
 }

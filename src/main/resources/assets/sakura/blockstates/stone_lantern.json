@@ -1,0 +1,29 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "sakura:stone_lantern",
+      "textures" : {
+         "1" : "sakura:models/lantern",
+         "0" : "sakura:models/stone",
+         "particle" : "sakura:models/stone"
+      }
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "sakura:stone_lantern",
+         "textures" : {
+            "1" : "sakura:models/lantern",
+            "0" : "sakura:models/stone",
+            "particle" : "sakura:models/stone"
+         }
+      },
+      "normal" : {
+         "model" : "sakura:stone_lantern",
+         "textures" : {
+            "1" : "sakura:models/lantern",
+            "0" : "sakura:models/stone",
+            "particle" : "sakura:models/stone"
+         }
+      }
+   }
+}

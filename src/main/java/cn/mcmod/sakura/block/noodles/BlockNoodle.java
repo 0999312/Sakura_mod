@@ -1,6 +1,6 @@
 package cn.mcmod.sakura.block.noodles;
 
-import cn.mcmod.sakura.item.ItemKnifeNoodle;
+import cn.mcmod.sakura.item.ItemLoader;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -66,14 +66,13 @@ public abstract class BlockNoodle extends Block {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
     		EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-    	if (worldIn.isRemote)
-        {
+    	if (worldIn.isRemote) {
             return true;
         }
 		int i = this.getCutting(state);
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if(!isReady(state)){
-		    if(stack.getItem() instanceof ItemKnifeNoodle){
+		    if(stack.getItem()==ItemLoader.KNIFE_NOODLE||stack.getItem()==ItemLoader.SAKURA_KNIFE_NOODLE){
 		    	if(!playerIn.isCreative()) stack.damageItem(1, playerIn);
 		    	 if (worldIn.rand.nextInt(8) == 0) {
 		    		 worldIn.setBlockState(pos, this.withCutting(i + 1), 2);
@@ -138,18 +137,18 @@ public abstract class BlockNoodle extends Block {
     {
         return new BlockStateContainer(this, new IProperty[] {CUTTING});
     }
-	  @Override
-	    public boolean isFullCube(IBlockState state) {
-	        return false;
-	    }
+	@Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	    @SideOnly(Side.CLIENT)
-	    public BlockRenderLayer getBlockLayer() {
-	        return BlockRenderLayer.CUTOUT;
-	    }
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
-	    @Override
-	    public boolean isOpaqueCube(IBlockState state) {
-	        return false;
-	    }
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 }

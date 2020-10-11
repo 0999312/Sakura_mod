@@ -1,0 +1,23 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "sakura:teishoku_katsu"
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "sakura:teishoku_katsu"
+      },
+        "facing": {
+            "north": { "y": 0 },
+            "south": { "y": 180 },
+            "west": { "y": 270 },
+            "east": { "y": 90 }
+        },
+        "bites": {
+            "0": { "model" : "sakura:teishoku_katsu" },
+            "1": { "model" : "sakura:teishoku_katsu_1" },
+            "2": { "model" : "sakura:teishoku_katsu_2" },
+            "3": { "model" : "sakura:teishoku_katsu_3" }
+        }
+   }
+}

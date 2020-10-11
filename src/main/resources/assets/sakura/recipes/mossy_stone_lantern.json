@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "sakura:mossy_stone_lantern"
+  },
+  "pattern": [
+    " S ",
+    "STS",
+    "SPS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "P": {
+      "item": "#WOODLUMBER"
+    },
+    "S": {
+      "item": "#BLOCKMOSSY"
+    },
+    "T": {
+      "item": "#TORCH"
+    }
+  }
+}

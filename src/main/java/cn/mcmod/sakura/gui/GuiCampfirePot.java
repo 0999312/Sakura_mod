@@ -2,7 +2,7 @@ package cn.mcmod.sakura.gui;
 
 import cn.mcmod.sakura.inventory.ContainerCampfirePot;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
-import cn.mcmod.sakura.util.ClientUtils;
+import cn.mcmod_mmf.mmlib.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -61,7 +61,7 @@ public class GuiCampfirePot extends GuiContainer {
             FluidTank fluidTank = this.tilePot.getTank();
             int heightInd = (int) (72 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167- heightInd, l + 11 , heightInd, 16f);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 167- heightInd, l + 11 , heightInd, 16f);
             }
 
         }

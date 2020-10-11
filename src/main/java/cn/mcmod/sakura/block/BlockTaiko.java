@@ -1,7 +1,8 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
-import cn.mcmod.sakura.util.RecipesUtil;
+import cn.mcmod_mmf.mmlib.block.BlockFacing;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +25,7 @@ public class BlockTaiko extends BlockFacing {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(RecipesUtil.containsMatch(false, OreDictionary.getOres("stickWood"), playerIn.getHeldItem(hand))){
+		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("stickWood"), playerIn.getHeldItem(hand))){
 			worldIn.playSound(playerIn, pos, CommonProxy.TAIKO, SoundCategory.BLOCKS, 1.2F, 1.2F);
 			playerIn.swingArm(hand);
 			}

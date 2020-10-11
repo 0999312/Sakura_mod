@@ -2,6 +2,8 @@ package cn.mcmod.sakura.compat.jei;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 import mezz.jei.api.IJeiHelpers;
@@ -10,22 +12,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public final class L2ISRecipeMaker {
-	  public static List<CampingPotRecipe> getRecipes(IJeiHelpers helpers) {
+	  public static List<ItemFluidRecipe> getRecipes(IJeiHelpers helpers) {
 	    IStackHelper stackHelper = helpers.getStackHelper();
-	    List<CampingPotRecipe> recipes = new ArrayList<CampingPotRecipe>();
-	    for (LiquidToItemRecipe recipe : LiquidToItemRecipe.RecipesList) {
+	    List<ItemFluidRecipe> recipes = new ArrayList<ItemFluidRecipe>();
+	    for (Entry<FluidStack, Map<Object, ItemStack>> entry : LiquidToItemRecipe.instance().RecipesList.entrySet()) {
+			for (Entry<Object, ItemStack> entry2 : entry.getValue().entrySet()) {
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
-	    	List<ItemStack> main = stackHelper.toItemStackList(recipe.mainItem);
+	    	List<ItemStack> main = stackHelper.toItemStackList(entry2.getKey());
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();
 	    	List<FluidStack> fluid = new ArrayList<FluidStack>();
 	    	
 	    	inputs.add(main);
-		    fluid.add(recipe.getResultFluid());
+		    fluid.add(entry.getKey());
 		    fluidlist.add(fluid);
 	    	
-	    	CampingPotRecipe newrecipe = new CampingPotRecipe(inputs,fluidlist,recipe.resultItem);
+	    	ItemFluidRecipe newrecipe = new ItemFluidRecipe(inputs,fluidlist,entry2.getValue());
 	    	recipes.add(newrecipe);
-	    }
+			}
+		}
 	    return recipes;
 	    
 	  }

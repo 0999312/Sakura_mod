@@ -35,12 +35,12 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        BlockLoader.registerRenders();
-        ItemLoader.registerRenders();
-        DrinksLoader.registerRender();
+        BlockLoader.getInstance().registerRenders();
+        ItemLoader.getInstance().registerRenders();
+        DrinksLoader.getInstance().registerRender();
         SakuraEntityRegister.entityRender();
 
-        TileEntityRegistry.render();
+        TileEntityRegistry.getInstance().render();
     }
 
     @Override

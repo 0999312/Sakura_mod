@@ -1,0 +1,14 @@
+{
+   "result" : {
+      "item" : "sakura:materials",
+      "data" : 33,
+      "count" : 1
+   },
+   "ingredients" : [
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "foodSoysauce"
+      }
+   ],
+   "type" : "forge:ore_shapeless"
+}

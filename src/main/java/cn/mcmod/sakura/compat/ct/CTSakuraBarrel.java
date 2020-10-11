@@ -53,7 +53,7 @@ public class CTSakuraBarrel {
         @Override
         public void apply()
         {
-        	BarrelRecipes.ClearRecipe(itemInput);
+        	BarrelRecipes.getInstance().ClearRecipe(itemInput);
         }
 
         @Override
@@ -79,7 +79,7 @@ public class CTSakuraBarrel {
         @Override
         public void apply()
         {
-        	BarrelRecipes.register(new BarrelRecipes(fluidInput, fluidOutput, itemInput, 1200));
+        	BarrelRecipes.getInstance().register(fluidInput, fluidOutput, itemInput);
         }
 
         @Override
@@ -95,7 +95,7 @@ public class CTSakuraBarrel {
         @Override
         public void apply()
         {
-        	BarrelRecipes.ClearAllRecipe();
+        	BarrelRecipes.getInstance().ClearAllRecipe();
         }
 
         @Override

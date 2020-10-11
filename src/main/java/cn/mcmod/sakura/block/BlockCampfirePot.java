@@ -5,7 +5,7 @@ import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.gui.SakuraGuiHandler;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfirePot;
-import cn.mcmod.sakura.util.WorldUtil;
+import cn.mcmod_mmf.mmlib.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -120,8 +120,8 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
 		            return true;
 		        }
 		        
-		        if (WorldUtil.isItemFuel(stack)) {
-		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
+		        if (WorldUtil.getInstance().isItemFuel(stack)) {
+		            tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + TileEntityFurnace.getItemBurnTime(stack)));
 		            setState(true, worldIn, pos);
 					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
 						else stack.shrink(1);
@@ -129,8 +129,8 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
 		        }
 
 		        if (stack.getItem() == Items.FLINT_AND_STEEL) {
-		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + 10000);
-		            setState(true, worldIn, pos);
+		        	tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + 10000));
+		        	setState(true, worldIn, pos);
 		            stack.damageItem(1, playerIn);
 		            return true;
 		        }
@@ -203,6 +203,11 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
         return 0;
     }
 
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+    	return new ItemStack(ItemLoader.POT);
+    }
+    
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityCampfirePot();

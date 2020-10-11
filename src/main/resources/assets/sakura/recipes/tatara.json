@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "sakura:tatara"
+  },
+  "ingredients": [
+    {
+	  "item": "#OREIRON"
+    },
+    {
+	  "item": "sakura:bamboo_charcoal_block"
+    },
+    {
+      "item": "#TOOLFORGINGHAMMER"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "sakura:teishoku_tempura"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:obon"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 7
+    },
+    {
+      "item": "#LISTALLSOUP"
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 79
+    },
+    {
+      "item": "sakura:foodset",
+      "data": 79
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

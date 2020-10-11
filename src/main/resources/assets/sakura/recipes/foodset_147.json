@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 147,
+    "count": 2
+  },
+  "ingredients": [
+    {
+      "item": "#FOODDOUGH"
+    },
+    {
+      "item": "#DUSTSALT"
+    },
+    {
+      "item": "#LISTALLMEATRAW"
+    },
+    {
+      "item": "#LISTALLVEGGIE"
+    },
+    {
+      "item": "#LISTALLEGG"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

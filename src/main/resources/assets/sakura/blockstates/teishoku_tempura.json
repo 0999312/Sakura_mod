@@ -1,0 +1,23 @@
+{
+   "forge_marker" : 1,
+   "defaults" : {
+      "model" : "sakura:teishoku_tempura"
+   },
+   "variants" : {
+      "inventory" : {
+         "model" : "sakura:teishoku_tempura"
+      },
+        "facing": {
+            "north": { "y": 0 },
+            "south": { "y": 180 },
+            "west": { "y": 270 },
+            "east": { "y": 90 }
+        },
+        "bites": {
+            "0": { "model" : "sakura:teishoku_tempura" },
+            "1": { "model" : "sakura:teishoku_tempura_1" },
+            "2": { "model" : "sakura:teishoku_tempura_2" },
+            "3": { "model" : "sakura:teishoku_tempura_3" }
+        }
+   }
+}

@@ -3,7 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.tileentity.TileEntityCampfire;
-import cn.mcmod.sakura.util.WorldUtil;
+import cn.mcmod_mmf.mmlib.util.WorldUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -125,7 +125,7 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
 			        return true;
 		        }
 		        
-		        if (WorldUtil.isItemFuel(stack)) {
+		        if (WorldUtil.getInstance().isItemFuel(stack)) {
 		            tileEntityCampfire.setBurningTime(tileEntityCampfire.getBurningTime() + TileEntityFurnace.getItemBurnTime(stack));
 		            setState(true, worldIn, pos);
 					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
@@ -203,6 +203,11 @@ public class BlockCampfire extends BlockContainer implements ITileEntityProvider
         super.breakBlock(worldIn, pos, state);
     }
 
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+    	return new ItemStack(BlockLoader.CAMPFIRE_IDLE);
+    }
+    
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityCampfire();

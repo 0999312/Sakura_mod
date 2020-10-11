@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.CommonProxy;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
+public class BlockBambooShoot extends BlockBush implements IPlantable, IGrowable {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 8);
     protected static final AxisAlignedBB BAMBOO_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
 
@@ -50,10 +51,10 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
             if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, blockpos, state, true)) {
                 if (j == 6) {
                     if(rand.nextInt() ==0){
-                        worldIn.setBlockState(blockpos.up(2), BlockLoader.BAMBOO.getDefaultState());
+                    	if(worldIn.isAirBlock(blockpos.up(2)))worldIn.setBlockState(blockpos.up(2), BlockLoader.BAMBOO.getDefaultState());
                     }
-                    worldIn.setBlockState(blockpos.up(), BlockLoader.BAMBOO.getDefaultState());
-                    worldIn.setBlockState(blockpos, BlockLoader.BAMBOO.getDefaultState());
+                	if(worldIn.isAirBlock(blockpos.up()))worldIn.setBlockState(blockpos.up(), BlockLoader.BAMBOO.getDefaultState());
+                	if(worldIn.isAirBlock(blockpos)) worldIn.setBlockState(blockpos, BlockLoader.BAMBOO.getDefaultState());
                     worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
                 } else {
                     worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
@@ -165,11 +166,12 @@ public class BlockBambooShoot extends Block implements IPlantable, IGrowable {
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+
         if(rand.nextInt() ==0){
             worldIn.setBlockState(pos.up(3), BlockLoader.BAMBOO.getDefaultState());
         }
-        worldIn.setBlockState(pos.up(), BlockLoader.BAMBOO.getDefaultState());
-        worldIn.setBlockState(pos.up(2), BlockLoader.BAMBOO.getDefaultState());
-        worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
+    	if(worldIn.isAirBlock(pos.up()))worldIn.setBlockState(pos.up(), BlockLoader.BAMBOO.getDefaultState());
+    	if(worldIn.isAirBlock(pos.up(2))) worldIn.setBlockState(pos.up(2), BlockLoader.BAMBOO.getDefaultState());
+    	worldIn.setBlockState(pos, BlockLoader.BAMBOO.getDefaultState());
     }
 }

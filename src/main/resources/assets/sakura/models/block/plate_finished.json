@@ -1,0 +1,89 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"particle": "sakura:blocks/plank_bamboo",
+		"1_0": "sakura:blocks/plank_bamboo"
+	},
+	"elements": [
+		{
+			"from": [0, 2, 4],
+			"to": [16, 3, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"east": {"uv": [0, 0, 0.999, 0.999], "texture": "#1_0"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"west": {"uv": [0, 0, 0.999, 0.998], "texture": "#1_0"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1_0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1_0"}
+			}
+		},
+		{
+			"from": [13, 0, 4],
+			"to": [14, 2, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#1_0"}
+			}
+		},
+		{
+			"from": [2, 0, 4],
+			"to": [3, 2, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#1_0"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#1_0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [65, 0, 0],
+			"translation": [0, 1.25, 1.25],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [65, 0, 0],
+			"translation": [0, 1.25, 1.25],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 4.25, 0],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 4.25, 0],
+			"scale": [0.6, 0.6, 0.6]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [32.5, 145, 0],
+			"translation": [0, 2.75, 0],
+			"scale": [0.81, 0.81, 0.81]
+		},
+		"head": {
+			"translation": [0, 10.5, 0],
+			"scale": [0.6, 0.6, 0.6]
+		}
+	},
+	"groups": [
+		{
+			"name": "oben",
+			"origin": [8, 8, 8],
+			"children": [0, 1, 2]
+		}
+	]
+}

@@ -1,0 +1,28 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 53
+  },
+  "ingredients": [
+    {
+      "item": "sakura:materials",
+      "data": 52
+    },
+    {
+      "item": "sakura:materials",
+      "data": 52
+    },
+    {
+      "item": "sakura:materials",
+      "data": 52
+    },
+    {
+      "item": "sakura:materials",
+      "data": 52
+    },
+    {
+      "item": "#TOOLFORGINGHAMMER"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

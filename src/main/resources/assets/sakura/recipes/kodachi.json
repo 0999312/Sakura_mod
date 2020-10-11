@@ -3,16 +3,21 @@
     "item": "sakura:kodachi"
   },
   "pattern": [
-    " I",
-    "L "
+    " #",
+    "SH"
   ],
   "type": "forge:ore_shaped",
   "key": {
-    "I": {
-      "item": "#INGOTIRON"
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
     },
-    "L": {
-      "item": "#WOODLUMBER"
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "lumber"
+    },
+    "H": {
+      "item": "#TOOLFORGINGHAMMER"
     }
   }
 }

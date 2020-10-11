@@ -9,6 +9,102 @@
    {
       "ingredient" : {
          "type" : "forge:ore_dict",
+         "ore" : "cropStraw"
+      },
+      "name" : "CROPSTRAW"
+   },   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "foodDough"
+      },
+      "name" : "FOODDOUGH"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "listAllmeat"
+      },
+      "name" : "LISTALLMEAT"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "wool"
+      },
+      "name" : "WOOL"
+   },  {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "blockMossy"
+      },
+      "name" : "BLOCKMOSSY"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "stone"
+      },
+      "name" : "STONE"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "cobblestone"
+      },
+      "name" : "COBBLESTONE"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "foodMocha"
+      },
+      "name" : "FOODMOCHA"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "string"
+      },
+      "name" : "STRING"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "listAllsoup"
+      },
+      "name" : "LISTALLSOUP"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "oreIron"
+      },
+      "name" : "OREIRON"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "blockCoal"
+      },
+      "name" : "BLOCKCOAL"
+   },
+   {
+      "ingredient" : {
+         "type" : "mm_lib:wildcard_oredict",
+         "ore" : "toolForginghammer"
+      },
+      "name" : "TOOLFORGINGHAMMER"
+   },
+   {
+      "ingredient" : {
+         "type" : "mm_lib:wildcard_oredict",
+         "ore" : "toolKnifefish"
+      },
+      "name" : "TOOLKNIFEFISH"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
          "ore" : "paper"
       },
       "name" : "PAPER"
@@ -33,6 +129,20 @@
          "ore" : "dyeBlue"
       },
       "name" : "DYEBLUE"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "dyeRed"
+      },
+      "name" : "DYERED"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "dyeBlack"
+      },
+      "name" : "DYEBLACK"
    },
    {
       "ingredient" : {
@@ -89,6 +199,13 @@
          "ore" : "cropBeet"
       },
       "name" : "CROPBEET"
+   },
+   {
+      "ingredient" : {
+         "type" : "forge:ore_dict",
+         "ore" : "torch"
+      },
+      "name" : "TORCH"
    },
    {
       "ingredient" : {
@@ -478,7 +595,7 @@
    {
       "ingredient" : {
          "type" : "forge:ore_dict",
-         "ore" : "woodLumber"
+         "ore" : "lumber"
       },
       "name" : "WOODLUMBER"
    },

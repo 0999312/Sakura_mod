@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 59,
+    "count": 4
+  },
+  "pattern": [
+    "WEW",
+    "EBE",
+    "WEW"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#WOODLUMBER"
+    },
+    "E": {
+      "item": "#STRING"
+    },
+    "W": {
+      "item": "#WOOL"
+    }
+  }
+}

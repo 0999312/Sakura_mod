@@ -579,7 +579,6 @@ fluid.sakura.hot_spring_water=温泉水
 #Tooltips
 sakura.kimono.texture.name=和服材质
 sakura.haori.texture.name=羽织材质
-
 #按键绑定
 key.categories.sakura=樱
 key.sakura.sheath_in=收刀入鞘

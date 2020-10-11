@@ -4,115 +4,115 @@
       "food_oil" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "food_oil"
+            "fluid" : "sakura.food_oil"
          }
       },
       "grape_fluid" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "grape_fluid"
+            "fluid" : "sakura.grape_fluid"
          }
       },
       "red_wine" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "red_wine"
+            "fluid" : "sakura.red_wine"
          }
       },
       "green_grape_fluid" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "green_grape_fluid"
+            "fluid" : "sakura.green_grape_fluid"
          }
       },
       "white_wine" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "white_wine"
+            "fluid" : "sakura.white_wine"
          }
       },
       "champagne" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "champagne"
+            "fluid" : "sakura.champagne"
          }
       },
       "rum" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "rum"
+            "fluid" : "sakura.rum"
          }
       },
       "doburoku" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "doburoku"
+            "fluid" : "sakura.doburoku"
          }
       },
       "sake" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "sake"
+            "fluid" : "sakura.sake"
          }
       },
       "shouchu" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "shouchu"
+            "fluid" : "sakura.shouchu"
          }
       },
       "beer" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "beer"
+            "fluid" : "sakura.beer"
          }
       },
       "vodka" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "vodka"
+            "fluid" : "sakura.vodka"
          }
       },
       "whiskey" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "whiskey"
+            "fluid" : "sakura.whiskey"
          }
       },
       "brandy" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "brandy"
+            "fluid" : "sakura.brandy"
          }
       },
       "liqueur" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "liqueur"
+            "fluid" : "sakura.liqueur"
          }
       },
       "cocoa_liqueur" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "cocoa_liqueur"
+            "fluid" : "sakura.cocoa_liqueur"
          }
       },
       "maple_syrup" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "maple_syrup"
+            "fluid" : "sakura.maple_syrup"
          }
       },
       "hot_spring_water" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "hot_spring_water"
+            "fluid" : "sakura.hot_spring_water"
          }
       },
       "yeast_liquid" : {
          "model" : "forge:fluid",
          "custom" : {
-            "fluid" : "yeast_liquid"
+            "fluid" : "sakura.yeast_liquid"
          }
       }
    }

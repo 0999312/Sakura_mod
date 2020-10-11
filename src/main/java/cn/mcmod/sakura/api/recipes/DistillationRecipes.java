@@ -1,119 +1,89 @@
 package cn.mcmod.sakura.api.recipes;
 
-import cn.mcmod.sakura.util.RecipesUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import com.google.common.collect.Maps;
+
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 
 public class DistillationRecipes {
-    public static final int DEFAULT_DURATION = 9000;
-    private static List<DistillationRecipes> recipeRegistry = new ArrayList<>();
-    private int duration;
-    private FluidStack input;
-    private FluidStack output;
-    private List<Object> additives;
-    private List<ItemStack> transformed;
-
-    public DistillationRecipes(FluidStack input, FluidStack output, Object[] additives, int duration) {
-        this.input = input;
-        this.output = output;
-        this.additives = additives != null ? Arrays.asList(additives) : new ArrayList<>();
-        this.duration = duration;
+	public final Map<FluidStack, Map<Object[], FluidStack>> RecipesList = Maps.newHashMap();
+	private static final DistillationRecipes RECIPE_BASE = new DistillationRecipes();
+    private DistillationRecipes() {
+	}
+	public static DistillationRecipes getInstance() {
+		return RECIPE_BASE;
+	}
+    public void register(FluidStack input, FluidStack output) {
+    	register(input,output, new Object[]{ItemStack.EMPTY,ItemStack.EMPTY,ItemStack.EMPTY});
     }
-
-    public DistillationRecipes(FluidStack input, FluidStack output, int duration) {
-        this(input, output, null, duration);
-    }
-
-    public static void register(DistillationRecipes recipes) {
-        recipeRegistry.add(recipes);
-    }
-
-    public static List<DistillationRecipes> getPossibleRecipes(FluidStack input, List<ItemStack> items) {
-        List<DistillationRecipes> result = new ArrayList<>();
-
-        for (DistillationRecipes br : recipeRegistry) {
-            List<ItemStack> examine = new ArrayList<>();
-            for (ItemStack item : items)
-                examine.add(item.copy());
-
-            if (br.getInput().isFluidEqual(input) && br.getInput().amount <= input.amount) {
-                boolean matched = true;
-                for (Object i : br.getAdditives()) {
-                    boolean found = false;
-                    for (ItemStack j : examine) {
-                        if (i instanceof ItemStack)
-                            if (((ItemStack) i).isItemEqual(j) &&
-                                    ((ItemStack) i).getCount() <= j.getCount()) {
-                                found = true;
-                                j.setCount(j.getCount() - ((ItemStack) i).getCount());
-                                break;
-                            }
-                        if (i instanceof String) {
-                            NonNullList<ItemStack> ore = OreDictionary.getOres((String) i);
-                            if (!ore.isEmpty() && RecipesUtil.containsMatch(false, ore, j)) {
-                                found = true;
-                                j.shrink(1);
-                                break;
-                            }
-                        }
-
-                    }
-                    if (!found) {
-                        matched = false;
-                        break;
-                    }
-                }
-                if (matched) {
-                    br.transformed = examine;
-                    result.add(br);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    public static List<DistillationRecipes> getRecipeRegistry() {
-        return recipeRegistry;
-    }
-
-    public FluidStack getInput() {
-        return input;
-    }
-
-    public FluidStack getOutput() {
-        return output;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public List<Object> getAdditives() {
-        return additives;
-    }
-
-    public List<ItemStack> getTransformed() {
-        return transformed;
-    }
-    
-    public static void ClearRecipe(FluidStack input) {
-    	Iterator<DistillationRecipes> iter = recipeRegistry.iterator();
-		while(iter.hasNext()){
-			DistillationRecipes recipes = iter.next();
-				if(input.equals(recipes.output))
-					iter.remove();
+    public void register(FluidStack input, FluidStack output, Object[] additives) {
+    	Map<Object[], FluidStack> items = null;
+		if (!RecipesList.containsKey(input)) {
+			items = Maps.newHashMap();
+			RecipesList.put(input, items);
+		} else {
+			items = RecipesList.get(input);
 		}
+		items.put(additives, output);
+    }
+
+	public FluidStack getFluidStack(FluidStack fluid) {
+		for (FluidStack entry : RecipesList.keySet()) {
+			if(entry.isFluidEqual(fluid))
+				return entry;
+		}
+		return null;
+	}
+
+	public FluidStack getResultFluidStack(FluidStack fluid, ItemStack[] inputs) {
+		for (Entry<FluidStack, Map<Object[], FluidStack>> entry : RecipesList.entrySet()) {
+			if(entry.getKey().isFluidEqual(fluid))
+		        for(Entry<Object[], FluidStack> entry2 : entry.getValue().entrySet()){
+		            boolean flg1 = true;
+	            	for (Object obj1 : entry2.getKey()) {
+		        		boolean flg2 = false;
+		        		for (ItemStack input:inputs) {
+		                	if(obj1 instanceof ItemStack){
+		                		ItemStack stack1 = (ItemStack) obj1;
+		    	                if (ItemStack.areItemsEqual(stack1, input)) {
+		    	                    flg2 = true;
+		    	                    break;
+		    	                }
+		                    }else if(obj1 instanceof String){
+		                    	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
+		                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
+		                            flg2 = true;
+		    	                    break;
+		                        }
+		                    }
+		                }
+		                if (!flg2) {
+		                    flg1 = false;
+		                    break;
+		                }
+		            }
+
+		            if (flg1) {
+		                return entry2.getValue();
+		            }
+		        }
+		}
+
+		return null;
+	}
+  
+    public void ClearRecipe(FluidStack input) {
+    	RecipesList.remove(input);
 	}
     
-    public static void ClearAllRecipe() {
-    	recipeRegistry.clear();
+    public void ClearAllRecipe() {
+    	RecipesList.clear();
 	}
 }

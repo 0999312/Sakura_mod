@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "sakura:kimono"
+  },
+  "pattern": [
+    "W W",
+    "EWE",
+    "WWW"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "E": {
+      "item": "#STRING"
+    },
+    "W": {
+      "item": "sakura:materials",
+      "data": 59
+    }
+  }
+}

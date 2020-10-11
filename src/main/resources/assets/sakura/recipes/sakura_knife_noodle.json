@@ -1,0 +1,28 @@
+{
+   "type" : "forge:ore_shaped",
+   "pattern" : [ 
+		"I#", 
+		"I#", 
+		"SH" 
+	],
+   "key" : {
+      "#" : {
+			"item": "sakura:sakura_diamond"
+      },
+      "S" : {
+         "type" : "forge:ore_dict",
+         "ore" : "lumber"
+      },
+      "I" : {
+         "type" : "forge:ore_dict",
+         "ore" : "ingotSteel"
+      },
+      "H" : {
+         "item" : "#TOOLFORGINGHAMMER"
+      }
+   },
+   "result" : {
+      "item" : "sakura:sakura_knife_noodle",
+      "count" : 1
+   }
+}

@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class WorldGenSakuraTree extends WorldGenAbstractTree {
     private static final IBlockState DEFAULT_TRUNK = BlockLoader.SAKURA_LOG.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = BlockLoader.SAKURA_LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
+    private static final IBlockState DEFAULT_LEAF = BlockLoader.SAKURA_LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, true).withProperty(BlockLeaves.DECAYABLE, true);
     /**
      * The minimum height of a generated tree.
      */

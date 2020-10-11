@@ -1,0 +1,17 @@
+{
+   "result" : {
+      "nbt" : "{texture_name:\"haori_3\"}",
+      "item" : "sakura:haori",
+      "type" : "minecraft:item_nbt"
+   },
+   "ingredients" : [
+      {
+         "item" : "sakura:haori"
+      },
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "dyeLightBlue"
+      }
+   ],
+   "type" : "forge:ore_shapeless"
+}

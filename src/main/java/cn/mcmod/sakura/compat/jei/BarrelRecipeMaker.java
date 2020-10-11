@@ -2,6 +2,8 @@ package cn.mcmod.sakura.compat.jei;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import mezz.jei.api.IJeiHelpers;
@@ -15,23 +17,24 @@ public final class BarrelRecipeMaker {
 
 	    List<BarrelRecipe> recipes = new ArrayList<BarrelRecipe>();
 
-	    for (BarrelRecipes recipe : BarrelRecipes.getRecipeRegistry()) {
+	    for (Entry<FluidStack, Map<Object[], FluidStack>> entry : BarrelRecipes.getInstance().RecipesList.entrySet()) {
+	    	for(Entry<Object[], FluidStack> entry2 : entry.getValue().entrySet()){
 	    	List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
 	    	List<List<FluidStack>> fluidlist=new ArrayList<List<FluidStack>>();
 	    	List<FluidStack> fluid = new ArrayList<FluidStack>();
-	    	if(recipe.getAdditives()!=null)
-		    	for (Object obj : recipe.getAdditives()) {
-		    		List<ItemStack> subinputs = stackHelper.toItemStackList(obj);
-			    	inputs.add(subinputs);
-				}
 	    	
-		    fluid.add(recipe.getInput());
+	    	for (Object obj : entry2.getKey()) {
+	    		List<ItemStack> subinputs = stackHelper.toItemStackList(obj);
+		    	inputs.add(subinputs);
+			}
+	    	
+		    fluid.add(entry.getKey());
 		    fluidlist.add(fluid);
 	    	
-	    	BarrelRecipe newrecipe = new BarrelRecipe(inputs,fluidlist,recipe.getOutput());
+	    	BarrelRecipe newrecipe = new BarrelRecipe(inputs,fluidlist,entry2.getValue());
 	    	recipes.add(newrecipe);
+	    	}
 	    }
 	    return recipes;
-	    
 	  }
 }

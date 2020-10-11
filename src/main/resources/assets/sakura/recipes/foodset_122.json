@@ -12,6 +12,9 @@
     {
       "item": "sakura:foodset",
       "data": 7
+    },
+	{
+      "item": "#TOOLKNIFEFISH"
     }
   ],
   "type": "minecraft:crafting_shapeless"

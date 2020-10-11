@@ -10,7 +10,7 @@
     },
     "S": {
       "type": "forge:ore_dict",
-      "ore": "woodLumber"
+      "ore": "lumber"
     }
   },
   "result": {

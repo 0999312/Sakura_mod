@@ -2,7 +2,7 @@ package cn.mcmod.sakura.gui;
 
 import cn.mcmod.sakura.inventory.ContainerMapleCauldron;
 import cn.mcmod.sakura.tileentity.TileEntityMapleCauldron;
-import cn.mcmod.sakura.util.ClientUtils;
+import cn.mcmod_mmf.mmlib.util.ClientUtils;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -45,14 +45,14 @@ public class GuiMapleCauldron extends GuiContainer {
             FluidTank fluidTank = this.tilePot.getTank();
             int heightInd = (int) (68 * ((float) fluidTank.getFluidAmount() / (float) fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtils.drawRepeatedFluidSprite(fluidTank.getFluid(), k + 35, l + 78 - heightInd , 16f, heightInd);
+                ClientUtils.getInstance().drawRepeatedFluidSprite(fluidTank.getFluid(), k + 35, l + 78 - heightInd , 16f, heightInd);
             }
         }
     }
 
     private int getProgressScaled(int pixels) {
         int i = this.tilePot.getField(1);
-        return i != 0 ? i * pixels / 500 : 0;
+        return i != 0 ? i * pixels / 1200 : 0;
     }
 
     @Override

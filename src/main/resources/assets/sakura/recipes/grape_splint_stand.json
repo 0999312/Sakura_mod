@@ -10,8 +10,7 @@
       "ore": "fenceWood"
     },
     "S": {
-      "type": "forge:ore_dict",
-      "ore": "woodLumber"
+     	"item": "#WOODLUMBER"
     }
   },
   "result": {

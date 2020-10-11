@@ -1,0 +1,22 @@
+{
+   "result" : {
+      "item" : "sakura:foodset",
+      "data" : 130,
+      "count" : 1
+   },
+   "ingredients" : [
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "foodSoysauce"
+      },
+      {
+         "item" : "sakura:foodset",
+         "data" : 129
+      },
+      {
+         "type" : "forge:ore_dict",
+         "ore" : "listAllsugar"
+      }
+   ],
+   "type" : "forge:ore_shapeless"
+}

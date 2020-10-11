@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "sakura:red_lantern"
+  },
+  "ingredients": [
+    {
+      "item": "sakura:white_lantern"
+    },
+    {
+      "item": "#DYERED"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

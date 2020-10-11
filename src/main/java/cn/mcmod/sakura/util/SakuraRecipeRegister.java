@@ -5,17 +5,23 @@ import java.util.List;
 
 import org.apache.logging.log4j.Level;
 
+import com.google.common.collect.Lists;
+
+import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.api.recipes.DistillationRecipes;
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 import cn.mcmod.sakura.api.recipes.MortarRecipes;
 import cn.mcmod.sakura.api.recipes.PotRecipes;
+import cn.mcmod.sakura.api.recipes.WebRecipe;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
+import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
+import net.dries007.tfc.objects.fluids.FluidsTFC;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -25,6 +31,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional.Method;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SakuraRecipeRegister {
 	public static List<IAction> actions = new ArrayList<IAction>();
@@ -55,55 +62,63 @@ public class SakuraRecipeRegister {
     }
 	
 	public static void L2ISRegister() {
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BEER_FLUID, 1000)), new FluidStack(BlockLoader.BEER_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000)), new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.SAKE_FLUID, 1000)), new FluidStack(BlockLoader.SAKE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000)), new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.RED_WINE_FLUID, 1000)), new FluidStack(BlockLoader.RED_WINE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000)), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000)), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.RUM_FLUID, 1000)), new FluidStack(BlockLoader.RUM_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.VODKA_FLUID, 1000)), new FluidStack(BlockLoader.VODKA_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BRANDY_FLUID, 1000)), new FluidStack(BlockLoader.BRANDY_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)), new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.YEAST_FLUID, 1000)), new FluidStack(BlockLoader.YEAST_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BEER_FLUID, 1000)), new FluidStack(BlockLoader.BEER_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000)), new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.SAKE_FLUID, 1000)), new FluidStack(BlockLoader.SAKE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000)), new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.RED_WINE_FLUID, 1000)), new FluidStack(BlockLoader.RED_WINE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000)), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000)), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.RUM_FLUID, 1000)), new FluidStack(BlockLoader.RUM_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.VODKA_FLUID, 1000)), new FluidStack(BlockLoader.VODKA_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BRANDY_FLUID, 1000)), new FluidStack(BlockLoader.BRANDY_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)), new FluidStack(BlockLoader.WHISKEY_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.YEAST_FLUID, 1000)), new FluidStack(BlockLoader.YEAST_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000));
 		
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,0), new FluidStack(BlockLoader.BEER_FLUID, 400)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,2), new FluidStack(BlockLoader.SAKE_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,3), new FluidStack(BlockLoader.SHOUCHU_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,4), new FluidStack(BlockLoader.RED_WINE_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,5), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,6), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,7), new FluidStack(BlockLoader.RUM_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,8), new FluidStack(BlockLoader.VODKA_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,9), new FluidStack(BlockLoader.WHISKEY_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,10), new FluidStack(BlockLoader.BRANDY_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,13), new FluidStack(BlockLoader.LIQUEUR_FLUID, 200)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,14), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 200)));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,0), new FluidStack(BlockLoader.BEER_FLUID, 400));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,2), new FluidStack(BlockLoader.SAKE_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,3), new FluidStack(BlockLoader.SHOUCHU_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,4), new FluidStack(BlockLoader.RED_WINE_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,5), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,6), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,7), new FluidStack(BlockLoader.RUM_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,8), new FluidStack(BlockLoader.VODKA_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,9), new FluidStack(BlockLoader.WHISKEY_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,10), new FluidStack(BlockLoader.BRANDY_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,13), new FluidStack(BlockLoader.LIQUEUR_FLUID, 200));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.cup,1,0), new ItemStack(DrinksLoader.alcoholic,1,14), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 200));
 	
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,0), new FluidStack(BlockLoader.BEER_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,2), new FluidStack(BlockLoader.SAKE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,3), new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,4), new FluidStack(BlockLoader.RED_WINE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,5), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,6), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,7), new FluidStack(BlockLoader.RUM_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,8), new FluidStack(BlockLoader.VODKA_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,9), new FluidStack(BlockLoader.WHISKEY_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,10), new FluidStack(BlockLoader.BRANDY_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,13), new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000)));
-		LiquidToItemRecipe.addRecipe(new LiquidToItemRecipe(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,14), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000)));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,0), new FluidStack(BlockLoader.BEER_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,1), new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,2), new FluidStack(BlockLoader.SAKE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,3), new FluidStack(BlockLoader.SHOUCHU_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,4), new FluidStack(BlockLoader.RED_WINE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,5), new FluidStack(BlockLoader.WHITE_WINE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,6), new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,7), new FluidStack(BlockLoader.RUM_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,8), new FluidStack(BlockLoader.VODKA_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,9), new FluidStack(BlockLoader.WHISKEY_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,10), new FluidStack(BlockLoader.BRANDY_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,13), new FluidStack(BlockLoader.LIQUEUR_FLUID, 1000));
+		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,14), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000));
 	}
 	
     public static void furnaceRegister() {
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,135), new ItemStack(ItemLoader.FOODSET,1,138), 0.1F);
+    	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,147), new ItemStack(ItemLoader.FOODSET,1,148), 0.1F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,144), new ItemStack(ItemLoader.FOODSET,1,145), 0.1F);
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,143), new ItemStack(ItemLoader.FOODSET,1,144));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.MATERIAL,1,34));
+    	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.IRON_SAND), new ItemStack(Items.IRON_INGOT), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 38), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 21), new ItemStack(ItemLoader.MATERIAL, 1, 22), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 2), 0.1F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 15), new ItemStack(ItemLoader.MATERIAL, 1, 31), 0.1F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 7), new ItemStack(ItemLoader.FOODSET, 1, 131), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 48), new ItemStack(ItemLoader.FOODSET, 1, 49), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET, 1, 58), new ItemStack(ItemLoader.FOODSET, 1, 59), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 6), new ItemStack(ItemLoader.FOODSET, 1, 4), 0.1F);
@@ -111,1144 +126,1252 @@ public class SakuraRecipeRegister {
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 31), new ItemStack(ItemLoader.FOODSET, 1, 73), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.MAPLE_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
 		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.SAKURA_LOG, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
-		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(Items.COAL, 1, 1), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO_BLOCK, 1), new ItemStack(BlockLoader.BAMBOO_CHARCOAL_BLOCK), 0.1F);
+		FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.BAMBOO, 1), new ItemStack(ItemLoader.MATERIAL, 1, 51), 0.1F);
+    	
+		if(SakuraConfig.harder_iron_recipe){
+			switch (SakuraConfig.harder_iron_difficult) {
+			case 1:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,54));
+		    	});
+				break;
+			case 2:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,53));
+		    	});
+				break;
+			default:
+				FurnaceRecipes.instance().getSmeltingList().forEach((key,value) ->{
+		    		if(RecipesUtil.getInstance().containsMatch(false, OreDictionary.getOres("ingotIron"), value))
+		    			FurnaceRecipes.instance().getSmeltingList().put(key, new ItemStack(ItemLoader.MATERIAL,1,52));
+		    	});
+				break;
+			}
+		}
     }
 
     public static void barrelRegister() {
-		BarrelRecipes.register(
-				new BarrelRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+		BarrelRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.YEAST_FLUID, 50), 
 				new Object[]{
 				"listAllfruit",
 				"listAllgrain",
 				"listAllsugar"
-				}, 600));
-		BarrelRecipes.register(
-				new BarrelRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+				});
+		BarrelRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.BEER_FLUID, 100), 
 				new Object[]{
 				"cropWheat",
 				"foodYeast",
 				"cropHops"
-				}, 800));
-		BarrelRecipes.register(
-				new BarrelRecipes(
+				});
+		BarrelRecipes.getInstance().register(
 				new FluidStack(BlockLoader.GRAPE_FLUID, 100),
 				new FluidStack(BlockLoader.RED_WINE_FLUID, 50), 
 				new Object[]{
 				"listAllsugar",	
 				"foodYeast"
-				}, 1200));
-		BarrelRecipes.register(
-				new BarrelRecipes(
+				});
+		BarrelRecipes.getInstance().register(
 				new FluidStack(BlockLoader.GREEN_GRAPE_FLUID, 100),
 				new FluidStack(BlockLoader.WHITE_WINE_FLUID, 50), 
 				new Object[]{
 				"listAllsugar",	
 				"foodYeast"
-				}, 1200));
-		BarrelRecipes.register(
-				new BarrelRecipes(
+				});
+		BarrelRecipes.getInstance().register(
 				new FluidStack(BlockLoader.WHITE_WINE_FLUID, 100),
 				new FluidStack(BlockLoader.CHAMPAGNE_FLUID, 50), 
 				new Object[]{
 				"listAllsugar",		
 				"foodYeast"
-				}, 1200));
-		BarrelRecipes.register(
-				new BarrelRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+				});
+		BarrelRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.DOBUROKU_FLUID, 50), 
 				new Object[]{
 				new ItemStack(ItemLoader.FOODSET,1,7),
 				"foodYeast"
-				}, 1200));
-		BarrelRecipes.register(
-				new BarrelRecipes(
+				});
+		BarrelRecipes.getInstance().register(
 				new FluidStack(BlockLoader.DOBUROKU_FLUID, 100),
-				new FluidStack(BlockLoader.SAKE_FLUID, 50), 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				new FluidStack(BlockLoader.SAKE_FLUID, 50));
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.SAKE_FLUID, 100),
-				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50), 100));
-		DistillationRecipes.register(
-				new DistillationRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50));
+		DistillationRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.WHISKEY_FLUID, 50), 
 				new Object[]{
 				"listAllgrain",
 				"listAllgrain",
 				"listAllgrain"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.RED_WINE_FLUID, 100),
 				new FluidStack(BlockLoader.BRANDY_FLUID, 50), 
 				new Object[]{
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.GREEN_GRAPE_FLUID, 100),
 				new FluidStack(BlockLoader.BRANDY_FLUID, 50), 
 				new Object[]{
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+				});
+		DistillationRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.VODKA_FLUID, 50), 
 				new Object[]{
 				"cropPotato",
 				"cropPotato",
 				"cropPotato"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
-				new FluidStack(FluidRegistry.WATER, 100),
+				});
+		DistillationRecipes.getInstance().register(
+				getWater( 100).get(0),
 				new FluidStack(BlockLoader.RUM_FLUID, 50), 
 				new Object[]{
 				"sugarcane",
 				"sugarcane",
 				"sugarcane"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.RUM_FLUID, 100),
 				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
 				new Object[]{
 				"listAllfruit",
 				"listAllfruit",
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.VODKA_FLUID, 100),
 				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
 				new Object[]{
 				"listAllfruit",
 				"listAllfruit",
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.WHISKEY_FLUID, 100),
 				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
 				new Object[]{
 				"listAllfruit",
 				"listAllfruit",
 				"listAllsugar"
-				}, 1200));
+				});
 		
-		DistillationRecipes.register(
-				new DistillationRecipes(
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.RUM_FLUID, 100),
 				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
 				new Object[]{
 				new ItemStack(Items.DYE,1,3),
 				new ItemStack(Items.DYE,1,3),
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.VODKA_FLUID, 100),
 				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
 				new Object[]{
 				new ItemStack(Items.DYE,1,3),
 				new ItemStack(Items.DYE,1,3),
 				"listAllsugar"
-				}, 1200));
-		DistillationRecipes.register(
-				new DistillationRecipes(
+				});
+		DistillationRecipes.getInstance().register(
 				new FluidStack(BlockLoader.WHISKEY_FLUID, 100),
 				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
 				new Object[]{
 				new ItemStack(Items.DYE,1,3),
 				new ItemStack(Items.DYE,1,3),
 				"listAllsugar"
-				}, 1200));
+				});
 	}
     
     public static void mortarRegister() {
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    	MortarRecipes.instance().addMortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.FOODSET, 32, 146)},
+    			new ItemStack[]{
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145),
+    					new ItemStack(ItemLoader.FOODSET, 1, 145)
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 6, 43)},
     			new Object[]{
     					"cropTea",
     					"cropTea",
     					"cropTea",
     					"cropTea"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 1)},
     			new ItemStack[]{
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS)
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 16)},
     			new ItemStack[]{
     					new ItemStack(ItemLoader.MATERIAL, 1, 1),
     					new ItemStack(ItemLoader.MATERIAL, 1, 1)
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 5)},
     			new Object[]{
     					"cropBuckwheat",
     					"cropBuckwheat"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 4)},
     			new Object[]{
     					"cropWheat",
     					"cropWheat"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Blocks.GRAVEL),new ItemStack(ItemLoader.MATERIAL, 1, 2)},
     			new Object[]{
     					"cobblestone"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Blocks.COBBLESTONE),new ItemStack(ItemLoader.MATERIAL, 2, 35)},
     			new Object[]{
     					"stone"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Blocks.SAND),new ItemStack(Items.FLINT)},
     			new Object[]{
     					"gravel"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Items.DYE,6,2)},
     			new Object[]{
     					"treeLeaves",
     					"treeLeaves",
     					"treeLeaves",
     					"treeLeaves"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Items.BLAZE_POWDER,3),new ItemStack(Items.BLAZE_POWDER,2)},
     			new Object[]{
     					new ItemStack(Items.BLAZE_ROD)
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(Items.DYE,3,15),new ItemStack(Items.DYE,2,15)},
     			new Object[]{
     					"bone"
-    					})
-    			);
+    					});
 
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL,4,30)},
     			new Object[]{
     					new ItemStack(ItemLoader.FOODSET,1,4)
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL,2,30)},
     			new Object[]{
     					"bread"
-    					})
-    			);
-    	MortarRecipes.addRecipe(new MortarRecipes(
+    					});
+
+    	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.FOODSET,6,80)},
     			new Object[]{
     					"cropPotato",
     					"listAllfishfresh",
     					"listAllfishfresh",
     					"listAllegg"
-    					})
-    			);
+    					});
     }
 
     public static void potRegister() {
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 0),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL, 2, 61),
+                new Object[]{
+                		"listAllsugar",
+                		"cropLemon",
+                		"listAllegg",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL, 2, 60),
+                new Object[]{
+                		"listAllsugar",
+                		"listAllfruit",
+                		"foodSoysauce",
+                		"foodSoysauce",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 2, 129),
+                new Object[]{
+                		"listAllegg",
+                		"listAllegg",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 2, 130),
+                new Object[]{
+                		"listAllegg",
+                		"listAllegg",
+                		"foodSoysauce",
+                		"listAllsugar",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 2, 76),
+                new Object[]{
+                		"foodSoysauce",
+                		"listAllsugar",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 1, 126),
+                new Object[]{
+                		"foodPasta",
+                		"foodKetchup"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 1, 127),
+                new Object[]{
+                		"foodPasta",
+                		"listAllmushroom",
+                		"listAllmushroom"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET, 1, 128),
+                new Object[]{
+                		"foodPasta",
+                		 new ItemStack(ItemLoader.MATERIAL, 1, 13)
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 0),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 40),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 1),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 1),
                         new Object[]{
+                        	new ItemStack(ItemLoader.cup, 1, 0),
                         	"cropTea"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 2),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 2),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 40),
                         		"listAllmilk"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 3),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 3),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		"cropTea",
                         		"listAllmilk"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 4),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 4),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 41)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 5),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 5),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 41),
                         		"listAllmilk"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 6),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 6),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 42)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 7),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 7),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 42),
                         		"listAllmilk"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 8),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 40),
                         		"cropLemon"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 9),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 9),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		"cropTea",
                         		"cropLemon"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 10),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 10),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 46)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 11),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 11),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		"listAllgrain",
                         		"listAllgrain"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(new ItemStack(DrinksLoader.tea, 1, 12),
-                		new ItemStack(ItemLoader.cup, 1, 0),
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(new ItemStack(DrinksLoader.tea, 1, 12),
                         new Object[]{
+                        		new ItemStack(ItemLoader.cup, 1, 0),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 44)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
         
-    	 PotRecipes.addRecipe(
-                 new PotRecipes(
-                         new ItemStack(ItemLoader.FOODSET, 1, 82),
-                         "listAlltofu",
-                         new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+    	 PotRecipes.getInstance().addRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 1, 82),
+                        new Object[]{"listAlltofu"},
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 99),
-                        "listAllegg",
                         new Object[]{
+                        		"listAllegg",
                                 "listAllegg",
                                 "listAllsugar"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 100)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 100));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.MATERIAL, 1, 12),
-                        "cropTomato",
                         new Object[]{
+                        	"cropTomato",
                         	"cropTomato",
                         	"listAllsugar"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 90),
-                        "listAllbeefraw",
                         new Object[]{
+                        		"listAllbeefraw",
                                 "bamboo"
-                        },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 100)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        });
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 91),
-                        "listAllchickenraw",
                         new Object[]{
+                        		"listAllchickenraw",
                                 "bamboo"
-                        },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 100)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        });
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 92),
-                        "listAllporkraw",
                         new Object[]{
+                                "listAllporkraw",
                                 "bamboo"
-                        },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 100)));
+                        });
 
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 7),
-                        "cropRice",
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 2, 10),
-                        "cropRice",
                         new Object[]{
-                                "listAllbeefraw"
+                        		"cropRice"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 10),
+                new Object[]{
+                		"cropRice",
+                        "listAllbeefraw"
+                },
+                getWater( 200));
+        
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 139),
+                new Object[]{
+                		"cropRice",
+                		 new ItemStack(ItemLoader.FOODSET, 1, 135),
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 8),
-                        "cropRice",
                         new Object[]{
-                                "cropBambooshoot"
+                    		"cropRice",
+                            "cropBambooshoot"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 9),
-                        "cropRice",
                         new Object[]{
-                                "listAllfishraw"
+                    		"cropRice",
+                            "listAllfishraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 11),
-                        "cropRice",
                         new Object[]{
-                                "listAllporkraw"
+                    		"cropRice",
+                            "listAllporkraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 12),
-                        "cropRice",
                         new Object[]{
-                                "listAllmushroom"
+                    		"cropRice",
+                            "listAllmushroom"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 13),
-                        "cropRice",
                         new Object[]{
-                                "listAllegg"
+                    		"cropRice",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 14),
-                        "cropRice",
                         new Object[]{
-                                "listAllbeefraw",
-                                "listAllegg"
+                    		"cropRice",
+                            "listAllbeefraw",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
 
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 15),
-                        "cropRice",
                         new Object[]{
-                                "listAllbeefraw",
-                                "listAllegg"
+                    		"cropRice",
+                            "listAllporkraw",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 16),
-                        "cropRice",
                         new Object[]{
-                                new ItemStack(ItemLoader.FOODSET, 1, 6),
-                                "listAllegg"
+                    		"cropRice",
+                            new ItemStack(ItemLoader.FOODSET, 1, 6),
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 17),
-                        "cropRice",
                         new Object[]{
-                                "listAllchickenraw",
-                                "listAllegg"
+                    		"cropRice",
+                            "listAllchickenraw",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 18),
-                        "cropRice",
                         new Object[]{
-                                "listAllfishraw",
-                                "listAllegg"
+                    		"cropRice",
+                            "listAllfishraw",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 65),
-                        "cropRice",
                         new Object[]{
-                        "foodNatto",
-                                "listAllegg"
+                    		"cropRice",
+                    		"foodNatto",
+                            "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 64),
-                        "cropRice",
                         new Object[]{
-                        "foodNatto"
+                        	"cropRice",
+                        	"foodNatto"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
         
         //fantuan
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 140),
+                new Object[]{
+                		"cropRice",
+                		new ItemStack(ItemLoader.FOODSET, 1, 135),
+                		"cropSeaweed"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 42),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 43),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed",
                                 "cropBambooshoot"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 44),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed",
                                 "listAllfishraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
 
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 45),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed",
                                 "listAllmushroom"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 46),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed",
                                 "cropSeaweed"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 47),
-                        "cropRice",
                         new Object[]{
+                        		"cropRice",
                         		"cropSeaweed",
                         		new ItemStack(ItemLoader.FOODSET, 1, 79),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
         //
         /*
          * RAMEN
          */
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 19),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 20),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllbeefraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 21),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 22),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		 new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 79)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 23),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(ItemLoader.FOODSET, 1, 81)
+                                "listAlltofuFried"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 24),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 6)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 25),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllmeatraw",
                                 "listAllveggie",
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 93),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 62),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 96),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         new Object[]{
+                        		new ItemStack(ItemLoader.MATERIAL, 1, 8),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 32),
                         		new ItemStack(ItemLoader.FOODSET, 1, 88),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
         /*
          * UDON
          */
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 94),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 62),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 26),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 27),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllbeefraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 28),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 29),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 79)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 30),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(ItemLoader.FOODSET, 1, 81)
+                                "listAlltofuFried"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 31),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 6)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 32),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllmeatraw",
                                 "listAllveggie",
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 97),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 9),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 32),
                         		new ItemStack(ItemLoader.FOODSET, 1, 88),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
         /*
          * SOBA
          */
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 95),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 62),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 98),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         		new ItemStack(ItemLoader.MATERIAL, 1, 32),
                         		new ItemStack(ItemLoader.FOODSET, 1, 88),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 34),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 35),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllbeefraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 36),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 37),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 79)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 38),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
-                                new ItemStack(ItemLoader.FOODSET, 1, 81)
+                                "listAlltofuFried"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 39),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 new ItemStack(ItemLoader.FOODSET, 1, 6)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 40),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 10),
                         new Object[]{
+                                new ItemStack(ItemLoader.MATERIAL, 1, 10),
                                 new ItemStack(ItemLoader.MATERIAL, 1, 32),
                                 "listAllmeatraw",
                                 "listAllveggie",
                                 "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
        
         //others
-        PotRecipes.addRecipe(
-                new PotRecipes(
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 3),
-                        new ItemStack(ItemLoader.RED_BEAN, 1),
                         new Object[]{
+                                new ItemStack(ItemLoader.RED_BEAN, 1),
                                 "listAllsugar",
                                 "listAllsugar"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 6),
-                        "listAllporkraw",
                         new Object[]{
+                                "listAllporkraw",
                                 "foodFlour",
                                 "listAllegg",
                                 "foodBreadcrumbs",
                                 "dustSalt",
                                 "foodBlackpepper"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
-                        new ItemStack(ItemLoader.FOODSET, 2, 88),
-                        "listAllchickencooked",
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                        new ItemStack(ItemLoader.FOODSET, 3, 88),
                         new Object[]{
+                                "listAllchickencooked",
                                 "foodFlour",
                                 "listAllegg",
                                 "foodBreadcrumbs",
                                 "dustSalt",
                                 "foodBlackpepper"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 4, 62),
-                        new ItemStack(ItemLoader.FOODSET, 1, 48),
                         new Object[]{
-                        		 new ItemStack(ItemLoader.FOODSET, 1, 57),
+                                new ItemStack(ItemLoader.FOODSET, 1, 48),
+                        		new ItemStack(ItemLoader.FOODSET, 1, 57),
                                 "listAllegg",
                                 "dustSalt",
                                 "foodBlackpepper"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 79),
-                        new ItemStack(ItemLoader.FOODSET, 1, 78),
                         new Object[]{
-                        new ItemStack(ItemLoader.MATERIAL, 1, 14),
+                                "foodShrimpraw",
+                                new ItemStack(ItemLoader.MATERIAL, 1, 14),
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 68),
-                        "cropRice",
                         new Object[]{
+                                "cropRice",
                         		"listAllmeatraw",
                         		"listAllegg",
                         		"listAllveggie"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 33),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 9),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 155),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 8),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 155),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 10),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 156),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 57),
+                		"listAllmeatraw",
+                		"listAllveggie",
+                		"foodHoisinsause"
+                },
+               getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 107),
-                        "cropPotato",
                         new Object[]{
+                                "cropPotato",
                         		"dustSalt",
                         		"foodBlackpepper"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 4, 57),
-                        "cropPotato",
                         new Object[]{
+                                "cropPotato",
                         		"cropPotato",
                         		"dustSalt"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 105),
-                        "cropRice",
-                        new Object[]{	
-                        new ItemStack(ItemLoader.FOODSET, 1, 3),
-                        "dustSalt",
-                        "listAllsugar"
+                        new Object[]{
+                                "cropRice",
+                                new ItemStack(ItemLoader.FOODSET, 1, 3),
+                                "dustSalt",
+                                "listAllsugar"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 67),
-                        "cropRice",
                         new Object[]{
-                        "cropTomato",
-                        "listAllmeatraw",
-                        "foodKetchup"
+                                "cropRice",
+			                    "cropTomato",
+			                    "listAllmeatraw",
+			                    "foodKetchup"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                       getOil( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 77),
-                        "cropRice",
                         new Object[]{
+                                "cropRice",
                         "listAllegg",
                         "foodWhitepepper",
                         "foodSoysauce",
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 66),
-                        "listAllbeefraw",
                         new Object[]{
-                        "cropPotato",
-                        "cropCarrot",
-                        "foodSoysauce",
-                        "listAllsugar"
+                                "listAllbeefraw",
+                                "cropPotato",
+                                "cropCarrot",
+                                "foodSoysauce",
+                                "listAllsugar"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 74),
-                        new ItemStack(ItemLoader.FOODSET, 1, 59),
                         new Object[]{
-                        new ItemStack(ItemLoader.RED_BEAN, 1)
+                                new ItemStack(ItemLoader.FOODSET, 1, 59),
+                                new ItemStack(ItemLoader.RED_BEAN, 1)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 83),
-                        "stickWood",
                         new Object[]{
+                        "stickWood",
                         new ItemStack(ItemLoader.FOODSET, 1, 80),
                         "cropRadish",
                         "listAllegg"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.MATERIAL, 2, 11),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 3),
                         new Object[]{
+                        new ItemStack(ItemLoader.MATERIAL, 1, 3),
                         "cropOnion",
-                        "cropTomato",
                         "cropPotato",
                         "cropCarrot",
                         "listAllmeatraw"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-//        PotRecipes.addPotRecipe(
-//                new PotRecipes(
-//                        new ItemStack(ItemLoader.FOODSET, 2, 79),
-//                        new ItemStack(ItemLoader.FOODSET, 1, 78),
-//                        new Object[]{
-//                        new ItemStack(ItemLoader.MATERIAL, 1, 14)
-//                        },
-//                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.MATERIAL, 2, 11),
+                new Object[]{
+                new ItemStack(ItemLoader.MATERIAL, 1, 3),
+                "cropOnion",
+                "cropPotato",
+                "cropCarrot",
+                "listAllmeatraw"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.MATERIAL, 2, 13),
-                        "listAllmilk",
                         new Object[]{
+                        "listAllmilk",
                         "foodFlour",
                         "dustSalt",
                         "foodWhitepepper"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 110),
-                        new ItemStack(ItemLoader.MATERIAL, 1, 13),
                         new Object[]{
+                        new ItemStack(ItemLoader.MATERIAL, 1, 13),
                         "listAllchickenraw",
                         "cropCarrot",
                         "cropPotato",
                         "listAllmushroom"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 151),
+                new Object[]{
+                "cropPumpkin",
+                "cropPumpkin",
+                "listAllsugar",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 152),
+                new Object[]{
+                "cropRadish",
+                "cropRadish",
+                "listAllsugar",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 153),
+                new Object[]{
+                "listAllfishraw",
+                "dustSalt",
+                "foodMiso",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 154),
+                new Object[]{
+                "listAllchickenraw",
+                "listAllveggie",
+                "listAllveggie",
+                "dustSalt",
+                "foodSoysause"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 109),
-                        "cropCabbage",
                         new Object[]{
+                        "cropCabbage",
                         new ItemStack(ItemLoader.FOODSET, 1, 48),
                         "dustSalt",
                         "foodKetchup",
                         "foodWhitepepper"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 108),
-                        "cropRadish",
                         new Object[]{
-                        new ItemStack(ItemLoader.MATERIAL, 1, 29),
+                        "cropRadish",
+                        "foodMiso",
                         "dustSalt"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 103),
-                        "listAllmilk",
                         new Object[]{
+                        "listAllmilk",
                         "listAllsugar",
                         "listAllegg",
                         "foodVanilla"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 159),
+                new Object[]{
+                "listAllmilk",
+                "listAllsugar",
+                "listAllegg",
+                "foodVanilla",
+                "foodMocha"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 104),
-                        "listAllmilk",
                         new Object[]{
+                        "listAllmilk",
                         "listAllsugar",
                         "listAllegg",
                         "foodVanilla",
                         "cropMaplesyrup"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 106),
-                        "listAllfishfresh",
                         new Object[]{
+                        "listAllfishfresh",		
                         "foodSoysauce",
                         "listAllsugar",
                         "dustSalt"
                         },
-                        new FluidStack(BlockLoader.FOODOIL_FLUID, 200)));
+                       getOil( 200));
 
-        PotRecipes.addRecipe(
-                new PotRecipes(
-                        new ItemStack(ItemLoader.MATERIAL, 2, 32),
-                        "foodSoysauce",
+        PotRecipes.getInstance().addRecipes(
+                        new ItemStack(ItemLoader.MATERIAL, 4, 32),
                         new Object[]{
-                                "listAllsugar",
-                                "dustSalt"
+                        	new ItemStack(ItemLoader.FOODSET, 1, 146),
+                            "foodSoysauce",
+                            "cropSeaweed",
+                            "dustSalt"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-		PotRecipes.addRecipe(
-				new PotRecipes(
+                        getWater( 200));
+		PotRecipes.getInstance().addRecipes(
 						new ItemStack(ItemLoader.FOODSET, 2, 111),
-						new ItemStack(Items.APPLE),
 						new Object[]{
+								new ItemStack(Items.APPLE),
 								"listAllsugar",
 								"listAllfruit"
 						},
-						new FluidStack(FluidRegistry.WATER, 100)));
-		PotRecipes.addRecipe(
-				new PotRecipes(
+						getWater( 100));
+		PotRecipes.getInstance().addRecipes(
 						new ItemStack(ItemLoader.FOODSET, 2, 111),
-						new ItemStack(Items.CHORUS_FRUIT),
 						new Object[]{
+								new ItemStack(Items.CHORUS_FRUIT),
 								"listAllsugar",
 								"listAllfruit"
 						},
-						new FluidStack(FluidRegistry.WATER, 100)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+						getWater( 100));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 47),
-                        "cropRice",
                         new Object[]{
+                                "cropRice",
                         		"cropSeaweed",
                         		new ItemStack(ItemLoader.FOODSET, 1, 79),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 84),
-                        new ItemStack(ItemLoader.FOODSET, 1, 7),
                         new Object[]{
+                                new ItemStack(ItemLoader.FOODSET, 1, 7),
                         		"bamboo",
                         		new ItemStack(ItemLoader.FOODSET, 1, 3),
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 85),
-                        new ItemStack(ItemLoader.FOODSET, 1, 7),
                         new Object[]{
+                                new ItemStack(ItemLoader.FOODSET, 1, 7),
                         		"bamboo",
                         		"listAllsugar",
                         		"listAllsugar"
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
-        PotRecipes.addRecipe(
-                new PotRecipes(
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 86),
-                        new ItemStack(ItemLoader.FOODSET, 1, 7),
                         new Object[]{
+                                new ItemStack(ItemLoader.FOODSET, 1, 7),
                         		"bamboo",
                         		"listAllsugar",
                         		 new ItemStack(BlockLoader.SAKURA_LEAVES),
-                        		 new ItemStack(Blocks.TALLGRASS)
+                        		 new ItemStack(Blocks.TALLGRASS,1,1)
                         },
-                        new FluidStack(FluidRegistry.WATER, 200)));
+                        getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+		                new ItemStack(ItemLoader.FOODSET, 2, 86),
+		                new Object[]{
+		                        new ItemStack(ItemLoader.FOODSET, 1, 7),
+		                		"bamboo",
+		                		"listAllsugar",
+		                		 new ItemStack(BlockLoader.SAKURA_LEAVES),
+		                		 new ItemStack(Blocks.TALLGRASS,1,2)
+		                },
+		                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 161),
+                new Object[]{
+                "listAlltofu",
+                "foodMiso",
+                "dustSalt"
+                },
+                getWater( 200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 1, 143),
+                new Object[]{
+                new ItemStack(ItemLoader.FOODSET, 1, 142)
+                },
+                getWater( 100));
+        
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 132),
+                new Object[]{
+                        "listAllegg",
+                        "listAllveggie",
+                        new ItemStack(ItemLoader.MATERIAL, 1, 32),
+
+                },
+                getWater( 200));
+    }
+    private static List<FluidStack> getWater(int amount){
+    	List<FluidStack> list = Lists.newArrayList(); 
+    	if(Loader.isModLoaded("tfc"))
+    		list.add(new FluidStack(FluidsTFC.FRESH_WATER.get(), amount));
+    	list.add(new FluidStack(FluidRegistry.WATER, amount));
+		return list;
+    }
+    private static List<FluidStack> getOil(int amount){
+    	List<FluidStack> list = Lists.newArrayList(); 
+    	if(Loader.isModLoaded("tfc"))
+    		list.add(new FluidStack(FluidsTFC.OLIVE_OIL.get(), amount));
+    	list.add(new FluidStack(BlockLoader.FOODOIL_FLUID, amount));
+		return list;
     }
 }

@@ -22,69 +22,69 @@ import java.util.Random;
 
 public class BlockSakuraSapling extends BlockBush implements IGrowable {
 
-    protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
+	protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D,
+			0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    public BlockSakuraSapling() {
-        super();
-        setCreativeTab(CommonProxy.tab);
-        this.setSoundType(SoundType.PLANT);
-    }
+	public BlockSakuraSapling() {
+		super();
+		setCreativeTab(CommonProxy.tab);
+		this.setSoundType(SoundType.PLANT);
+	}
 
-    @Override
-    public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
-        WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenSakuraTree(true,5) : new WorldGenBigSakura(true);
+	@Override
+	public void grow(World world, Random rand, BlockPos pos, IBlockState state) {
+		WorldGenerator treeGenerator = rand.nextInt(8) == 0 ? new WorldGenSakuraTree(true, 5)
+				: new WorldGenBigSakura(true);
 
-        world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-        if (!treeGenerator.generate(world, rand, pos)) 
-            world.setBlockState(pos, state, 4);
-    }
-    @Override
-    protected boolean canSustainBush(IBlockState state) {
+		world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
+		if (!treeGenerator.generate(world, rand, pos))
+			world.setBlockState(pos, state, 4);
+	}
 
-        Block block = state.getBlock();
-        return block == Blocks.GRASS || block == Blocks.DIRT || block.getMaterial(state) == Material.GROUND;
-    }
+	@Override
+	protected boolean canSustainBush(IBlockState state) {
 
-    @Override
-    public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
-        BlockPos down = pos.down();
+		Block block = state.getBlock();
+		return block == Blocks.GRASS || block == Blocks.DIRT || block.getMaterial(state) == Material.GROUND;
+	}
 
-        IBlockState soil = world.getBlockState(down);
+	@Override
+	public boolean canBlockStay(World world, BlockPos pos, IBlockState state) {
+		BlockPos down = pos.down();
 
-        return soil.getBlock().canSustainPlant(soil, world, down, EnumFacing.UP, this);
-    }
+		IBlockState soil = world.getBlockState(down);
 
+		return soil.getBlock().canSustainPlant(soil, world, down, EnumFacing.UP, this);
+	}
 
-    @Override
-    public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos) {
-        return EnumPlantType.Plains;
-    }
+	@Override
+	public net.minecraftforge.common.EnumPlantType getPlantType(net.minecraft.world.IBlockAccess world, BlockPos pos) {
+		return EnumPlantType.Plains;
+	}
 
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return SAPLING_AABB;
-    }
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return SAPLING_AABB;
+	}
 
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (!worldIn.isRemote) {
-            super.updateTick(worldIn, pos, state, rand);
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		if (!worldIn.isRemote) {
+			super.updateTick(worldIn, pos, state, rand);
 
-            if (worldIn.getLightFromNeighbors(pos.up()) >= 0 && rand.nextInt(7) == 0) {
-                this.grow(worldIn, rand, pos, state);
-            }
-        }
-    }
+			if (worldIn.getLightFromNeighbors(pos.up()) >= 0 && rand.nextInt(7) == 0) {
+				this.grow(worldIn, rand, pos, state);
+			}
+		}
+	}
 
+	@Override
+	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
+		return true;
+	}
 
-
-    @Override
-    public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-        return true;
-    }
-
-    @Override
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
-        return rand.nextFloat() < 0.5;
-    }
+	@Override
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
+		return rand.nextFloat() < 0.5;
+	}
 }

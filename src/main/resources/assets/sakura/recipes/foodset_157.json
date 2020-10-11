@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "sakura:foodset",
+    "data": 157
+  },
+  "ingredients": [
+    {
+      "item": "sakura:foodset",
+      "data": 113
+    },
+    {
+      "item": "#FOODMOCHA"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}
