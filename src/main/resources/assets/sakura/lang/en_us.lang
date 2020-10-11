@@ -1,4 +1,5 @@
 #Block
+tile.sakura.sakura_diamond_block.name=Block of Sakura Diamond
 tile.sakura.kawara_block.name=Kawara Block
 tile.sakura.kawara.name=Kawara
 tile.sakura.tatami_tan.name=Tan Tatami
@@ -32,11 +33,14 @@ tile.sakura.maple_sapling_green.name=Green MapleSapling
 tile.sakura.sakuraleaves.name=Sakura Leaves
 tile.sakura.sakura_sapling.name=Sakura Sapling
 tile.sakura.sakura_log.name=Sakura Log
+tile.sakura.umeleaves.name=Plum Leaves
+tile.sakura.ume_sapling.name=Plum Sapling
+tile.sakura.ume_log.name=Plum Log
 tile.sakura.campfire_idle.name=Campfire
 tile.sakura.campfire_lit.name=Lighting Campfire
 tile.sakura.campfire_pot_idle.name=CampfirePot
 tile.sakura.campfire_pot_lit.name=Lighting CampfirePot
-tile.sakura.stone_mortar.name=StoneMortar
+tile.sakura.stone_mortar.name=Stone Mortar
 tile.sakura.pepper_splint.name=Pepper Splint
 tile.sakura.vanilla_splint.name=Vanilla Splint
 tile.sakura.grape_splint_stand.name=Grape Splint Stand
@@ -167,6 +171,11 @@ item.sakura.vinegar.name=Vinegar
 item.sakura.mayo.name=Mayonaise
 item.sakura.worcester_sauce.name=Worcester Sauce
 
+item.sakura.taro.name=Taro
+item.sakura.taro_baked.name=Cooked Taro
+item.sakura.imogara.name=Imo-gara
+item.sakura.dried_imogara.name=Dried Imo-gara
+item.sakura.imogaranawa_piece.name=Imo-gara-nawa Piece
 item.sakura.grape.name=Grape
 item.sakura.raw_taiyaki.name=Raw Taiyaki
 item.sakura.taiyaki.name=Taiyaki
@@ -176,6 +185,7 @@ item.sakura.red_bean_paste.name=Red Bean Paste
 item.sakura.bun.name=Bun
 item.sakura.cheese.name=Cheese
 item.sakura.katsu.name=Katsu
+item.sakura.dried_rice.name=Dried Rice
 item.sakura.rice_cooked.name=Cooked Rice
 item.sakura.rice_bamboo.name=Bambooshoot Rice
 item.sakura.rice_fish.name=Fish Rice
@@ -306,6 +316,7 @@ item.sakura.lumber_maple.name=Maple Lumber
 item.sakura.black_pepper.name=Black Pepper
 item.sakura.white_pepper.name=White Pepper
 item.sakura.miso.name=Miso
+item.sakura.miso_ball.name=Miso Ball
 item.sakura.breadcrumbs.name=Breadcrumbs
 item.sakura.chestnut.name=Chestnut
 item.sakura.bamboo_door.name=Bamboo Door
@@ -339,10 +350,18 @@ item.sakura.knife_noodle.name=Noodle Cutting Knife
 item.sakura.sakura_knife_noodle.name=Sakura Noodle Cutting Knife
 item.sakura.knife_fish.name=Fish Cutting Knife
 item.sakura.sakura_knife_fish.name=Sakura Fish Cutting Knife
+item.sakura.sakura_pickaxe.name=Sakura Diamond Pickaxe
+item.sakura.sakura_shovel.name=Sakura Diamond Shovel
+item.sakura.sakura_axe.name=Sakura Diamond Axe
+item.sakura.sakura_hoe.name=Sakura Diamond Hoe
 item.sakura.samurai_shoes.name=Samurai Shoes
 item.sakura.samurai_pants.name=Samurai Pants
 item.sakura.samurai_chest.name=Samurai Chestplate
 item.sakura.samurai_helmet.name=Samurai Helmet
+item.sakura.soldier_shoes.name=Soldier Shoes
+item.sakura.soldier_pants.name=Soldier Pants
+item.sakura.soldier_chest.name=Soldier Chestplate
+item.sakura.soldier_helmet.name=Soldier Helmet
 item.sakura.broom.name=Broom
 item.sakura.haori.name=Haori
 item.sakura.haori_base.name=Brown Haori
@@ -364,6 +383,12 @@ item.sakura.yukata_2.name=Magenta Yukata
 item.sakura.yukata_3.name=Lime Yukata
 item.sakura.yukata_4.name=Yellow Yukata
 item.sakura.kimono_miko.name=Miko Kimono
+sakura.armor_samurai.texture.name=Armor Color
+item.sakura.soldier_armor.name=Gray
+item.sakura.soldier_armor_1.name=Black
+item.sakura.samurai_armor.name=Red
+item.sakura.samurai_armor_1.name=Green
+item.sakura.samurai_armor_2.name=Black
 item.sakura.coin.name=Sakura Coin
 item.sakura.bamboo_sunburnt.name=Sunburnt Bamboo
 item.sakura.stone_hammer.name=Stone Forging Hammer
@@ -408,6 +433,11 @@ item.sakura.rice_tea_leaves.name=Rice Tea Leaves
 item.sakura.mint_tea_leaves.name=Mint Tea Leaves
 item.sakura.mocha.name=Mocha
 item.sakura.brown_rice.name=Brown Rice
+item.sakura.brown_rice_cooked.name=Brown Rice
+item.sakura.dried_brown_rice.name=Dried Brown Rice
+item.sakura.fried_brown_rice.name=Fried Brown Rice
+item.sakura.ume.name=Plum
+item.sakura.umeboshi.name=Umeboshi
 item.sakura.hop.name=Hop
 item.sakura.yeast.name=Yeast
 item.sakura.alkaline.name=Alkali
@@ -443,6 +473,14 @@ item.sakura.gin_bottle.name=Gin Bottle
 item.sakura.tequila_bottle.name=Tequila Bottle
 item.sakura.liqueur_bottle.name=Liqueur Bottle
 item.sakura.cocoa_liqueur_bottle.name=Cocoa Liqueur Bottle
+
+item.sakura.zosui.name=Zosui
+item.sakura.zosui_zuiki.name=Zuiki Zosui
+item.sakura.imotaki.name=Imotaki
+item.sakura.noppei_jiru.name=Noppei Jiru
+
+item.sakura.hyorogan.name=Hyorogan
+item.sakura.suikatsugan.name=Suikatsugan
 
 item.sakura.cup.name=Cup
 item.sakura.black_tea.name=Black Tea
@@ -564,6 +602,7 @@ jei.sakura.category.mortar=Stone Mortar
 jei.sakura.category.barrel=Barrel
 jei.sakura.category.distillation=Distillation Barrel
 jei.sakura.category.liquid_item=Liquid to Bucket
+jei.sakura.category.straw_web=Open-air Drying
 
 #Entities
 entity.sakura.Deer.name=Deer
@@ -572,11 +611,11 @@ entity.Villager.wa_farmer=Japanese Farmer
 entity.Villager.wa_fisher=Japanese Fisher
 entity.Villager.wa_trader=Japanese Trader
 entity.Villager.wine_trader=Liquor Trader
+entity.Villager.wa_silk=Silk Trader
 
 guide.sakura_guide.landing_text=There are many plants in this world. This book mainly describes things that must-see for harvesters
 
 itemGroup.sakura_tabs=Sakura
-
 
 #Config
 sakura.config.vanilla_weight=Vannila Weight
@@ -593,6 +632,9 @@ sakura.config.hotspring_weight=Hot Spring Weight
 #Tooltip is set by Sakura Mod itself.
 sakura.config.every_where_sakura_diamond=Sakura Diamond Generated Everywhere
 #Tooltip is set by Sakura Mod itself.
+
+sakura.tooltip.campfire.fire_remain=Remaining fuel: %1$s Ticks
+sakura.tooltip.campfire.item_in=Item in campfire: %1$s
 
 #Warning
 sakura.warning.harder_iron_recipe_enabled=Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!
