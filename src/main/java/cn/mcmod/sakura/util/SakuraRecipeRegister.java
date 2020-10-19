@@ -2,11 +2,9 @@ package cn.mcmod.sakura.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.logging.log4j.Level;
 
 import com.google.common.collect.Lists;
-
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
@@ -18,6 +16,7 @@ import cn.mcmod.sakura.api.recipes.WebRecipe;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
+import cn.mcmod_mmf.mmlib.recipe.UniversalFluid;
 import cn.mcmod_mmf.mmlib.util.RecipesUtil;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -26,7 +25,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
@@ -34,9 +32,26 @@ import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class SakuraRecipeRegister {
-	public static List<IAction> actions = new ArrayList<IAction>();
+	private static final SakuraRecipeRegister instance = new SakuraRecipeRegister();
+	private SakuraRecipeRegister() {
+		
+	}
+	public static SakuraRecipeRegister getInstance() {
+		return instance;
+	}
+	public List<IAction> actions = new ArrayList<IAction>();
 	
-	public static void Init() {
+	public void Init() {
+		UniversalFluid.getInstance().addFluid("listAlloil", BlockLoader.FOODOIL_FLUID);
+		UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur", BlockLoader.VODKA_FLUID,BlockLoader.RUM_FLUID,BlockLoader.BRANDY_FLUID,BlockLoader.WHISKEY_FLUID);
+		if(Loader.isModLoaded("tfc")) {
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.WHISKEY.get());
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.CORN_WHISKEY.get());
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.RYE_WHISKEY.get());
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.VODKA.get());
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.RUM.get());
+			UniversalFluid.getInstance().addFluid("listAlcoholforLiqueur",FluidsTFC.CIDER.get());
+		}
 		barrelRegister();
 		furnaceRegister();
 		L2ISRegister();
@@ -47,12 +62,12 @@ public class SakuraRecipeRegister {
 		actions = null;
 	}
 
-	public static void addAction(IAction action) {
+	public void addAction(IAction action) {
         actions.add(action);
     }
 
     @Method(modid = "crafttweaker")
-    public static void doDelayTask() {
+    public void doDelayTask() {
         for (IAction act : actions) {
             CraftTweakerAPI.apply(act);
             if (act.describe() != null)
@@ -61,7 +76,7 @@ public class SakuraRecipeRegister {
         actions.clear();
     }
 	
-	public static void L2ISRegister() {
+	public void L2ISRegister() {
 		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.BEER_FLUID, 1000)), new FluidStack(BlockLoader.BEER_FLUID, 1000));
 		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000)), new FluidStack(BlockLoader.DOBUROKU_FLUID, 1000));
 		LiquidToItemRecipe.instance().addRecipes(new ItemStack(Items.BUCKET), FluidUtil.getFilledBucket(new FluidStack(BlockLoader.SAKE_FLUID, 1000)), new FluidStack(BlockLoader.SAKE_FLUID, 1000));
@@ -106,14 +121,20 @@ public class SakuraRecipeRegister {
 		LiquidToItemRecipe.instance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,47), new ItemStack(DrinksLoader.bottle_alcoholic,1,14), new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 1000));
 	}
 	
-    public static void furnaceRegister() {
+    public void furnaceRegister() {
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,143), new ItemStack(ItemLoader.FOODSET,1,144));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.MATERIAL,1,34));
+    	
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,162), new ItemStack(ItemLoader.FOODSET,1,163));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,7), new ItemStack(ItemLoader.FOODSET,1,164));
+    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL,1,63), new ItemStack(ItemLoader.MATERIAL,1,64));
+    	
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,135), new ItemStack(ItemLoader.FOODSET,1,138), 0.1F);
     	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,147), new ItemStack(ItemLoader.FOODSET,1,148), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.FOODSET,1,144), new ItemStack(ItemLoader.FOODSET,1,145), 0.1F);
-    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.FOODSET,1,143), new ItemStack(ItemLoader.FOODSET,1,144));
-    	WebRecipe.getInstance().addRecipes(new ItemStack(ItemLoader.SEAWEED_RAW), new ItemStack(ItemLoader.MATERIAL,1,34));
+    
     	FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(BlockLoader.IRON_SAND), new ItemStack(Items.IRON_INGOT), 0.1F);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 1), new ItemStack(ItemLoader.MATERIAL, 1, 38), 0.1F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 38), new ItemStack(ItemLoader.FOODSET, 1, 165), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 21), new ItemStack(ItemLoader.MATERIAL, 1, 22), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.EGGPLANT, 1), new ItemStack(ItemLoader.FOODSET, 1, 87), 0.1F);
         FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(ItemLoader.MATERIAL, 1, 17), new ItemStack(ItemLoader.FOODSET, 1, 2), 0.1F);
@@ -153,9 +174,9 @@ public class SakuraRecipeRegister {
 		}
     }
 
-    public static void barrelRegister() {
+    public void barrelRegister() {
 		BarrelRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.YEAST_FLUID, 50), 
 				new Object[]{
 				"listAllfruit",
@@ -163,7 +184,7 @@ public class SakuraRecipeRegister {
 				"listAllsugar"
 				});
 		BarrelRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.BEER_FLUID, 100), 
 				new Object[]{
 				"cropWheat",
@@ -192,7 +213,7 @@ public class SakuraRecipeRegister {
 				"foodYeast"
 				});
 		BarrelRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.DOBUROKU_FLUID, 50), 
 				new Object[]{
 				new ItemStack(ItemLoader.FOODSET,1,7),
@@ -205,7 +226,7 @@ public class SakuraRecipeRegister {
 				new FluidStack(BlockLoader.SAKE_FLUID, 100),
 				new FluidStack(BlockLoader.SHOUCHU_FLUID, 50));
 		DistillationRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.WHISKEY_FLUID, 50), 
 				new Object[]{
 				"listAllgrain",
@@ -213,7 +234,7 @@ public class SakuraRecipeRegister {
 				"listAllgrain"
 				});
 		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.RED_WINE_FLUID, 100),
+				new FluidStack(BlockLoader.GRAPE_FLUID, 100),
 				new FluidStack(BlockLoader.BRANDY_FLUID, 50), 
 				new Object[]{
 				"listAllsugar"
@@ -225,7 +246,7 @@ public class SakuraRecipeRegister {
 				"listAllsugar"
 				});
 		DistillationRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.VODKA_FLUID, 50), 
 				new Object[]{
 				"cropPotato",
@@ -233,7 +254,7 @@ public class SakuraRecipeRegister {
 				"cropPotato"
 				});
 		DistillationRecipes.getInstance().register(
-				getWater( 100).get(0),
+				getWater( 100),
 				new FluidStack(BlockLoader.RUM_FLUID, 50), 
 				new Object[]{
 				"sugarcane",
@@ -241,7 +262,7 @@ public class SakuraRecipeRegister {
 				"sugarcane"
 				});
 		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.RUM_FLUID, 100),
+				getAlcoholForLiqueur(100),
 				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
 				new Object[]{
 				"listAllfruit",
@@ -249,40 +270,7 @@ public class SakuraRecipeRegister {
 				"listAllsugar"
 				});
 		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.VODKA_FLUID, 100),
-				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
-				new Object[]{
-				"listAllfruit",
-				"listAllfruit",
-				"listAllsugar"
-				});
-		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.WHISKEY_FLUID, 100),
-				new FluidStack(BlockLoader.LIQUEUR_FLUID, 100), 
-				new Object[]{
-				"listAllfruit",
-				"listAllfruit",
-				"listAllsugar"
-				});
-		
-		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.RUM_FLUID, 100),
-				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
-				new Object[]{
-				new ItemStack(Items.DYE,1,3),
-				new ItemStack(Items.DYE,1,3),
-				"listAllsugar"
-				});
-		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.VODKA_FLUID, 100),
-				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
-				new Object[]{
-				new ItemStack(Items.DYE,1,3),
-				new ItemStack(Items.DYE,1,3),
-				"listAllsugar"
-				});
-		DistillationRecipes.getInstance().register(
-				new FluidStack(BlockLoader.WHISKEY_FLUID, 100),
+				getAlcoholForLiqueur(100),
 				new FluidStack(BlockLoader.COCOA_LIQUEUR_FLUID, 100), 
 				new Object[]{
 				new ItemStack(Items.DYE,1,3),
@@ -291,7 +279,7 @@ public class SakuraRecipeRegister {
 				});
 	}
     
-    public static void mortarRegister() {
+    public void mortarRegister() {
     	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.FOODSET, 32, 146)},
     			new ItemStack[]{
@@ -309,12 +297,20 @@ public class SakuraRecipeRegister {
     					"cropTea"
     					});
     	MortarRecipes.instance().addMortarRecipes(
-    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 1)},
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 38)},
     			new ItemStack[]{
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS),
     					new ItemStack(ItemLoader.RICE_SEEDS)
+    					});
+    	MortarRecipes.instance().addMortarRecipes(
+    			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 4, 1)},
+    			new ItemStack[]{
+    					new ItemStack(ItemLoader.MATERIAL, 1, 38),
+    					new ItemStack(ItemLoader.MATERIAL, 1, 38),
+    					new ItemStack(ItemLoader.MATERIAL, 1, 38),
+    					new ItemStack(ItemLoader.MATERIAL, 1, 38)
     					});
     	MortarRecipes.instance().addMortarRecipes(
     			new ItemStack[]{new ItemStack(ItemLoader.MATERIAL, 1, 16)},
@@ -389,7 +385,7 @@ public class SakuraRecipeRegister {
     					});
     }
 
-    public static void potRegister() {
+    public void potRegister() {
         PotRecipes.getInstance().addRecipes(new ItemStack(ItemLoader.MATERIAL, 2, 61),
                 new Object[]{
                 		"listAllsugar",
@@ -568,7 +564,12 @@ public class SakuraRecipeRegister {
                                 "listAllporkraw",
                                 "bamboo"
                         });
-
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 162),
+                new Object[]{
+                		new ItemStack(ItemLoader.MATERIAL, 1, 38)
+                },
+                getWater( 200));
         PotRecipes.getInstance().addRecipes(
                         new ItemStack(ItemLoader.FOODSET, 2, 7),
                         new Object[]{
@@ -1358,20 +1359,45 @@ public class SakuraRecipeRegister {
                         new ItemStack(ItemLoader.MATERIAL, 1, 32),
 
                 },
-                getWater( 200));
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 2, 169),
+                new Object[]{
+                		"cropRice",
+                        "listAllmeatraw",
+                        "listAllveggie",
+                        "foodSoysauce",
+                },
+                getWater(200));
+        PotRecipes.getInstance().addRecipes(
+                new ItemStack(ItemLoader.FOODSET, 1, 168),
+                new Object[]{
+                		"cropRice",
+                		new ItemStack(ItemLoader.MATERIAL, 1, 65)
+                },
+                getWater(100));
     }
-    private static List<FluidStack> getWater(int amount){
+
+    private List<FluidStack> getWater(int amount){
     	List<FluidStack> list = Lists.newArrayList(); 
-    	if(Loader.isModLoaded("tfc"))
-    		list.add(new FluidStack(FluidsTFC.FRESH_WATER.get(), amount));
-    	list.add(new FluidStack(FluidRegistry.WATER, amount));
+    	UniversalFluid.getInstance().getFluidMap().get("listAllwater").forEach((fluid)->{
+    		list.add(new FluidStack(fluid, amount));
+    	});
 		return list;
     }
-    private static List<FluidStack> getOil(int amount){
+    private List<FluidStack> getOil(int amount){
     	List<FluidStack> list = Lists.newArrayList(); 
-    	if(Loader.isModLoaded("tfc"))
-    		list.add(new FluidStack(FluidsTFC.OLIVE_OIL.get(), amount));
-    	list.add(new FluidStack(BlockLoader.FOODOIL_FLUID, amount));
+    	UniversalFluid.getInstance().getFluidMap().get("listAlloil").forEach((fluid)->{
+    		list.add(new FluidStack(fluid, amount));
+    	});
 		return list;
     }
+    private List<FluidStack> getAlcoholForLiqueur(int amount){
+    	List<FluidStack> list = Lists.newArrayList(); 
+    	UniversalFluid.getInstance().getFluidMap().get("listAlcoholforLiqueur").forEach((fluid)->{
+    		list.add(new FluidStack(fluid, amount));
+    	});
+		return list;
+    }
+    
 }

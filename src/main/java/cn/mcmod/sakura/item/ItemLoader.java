@@ -18,6 +18,7 @@ import cn.mcmod.sakura.item.tool.ItemKnifeNoodle;
 import cn.mcmod_mmf.mmlib.item.ItemAxeBlank;
 import cn.mcmod_mmf.mmlib.item.ItemBase;
 import cn.mcmod_mmf.mmlib.item.ItemHoeBlank;
+import cn.mcmod_mmf.mmlib.item.ItemMetaDurability;
 import cn.mcmod_mmf.mmlib.item.ItemPickaxeBlank;
 import cn.mcmod_mmf.mmlib.item.ItemShovelBlank;
 import cn.mcmod_mmf.mmlib.item.food.FoodInfo;
@@ -275,7 +276,7 @@ public class ItemLoader {
         		new FoodInfo("noppei_jiru", 12, 1f, false, 5F, 0F, 5F, 5F, 5F, 5F, 5F, 1f, 480f),
         		
         		new FoodInfo("hyorogan", 4, 0.5f, false, 0F, 2F, 0F, 0F, 0F, 0F, 0F, 1f, 480f),
-        		new FoodInfo("suikatsugan", 4, 0.5f, false, 5F, 1.5F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
+        		new FoodInfo("suikatsugan", 4, 0.5f, false, 10F, 1.5F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
     	}
     );
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
@@ -378,6 +379,10 @@ public class ItemLoader {
     public static Item SAKURA_KNIFE_NOODLE = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_noodle");
     public static Item SAKURA_KNIFE_FISH = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_fish");
     
+    public static Item IMOGARANAWA = new ItemMetaDurability(SakuraMain.MODID, "imogaranawa", 16, ItemStack.EMPTY, new String[] {
+    		"imogaranawa"
+    });
+    
     public static ItemFoodBase BENTO = new ItemFoodContain(SakuraMain.MODID, "bento", 1,
     new FoodInfo[]{
     	new FoodInfo("bento_0", 14, 0.8F, false, 10F, 10F, 10F, 10F, 10F, 10F, 2, 0F, 480),
@@ -429,6 +434,7 @@ public class ItemLoader {
         register(SAKURA_KNIFE_NOODLE);
         register(SAKURA_KNIFE_FISH);
         register(MATERIAL);
+        register(IMOGARANAWA);
         register(FOODSET);
         register(HYDRA_RAMEN.setUnlocalizedName("sakura.hydra_ramen"));
         register(BUGGYS_MEAT);
@@ -475,6 +481,7 @@ public class ItemLoader {
 
     @SideOnly(Side.CLIENT)
     public void registerRenders() {
+    	ItemRegister.getInstance().registerRender(IMOGARANAWA);
     	ItemRegister.getInstance().registerRender(TARO);
     	ItemRegister.getInstance().registerRender(SAKURA_PICKAXE);
         ItemRegister.getInstance().registerRender(SAKURA_AXE);

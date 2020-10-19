@@ -52,8 +52,7 @@ repositories {
     url = "modmaven.k-4u.nl"
     }
     maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
+        url = "https://www.cursemaven.com"
     }
 	maven {
 		url = "http://tehnut.info/maven"
@@ -68,7 +67,7 @@ dependencies {
     // at runtime, use the full JEI jar
     runtime "mezz.jei:jei_1.12.2:4.14.3.238"
 	
-	deobfCompile "jei-integration:jeiintegration_1.12.2:1.5.1.36"
+	deobfCompile "curse.maven:jei-integration:2491927"
 
     deobfCompile "slimeknights.mantle:Mantle:1.12-1.3.3.55"
 

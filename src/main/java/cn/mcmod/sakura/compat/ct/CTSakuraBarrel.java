@@ -19,7 +19,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class CTSakuraBarrel {
 	@ZenMethod
 	public static void RemoveRecipe(ILiquidStack input) {
-		SakuraRecipeRegister.actions.add(new Removal(CraftTweakerMC.getLiquidStack(input)));
+		SakuraRecipeRegister.getInstance().actions.add(new Removal(CraftTweakerMC.getLiquidStack(input)));
 	}
 	@ZenMethod
 	public static void AddRecipe(ILiquidStack input_fluid,IIngredient[] input,ILiquidStack output) {
@@ -32,13 +32,13 @@ public class CTSakuraBarrel {
 					array[i]=((IOreDictEntry)input[i]).getName();	
 			}
 
-		    SakuraRecipeRegister.actions.add(new Addition(array, CraftTweakerMC.getLiquidStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
+		    SakuraRecipeRegister.getInstance().actions.add(new Addition(array, CraftTweakerMC.getLiquidStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
 		}
 	}
 	
 	@ZenMethod
 	public static void ClearAllRecipe() {
-		SakuraRecipeRegister.actions.add(new ClearAllRecipe());
+		SakuraRecipeRegister.getInstance().actions.add(new ClearAllRecipe());
 	}
 	
     private static final class Removal implements IAction

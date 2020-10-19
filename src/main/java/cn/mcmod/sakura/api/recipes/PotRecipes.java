@@ -1,6 +1,5 @@
 package cn.mcmod.sakura.api.recipes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,7 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class PotRecipes {
 	public final Map<Pair<Object[], ItemStack>, List<FluidStack>> RecipesList = Maps.newHashMap();
-	private final List<FluidStack> EMPTY_FLUID =  new ArrayList<FluidStack>();
+	
 	private static final PotRecipes RECIPE_BASE = new PotRecipes();
     
 	public static PotRecipes getInstance() {
@@ -29,9 +28,10 @@ public class PotRecipes {
 		addRecipes(result, list, Lists.newArrayList(fluidStack));
     }
     public void addRecipes(ItemStack result, Object[] list) {
-		addRecipes(result, list, EMPTY_FLUID);
+		addRecipes(result, list, RecipesUtil.getInstance().EMPTY_FLUID);
     }
     public void addRecipes(ItemStack result, Object[] list, List<FluidStack> listfluid) {
+    	
     	Pair<Object[], ItemStack> items = Pair.of(list, result);
 		RecipesList.put(items, listfluid);
     }
@@ -91,6 +91,17 @@ public class PotRecipes {
 		return ItemStack.EMPTY;
 	}
 
+	public void ClearRecipe(ItemStack itemOutput) {
+		for (Entry<Pair<Object[], ItemStack>, List<FluidStack>> entry : RecipesList.entrySet()) {
+			Pair<Object[], ItemStack> recipe = entry.getKey();
+			if(RecipesUtil.getInstance().compareItems(itemOutput, recipe.getRight())) {
+				RecipesList.remove(entry.getKey());
+				return ;
+			}
+		}
+		throw new NullPointerException("NO RECIPE HERE");
+	}
+	
     public void ClearAllRecipe() {
     	RecipesList.clear();
 	}

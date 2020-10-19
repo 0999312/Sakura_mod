@@ -28,16 +28,16 @@ public class CTSakuraL2IS {
 			itemInput=((IOreDictEntry)input).getName();
 		}
 		if(itemInput!=null)
-			SakuraRecipeRegister.actions.add(new Removal(CraftTweakerMC.getLiquidStack(input_fluid),itemInput));
+			SakuraRecipeRegister.getInstance().actions.add(new Removal(CraftTweakerMC.getLiquidStack(input_fluid),itemInput));
 	}
 	@ZenMethod
 	public static void AddRecipe(IItemStack input,IItemStack output,ILiquidStack input_fluid) {
-		SakuraRecipeRegister.actions.add(new Addition(CraftTweakerMC.getItemStack(input), CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
+		SakuraRecipeRegister.getInstance().actions.add(new Addition(CraftTweakerMC.getItemStack(input), CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
 	}
 	
 	@ZenMethod
 	public static void ClearAllRecipe() {
-		SakuraRecipeRegister.actions.add(new ClearAllRecipe());
+		SakuraRecipeRegister.getInstance().actions.add(new ClearAllRecipe());
 	}
 	
     private static final class Removal implements IAction

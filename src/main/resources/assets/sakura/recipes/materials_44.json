@@ -8,8 +8,8 @@
       "item": "#CROPTEA"
     },
     {
-      "item": "sakura:materials",
-      "data": 38
+      "item": "sakura:foodset",
+      "data": 165
     }
   ],
   "type": "forge:ore_shapeless"

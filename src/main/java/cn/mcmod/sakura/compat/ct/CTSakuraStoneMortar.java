@@ -26,7 +26,7 @@ public class CTSakuraStoneMortar {
 				else if(input[i] instanceof IOreDictEntry) 
 					array[i]=((IOreDictEntry)input[i]).getName();	
 			}
-		    SakuraRecipeRegister.actions.add(new Removal(array));
+		    SakuraRecipeRegister.getInstance().actions.add(new Removal(array));
 		}
 	}
 	@ZenMethod
@@ -44,13 +44,13 @@ public class CTSakuraStoneMortar {
 		    for(int i = 0; i < output.length;i++)
 		    		array2[i]=CraftTweakerMC.getItemStack(output[i]);
 			
-		    SakuraRecipeRegister.actions.add(new Addition(array, array2));
+		    SakuraRecipeRegister.getInstance().actions.add(new Addition(array, array2));
 		}
 	}
 	
 	@ZenMethod
 	public static void ClearAllRecipe() {
-		SakuraRecipeRegister.actions.add(new ClearAllRecipe());
+		SakuraRecipeRegister.getInstance().actions.add(new ClearAllRecipe());
 	}
 	
     private static final class Removal implements IAction

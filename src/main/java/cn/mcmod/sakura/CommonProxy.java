@@ -41,6 +41,7 @@ public class CommonProxy {
         return network;
     }
     public void preInit(FMLPreInitializationEvent event) {
+    	
         new PotionLoader(event);
         BlockLoader.getInstance().registerBlock();
         ItemLoader.getInstance().registerItem();
@@ -60,7 +61,7 @@ public class CommonProxy {
     	WorldGenLoader.getInstance().WorldGenRegister();
         TileEntityRegistry.getInstance().init();
 
-        SakuraRecipeRegister.Init();
+        SakuraRecipeRegister.getInstance().Init();
         if(Loader.isModLoaded("tfc")){
         	TFCCompat.registerTFCFuel();
         }

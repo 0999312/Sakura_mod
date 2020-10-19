@@ -12,8 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import java.util.Random;
 
 public class BiomeBambooForest extends Biome {
-	 protected static final WorldGenAbstractTree SAKURA = new WorldGenSakuraTree(false, 5);
-	 protected static final WorldGenAbstractTree SAKURA_BIG = new WorldGenBigSakura(false);
+	protected static final WorldGenAbstractTree SAKURA = new WorldGenSakuraTree(false, 5);
+	protected static final WorldGenAbstractTree SAKURA_BIG = new WorldGenBigSakura(false);
     public BiomeBambooForest(BiomeProperties bambooForest) {
         super(bambooForest);
         this.decorator.treesPerChunk = 30;

@@ -17,6 +17,10 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 161));
 		
 		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.MATERIAL, 1, 1));
+		
+		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.FOODSET, 1, 163));
+		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.FOODSET, 1, 164));
+		
 		OreDictionary.registerOre("foodFlour", new ItemStack(ItemLoader.MATERIAL, 1, 4));
 		OreDictionary.registerOre("foodBreadcrumbs", new ItemStack(ItemLoader.MATERIAL, 1, 30));
 		OreDictionary.registerOre("foodBlackpepper", new ItemStack(ItemLoader.MATERIAL, 1, 27));
@@ -86,15 +90,20 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("cropVanillabean", new ItemStack(ItemLoader.MATERIAL, 1,21));
 		OreDictionary.registerOre("foodVanilla", new ItemStack(ItemLoader.MATERIAL, 1,22));
 		OreDictionary.registerOre("cropPeppercorn", new ItemStack(ItemLoader.MATERIAL, 1,18));
+		OreDictionary.registerOre("cropTaro", new ItemStack(ItemLoader.TARO, 1));
 		
 		OreDictionary.registerOre("listAllgrain", new ItemStack(ItemLoader.MATERIAL, 1, 1));
 		OreDictionary.registerOre("listAllgrain", new ItemStack(ItemLoader.BUCKWHEAT, 1));
 		
 		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.RADISH, 1));
+		OreDictionary.registerOre("listAllgreenveggie", new ItemStack(ItemLoader.CABBAGE, 1));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.CABBAGE, 1));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.EGGPLANT, 1));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.TOMATO, 1));
 		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.ONION, 1));
+		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.TARO, 1));
+		
+		OreDictionary.registerOre("listAllveggie", new ItemStack(ItemLoader.MATERIAL, 1, 63));
 		
 		OreDictionary.registerOre("listAllseed", new ItemStack(ItemLoader.BUCKWHEAT, 1));
 		OreDictionary.registerOre("listAllseed", new ItemStack(ItemLoader.RADISH_SEEDS, 1));
@@ -142,6 +151,7 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("toolForginghammer", new ItemStack(ItemLoader.SAKURA_HAMMER, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.KNIFE_FISH, 1, Short.MAX_VALUE));
 		OreDictionary.registerOre("toolKnifefish", new ItemStack(ItemLoader.SAKURA_KNIFE_FISH, 1, Short.MAX_VALUE));
+		
 	}
 	public static SakuraOreDictLoader getInstance() {
 		return instance;

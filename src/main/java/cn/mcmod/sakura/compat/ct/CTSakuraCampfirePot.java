@@ -19,15 +19,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenRegister
 public class CTSakuraCampfirePot {
 	@ZenMethod
-	public static void RemoveRecipe(ILiquidStack input_fluid,IIngredient[] input) {
-			Object[] array = new Object[input.length];
-		    for(int i = 0; i < input.length;i++){
-		    	if (input[i] instanceof IItemStack) 
-		    		array[i]=CraftTweakerMC.getItemStack(input[i]);
-				else if(input[i] instanceof IOreDictEntry) 
-					array[i]=((IOreDictEntry)input[i]).getName();	
-			}
-		    SakuraRecipeRegister.actions.add(new Removal(CraftTweakerMC.getLiquidStack(input_fluid),array));
+	public static void RemoveRecipe(IItemStack output) {
+		SakuraRecipeRegister.getInstance().actions.add(new Removal(CraftTweakerMC.getItemStack(output)));
 	}
 	@ZenMethod
 	public static void AddRecipe(IIngredient[] input,IItemStack output,ILiquidStack input_fluid) {
@@ -40,35 +33,33 @@ public class CTSakuraCampfirePot {
 					array[i]=((IOreDictEntry)input[i]).getName();	
 			}
 
-		    SakuraRecipeRegister.actions.add(new Addition(array, CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
+		    SakuraRecipeRegister.getInstance().actions.add(new Addition(array, CraftTweakerMC.getItemStack(output),CraftTweakerMC.getLiquidStack(input_fluid)));
 		}
 	}
 	
 	@ZenMethod
 	public static void ClearAllRecipe() {
-		SakuraRecipeRegister.actions.add(new ClearAllRecipe());
+		SakuraRecipeRegister.getInstance().actions.add(new ClearAllRecipe());
 	}
 	
     private static final class Removal implements IAction {
-    	private final FluidStack fluid;
-        private final Object[] itemInput;
+    	private final ItemStack output;
 
-        private Removal(FluidStack fluid,Object[] itemInput)
+        private Removal(ItemStack output)
         {
-        	this.fluid = fluid;
-            this.itemInput = itemInput;
+        	this.output = output;
         }
 
         @Override
         public void apply()
         {
-//        	PotRecipes.getInstance().ClearRecipe(fluid,itemInput);
+        	PotRecipes.getInstance().ClearRecipe(output);
         }
 
         @Override
         public String describe()
         {
-            return "DO NOTHING RIGHT NOW, WIP NOW";
+            return "Remove recipe that output:"+output.getDisplayName();
         }
     }
 	
