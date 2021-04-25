@@ -1,0 +1,28 @@
+{
+   "conditions" : [
+      {
+         "type" : "forge:mod_loaded",
+         "modid" : "toughasnails"
+      }
+   ],
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#",
+    "C",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    },
+    "C": {
+      "item": "sakura:materials",
+      "data": 51
+    }
+  },
+  "result": {
+    "item": "toughasnails:charcoal_filter",
+    "count": 3
+  }
+}

@@ -23,7 +23,7 @@
       "item": "#CROPSEAWEED"
     },
     {
-      "item": "#LISTALLMEAT"
+      "item": "#LISTALLMEATCOOKED"
     }
   ],
   "type": "forge:ore_shapeless"

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import java.util.Random;
 
 public class WorldGenBambooShot implements IWorldGenerator {
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,IChunkProvider chunkProvider) {
 	    int x = chunkX * 16;

@@ -90,7 +90,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 					} else
 						processTimer = 0;
 
-					if (processTimer >= 1000) {
+					if (processTimer >= 1200) {
 						processTimer = 0;
 						this.resultTank.fill(result, true);
 

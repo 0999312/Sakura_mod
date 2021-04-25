@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "sakura:materials",
+    "data": 65
+  },
+  "ingredients": [
+    {
+      "item": "sakura:imogaranawa",
+      "data": 0
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

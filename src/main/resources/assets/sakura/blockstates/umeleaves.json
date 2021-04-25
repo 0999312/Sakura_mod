@@ -1,57 +1,50 @@
 {
-   "forge_marker" : 1,
+   "forge_marker": 1,
    "defaults" : {
       "model" : "leaves"
    },
    "variants" : {
-      "age=0" : [
-         {
+      "check_decay" : {
+         "false" : {
+            "textures" : {
+               "all" : "sakura:blocks/ume_leaves"
+            }
+         },
+         "true" : {
             "textures" : {
                "all" : "sakura:blocks/ume_leaves"
             }
          }
-      ],
-      "age=1" : [
-         {
+      },
+      "decayable" : {
+         "false" : {
+            "textures" : {
+               "all" : "sakura:blocks/ume_leaves"
+            }
+         },
+         "true" : {
             "textures" : {
                "all" : "sakura:blocks/ume_leaves"
             }
          }
-      ],
-      "age=2" : [
-         {
+      },
+      "age" : {
+         "0" : {
+            "model" : "leaves",
             "textures" : {
                "all" : "sakura:blocks/ume_leaves"
             }
-         }
-      ],
-      "age=3" : [
-         {
-            "textures" : {
-               "all" : "sakura:blocks/ume_leaves_flower"
-            }
-         }
-      ],
-      "age=4" : [
-         {
+         },
+         "1" : {
             "model" : "sakura:ume_leave_3"
-         }
-      ],
-      "age=5" : [
-         {
+         },
+         "2" : {
             "model" : "sakura:ume_leave_4"
-         }
-      ],
-      "age=6" : [
-         {
-            "model" : "sakura:ume_leave_4"
-         }
-      ],
-      "age=7" : [
-         {
+         },
+         "3" : {
             "model" : "sakura:ume_leave_5"
          }
-      ],
+      },
       "inventory" : {
          "model" : "leaves",
          "textures" : {

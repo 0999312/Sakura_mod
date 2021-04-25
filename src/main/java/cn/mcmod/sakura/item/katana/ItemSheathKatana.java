@@ -90,7 +90,9 @@ public class ItemSheathKatana extends Item {
 	    		ItemStack offhand =player.getHeldItem(EnumHand.OFF_HAND);
 	    		boolean flag1 =!(offhand.isEmpty());
 	    		if(flag1) {
-	                player.dropItem(offhand, false);
+	    			if (!player.inventory.addItemStackToInventory(offhand)) {
+	    				player.dropItem(offhand, false);
+	                }
 	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand", new Object()), false);
 	    		}
 	    		player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, blade);
@@ -99,7 +101,9 @@ public class ItemSheathKatana extends Item {
 				ItemStack mainhand =player.getHeldItem(EnumHand.MAIN_HAND);
 				boolean flag1 =!(mainhand.isEmpty());
 	    		if(flag1) {
-	                player.dropItem(mainhand, false);
+	    			if (!player.inventory.addItemStackToInventory(mainhand)) {
+	    				player.dropItem(mainhand, false);
+	                }
 	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand", new Object()), false);
 	    		}
 	    		player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, blade);

@@ -35,6 +35,7 @@ import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -44,6 +45,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Optional.Method;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -113,7 +115,7 @@ public class BlockLoader {
 	
 	public static Block UME_LEAVES = new BlockUmeLeave();
 	public static Block UME_LOG = new BlockMapleLog();
-	public static Block UME_SAPLING = new BlockUmeSapling();
+	public static BlockUmeSapling UME_SAPLING = new BlockUmeSapling();
 	
     public static Block BAMBOO_PLANK = new BlockSakuraPlank(Material.WOOD);
     public static Block MAPLE_PLANK = new BlockSakuraPlank(Material.WOOD);
@@ -126,6 +128,7 @@ public class BlockLoader {
 	public static Block STONEMORTAR = new BlockStoneMortar();
 	public static Block BARREL = new BlockBarrel();
 	public static Block BARREL_DISTILLATION = new BlockBarrelDistillation();
+	public static Block BARREL_OUT = new BlockBarrelOut();
 	public static Block TOMATOCROP = new BlockTomatoCrop();
 	public static Block EGGPLANTCROP = new BlockEggplantCrop();
 	public static Block CABBAGECROP = new BlockCabbageCrop();
@@ -224,6 +227,8 @@ public class BlockLoader {
 	public static Block TEISHOKO_YAKINIKKU =  new BlockTeishoku(8, 0.8f, false);
 	public static Block TEISHOKO_TAMAGOYAKI =  new BlockTeishoku(6, 0.8f, false);
 	
+	public static Block TEISHOKO_FISH_SALT =  new BlockTeishoku(8, 0.8f, false);
+	
 	public static Block TEISHOKO_TEMPURA =  new BlockTeishoku(8, 0.8f, false);
 	public static Block TEISHOKO_FRIED =  new BlockTeishoku(8, 0.8f, false);
 	public static Block TEISHOKO_KATSU =  new BlockTeishoku(10, 0.8f, false);
@@ -257,7 +262,10 @@ public class BlockLoader {
 		            }
 		        }
 		    }
-		    
+		    @Method(modid = "toughasnails")
+		    private void TANTemp(EntityPlayer player) {
+		    	
+		    }
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
@@ -396,6 +404,8 @@ public class BlockLoader {
         register(STRAW_WEB, new ItemBlock(STRAW_WEB), "straw_web");
 		register(BARREL, new ItemBlock(BARREL), "barrel");
 		register(BARREL_DISTILLATION, new ItemBlock(BARREL_DISTILLATION), "barrel_distillation");
+		register(BARREL_OUT, new ItemBlock(BARREL_OUT), "barrel_out");
+//		BARREL_OUT
 		register(CAMPFIRE_IDLE, new ItemBlock(CAMPFIRE_IDLE), "campfire_idle");
 		register(PEPPER_SPLINT, new ItemBlock(PEPPER_SPLINT), "pepper_splint");
 		register(VANILLA_SPLINT, new ItemBlock(VANILLA_SPLINT), "vanilla_splint");
@@ -415,7 +425,7 @@ public class BlockLoader {
 	    register(TEISHOKO_FISH_RAW, new ItemBlock(TEISHOKO_FISH_RAW), "teishoku_fish_raw");
 	    register(TEISHOKO_YAKINIKKU, new ItemBlock(TEISHOKO_YAKINIKKU), "teishoku_yakiniku");
 	    register(TEISHOKO_TAMAGOYAKI, new ItemBlock(TEISHOKO_TAMAGOYAKI), "teishoku_tamagoyaki");
-	    
+	    register(TEISHOKO_FISH_SALT, new ItemBlock(TEISHOKO_FISH_SALT), "teishoku_fish_salt");
 	    register(TEISHOKO_FRIED, new ItemBlock(TEISHOKO_FRIED), "teishoku_fried");
 	    register(TEISHOKO_TEMPURA, new ItemBlock(TEISHOKO_TEMPURA), "teishoku_tempura");
 	    register(TEISHOKO_BURGER, new ItemBlock(TEISHOKO_BURGER), "teishoku_burger");
@@ -478,6 +488,8 @@ public class BlockLoader {
 	@SideOnly(Side.CLIENT)
 	public void registerRenders() {
 //		please register blocks' renders in THIS void!
+		registerRender(TEISHOKO_FISH_SALT);
+		registerRender(BARREL_OUT);
 		registerRender(UME_SAPLING);
 		registerRender(UME_LEAVES);
 		registerRender(UME_LOG);

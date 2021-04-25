@@ -5,6 +5,7 @@ import java.util.Random;
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.dries007.tfc.api.capability.food.FoodData;
+import net.dries007.tfc.api.capability.food.FoodHandler;
 import net.dries007.tfc.api.capability.food.IFoodStatsTFC;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -26,6 +27,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional.Method;
+import toughasnails.api.thirst.ThirstHelper;
 
 public class BlockTeishoku extends BlockFacing {
 	public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 3);
@@ -77,8 +79,11 @@ public class BlockTeishoku extends BlockFacing {
 		if(!worldIn.isRemote) {
 			if (Loader.isModLoaded("tfc"))
 				addTFCStats(player);
-			else
+			else {
 				player.getFoodStats().addStats(amount, saturation);
+				if (Loader.isModLoaded("toughasnails"))
+					addTANThirst(player,2,0.5F);
+			}
 			if (i < 3) {
 				worldIn.setBlockState(pos, state.withProperty(BITES, Integer.valueOf(i + 1)), 3);
 			} else {
@@ -88,11 +93,17 @@ public class BlockTeishoku extends BlockFacing {
 		worldIn.playSound(player, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP,SoundCategory.PLAYERS, 0.4F, worldIn.rand.nextFloat() * 0.1F + 0.8F);
 		return true;
 	}
+	@Method(modid = "toughasnails")
+	private void addTANThirst(EntityPlayer player, int i, float f) {
+		ThirstHelper.getThirstData(player).addStats(i, f);
+	}
 
 	@Method(modid = "tfc")
 	private void addTFCStats(EntityPlayer player) {
-		((IFoodStatsTFC) player.getFoodStats()).getNutrition()
-				.addNutrients(new FoodData(amount, 10F, saturation, 5F, 5F, 5F, 5F, 5F, 1F));
+		if (player.getFoodStats() instanceof IFoodStatsTFC) {
+			IFoodStatsTFC foodStats = (IFoodStatsTFC) player.getFoodStats();
+			foodStats.addStats(new FoodHandler(null, new FoodData(amount, 10F, saturation, 5F, 5F, 5F, 5F, 5F, 1F)));
+		}
 	}
 
 	/**

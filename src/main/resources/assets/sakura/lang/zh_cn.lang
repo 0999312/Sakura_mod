@@ -67,6 +67,7 @@ tile.sakura.plank_maple.name=枫树木板
 tile.sakura.plank_bamboo.name=竹板
 tile.sakura.barrel.name=酿造桶
 tile.sakura.barrel_distillation.name=蒸馏桶
+tile.sakura.barrel_out.name=储藏桶
 tile.sakura.kitunebi.name=狐火
 tile.sakura.windbell.name=风铃
 tile.sakura.bamboo_fence_sunburnt.name=日晒竹栅栏
@@ -121,6 +122,7 @@ tile.sakura.teishoku_tamagoyaki.name=玉子烧定食
 tile.sakura.teishoku_yakiniku.name=烧肉定食
 tile.sakura.teishoku_fish_raw.name=生鱼片定食
 tile.sakura.teishoku_fish_cooked.name=烤鱼定食
+tile.sakura.teishoku_fish_salt.name=盐烤鱼定食
 
 #物品
 item.sakura.machined_fish.name=加工鱼肉
@@ -175,6 +177,7 @@ item.sakura.taro.name=芋头
 item.sakura.taro_baked.name=熟芋头
 item.sakura.imogara.name=芋茎
 item.sakura.dried_imogara.name=干燥芋茎
+item.sakura.imogaranawa.name=芋茎绳
 item.sakura.imogaranawa_piece.name=芋茎绳
 item.sakura.grape.name=葡萄
 item.sakura.raw_taiyaki.name=生鲷鱼烧
@@ -383,6 +386,9 @@ item.sakura.yukata_2.name=品红色浴衣
 item.sakura.yukata_3.name=黄绿色浴衣
 item.sakura.yukata_4.name=黄色浴衣
 item.sakura.kimono_miko.name=巫女服
+
+item.sakura.kimono_ene.name=赞助者：榎本贵音 「雪樱」
+
 sakura.armor_samurai.texture.name=盔甲颜色
 item.sakura.soldier_armor.name=灰色
 item.sakura.soldier_armor_1.name=黑色
@@ -407,6 +413,7 @@ item.sakura.noodle_soup.name=面汤
 item.sakura.soysause.name=酱油
 item.sakura.rice_redbean.name=红豆饭
 item.sakura.fish_bake.name=烤鱼
+item.sakura.fish_bake_salt.name=盐烤鱼
 item.sakura.fries.name=薯条
 
 item.sakura.furofuki_daikon.name=炊煮大根

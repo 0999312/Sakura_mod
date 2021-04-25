@@ -28,6 +28,8 @@ public class ArmorLoader {
 		registerKimono("kimono_4");
 		registerKimono("kimono_5");
 		registerKimono("kimono_6");
+		
+		registerKimono("kimono_ene");
 
 		registerKimono("kimono_miko");
 		registerKimono("yukata_0");
@@ -46,7 +48,7 @@ public class ArmorLoader {
 		registerArmor(true, "soldier_armor_1");
 	}
 
-	private void registerKimono(String texture_name) {
+	public void registerKimono(String texture_name) {
 		ItemStack kimono = new ItemStack(ItemLoader.KIMONO);
 		ItemKimono.KimonoIDs.add(texture_name);
 		NBTTagCompound tag = RecipesUtil.getInstance().getItemTagCompound(kimono);
@@ -54,7 +56,7 @@ public class ArmorLoader {
 		registerCustomItemStack(texture_name, kimono);
 	}
 
-	private void registerHaori(String texture_name) {
+	public void registerHaori(String texture_name) {
 		ItemStack kimono = new ItemStack(ItemLoader.HAORI);
 		ItemHaori.KimonoIDs.add(texture_name);
 		NBTTagCompound tag = RecipesUtil.getInstance().getItemTagCompound(kimono);
@@ -62,7 +64,7 @@ public class ArmorLoader {
 		registerCustomItemStack(texture_name, kimono);
 	}
 	
-	private void registerArmor(boolean soldier,String texture_name) {
+	public void registerArmor(boolean soldier,String texture_name) {
 		ItemStack head = soldier?new ItemStack(ItemLoader.SOLDIER_HELMET):new ItemStack(ItemLoader.SAMURAI_HELMET);
 		ItemStack body = soldier?new ItemStack(ItemLoader.SOLDIER_CHEST):new ItemStack(ItemLoader.SAMURAI_CHEST);
 		ItemStack pants = soldier?new ItemStack(ItemLoader.SOLDIER_PANTS):new ItemStack(ItemLoader.SAMURAI_PANTS);
@@ -93,7 +95,6 @@ public class ArmorLoader {
 		ItemStack stack = ItemStack.EMPTY;
 
 		if (ArmorRegistry.containsKey(key)) {
-//			stack = ArmorRegistry.get(new ResourceLocation(modid, name)).copy();
 			for(ItemStack stack_item:ArmorRegistry.get(new ResourceLocation(modid, name))) {
 				if(stack_item.getItem()==item)
 					stack=stack_item.copy();

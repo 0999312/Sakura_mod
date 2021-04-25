@@ -73,8 +73,10 @@ public abstract class BlockNoodle extends Block {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if(!isReady(state)){
 		    if(stack.getItem()==ItemLoader.KNIFE_NOODLE||stack.getItem()==ItemLoader.SAKURA_KNIFE_NOODLE){
-		    	if(!playerIn.isCreative()) stack.damageItem(1, playerIn);
-		    	 if (worldIn.rand.nextInt(8) == 0) {
+		    	if(!playerIn.isCreative()) 
+		    		if (worldIn.rand.nextInt(99) == 0)
+		    			stack.damageItem(1, playerIn);
+		    	 if (worldIn.rand.nextInt(9) == 0) {
 		    		 worldIn.setBlockState(pos, this.withCutting(i + 1), 2);
 		    		 return true;
 		    	 }

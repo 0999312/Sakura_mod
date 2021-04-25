@@ -21,11 +21,12 @@ import cn.mcmod_mmf.mmlib.item.ItemHoeBlank;
 import cn.mcmod_mmf.mmlib.item.ItemMetaDurability;
 import cn.mcmod_mmf.mmlib.item.ItemPickaxeBlank;
 import cn.mcmod_mmf.mmlib.item.ItemShovelBlank;
-import cn.mcmod_mmf.mmlib.item.food.FoodInfo;
 import cn.mcmod_mmf.mmlib.item.food.ItemFoodBase;
 import cn.mcmod_mmf.mmlib.item.food.ItemFoodContain;
+import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import cn.mcmod_mmf.mmlib.register.ItemRegister;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -36,7 +37,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemLoader {
     public static Item SAKURA_DIAMOND = new ItemSakuraDiamond();
@@ -46,7 +46,7 @@ public class ItemLoader {
     public static final ItemTool.ToolMaterial TACHI_TOOLMATERIAL = EnumHelper.addToolMaterial("TACHI_TOOLMATERIAL", 3, 457, 7F, 3.0F, 18);
     public static final ItemTool.ToolMaterial STRAW_TOOLMATERIAL = EnumHelper.addToolMaterial("STRAW_TOOLMATERIAL", 0, 256, 2F, 1.0F, 8);
     public static final ItemArmor.ArmorMaterial SAMURAI_MATERIAL = EnumHelper.addArmorMaterial("SAMURAI_MATERIAL", SakuraMain.MODID + ":textures/models/armor/samurai_armor.png", 33, new int[]{5, 8, 9, 5}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 3.5F).setRepairItem(new ItemStack(SAKURA_DIAMOND));
-    public static final ItemArmor.ArmorMaterial SOLDIER_MATERIAL = EnumHelper.addArmorMaterial("SOLDIER_MATERIAL", SakuraMain.MODID + ":textures/models/armor/soldier_armor.png", 16, new int[]{2, 5, 6, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F);
+    public static final ItemArmor.ArmorMaterial SOLDIER_MATERIAL = EnumHelper.addArmorMaterial("SOLDIER_MATERIAL", SakuraMain.MODID + ":textures/models/armor/soldier_armor.png", 16, new int[]{2, 5, 6, 2}, 14, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.5F).setRepairItem(new ItemStack(Items.IRON_INGOT));
 
     public static final ItemArmor.ArmorMaterial KIMONO_MATERIAL = EnumHelper.addArmorMaterial("KIMONO_MATERIAL", SakuraMain.MODID + ":textures/models/armor/kimono_base.png", -1, new int[]{0, 0, 0, 0}, 0, net.minecraft.init.SoundEvents.BLOCK_CLOTH_PLACE, 0);
     public static ItemBase cup = new ItemBase(SakuraMain.MODID,"cup", 32, new String[]{
@@ -265,8 +265,8 @@ public class ItemLoader {
         		new FoodInfo("dried_rice", 4, 0.5f, false, 0F, 1.5F, 0F, 0F, 0F, 0F, 0F, 1f, 480f),  
         		new FoodInfo("fried_brown_rice", 4, 0.5f, false, 0F, 1.5F, 0F, 0F, 0F, 0F, 0F, 1f, 480f),
         		
-        		new FoodInfo("ume", 2, 0.2f, false, 3F, 0F, 1F, 0F, 0F, 0F, 3F, 1f, 480f),
-        		new FoodInfo("umeboshi", 2, 0.5f, false, 3F, 0F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
+        		new FoodInfo("ume", 2, 0.2f, false, 5F, 0F, 1F, 0F, 0F, 0F, 3F, 1f, 480f),
+        		new FoodInfo("umeboshi", 2, 0.5f, false, 5F, 0F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
         		
         		new FoodInfo("zosui_zuiki", 6, 1f, false, 5F, 2F, 0F, 2F, 0F, 0F, 5F, 1f, 480f),  
         		new FoodInfo("zosui", 8, 1f, false, 5F, 0F, 0F, 0F, 3F, 3F, 5F, 1f, 480f),  
@@ -276,7 +276,10 @@ public class ItemLoader {
         		new FoodInfo("noppei_jiru", 12, 1f, false, 5F, 0F, 5F, 5F, 5F, 5F, 5F, 1f, 480f),
         		
         		new FoodInfo("hyorogan", 4, 0.5f, false, 0F, 2F, 0F, 0F, 0F, 0F, 0F, 1f, 480f),
-        		new FoodInfo("suikatsugan", 4, 0.5f, false, 10F, 1.5F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
+        		new FoodInfo("suikatsugan", 4, 0.5f, false, 20F, 1.5F, 2F, 0F, 0F, 0F, 0F, 1f, 480f),  
+        		
+        		new FoodInfo("fish_bake_salt", 8, 0.8f, false, 0.5F, 0F, 0f, 0f, 4f, 0f, 3f, 1f, 480f),
+        		
     	}
     );
     public static ItemDoor BAMBOO_DOOR = new ItemDoor(BlockLoader.BAMBOODOOR);
@@ -379,7 +382,7 @@ public class ItemLoader {
     public static Item SAKURA_KNIFE_NOODLE = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_noodle");
     public static Item SAKURA_KNIFE_FISH = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_fish");
     
-    public static Item IMOGARANAWA = new ItemMetaDurability(SakuraMain.MODID, "imogaranawa", 16, ItemStack.EMPTY, new String[] {
+    public static Item IMOGARANAWA = new ItemMetaDurability(SakuraMain.MODID, "imogaranawa", 15, ItemStack.EMPTY, new String[] {
     		"imogaranawa"
     });
     
@@ -464,6 +467,7 @@ public class ItemLoader {
     	register(STONE_HAMMER);
         register(IRON_HAMMER);
         register(SAKURA_HAMMER);
+        
         MinecraftForge.addGrassSeed(new ItemStack(TOMATO_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(ONION_SEEDS), 2);
         MinecraftForge.addGrassSeed(new ItemStack(EGGPLANT_SEEDS), 2);
@@ -472,11 +476,12 @@ public class ItemLoader {
         MinecraftForge.addGrassSeed(new ItemStack(RICE_SEEDS), 3);
         MinecraftForge.addGrassSeed(new ItemStack(BUCKWHEAT), 3);
         MinecraftForge.addGrassSeed(new ItemStack(RAPESEED), 2);
+        MinecraftForge.addGrassSeed(new ItemStack(RED_BEAN), 2);
         MinecraftForge.addGrassSeed(new ItemStack(MATERIAL, 1, 23), 2);
         MinecraftForge.addGrassSeed(new ItemStack(MATERIAL, 1, 37), 1);
         MinecraftForge.addGrassSeed(new ItemStack(TARO), 1);
         
-        OreDictionary.getOres("ingotSteel").forEach((stack)->SOLDIER_MATERIAL.setRepairItem(stack));
+//        OreDictionary.getOres().forEach((stack)->SOLDIER_MATERIAL.setRepairItem(stack));
 	}
 
     @SideOnly(Side.CLIENT)

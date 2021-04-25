@@ -134,7 +134,9 @@ public class ItemKotachi extends Item {
     				flag2 = mainhand.getItem() instanceof ItemKotachi && offhand.getItem() instanceof ItemKotachi;
     		if(flag1&&flag2) {
                 player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, ItemStack.EMPTY);
-                player.dropItem(offhand, false);
+                if (!player.inventory.addItemStackToInventory(offhand)) {
+                	player.dropItem(offhand, false);
+                }
                 player.sendStatusMessage(new TextComponentTranslation("sakura.katana.wrong_duel", new Object()), false);
     		}
     	}

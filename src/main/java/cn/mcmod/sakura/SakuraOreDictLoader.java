@@ -17,7 +17,6 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("listAllsoup", new ItemStack(ItemLoader.FOODSET, 1, 161));
 		
 		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.MATERIAL, 1, 1));
-		
 		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.FOODSET, 1, 163));
 		OreDictionary.registerOre("cropRice", new ItemStack(ItemLoader.FOODSET, 1, 164));
 		
@@ -54,6 +53,7 @@ public class SakuraOreDictLoader {
         OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.MAPLE_LOG, 1));
         OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.MAPLE_LOG_SAP, 1));
         OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.SAKURA_LOG, 1));
+        OreDictionary.registerOre("logWood", new ItemStack(BlockLoader.UME_LOG, 1));
         
         OreDictionary.registerOre("slabWood", new ItemStack(BlockLoader.MAPLE_PLANK_SLAB, 1));
         OreDictionary.registerOre("slabWood", new ItemStack(BlockLoader.SAKURA_PLANK_SLAB, 1));
@@ -64,6 +64,9 @@ public class SakuraOreDictLoader {
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_RED, 1));
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.MAPLE_LEAVE_YELLOW, 1));
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
+        
+        OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.UME_LEAVES, 1));
+        
         OreDictionary.registerOre("sakuraLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
 		OreDictionary.registerOre("cropMaplesyrup", new ItemStack(ItemLoader.MATERIAL, 1,49));
 		OreDictionary.registerOre("listAllsugar", new ItemStack(ItemLoader.MATERIAL, 1,49));
@@ -141,7 +144,7 @@ public class SakuraOreDictLoader {
 		OreDictionary.registerOre("foodPasta", new ItemStack(ItemLoader.MATERIAL, 1, 57));
 		OreDictionary.registerOre("foodDough", new ItemStack(ItemLoader.MATERIAL, 1, 6));
 		OreDictionary.registerOre("foodDough", new ItemStack(ItemLoader.MATERIAL, 1, 7));
-		
+		OreDictionary.registerOre("listAllfruit", new ItemStack(ItemLoader.FOODSET, 1, 166));
 		OreDictionary.registerOre("foodHoisinsause", new ItemStack(ItemLoader.MATERIAL, 1, 60));
 		OreDictionary.registerOre("foodMayo", new ItemStack(ItemLoader.MATERIAL, 1, 61));
 		OreDictionary.registerOre("foodVinegar", new ItemStack(ItemLoader.MATERIAL, 1, 62));

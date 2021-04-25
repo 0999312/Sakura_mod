@@ -24,6 +24,7 @@ public class WorldGenLoader {
 		GameRegistry.registerWorldGenerator(new WorldGenBambooShot(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenPepper(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenVanilla(), 1);
+		GameRegistry.registerWorldGenerator(new WorldGenUmeSaping(), 1);
 		GameRegistry.registerWorldGenerator(new WorldGenIronSand(SakuraConfig.iron_sand_amount), 1);
 	}
 	@SubscribeEvent

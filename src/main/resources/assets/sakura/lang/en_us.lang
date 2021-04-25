@@ -67,6 +67,7 @@ tile.sakura.plank_maple.name=Maple Plank
 tile.sakura.plank_bamboo.name=Bamboo Plank
 tile.sakura.barrel.name=Barrel
 tile.sakura.barrel_distillation.name=Distillation Barrel
+tile.sakura.barrel_out.name=Storage Barrel
 tile.sakura.kitunebi.name=Kitsunebi
 tile.sakura.windbell.name=Windbell
 tile.sakura.bamboo_fence_sunburnt.name=Sunburnt Bamboo Fence
@@ -121,6 +122,7 @@ tile.sakura.teishoku_tamagoyaki.name=Tamagoyaki Teishoku
 tile.sakura.teishoku_yakiniku.name=Yakiniku Teishoku
 tile.sakura.teishoku_fish_raw.name=Raw Fish Teishoku
 tile.sakura.teishoku_fish_cooked.name=Cooked Fish Teishoku
+tile.sakura.teishoku_fish_salt.name=Salted Cooked Fish Teishoku
 
 #Item
 item.sakura.machined_fish.name=Machined Fish
@@ -176,6 +178,7 @@ item.sakura.taro_baked.name=Cooked Taro
 item.sakura.imogara.name=Imo-gara
 item.sakura.dried_imogara.name=Dried Imo-gara
 item.sakura.imogaranawa_piece.name=Imo-gara-nawa Piece
+item.sakura.imogaranawa.name=Imo-gara-nawa
 item.sakura.grape.name=Grape
 item.sakura.raw_taiyaki.name=Raw Taiyaki
 item.sakura.taiyaki.name=Taiyaki
@@ -377,6 +380,9 @@ item.sakura.kimono_3.name=Cyan Kimono
 item.sakura.kimono_4.name=Purple Kimono
 item.sakura.kimono_5.name=Sakura Kimono
 item.sakura.kimono_6.name=White Kimono
+
+item.sakura.kimono_ene.name=Sponsor ENE -Snow Sakura-
+
 item.sakura.yukata_0.name=Red Yukata
 item.sakura.yukata_1.name=Blue Yukata
 item.sakura.yukata_2.name=Magenta Yukata
@@ -478,6 +484,8 @@ item.sakura.zosui.name=Zosui
 item.sakura.zosui_zuiki.name=Zuiki Zosui
 item.sakura.imotaki.name=Imotaki
 item.sakura.noppei_jiru.name=Noppei Jiru
+
+item.sakura.fish_bake_salt.name=Salted Grilled fish
 
 item.sakura.hyorogan.name=Hyorogan
 item.sakura.suikatsugan.name=Suikatsugan

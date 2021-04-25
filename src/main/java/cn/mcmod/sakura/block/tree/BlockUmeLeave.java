@@ -14,7 +14,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -35,18 +34,18 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable, IShearable {
-	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
+	public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
 	public BlockUmeLeave() {
 		this.setHardness(0.2F);
 		this.setLightOpacity(1);
 		this.setCreativeTab(CommonProxy.tab);
-		this.setDefaultState(blockState.getBaseState().withProperty(AGE, 0));
+		this.setDefaultState(blockState.getBaseState().withProperty(AGE, 0).withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 	}
 
 	@Override
 	public BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, AGE);
+		return new BlockStateContainer(this, AGE,CHECK_DECAY,DECAYABLE);
 	}
 
 	protected PropertyInteger getAgeProperty() {
@@ -54,7 +53,7 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 	}
 
 	public int getMaxAge() {
-		return 7;
+		return 3;
 	}
 
 	protected int getAge(IBlockState state) {
@@ -113,10 +112,8 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (this.isMaxAge(state)) {
-			if (playerIn.getHeldItem(hand).getItem() instanceof ItemShears) {
 				spawnAsEntity(worldIn, pos, new ItemStack(ItemLoader.FOODSET, 1, 166));
 				worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, 0));
-			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
@@ -125,14 +122,22 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 	 * Convert the given metadata into a BlockState for this Block
 	 */
 	public IBlockState getStateFromMeta(int meta) {
-		return this.withAge(meta);
+		return this.withAge(meta & 3).withProperty(DECAYABLE, (meta & 4) > 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
 	}
 
 	/**
 	 * Convert the BlockState into the correct metadata value
 	 */
 	public int getMetaFromState(IBlockState state) {
-		return this.getAge(state);
+		int i = this.getAge(state);
+        if (state.getValue(DECAYABLE)) {
+            i |= 4;
+        }
+
+        if (state.getValue(CHECK_DECAY)) {
+            i |= 8;
+        }
+		return i;
 	}
 
 	@Override
@@ -174,7 +179,7 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-//		super.updateTick(worldIn, pos, state, rand);
+		super.updateTick(worldIn, pos, state, rand);
 
 		if (!worldIn.isAreaLoaded(pos, 1))
 			return; // Forge: prevent loading unloaded chunks when checking

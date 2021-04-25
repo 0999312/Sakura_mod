@@ -28,6 +28,12 @@ public class SakuraConfig {
 	@Config.RangeInt(min = 0, max = 2000)
 	@Config.Comment("Changes generate rate of BambooShot. Increase value to gen more BambooShot.")
 	public static int bambooshot_weight = 90;
+	
+	@Config.LangKey(config + "ume_weight")
+	@Config.RequiresMcRestart
+	@Config.RangeInt(min = 0, max = 2000)
+	@Config.Comment("Changes generate rate of Ume. Increase value to gen more Ume.")
+	public static int ume_weight = 90;
 
 	@Config.LangKey(config + "iron_sand_amount")
 	@Config.RequiresMcRestart
@@ -44,13 +50,13 @@ public class SakuraConfig {
 	@Config.LangKey(config + "harder_iron_recipe")
 	@Config.RequiresMcRestart
 	@Config.Comment("Whether to enable a more difficult iron ingot recipe.")
-	public static boolean harder_iron_recipe = true;
+	public static boolean harder_iron_recipe = false;
 
 	@Config.LangKey(config + "harder_iron_difficult")
 	@Config.RequiresMcRestart
 	@Config.RangeInt(min = 1, max = 3)
 	@Config.Comment("Changes difficult level of harder iron ingot recipe.")
-	public static int harder_iron_difficult = 3;
+	public static int harder_iron_difficult = 1;
 
 	@Config.LangKey(config + "every_where_sakura_diamond")
 	@Config.RequiresMcRestart

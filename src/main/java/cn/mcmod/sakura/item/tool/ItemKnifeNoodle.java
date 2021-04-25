@@ -10,7 +10,7 @@ public class ItemKnifeNoodle extends ItemSword {
 //		ToolMaterial.IRON
 		super(material);
 		this.setUnlocalizedName(SakuraMain.MODID+"."+"knife_noodle");
-		this.setMaxDamage(ToolMaterial.WOOD.getMaxUses());
+		this.setMaxDamage(material.getMaxUses());
 	}
     @Override
     public ItemStack getContainerItem(ItemStack itemStack) {

@@ -15,34 +15,33 @@ import net.minecraftforge.fluids.Fluid;
 
 public class BlockFluidBasic extends BlockFluidClassic {
 
-    public BlockFluidBasic(Fluid fluid) {
-    	super(fluid, Material.WATER);
-        this.setResistance(1000.0F);
-    }
+	public BlockFluidBasic(Fluid fluid) {
+		super(fluid, Material.WATER);
+		this.setResistance(1000.0F);
+	}
 
-    @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-    }
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+	}
 
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return FULL_BLOCK_AABB;
-    }
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return FULL_BLOCK_AABB;
+	}
 
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return NULL_AABB;
+	}
 
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
-    }
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos neighborPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, neighborPos);
+	}
 
-    @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos neighborPos) {
-        super.neighborChanged(state, worldIn, pos, blockIn, neighborPos);
-    }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing) {
-        return BlockFaceShape.UNDEFINED;
-    }
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing facing) {
+		return BlockFaceShape.UNDEFINED;
+	}
 
 }

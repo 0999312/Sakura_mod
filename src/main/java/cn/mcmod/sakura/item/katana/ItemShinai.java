@@ -107,7 +107,13 @@ public class ItemShinai extends ItemSword {
     				flag2 = mainhand.getItem() instanceof ItemShinai||offhand.getItem() instanceof ItemShinai;
     		if(flag1&&flag2) {
                 player.setItemStackToSlot((mainhand.getItem() instanceof ItemShinai)?EntityEquipmentSlot.OFFHAND:EntityEquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                player.dropItem((mainhand.getItem() instanceof ItemShinai)?offhand:mainhand, false);
+                if(mainhand.getItem() instanceof ItemShinai) {
+                	if (!player.inventory.addItemStackToInventory(offhand)) {
+                		player.dropItem(offhand, false);
+                	}
+                }else if (!player.inventory.addItemStackToInventory(mainhand)) {
+            		player.dropItem(mainhand, false);
+            	}
                 player.sendStatusMessage(new TextComponentTranslation("sakura.katana.wrong_duel_shinai", new Object()), false);
     		}
     	}

@@ -4,8 +4,8 @@ import java.util.Random;
 
 import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.item.ItemLoader;
-import cn.mcmod_mmf.mmlib.item.food.FoodInfo;
 import cn.mcmod_mmf.mmlib.item.food.ItemDrinkBase;
+import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;

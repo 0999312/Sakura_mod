@@ -33,6 +33,7 @@ public class TileEntityRegistry {
         registerTileEntity(TileEntityMapleCauldron.class, "maple_cauldron");
         registerTileEntity(TileEntityOben.class, "oben");
         registerTileEntity(TileEntityWeb.class, "straw_web");
+        registerTileEntity(TileEntityFluidOut.class, "fluid_out");
     }
 
     @SideOnly(Side.CLIENT)
@@ -49,7 +50,6 @@ public class TileEntityRegistry {
 
     private void registerTileEntity(Class<? extends TileEntity> cls, String baseName) {
         GameRegistry.registerTileEntity(cls, new ResourceLocation(SakuraMain.MODID, baseName));
-
     }
 
     private Item getItem(final Block block) {

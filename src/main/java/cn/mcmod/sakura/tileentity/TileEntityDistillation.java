@@ -92,7 +92,7 @@ public class TileEntityDistillation extends TileEntity implements ITickable, IIn
 					} else
 						processTimer = 0;
 
-					if (processTimer >= 1000) {
+					if (processTimer >= 800) {
 						processTimer = 0;
 						this.resultTank.fill(result, true);
 

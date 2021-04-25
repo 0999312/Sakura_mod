@@ -4,6 +4,7 @@ import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.gui.GuiBarrel;
 import cn.mcmod.sakura.gui.GuiCampfirePot;
 import cn.mcmod.sakura.gui.GuiDistillation;
+import cn.mcmod.sakura.gui.GuiFluidOut;
 import cn.mcmod.sakura.gui.GuiStoneMortar;
 import cn.mcmod.sakura.inventory.ContainerBarrel;
 import cn.mcmod.sakura.inventory.ContainerCampfirePot;
@@ -41,6 +42,8 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipeClickArea(GuiBarrel.class, 130, 29, 18, 21,"sakura.liquid_item");
 		registry.addRecipeClickArea(GuiDistillation.class, 130, 29, 18, 21,"sakura.liquid_item");
 		
+		registry.addRecipeClickArea(GuiFluidOut.class, 75, 25, 29, 18,"sakura.liquid_item");
+		
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerCampfirePot.class,"sakura.cooking_pot", 0, 9, 10, 36);
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerStoneMortar.class,"sakura.mortar", 0, 4, 6, 36);
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerBarrel.class,"sakura.barrel", 0, 3, 5, 36);
@@ -51,6 +54,7 @@ public class JEICompat implements IModPlugin {
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.BARREL),"sakura.barrel");
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.BARREL_DISTILLATION),"sakura.distillation");
 		registry.addRecipeCatalyst(new ItemStack(BlockLoader.STRAW_WEB),"sakura.straw_web");
+		registry.addRecipeCatalyst(new ItemStack(BlockLoader.BARREL_OUT),"sakura.liquid_item");
 	}
 	
 	@Override
