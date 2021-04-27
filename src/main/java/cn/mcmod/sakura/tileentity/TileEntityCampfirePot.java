@@ -2,7 +2,10 @@ package cn.mcmod.sakura.tileentity;
 
 import cn.mcmod.sakura.api.recipes.PotRecipes;
 import cn.mcmod.sakura.block.BlockCampfirePot;
+
+import cn.mcmod_mmf.mmlib.item.ItemMetaDurability;
 import cn.mcmod_mmf.mmlib.util.RecipesUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -143,7 +146,10 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, IInv
 			    	    		this.inventory.set(i, this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
 			    	    		}
 			    	    		else this.decrStackSize(i, 1);
-			    	    		Block.spawnAsEntity(getWorld(), getPos(), this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i).copy()));
+
+			    	    		if (! (this.inventory.get(i).getItem() instanceof ItemMetaDurability)) {
+                                    Block.spawnAsEntity(getWorld(), getPos(), this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i).copy()));
+                                }
 			    	    	}else this.decrStackSize(i, 1);
 			    	    }
 			            flag1 = true;
