@@ -1,0 +1,45 @@
+
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory 
+license="MIT License"
+[[mods]] #mandatory
+# The modid of the mod
+modId="sakura" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Sakura Mod" 
+displayURL="https://www.curseforge.com/minecraft/mc-mods/sakura" 
+logoFile="logo.png"
+credits="MCMOD Modding Group, MMF-Group"
+authors="Syameimaru Zheng, Bagu_chan"
+description='''
+A mod that mix Bamboo, WA and MapleTree.
+
+This mod is full of Japanese style, Teishoku, sushi, and lots of foods.
+New battle styles with your katana and kodachi, Cooking with campfire and cooking pot.
+New illager with his katana spawn in Bamboo forest and maple forest!
+New dress: Kimono, yukata and Haori.
+'''
+[[dependencies.sakura]] #optional
+    # the modid of the dependency
+    modId="forge" #mandatory
+    # Does this dependency have to exist - if not, ordering below must be specified
+    mandatory=true #mandatory
+    # The version range of the dependency
+    versionRange="[36,)" #mandatory
+    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    ordering="NONE"
+    # Side this dependency is applied on - BOTH, CLIENT or SERVER
+    side="BOTH"
+# Here's another dependency
+[[dependencies.sakura]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.sakura]]
+    modId="mmlib"
+    mandatory=true
+    versionRange="[1.0.3,)"
+    ordering="AFTER"
+    side="BOTH"
