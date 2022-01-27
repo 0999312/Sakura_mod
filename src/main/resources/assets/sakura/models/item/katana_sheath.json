@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/katana",
-		"particle": "sakura:items/katana"
+		"0": "sakura:item/katana",
+		"particle": "sakura:item/katana"
 	},
 	"elements": [
 		{

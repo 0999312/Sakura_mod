@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/smoked_bonito"
+    "layer0": "sakura:item/smoked_bonito"
   }
 }

@@ -1,6 +1,6 @@
 
 modLoader="javafml" #mandatory
-loaderVersion="[36,)" #mandatory 
+loaderVersion="[39,)" #mandatory 
 license="MIT License"
 [[mods]] #mandatory
 # The modid of the mod
@@ -20,26 +20,20 @@ New illager with his katana spawn in Bamboo forest and maple forest!
 New dress: Kimono, yukata and Haori.
 '''
 [[dependencies.sakura]] #optional
-    # the modid of the dependency
     modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[36,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+    versionRange="[39,)" #mandatory
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
-# Here's another dependency
 [[dependencies.sakura]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.sakura]]
     modId="mmlib"
     mandatory=true
-    versionRange="[1.0.3,)"
+    versionRange="[1.0.0-1.18.1,)"
     ordering="AFTER"
     side="BOTH"

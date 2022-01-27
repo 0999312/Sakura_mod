@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/kimono",
-		"particle": "sakura:items/kimono"
+		"0": "sakura:item/kimono",
+		"particle": "sakura:item/kimono"
 	},
 	"elements": [
 		{

@@ -1,10 +1,10 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "sakura:blocks/maple_log",
-    "1": "blocks/fire_layer_0",
-    "2": "blocks/fire_layer_1",
-    "particle": "sakura:blocks/maple_log"
+    "0": "sakura:block/maple_log",
+    "1": "block/fire_layer_0",
+    "2": "block/fire_layer_1",
+    "particle": "sakura:block/maple_log"
   },
   "elements": [
     {

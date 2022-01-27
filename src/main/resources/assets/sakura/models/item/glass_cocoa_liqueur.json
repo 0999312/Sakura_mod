@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "blocks/glass",
-		"1": "sakura:blocks/cocoa_liqueur_flow",
-		"particle": "blocks/glass"
+		"0": "block/glass",
+		"1": "sakura:block/cocoa_liqueur_flow",
+		"particle": "block/glass"
 	},
 	"elements": [
 		{

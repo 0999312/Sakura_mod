@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/osu_0",
-		"1": "sakura:blocks/osu_1",
-		"2": "sakura:blocks/osu_2",
-		"3": "sakura:blocks/osu_3",
-		"particle": "sakura:blocks/osu_0"
+		"0": "sakura:block/osu_0",
+		"1": "sakura:block/osu_1",
+		"2": "sakura:block/osu_2",
+		"3": "sakura:block/osu_3",
+		"particle": "sakura:block/osu_0"
 	},
 	"elements": [
 		{

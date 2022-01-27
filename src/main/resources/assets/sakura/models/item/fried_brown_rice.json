@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/fried_brown_rice"
+    "layer0": "sakura:item/fried_brown_rice"
   }
 }

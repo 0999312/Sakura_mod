@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sakura:blocks/noren_white",
+		"1": "sakura:block/noren_white",
 		"particle": "#1"
 	},
 	"elements": [

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/chicken_stick",
-		"particle": "sakura:items/chicken_stick"
+		"0": "sakura:item/chicken_stick",
+		"particle": "sakura:item/chicken_stick"
 	},
 	"elements": [
 		{

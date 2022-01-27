@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/chawanmushi"
+    "layer0": "sakura:item/chawanmushi"
   }
 }

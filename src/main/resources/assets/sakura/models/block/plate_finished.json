@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"particle": "sakura:blocks/plank_bamboo",
-		"1_0": "sakura:blocks/plank_bamboo"
+		"particle": "sakura:block/plank_bamboo",
+		"1_0": "sakura:block/plank_bamboo"
 	},
 	"elements": [
 		{

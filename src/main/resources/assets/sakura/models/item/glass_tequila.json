@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "blocks/glass",
+		"0": "block/glass",
 		"1": "sakura:models/tequila",
-		"particle": "blocks/glass"
+		"particle": "block/glass"
 	},
 	"elements": [
 		{

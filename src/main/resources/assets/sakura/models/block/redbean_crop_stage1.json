@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sakura:block/redbean_crop_stage1"
+  }
+}

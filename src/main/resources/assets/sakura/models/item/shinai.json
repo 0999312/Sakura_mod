@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/shinai",
-		"particle": "sakura:items/shinai"
+		"0": "sakura:item/shinai",
+		"particle": "sakura:item/shinai"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/miso_ball"
+    "layer0": "sakura:item/miso_ball"
   }
 }

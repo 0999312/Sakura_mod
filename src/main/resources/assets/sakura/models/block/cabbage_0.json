@@ -1,13 +1,13 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/cabbage_bottom",
-		"2": "sakura:blocks/cabbage_side1",
-		"3": "sakura:blocks/cabbage_side2",
-		"4": "sakura:blocks/cabbage_side3",
-		"5": "sakura:blocks/cabbage_side4",
-		"6": "sakura:blocks/cabbage_top",
-		"particle": "sakura:blocks/cabbage_bottom"
+		"0": "sakura:block/cabbage_bottom",
+		"2": "sakura:block/cabbage_side1",
+		"3": "sakura:block/cabbage_side2",
+		"4": "sakura:block/cabbage_side3",
+		"5": "sakura:block/cabbage_side4",
+		"6": "sakura:block/cabbage_top",
+		"particle": "sakura:block/cabbage_bottom"
 	},
 	"elements": [
 		{

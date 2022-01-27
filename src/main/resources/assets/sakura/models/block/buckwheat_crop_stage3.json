@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sakura:block/buckwheat_crop_stage3"
+  }
+}

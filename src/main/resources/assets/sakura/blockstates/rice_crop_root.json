@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "age=0,supporting=false":  { "model": "sakura:block/rice_root_stage0" },
+    "age=1,supporting=false":  { "model": "sakura:block/rice_root_stage1" },
+    "age=2,supporting=false":  { "model": "sakura:block/rice_root_stage2" },
+    "age=3,supporting=false":  { "model": "sakura:block/rice_root_stage3" },
+    "age=4,supporting=false":  { "model": "sakura:block/rice_root_stage4" },
+    "age=5,supporting=false":  { "model": "sakura:block/rice_root_stage5" },
+    "age=6,supporting=false":  { "model": "sakura:block/rice_root_stage6" },
+    "age=7,supporting=false":  { "model": "sakura:block/rice_root_stage7" },
+	
+    "age=0,supporting=true":  { "model": "sakura:block/rice_root_stage0" },
+    "age=1,supporting=true":  { "model": "sakura:block/rice_root_stage1" },
+    "age=2,supporting=true":  { "model": "sakura:block/rice_root_stage2" },
+    "age=3,supporting=true":  { "model": "sakura:block/rice_root_stage3" },
+    "age=4,supporting=true":  { "model": "sakura:block/rice_root_stage4" },
+    "age=5,supporting=true":  { "model": "sakura:block/rice_root_stage5" },
+    "age=6,supporting=true":  { "model": "sakura:block/rice_root_stage6" },
+    "age=7,supporting=true":  { "model": "sakura:block/rice_root" }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/pound_cake_mocha"
+    "layer0": "sakura:item/pound_cake_mocha"
   }
 }

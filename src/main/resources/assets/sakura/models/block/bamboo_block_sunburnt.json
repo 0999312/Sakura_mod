@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "sakura:block/bamboo_block_sunburnt",
+    "end": "sakura:block/bamboo_block_sunburnt_top"
+  }
+}

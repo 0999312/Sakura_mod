@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"cross": "sakura:blocks/ghost_fire_0",
-		"particle": "sakura:blocks/ghost_fire_0"
+		"cross": "sakura:block/ghost_fire_0",
+		"particle": "sakura:block/ghost_fire_0"
 	},
 	"elements": [
 		{

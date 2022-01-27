@@ -1,6 +1,13 @@
 package cn.mcmod.sakura.client;
 
 import cn.mcmod.sakura.SakuraMod;
+import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.client.particle.ParticleRegistry;
+import cn.mcmod.sakura.client.particle.FallenLeafParticle;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,11 +19,30 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void clientStuff(final FMLClientSetupEvent event) {
-        
+        event.enqueueWork(() -> {
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAKURA_SAPLING.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.RICE_CROP_ROOT.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOO_PLANT.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOOSHOOT.get(), RenderType.cutout());
+            BlockRegistry.BLOCKS.getEntries().forEach(block -> {
+                if (block.get() instanceof BushBlock)
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
+            });
+        });
     }
-    
+
+    @SuppressWarnings("resource")
     @SubscribeEvent
     public static void onParticleFactoryRegistration(ParticleFactoryRegisterEvent event) {
-
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.SAKURA_LEAF.get(),
+                FallenLeafParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.RED_MAPLE_LEAF.get(),
+                FallenLeafParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.YELLOW_MAPLE_LEAF.get(),
+                FallenLeafParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.GREEN_MAPLE_LEAF.get(),
+                FallenLeafParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.ORANGE_MAPLE_LEAF.get(),
+                FallenLeafParticle.Factory::new);
     }
 }

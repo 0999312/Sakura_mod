@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/haori",
-		"particle": "sakura:items/haori"
+		"0": "sakura:item/haori",
+		"particle": "sakura:item/haori"
 	},
 	"elements": [
 		{

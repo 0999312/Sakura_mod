@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "age=0,upper=false":  { "model": "sakura:block/tomato_0" },
+    "age=1,upper=false":  { "model": "sakura:block/tomato_1" },
+    "age=2,upper=false":  { "model": "sakura:block/tomato_2" },
+    "age=3,upper=false":  { "model": "sakura:block/tomato_3" },
+    "age=4,upper=false":  { "model": "sakura:block/tomato_4" },
+    "age=5,upper=false":  { "model": "sakura:block/tomato_5" },
+    "age=6,upper=false":  { "model": "sakura:block/tomato_6" },
+    "age=7,upper=false":  { "model": "sakura:block/tomato_7" },
+	
+    "age=0,upper=true":  { "model": "sakura:block/tomato_0" },
+    "age=1,upper=true":  { "model": "sakura:block/tomato_1" },
+    "age=2,upper=true":  { "model": "sakura:block/tomato_2" },
+    "age=3,upper=true":  { "model": "sakura:block/tomato_3" },
+    "age=4,upper=true":  { "model": "sakura:block/tomato_4" },
+    "age=5,upper=true":  { "model": "sakura:block/tomato_5" },
+    "age=6,upper=true":  { "model": "sakura:block/tomato_6" },
+    "age=7,upper=true":  { "model": "sakura:block/tomato_7" }
+  }
+}

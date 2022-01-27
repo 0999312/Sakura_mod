@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sakura:block/rapeseed_crop_stage0"
+  }
+}

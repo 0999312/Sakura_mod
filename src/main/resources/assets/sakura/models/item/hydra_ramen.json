@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/hydra_ramen"
+    "layer0": "sakura:item/hydra_ramen"
   }
 }

@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/dansansyoku",
-		"particle": "sakura:items/dansansyoku"
+		"0": "sakura:item/dansansyoku",
+		"particle": "sakura:item/dansansyoku"
 	},
 	"elements": [
 		{

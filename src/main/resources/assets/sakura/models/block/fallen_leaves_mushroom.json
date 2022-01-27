@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/fallen_leaves",
-		"particle": "sakura:blocks/mushroom"
+		"0": "sakura:block/fallen_leaves",
+		"particle": "sakura:block/mushroom"
 	},
 	"elements": [
 		{

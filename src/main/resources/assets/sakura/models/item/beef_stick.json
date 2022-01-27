@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/beef_stick",
-		"particle": "sakura:items/beef_stick"
+		"0": "sakura:item/beef_stick",
+		"particle": "sakura:item/beef_stick"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
    "parent" : "item/generated",
    "textures" : {
-      "layer0" : "sakura:items/croquette_dish"
+      "layer0" : "sakura:item/croquette_dish"
    }
 }

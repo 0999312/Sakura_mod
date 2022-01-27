@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/kawara",
-		"1": "sakura:blocks/white_bg",
-		"2": "sakura:blocks/kawara_1",
-		"particle": "sakura:blocks/kawara"
+		"0": "sakura:block/kawara",
+		"1": "sakura:block/white_bg",
+		"2": "sakura:block/kawara_1",
+		"particle": "sakura:block/kawara"
 	},
 	"elements": [
 		{

@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "sakura:blocks/eggplant_3"
+        "cross": "sakura:block/eggplant_3"
     }
 }

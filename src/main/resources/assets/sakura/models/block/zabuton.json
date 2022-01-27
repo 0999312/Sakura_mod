@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/zabuton",
-		"particle": "sakura:blocks/zabuton"
+		"0": "sakura:block/zabuton",
+		"particle": "sakura:block/zabuton"
 	},
 	"elements": [
 		{

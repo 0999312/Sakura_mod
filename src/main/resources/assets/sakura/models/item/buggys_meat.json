@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/buggys_meat"
+    "layer0": "sakura:item/buggys_meat"
   }
 }

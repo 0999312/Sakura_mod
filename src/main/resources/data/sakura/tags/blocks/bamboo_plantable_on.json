@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:sand",
+    "#minecraft:dirt",
+    "sakura:bamboo",
+    "sakura:bamboo_shoot",
+    "minecraft:gravel"
+  ]
+}

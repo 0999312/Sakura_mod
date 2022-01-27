@@ -1,14 +1,14 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/pant",
+		"0": "sakura:block/pant",
 		"1": "sakura:models/bento/blue",
 		"2": "sakura:models/bento/rice",
 		"3": "sakura:models/bento/black",
 		"4": "sakura:models/bento/red2",
 		"5": "sakura:models/bento/miso_soup",
-		"6": "sakura:blocks/white_bg",
-		"particle": "sakura:blocks/pant",
+		"6": "sakura:block/white_bg",
+		"particle": "sakura:block/pant",
 		"1_5": "sakura:models/bento/tianfuluo",
 		"1_6": "sakura:models/bento/tianfuluoweiba"
 	},

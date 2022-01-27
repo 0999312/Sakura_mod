@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/windbell",
-		"particle": "sakura:blocks/windbell"
+		"0": "sakura:block/windbell",
+		"particle": "sakura:block/windbell"
 	},
 	"elements": [
 		{

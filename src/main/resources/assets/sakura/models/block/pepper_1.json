@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "blocks/log_oak",
-		"1": "blocks/planks_oak",
-		"crop": "sakura:blocks/pepper_1",
-		"particle": "sakura:blocks/pepper_1"
+		"0": "block/log_oak",
+		"1": "block/planks_oak",
+		"crop": "sakura:block/pepper_1",
+		"particle": "sakura:block/pepper_1"
 	},
 	"elements": [
 		{

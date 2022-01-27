@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "age=0":  { "model": "sakura:block/onion_0" },
+    "age=1":  { "model": "sakura:block/onion_1" },
+    "age=2":  { "model": "sakura:block/onion_2" },
+    "age=3":  { "model": "sakura:block/onion_3" }
+  }
+}

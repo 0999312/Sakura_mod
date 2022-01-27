@@ -3,8 +3,8 @@
 	"textures": {
 		"5": "sakura:models/bento/tianfuluo",
 		"6": "sakura:models/bento/tianfuluoweiba",
-"particle": "sakura:blocks/plank_bamboo",
-		"1_0": "sakura:blocks/plank_bamboo"
+"particle": "sakura:block/plank_bamboo",
+		"1_0": "sakura:block/plank_bamboo"
 	},
 	"elements": [
 		{

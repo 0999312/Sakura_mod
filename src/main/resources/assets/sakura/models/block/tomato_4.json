@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "sakura:blocks/tomato_model",
-		"cross": "sakura:blocks/tomato_3",
-		"particle": "sakura:blocks/tomato_3"
+		"1": "sakura:block/tomato_model",
+		"particle": "sakura:block/tomato_3",
+		"cross": "sakura:block/tomato_3"
 	},
 	"elements": [
 		{
@@ -28,8 +28,8 @@
 			}
 		},
 		{
-			"from": [3, 12, 11],
-			"to": [5, 14, 13],
+			"from": [4, 13, 11],
+			"to": [5, 14, 12],
 			"faces": {
 				"north": {"uv": [14, 13, 16, 15], "texture": "#1"},
 				"east": {"uv": [14, 13, 16, 15], "texture": "#1"},
@@ -40,8 +40,8 @@
 			}
 		},
 		{
-			"from": [11, 11, 11],
-			"to": [13, 13, 13],
+			"from": [11, 13, 11],
+			"to": [12, 14, 12],
 			"faces": {
 				"north": {"uv": [14, 13, 16, 15], "texture": "#1"},
 				"east": {"uv": [14, 13, 16, 15], "texture": "#1"},
@@ -52,8 +52,8 @@
 			}
 		},
 		{
-			"from": [11, 6, 3],
-			"to": [13, 8, 5],
+			"from": [12, 7, 3],
+			"to": [13, 8, 4],
 			"faces": {
 				"north": {"uv": [14, 13, 16, 15], "texture": "#1"},
 				"east": {"uv": [14, 13, 16, 15], "texture": "#1"},
@@ -64,8 +64,8 @@
 			}
 		},
 		{
-			"from": [4, 5, 4],
-			"to": [6, 7, 6],
+			"from": [4, 7, 4],
+			"to": [5, 8, 5],
 			"faces": {
 				"north": {"uv": [14, 13, 16, 15], "texture": "#1"},
 				"east": {"uv": [14, 13, 16, 15], "texture": "#1"},

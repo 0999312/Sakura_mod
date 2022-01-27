@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/bamboo_sunburnt",
-		"particle": "sakura:blocks/bamboo_sunburnt"
+		"0": "sakura:block/bamboo_sunburnt",
+		"particle": "sakura:block/bamboo_sunburnt"
 	},
 	"elements": [
 		{

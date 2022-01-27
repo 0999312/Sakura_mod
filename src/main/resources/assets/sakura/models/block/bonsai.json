@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "blocks/hardened_clay_stained_black",
-		"1": "blocks/dirt",
-		"particle": "blocks/hardened_clay_stained_black"
+		"0": "block/hardened_clay_stained_black",
+		"1": "block/dirt",
+		"particle": "block/hardened_clay_stained_black"
 	},
 	"elements": [
 		{

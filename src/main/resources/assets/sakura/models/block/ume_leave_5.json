@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/ume_leaves",
-		"1": "sakura:blocks/ume",
-		"particle": "sakura:blocks/ume_leaves"
+		"0": "sakura:block/ume_leaves",
+		"1": "sakura:block/ume",
+		"particle": "sakura:block/ume_leaves"
 	},
 	"elements": [
 		{

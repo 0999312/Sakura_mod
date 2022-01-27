@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/radish_leaf",
-		"1": "sakura:blocks/radish",
-		"particle": "sakura:blocks/radish_leaf"
+		"0": "sakura:block/radish_leaf",
+		"1": "sakura:block/radish",
+		"particle": "sakura:block/radish_leaf"
 	},
 	"elements": [
 		{

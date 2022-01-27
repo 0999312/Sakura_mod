@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/red_bean"
+    "layer0": "sakura:item/red_bean"
   }
 }

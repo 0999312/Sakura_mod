@@ -1,6 +1,6 @@
 {
    "parent" : "item/handheld",
    "textures" : {
-      "layer0" : "sakura:items/hammer_sakura"
+      "layer0" : "sakura:item/hammer_sakura"
    }
 }

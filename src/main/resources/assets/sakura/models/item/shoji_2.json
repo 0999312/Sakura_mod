@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/shoji_2"
+    "layer0": "sakura:item/shoji_2"
   }
 }

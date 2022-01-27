@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/straw_web",
-		"1": "sakura:blocks/maple_log",
-		"particle": "sakura:blocks/straw_web"
+		"0": "sakura:block/straw_web",
+		"1": "sakura:block/maple_log",
+		"particle": "sakura:block/straw_web"
 	},
 	"elements": [
 		{

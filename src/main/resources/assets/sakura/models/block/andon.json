@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/andon",
-		"particle": "sakura:blocks/andon"
+		"0": "sakura:block/andon",
+		"particle": "sakura:block/andon"
 	},
 	"elements": [
 		{

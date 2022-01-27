@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"gravel": "blocks/iron_block",
-		"itemframe_background": "sakura:blocks/bamboo",
-		"anvil_base": "blocks/anvil_base"
+		"gravel": "block/iron_block",
+		"itemframe_background": "sakura:block/bamboo",
+		"anvil_base": "block/anvil_base"
 	},
 	"elements": [
 		{

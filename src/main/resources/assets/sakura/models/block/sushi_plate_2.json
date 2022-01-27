@@ -8,8 +8,8 @@
 		"16": "sakura:models/bento/zicai",
 		"17": "sakura:models/bento/sake",
 		"18": "sakura:models/bento/sake_l",
-		"particle": "sakura:blocks/plank_bamboo",
-		"1_0": "sakura:blocks/plank_bamboo"
+		"particle": "sakura:block/plank_bamboo",
+		"1_0": "sakura:block/plank_bamboo"
 	},
 	"elements": [
 		{

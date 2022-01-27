@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "sakura:items/zosui_zuiki"
+    "layer0": "sakura:item/zosui_zuiki"
   }
 }

@@ -1,6 +1,6 @@
 {
    "parent" : "item/generated",
    "textures" : {
-      "layer0" : "sakura:items/sushi_shrimp"
+      "layer0" : "sakura:item/sushi_shrimp"
    }
 }

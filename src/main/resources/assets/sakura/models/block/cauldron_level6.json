@@ -2,12 +2,12 @@
   "credit": "Made with Blockbench",
   "ambientocclusion": false,
   "textures": {
-    "water": "sakura:blocks/maple_syrup_still",
-    "top": "blocks/cauldron_top",
-    "bottom": "blocks/cauldron_bottom",
-    "side": "blocks/cauldron_side",
-    "particle": "blocks/cauldron_side",
-    "inside": "blocks/cauldron_inner"
+    "water": "sakura:block/maple_syrup_still",
+    "top": "block/cauldron_top",
+    "bottom": "block/cauldron_bottom",
+    "side": "block/cauldron_side",
+    "particle": "block/cauldron_side",
+    "inside": "block/cauldron_inner"
   },
   "elements": [
     {

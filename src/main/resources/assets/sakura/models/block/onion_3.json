@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/onion_leaf",
-		"1": "sakura:blocks/onion",
-		"particle": "sakura:blocks/onion_leaf"
+		"0": "sakura:block/onion_leaf",
+		"1": "sakura:block/onion",
+		"particle": "sakura:block/onion_leaf"
 	},
 	"elements": [
 		{

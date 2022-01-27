@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "sakura:sakuraleaves",
+    "sakura:mapleleaves_red",
+    "sakura:mapleleaves_green",
+    "sakura:mapleleaves_orange",
+    "sakura:mapleleaves_yellow"
+  ]
+}

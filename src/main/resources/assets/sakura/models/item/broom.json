@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/broom",
-		"particle": "sakura:items/broom"
+		"0": "sakura:item/broom",
+		"particle": "sakura:item/broom"
 	},
 	"elements": [
 		{

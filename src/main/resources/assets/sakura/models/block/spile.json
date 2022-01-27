@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:blocks/pot",
-		"1": "sakura:blocks/barrel_1",
-		"particle": "sakura:blocks/pot"
+		"0": "sakura:block/pot",
+		"1": "sakura:block/barrel_1",
+		"particle": "sakura:block/pot"
 	},
 	"elements": [
 		{

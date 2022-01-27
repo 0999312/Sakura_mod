@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:items/danmitarashi",
-		"particle": "sakura:items/danmitarashi"
+		"0": "sakura:item/danmitarashi",
+		"particle": "sakura:item/danmitarashi"
 	},
 	"elements": [
 		{
