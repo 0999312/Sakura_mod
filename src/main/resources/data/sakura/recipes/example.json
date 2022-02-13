@@ -1,0 +1,16 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients":
+  [
+    {"item": "minecraft:redstone_block"}
+  ],
+  "results":
+  [
+    {
+      "item": "minecraft:redstone",
+      "count": 9
+    }
+  ],
+  "experience": 20.0,
+  "cookingtime": 400
+}

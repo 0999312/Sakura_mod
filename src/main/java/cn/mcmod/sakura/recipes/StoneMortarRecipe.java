@@ -24,7 +24,10 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
+
     public static RecipeType<StoneMortarRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":stone_mortar");
+    public static final MortarSerializer SERIALIZER = new MortarSerializer();
+
     private final ResourceLocation id;
     private final String group;
     private final NonNullList<Ingredient> inputItems;
@@ -93,7 +96,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return new MortarSerializer();
+        return SERIALIZER;
     }
 
     @Override
@@ -112,7 +115,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
     private static class MortarSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
             implements RecipeSerializer<StoneMortarRecipe> {
         public MortarSerializer() {
-            this.setRegistryName(SakuraMod.MODID + ":stone_mortar");
+            this.setRegistryName(new ResourceLocation(SakuraMod.MODID, "stone_mortar"));
         }
 
         @Override
@@ -132,7 +135,15 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             } 
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
             final int cookTimeIn = GsonHelper.getAsInt(json, "cookingtime", 200);
-            
+
+            SakuraMod.getLogger().info
+            (
+                "{\n    ingredients: " + nonnulllist.toString() + ";"
+                + "\n    result: " + nonnullResultList.toString() + ";"
+                + "\n    exp: " + experienceIn + ";"
+                + "\n    cookTime: " + cookTimeIn + ";"
+                + "\n}"
+            );
             return new StoneMortarRecipe(recipeId, s, nonnulllist, nonnullResultList, experienceIn, cookTimeIn);
         }
         
