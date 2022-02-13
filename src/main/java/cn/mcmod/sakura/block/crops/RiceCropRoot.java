@@ -9,6 +9,7 @@ import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -30,7 +31,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
 
 @SuppressWarnings("deprecation")
 public class RiceCropRoot extends BushBlock implements BonemealableBlock, LiquidBlockContainer {
@@ -54,7 +54,7 @@ public class RiceCropRoot extends BushBlock implements BonemealableBlock, Liquid
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        return super.mayPlaceOn(state, worldIn, pos) || Tags.Blocks.DIRT.contains(state.getBlock());
+        return super.mayPlaceOn(state, worldIn, pos) || BlockTags.DIRT.contains(state.getBlock());
     }
 
     @Override
