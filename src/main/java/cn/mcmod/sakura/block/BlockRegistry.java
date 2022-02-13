@@ -3,6 +3,7 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.crops.RiceCrop;
 import cn.mcmod.sakura.block.crops.RiceCropRoot;
+import cn.mcmod.sakura.block.machines.StoneMortarBlock;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
 import cn.mcmod.sakura.level.tree.MapleTreeGrower;
@@ -134,6 +135,8 @@ public class BlockRegistry {
     public static final RegistryObject<Block> EGGPLANT_CROP = BLOCKS.register("eggplant_crop",
             () -> new HighCropBlock(Block.Properties.copy(Blocks.CARROTS).strength(0.2F), ItemRegistry.EGGPLANT_SEEDS));
 
+    public static final RegistryObject<Block> STONE_MORTAR = BLOCKS.register("stone_mortar", StoneMortarBlock::new);
+    
     private static RotatedPillarBlock log(MaterialColor top, MaterialColor bark) {
         return new RotatedPillarBlock(BlockBehaviour.Properties
                 .of(Material.WOOD, state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))

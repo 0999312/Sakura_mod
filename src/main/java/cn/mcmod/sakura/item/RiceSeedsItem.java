@@ -4,6 +4,7 @@ import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -11,7 +12,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 
 public class RiceSeedsItem extends ItemNameBlockItem {
 
@@ -26,7 +26,7 @@ public class RiceSeedsItem extends ItemNameBlockItem {
             Player player = context.getPlayer();
             BlockState targetState = context.getLevel().getBlockState(context.getClickedPos());
             if (player != null && context.getClickedFace().equals(Direction.UP)
-                    && (targetState.is(Tags.Blocks.DIRT) || targetState.getBlock() instanceof FarmBlock)) {
+                    && (targetState.is(BlockTags.DIRT) || targetState.getBlock() instanceof FarmBlock)) {
                 player.displayClientMessage(
                         new TranslatableComponent(SakuraMod.MODID + "." + "block.rice.invalid_placement"), true);
             }
