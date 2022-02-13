@@ -38,9 +38,6 @@ public class SakuraMod {
     }
 
     public SakuraMod() {
-
-        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, this::registerRecipeSerializers);
-
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
@@ -52,11 +49,6 @@ public class SakuraMod {
         FoodRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ParticleRegistry.PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         RecipeTypeRegistry.RECIPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-    }
-
-    private void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event)
-    {
-        event.getRegistry().register(StoneMortarRecipe.SERIALIZER);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

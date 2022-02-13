@@ -9,6 +9,10 @@
     {
       "item": "minecraft:redstone",
       "count": 9
+    },
+    {
+      "item": "sakura:onigiri",
+      "count": 2
     }
   ],
   "experience": 20.0,
