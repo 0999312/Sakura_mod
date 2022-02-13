@@ -1,5 +1,9 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
+import cn.mcmod.sakura.recipes.StoneMortarRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.event.RegistryEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +38,9 @@ public class SakuraMod {
     }
 
     public SakuraMod() {
+
+        FMLJavaModLoadingContext.get().getModEventBus().addGenericListener(RecipeSerializer.class, this::registerRecipeSerializers);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
@@ -44,6 +51,12 @@ public class SakuraMod {
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         FoodRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ParticleRegistry.PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        RecipeTypeRegistry.RECIPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+    }
+
+    private void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event)
+    {
+        event.getRegistry().register(StoneMortarRecipe.SERIALIZER);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
