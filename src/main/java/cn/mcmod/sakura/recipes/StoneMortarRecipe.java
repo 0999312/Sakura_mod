@@ -112,11 +112,8 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
         return recipeTime;
     }
 
-    private static class MortarSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+    public static class MortarSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
             implements RecipeSerializer<StoneMortarRecipe> {
-        public MortarSerializer() {
-            this.setRegistryName(new ResourceLocation(SakuraMod.MODID, "stone_mortar"));
-        }
 
         @Override
         public StoneMortarRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
