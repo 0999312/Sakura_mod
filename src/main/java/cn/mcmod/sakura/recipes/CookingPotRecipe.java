@@ -133,7 +133,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
                throw new JsonParseException("No ingredients for sakura stone mortar recipe");
             } else if (nonnulllist.size() > 4) {
                throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 4");
-            } 
+            }
             final FluidIngredient fluidInputIn = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
             final ItemStack outputIn = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
