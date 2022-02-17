@@ -23,7 +23,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -52,17 +51,16 @@ public class CookingPotBlock extends BaseEntityBlock {
             InteractionHand handIn, BlockHitResult result) {
         ItemStack stack = player.getItemInHand(handIn);
         BlockEntity blockentity = level.getBlockEntity(pos);
+        if(!(blockentity instanceof CookingPotBlockEntity)) 
+            return InteractionResult.FAIL;
+        CookingPotBlockEntity cookingPot = (CookingPotBlockEntity) blockentity;
         IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1)).orElse(null);
         if (handler != null && handler instanceof FluidBucketWrapper) {
-            FluidUtil.interactWithFluidHandler(player, handIn, blockentity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY).orElse(null));
+            FluidUtil.interactWithFluidHandler(player, handIn, cookingPot.getFluidTank().orElse(null));
             return InteractionResult.SUCCESS;
         }
         if (!level.isClientSide) {
-            BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof CookingPotBlockEntity) {
-                CookingPotBlockEntity blockEntity = (CookingPotBlockEntity) tileEntity;
-                NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
-            }
+            NetworkHooks.openGui((ServerPlayer) player, cookingPot, pos);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.SUCCESS;

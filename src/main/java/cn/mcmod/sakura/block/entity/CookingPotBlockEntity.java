@@ -44,10 +44,10 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
 
     private final ItemStackHandler inventory;
-    private final LazyOptional<IItemHandler> inputHandler;
-    private final LazyOptional<IItemHandler> outputHandler;
+    private LazyOptional<IItemHandler> inputHandler;
+    private LazyOptional<IItemHandler> outputHandler;
 
-    private LazyOptional<FluidTank> fluidTank = LazyOptional.of(this::createFluidHandler);
+    private LazyOptional<FluidTank> fluidTank;
     protected final ContainerData tileData;
     private final Object2IntOpenHashMap<ResourceLocation> experienceTracker;
 
@@ -64,6 +64,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         this.inputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.UP));
         this.outputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.DOWN));
         this.tileData = createIntArray();
+        this.fluidTank = LazyOptional.of(this::createFluidHandler);
         this.experienceTracker = new Object2IntOpenHashMap<>();
     }
 
@@ -110,7 +111,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
         if (checkNewRecipe) {
             Optional<CookingPotRecipe> recipe = level.getRecipeManager().getRecipeFor(CookingPotRecipe.TYPE, inventoryWrapper, level);
-            if (recipe.isPresent()) {
+            if (recipe.isPresent() && recipe.get().matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
                 lastRecipeID = recipe.get().getId();
                 return recipe;
             }
@@ -204,16 +205,17 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        
-        if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
-            if (side == null || side.equals(Direction.UP)) {
-                return inputHandler.cast();
-            } else {
-                return outputHandler.cast();
+        if (!this.isRemoved()) {
+            if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
+                if (side == null || side.equals(Direction.UP)) {
+                    return inputHandler.cast();
+                } else {
+                    return outputHandler.cast();
+                }
             }
-        }
-        if (!this.isRemoved() && cap.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)) {
-            return this.fluidTank.cast();
+            if (cap.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)) {
+                return this.fluidTank.cast();
+            }
         }
         return super.getCapability(cap, side);
     }
@@ -235,6 +237,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         super.setRemoved();
         inputHandler.invalidate();
         outputHandler.invalidate();
+        fluidTank.invalidate();
     }
 
     @Override
@@ -254,25 +257,14 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
         CompoundTag nbt = new CompoundTag();
-        fluidTank.ifPresent(fluid->compound.put("FluidTank", nbt));
         compound.putInt("RecipeTime", recipeTime);
         compound.putInt("RecipeTimeTotal", recipeTimeTotal);
         compound.put("Inventory", inventory.serializeNBT());
+        fluidTank.ifPresent(fluid->compound.put("FluidTank", fluid.writeToNBT(nbt)));
         CompoundTag compoundRecipes = new CompoundTag();
         experienceTracker
                 .forEach((recipeId, craftedAmount) -> compoundRecipes.putInt(recipeId.toString(), craftedAmount));
         compound.put("RecipesUsed", compoundRecipes);
-    }
-
-    private CompoundTag writeItems(CompoundTag compound) {
-        super.saveAdditional(compound);
-        compound.put("Inventory", inventory.serializeNBT());
-        return compound;
-    }
-
-    @Override
-    public CompoundTag getUpdateTag() {
-        return writeItems(new CompoundTag());
     }
 
     private ItemStackHandler createHandler() {
@@ -292,6 +284,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
             @Override
             protected void onContentsChanged() {
                 inventoryChanged();
+                super.onContentsChanged();
             }
             
             @Override
@@ -323,7 +316,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
                     break;
                 case 1:
                     CookingPotBlockEntity.this.recipeTimeTotal = value;
-
+                
                     break;
                 }
             }
@@ -354,4 +347,20 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         return fluidTank;
     }
 
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        inputHandler.invalidate();
+        outputHandler.invalidate();
+        fluidTank.invalidate();
+    }
+
+    @Override
+    public void reviveCaps() {
+        super.reviveCaps();
+        inputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.UP));
+        outputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.DOWN));
+        fluidTank = LazyOptional.of(this::createFluidHandler);
+    }
+    
 }

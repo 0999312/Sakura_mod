@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.container.StoneMortarContainer;
+import cn.mcmod_mmf.mmlib.client.RenderUtils;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -37,11 +38,9 @@ public class StoneMortarScreen extends AbstractContainerScreen<StoneMortarContai
     @Override
     protected void renderBg(PoseStack ms, float partialTicks, int mouseX, int mouseY) {
         // Render UI background
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         if (this.minecraft == null)
             return;
-
-        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
+        RenderUtils.setup(BACKGROUND_TEXTURE);
         this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         int n = this.menu.getRolling();
         this.blit(ms, this.leftPos + 81, this.topPos + 33, 176, n * 16, 14, 16);

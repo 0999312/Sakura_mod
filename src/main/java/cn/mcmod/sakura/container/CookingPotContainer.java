@@ -37,11 +37,11 @@ public class CookingPotContainer extends AbstractContainerMenu {
         int startY = 18;
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 3; ++column) {
-                this.addSlot(new SlotItemHandler(inventory, (row * 2) + column, 39 + (column * 18), 17 + (row * 18)));
+                this.addSlot(new SlotItemHandler(inventory, (row * 3) + column, 39 + (column * 18), 17 + (row * 18)));
             }
         }
 
-        this.addSlot(new CookingPotResultSlot(playerInventory.player, tileEntity, inventory, 4, 136, 38));
+        this.addSlot(new CookingPotResultSlot(playerInventory.player, tileEntity, inventory, 9, 136, 38));
 
         // Main Player Inventory
         int startPlayerInvY = startY * 4 + 12;
