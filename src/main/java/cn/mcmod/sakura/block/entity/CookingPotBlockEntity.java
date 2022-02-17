@@ -5,9 +5,10 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import cn.mcmod.sakura.container.StoneMortarContainer;
-import cn.mcmod.sakura.inventory.StoneMortarItemHandler;
-import cn.mcmod.sakura.recipes.StoneMortarRecipe;
+import cn.mcmod.sakura.container.CookingPotContainer;
+import cn.mcmod.sakura.inventory.CookingPotItemHandler;
+import cn.mcmod.sakura.recipes.CookingPotRecipe;
+import cn.mcmod_mmf.mmlib.block.entity.HeatableBlockEntity;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import cn.mcmod_mmf.mmlib.utils.LevelUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -29,21 +30,24 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
-public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuProvider {
+public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
 
     private final ItemStackHandler inventory;
     private final LazyOptional<IItemHandler> inputHandler;
     private final LazyOptional<IItemHandler> outputHandler;
 
+    private LazyOptional<FluidTank> fluidTank = LazyOptional.of(this::createFluidHandler);
     protected final ContainerData tileData;
     private final Object2IntOpenHashMap<ResourceLocation> experienceTracker;
 
@@ -53,21 +57,21 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     private ResourceLocation lastRecipeID;
     private boolean checkNewRecipe;
 
-    public StoneMortarBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.STONE_MORTAR.get(), pos, state);
+    public CookingPotBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.COOKING_POT.get(), pos, state);
 
         this.inventory = createHandler();
-        this.inputHandler = LazyOptional.of(() -> new StoneMortarItemHandler(inventory, Direction.UP));
-        this.outputHandler = LazyOptional.of(() -> new StoneMortarItemHandler(inventory, Direction.DOWN));
+        this.inputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.UP));
+        this.outputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.DOWN));
         this.tileData = createIntArray();
         this.experienceTracker = new Object2IntOpenHashMap<>();
     }
 
-    public static void workingTick(Level level, BlockPos pos, BlockState state, StoneMortarBlockEntity blockEntity) {
-        boolean didInventoryChange = false;
 
-        if (blockEntity.hasInput()) {
-            Optional<StoneMortarRecipe> recipe = blockEntity.getMatchingRecipe(new RecipeWrapper(blockEntity.inventory));
+    public static void workingTick(Level level, BlockPos pos, BlockState state, CookingPotBlockEntity blockEntity) {
+        boolean didInventoryChange = false;
+        if (blockEntity.isHeated(level, pos) && blockEntity.hasInput()) {
+            Optional<CookingPotRecipe> recipe = blockEntity.getMatchingRecipe(new RecipeWrapper(blockEntity.inventory));
             if (recipe.isPresent() && blockEntity.canWork(recipe.get())) {
                 didInventoryChange = blockEntity.processRecipe(recipe.get());
             } else {
@@ -83,28 +87,29 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     }
 
     private boolean hasInput() {
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 9; ++i) {
             if (!inventory.getStackInSlot(i).isEmpty())
                 return true;
         }
         return false;
     }
     
-    private Optional<StoneMortarRecipe> getMatchingRecipe(RecipeWrapper inventoryWrapper) {
+    private Optional<CookingPotRecipe> getMatchingRecipe(RecipeWrapper inventoryWrapper) {
         if (level == null) return Optional.empty();
 
         if (lastRecipeID != null) {
             Recipe<RecipeWrapper> recipe = level.getRecipeManager()
-                    .getAllRecipesFor(StoneMortarRecipe.TYPE).stream().filter(now->now.getId().equals(lastRecipeID)).findFirst().get();
-            if (recipe instanceof StoneMortarRecipe) {
-                if (recipe.matches(inventoryWrapper, level)) {
-                    return Optional.of((StoneMortarRecipe) recipe);
+                    .getAllRecipesFor(CookingPotRecipe.TYPE).stream().filter(now->now.getId().equals(lastRecipeID)).findFirst().get();
+            if (recipe instanceof CookingPotRecipe) {
+                CookingPotRecipe cookingRecipe = (CookingPotRecipe) recipe;
+                if (cookingRecipe.matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
+                    return Optional.of(cookingRecipe);
                 }
             }
         }
 
         if (checkNewRecipe) {
-            Optional<StoneMortarRecipe> recipe = level.getRecipeManager().getRecipeFor(StoneMortarRecipe.TYPE, inventoryWrapper, level);
+            Optional<CookingPotRecipe> recipe = level.getRecipeManager().getRecipeFor(CookingPotRecipe.TYPE, inventoryWrapper, level);
             if (recipe.isPresent()) {
                 lastRecipeID = recipe.get().getId();
                 return recipe;
@@ -115,41 +120,29 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         return Optional.empty();
     }
 
-    protected boolean canWork(StoneMortarRecipe recipe) {
+    protected boolean canWork(CookingPotRecipe recipe) {
         if (hasInput()) {
-            boolean check_extra = false;
             ItemStack resultStack = recipe.getResultItem();
-            ItemStack resultExtraStack = recipe.getResultItemList().get(1);
             if (resultStack.isEmpty()) {
                 return false;
             } else {
-                ItemStack outStack = inventory.getStackInSlot(4);
-                if (outStack.isEmpty()) {
-                    check_extra = true;
-                } else if (!outStack.sameItem(resultStack)) {
+                ItemStack outputStack = inventory.getStackInSlot(9);
+                if (outputStack.isEmpty()) {
+                    return true;
+                } else if (!outputStack.sameItem(resultStack)) {
                     return false;
+                } else if (outputStack.getCount() + resultStack.getCount() <= inventory.getSlotLimit(9)) {
+                    return true;
                 } else {
-                    check_extra = outStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize();
+                    return outputStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize();
                 }
-                if(resultExtraStack.isEmpty())
-                    return check_extra;
-                else if(check_extra) {
-                    ItemStack extraStack = inventory.getStackInSlot(5);
-                    if (extraStack.isEmpty()) {
-                        return true;
-                    } else if (!extraStack.sameItem(resultExtraStack)) {
-                        return false;
-                    } else {
-                        return extraStack.getCount() + resultExtraStack.getCount() <= resultExtraStack.getMaxStackSize();
-                    }
-                }else return false;
             }
         } else {
             return false;
         }
     }
 
-    private boolean processRecipe(StoneMortarRecipe recipe) {
+    private boolean processRecipe(CookingPotRecipe recipe) {
         if (level == null)
             return false;
 
@@ -160,36 +153,27 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         }
 
         recipeTime = 0;
-
+        
         ItemStack resultStack = recipe.getResultItem();
-        ItemStack resultExtraStack = recipe.getResultItemList().get(1);
-        ItemStack outStack = inventory.getStackInSlot(4);
-        ItemStack extraStack = inventory.getStackInSlot(5);
+        ItemStack outStack = inventory.getStackInSlot(9);
         
         if (outStack.isEmpty()) {
-            inventory.setStackInSlot(4, resultStack.copy());
+            inventory.setStackInSlot(9, resultStack.copy());
         } else if (outStack.sameItem(resultStack)) {
             outStack.grow(resultStack.getCount());
         }
-        if(!resultExtraStack.isEmpty()) {
-            if (extraStack.isEmpty()) {
-                inventory.setStackInSlot(5, resultExtraStack.copy());
-            } else if (extraStack.sameItem(resultExtraStack)) {
-                extraStack.grow(resultExtraStack.getCount());
-            }
-        }
+        
+        this.fluidTank.orElse(new FluidTank(0)).drain(recipe.getRequiredFluid().getRequiredAmount(), FluidAction.EXECUTE);
       
-
         trackRecipeExperience(recipe);
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 9; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);
             if (slotStack.hasContainerItem()) {
                 double x = worldPosition.getX() + 0.5;
                 double y = worldPosition.getY() + 0.7;
                 double z = worldPosition.getZ() + 0.5;
-                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getContainerItem(), x, y, z, 0F, 0.25F,
-                        0F);
+                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getContainerItem(), x, y, z, 0F, 0.25F,0F);
             }
             if (!slotStack.isEmpty())
                 slotStack.shrink(1);
@@ -213,19 +197,23 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         for (Object2IntMap.Entry<ResourceLocation> entry : experienceTracker.object2IntEntrySet()) {
             world.getRecipeManager().byKey(entry.getKey())
                     .ifPresent((recipe) -> LevelUtils.splitAndSpawnExperience(world, pos, entry.getIntValue(),
-                            ((StoneMortarRecipe) recipe).getExperience()));
+                            ((CookingPotRecipe) recipe).getExperience()));
         }
     }
 
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
+        
         if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
             if (side == null || side.equals(Direction.UP)) {
                 return inputHandler.cast();
             } else {
                 return outputHandler.cast();
             }
+        }
+        if (!this.isRemoved() && cap.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)) {
+            return this.fluidTank.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -236,7 +224,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     
     public NonNullList<ItemStack> getDroppableInventory() {
         NonNullList<ItemStack> drops = NonNullList.create();
-        for (int i = 0; i < 6; ++i) {
+        for (int i = 0; i < 10; ++i) {
                 drops.add(inventory.getStackInSlot(i));
         }
         return drops;
@@ -255,6 +243,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         inventory.deserializeNBT(compound.getCompound("Inventory"));
         recipeTime = compound.getInt("RecipeTime");
         recipeTimeTotal = compound.getInt("RecipeTimeTotal");
+        fluidTank.ifPresent(fluid->fluid.readFromNBT(compound.getCompound("FluidTank")));
         CompoundTag compoundRecipes = compound.getCompound("RecipesUsed");
         for (String key : compoundRecipes.getAllKeys()) {
             experienceTracker.put(new ResourceLocation(key), compoundRecipes.getInt(key));
@@ -264,6 +253,8 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     @Override
     public void saveAdditional(CompoundTag compound) {
         super.saveAdditional(compound);
+        CompoundTag nbt = new CompoundTag();
+        fluidTank.ifPresent(fluid->compound.put("FluidTank", nbt));
         compound.putInt("RecipeTime", recipeTime);
         compound.putInt("RecipeTimeTotal", recipeTimeTotal);
         compound.put("Inventory", inventory.serializeNBT());
@@ -285,13 +276,27 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     }
 
     private ItemStackHandler createHandler() {
-        return new ItemStackHandler(6) {
+        return new ItemStackHandler(10) {
             @Override
             protected void onContentsChanged(int slot) {
-                if (slot >= 0 && slot < 4) {
+                if (slot >= 0 && slot < 9) {
                     checkNewRecipe = true;
                 }
                 inventoryChanged();
+            }
+        };
+    }
+
+    private FluidTank createFluidHandler() {
+        return new FluidTank(3000) {
+            @Override
+            protected void onContentsChanged() {
+                inventoryChanged();
+            }
+            
+            @Override
+            public boolean isFluidValid(FluidStack stack) {
+                return !stack.getFluid().getAttributes().isLighterThanAir();
             }
         };
     }
@@ -302,9 +307,9 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
             public int get(int index) {
                 switch (index) {
                 case 0:
-                    return StoneMortarBlockEntity.this.recipeTime;
+                    return CookingPotBlockEntity.this.recipeTime;
                 case 1:
-                    return StoneMortarBlockEntity.this.recipeTimeTotal;
+                    return CookingPotBlockEntity.this.recipeTimeTotal;
                 default:
                     return 0;
                 }
@@ -314,10 +319,11 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
             public void set(int index, int value) {
                 switch (index) {
                 case 0:
-                    StoneMortarBlockEntity.this.recipeTime = value;
+                    CookingPotBlockEntity.this.recipeTime = value;
                     break;
                 case 1:
-                    StoneMortarBlockEntity.this.recipeTimeTotal = value;
+                    CookingPotBlockEntity.this.recipeTimeTotal = value;
+
                     break;
                 }
             }
@@ -331,17 +337,21 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory player, Player entity) {
-        return new StoneMortarContainer(id, player, this, tileData);
+        return new CookingPotContainer(id, player, this, this.tileData);
     }
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("sakura.stone_mortar");
+        return new TranslatableComponent("sakura.cooking_pot");
+    }
+    
+    public boolean isHeated() {
+        if (level == null) return false;
+        return this.isHeated(level, worldPosition);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public int getRotation() {
-        return this.recipeTime != 0 ? 360 * this.recipeTime / this.recipeTimeTotal : 0;
+    public LazyOptional<FluidTank> getFluidTank() {
+        return fluidTank;
     }
 
 }

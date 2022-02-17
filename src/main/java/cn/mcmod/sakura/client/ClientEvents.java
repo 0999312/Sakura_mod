@@ -2,11 +2,14 @@ package cn.mcmod.sakura.client;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.block.entity.BlockEntityRegistry;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
+import cn.mcmod.sakura.client.render.StoneMortarRenderer;
 import cn.mcmod.sakura.client.particle.FallenLeafParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
@@ -28,6 +31,8 @@ public class ClientEvents {
                 if (block.get() instanceof BushBlock)
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
             });
+            
+            BlockEntityRenderers.register(BlockEntityRegistry.STONE_MORTAR.get(), StoneMortarRenderer::new);
         });
     }
 
@@ -45,4 +50,6 @@ public class ClientEvents {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.ORANGE_MAPLE_LEAF.get(),
                 FallenLeafParticle.Factory::new);
     }
+    
+
 }

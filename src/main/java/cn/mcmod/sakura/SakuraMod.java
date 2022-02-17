@@ -1,15 +1,14 @@
 package cn.mcmod.sakura;
 
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
-import cn.mcmod.sakura.recipes.StoneMortarRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.event.RegistryEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import cn.mcmod.sakura.block.BlockItemRegistry;
 import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.block.entity.BlockEntityRegistry;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
+import cn.mcmod.sakura.container.ContainerRegistry;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
 import net.minecraft.world.item.CreativeModeTab;
@@ -45,9 +44,11 @@ public class SakuraMod {
 
         BlockRegistry.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        BlockEntityRegistry.BLOCK_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         ItemRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         FoodRegistry.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ParticleRegistry.PARTICLE_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ContainerRegistry.CONTAINER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         RecipeTypeRegistry.RECIPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 

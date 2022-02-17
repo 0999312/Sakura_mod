@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 import cn.mcmod.sakura.SakuraMod;
+import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -20,26 +21,31 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.RecipeMatcher;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
+public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
-    public static RecipeType<StoneMortarRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":stone_mortar");
+    public static RecipeType<CookingPotRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":cooking");
     public static final MortarSerializer SERIALIZER = new MortarSerializer();
 
     private final ResourceLocation id;
     private final String group;
     private final NonNullList<Ingredient> inputItems;
-    private final NonNullList<ItemStack> output;
+    private final FluidIngredient fluidInput;
+
+
+    private final ItemStack output;
     private final float experience;
     private final int recipeTime;
 
-    public StoneMortarRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems,
-            NonNullList<ItemStack> output, float experience, int recipeTime) {
+    public CookingPotRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems, FluidIngredient fluidInput,
+            ItemStack output, float experience, int recipeTime) {
         this.id = id;
         this.group = group;
         this.inputItems = inputItems;
+        this.fluidInput = fluidInput;
         this.output = output;
         this.experience = experience;
         this.recipeTime = recipeTime;
@@ -49,13 +55,21 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
     public boolean isSpecial() {
         return true;
     }
+    
+    public FluidIngredient getRequiredFluid() {
+        return fluidInput;
+    }
 
+    public boolean matchesWithFluid(FluidStack fluid, RecipeWrapper inv, Level worldIn) {
+        return this.getRequiredFluid().test(fluid) && matches(inv, worldIn);
+    }
+    
     @Override
     public boolean matches(RecipeWrapper inv, Level worldIn) {
         List<ItemStack> inputs = new ArrayList<>();
         int i = 0;
 
-        for (int j = 0; j < 4; ++j) {
+        for (int j = 0; j < 9; ++j) {
             ItemStack itemstack = inv.getItem(j);
             if (!itemstack.isEmpty()) {
                 ++i;
@@ -67,7 +81,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public ItemStack assemble(RecipeWrapper inv) {
-        return this.output.get(0).copy();
+        return this.output.copy();
     }
 
     @Override
@@ -77,10 +91,6 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public ItemStack getResultItem() {
-        return this.output.get(0);
-    }
-    
-    public NonNullList<ItemStack> getResultItemList() {
         return this.output;
     }
 
@@ -113,10 +123,10 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
     }
 
     public static class MortarSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
-            implements RecipeSerializer<StoneMortarRecipe> {
+            implements RecipeSerializer<CookingPotRecipe> {
 
         @Override
-        public StoneMortarRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public CookingPotRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
@@ -124,28 +134,11 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             } else if (nonnulllist.size() > 4) {
                throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 4");
             } 
-            NonNullList<ItemStack> nonnullResultList = itemsFromJson(GsonHelper.getAsJsonArray(json, "results"));
-            if (nonnullResultList.isEmpty()) {
-               throw new JsonParseException("No result item for sakura stone mortar recipe");
-            } else if (nonnullResultList.size() > 2) {
-               throw new JsonParseException("Too many result items for sakura stone mortar recipe. The maximum is 2");
-            } 
+            final FluidIngredient fluidInputIn = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
+            final ItemStack outputIn = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
             final int cookTimeIn = GsonHelper.getAsInt(json, "recipeTime", 200);
-            return new StoneMortarRecipe(recipeId, s, nonnulllist, nonnullResultList, experienceIn, cookTimeIn);
-        }
-        
-        private static NonNullList<ItemStack> itemsFromJson(JsonArray items) {
-            NonNullList<ItemStack> nonnulllist = NonNullList.create();
-
-            for(int i = 0; i < items.size(); ++i) {
-                ItemStack ingredient = CraftingHelper.getItemStack(items.get(i).getAsJsonObject(), true, true);
-               if (!ingredient.isEmpty()) {
-                  nonnulllist.add(ingredient);
-               }
-            }
-
-            return nonnulllist;
+            return new CookingPotRecipe(recipeId, s, nonnulllist, fluidInputIn, outputIn, experienceIn, cookTimeIn);
         }
         
         private static NonNullList<Ingredient> ingredientsFromJson(JsonArray ingredients) {
@@ -162,41 +155,29 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
          }
 
         @Override
-        public StoneMortarRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
+        public CookingPotRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
             String groupIn = buffer.readUtf(32767);
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
-            int i2 = buffer.readVarInt();
-            NonNullList<ItemStack> outputItemsIn = NonNullList.withSize(i2, ItemStack.EMPTY);
-
             for (int j = 0; j < inputItemsIn.size(); ++j) {
                 inputItemsIn.set(j, Ingredient.fromNetwork(buffer));
             }
-            
-            for (int j2 = 0; j2 < outputItemsIn.size(); ++j2) {
-                outputItemsIn.set(j2, buffer.readItem());
-            }
-
+            FluidIngredient fluidInputIn = FluidIngredient.read(buffer);
+            ItemStack outputItem = buffer.readItem();
             float experienceIn = buffer.readFloat();
             int recipeTimeIn = buffer.readVarInt();
-            return new StoneMortarRecipe(recipeID, groupIn, inputItemsIn, outputItemsIn, experienceIn, recipeTimeIn);
+            return new CookingPotRecipe(recipeID, groupIn, inputItemsIn, fluidInputIn,outputItem, experienceIn, recipeTimeIn);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, StoneMortarRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, CookingPotRecipe recipe) {
             buffer.writeUtf(recipe.group);
             buffer.writeVarInt(recipe.inputItems.size());
-
             for (Ingredient ingredient : recipe.inputItems) {
                 ingredient.toNetwork(buffer);
             }
-            
-            buffer.writeVarInt(recipe.output.size());
-            
-            for (ItemStack outputItem : recipe.output) {
-                buffer.writeItem(outputItem);
-            }
-            
+            recipe.fluidInput.write(buffer);
+            buffer.writeItem(recipe.output);     
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.recipeTime);
         }
