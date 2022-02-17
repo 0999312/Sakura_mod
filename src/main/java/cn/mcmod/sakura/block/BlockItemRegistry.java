@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.block;
 
 import cn.mcmod.sakura.SakuraMod;
+import cn.mcmod.sakura.item.StoneMortarItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,6 +25,7 @@ public class BlockItemRegistry {
     
     public static final RegistryObject<Item> SAKURA_LOG = ITEMS.register("sakura_log",
             () -> new BlockItem(BlockRegistry.SAKURA_LOG.get(), SakuraMod.defaultItemProperties()));
+    
     public static final RegistryObject<Item> STRIPPED_SAKURA_LOG = ITEMS.register("stripped_sakura_log",
             () -> new BlockItem(BlockRegistry.STRIPPED_SAKURA_LOG.get(), SakuraMod.defaultItemProperties()));
     
@@ -70,4 +72,9 @@ public class BlockItemRegistry {
             () -> new BlockItem(BlockRegistry.MAPLE_SAPLING_ORANGE.get(), SakuraMod.defaultItemProperties()));
     public static final RegistryObject<Item> MAPLE_SAPLING_GREEN = ITEMS.register("maple_sapling_green",
             () -> new BlockItem(BlockRegistry.MAPLE_SAPLING_GREEN.get(), SakuraMod.defaultItemProperties()));
+    
+    public static final RegistryObject<Item> STONE_MORTAR = ITEMS.register("stone_mortar", StoneMortarItem::new);
+    
+    public static final RegistryObject<Item> COOKING_POT = ITEMS.register("cooking_pot",
+            () -> new BlockItem(BlockRegistry.COOKING_POT.get(), SakuraMod.defaultItemProperties()));
 }

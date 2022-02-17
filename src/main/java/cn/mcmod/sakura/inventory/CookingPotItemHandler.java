@@ -7,14 +7,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
-public class StoneMortarItemHandler implements IItemHandler {
-    private static final int SLOTS_INPUT = 4;
-    private static final int SLOT_OUTPUT = 4;
-    private static final int SLOT_OUTPUT_EXTRA = 5;
+public class CookingPotItemHandler implements IItemHandler {
+    private static final int SLOTS_INPUT = 9;
+    private static final int SLOT_OUTPUT = 9;
     private final IItemHandler itemHandler;
     private final Direction side;
 
-    public StoneMortarItemHandler(IItemHandler itemHandler, @Nullable Direction side) {
+    public CookingPotItemHandler(IItemHandler itemHandler, @Nullable Direction side) {
         this.itemHandler = itemHandler;
         this.side = side;
     }
@@ -51,7 +50,7 @@ public class StoneMortarItemHandler implements IItemHandler {
         if (side == null || side.equals(Direction.UP)) {
             return slot < SLOTS_INPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         } else {
-            return slot == SLOT_OUTPUT||slot == SLOT_OUTPUT_EXTRA ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return slot == SLOT_OUTPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         }
     }
 
