@@ -18,7 +18,7 @@ public class SakuraBlockStateProvider extends AbstractBlockStateProvider {
         simpleBlock(BlockRegistry.SAKURA_PLANK.get());
         simpleBlock(BlockRegistry.MAPLE_PLANK.get());
         simpleBlock(BlockRegistry.BAMBOO_PLANK.get());
-        
+
         simpleBlock(BlockRegistry.MAPLE_LEAVES_RED.get());
         simpleBlock(BlockRegistry.MAPLE_LEAVES_YELLOW.get());
         simpleBlock(BlockRegistry.MAPLE_LEAVES_GREEN.get());
@@ -29,19 +29,21 @@ public class SakuraBlockStateProvider extends AbstractBlockStateProvider {
         log(BlockRegistry.BAMBOO_BLOCK::get);
         log(BlockRegistry.BAMBOO_BLOCK_SUNBURNT::get);
         log(BlockRegistry.BAMBOO_CHARCOAL_BLOCK::get);
-        
+
         log(BlockRegistry.MAPLE_LOG::get);
         log(BlockRegistry.STRIPPED_MAPLE_LOG::get);
-        
+
         crossBlock(BlockRegistry.SAKURA_SAPLING::get);
         crossBlock(BlockRegistry.MAPLE_SAPLING_RED::get);
         crossBlock(BlockRegistry.MAPLE_SAPLING_YELLOW::get);
         crossBlock(BlockRegistry.MAPLE_SAPLING_GREEN::get);
         crossBlock(BlockRegistry.MAPLE_SAPLING_ORANGE::get);
-        
+
         stageBlock(BlockRegistry.BUCKWHEAT_CROP::get, BlockStateProperties.AGE_7);
         stageBlock(BlockRegistry.RAPESEED_CROP::get, BlockStateProperties.AGE_7);
         stageBlock(BlockRegistry.REDBEAN_CROP::get, BlockStateProperties.AGE_3);
+        
+        
     }
 
 }

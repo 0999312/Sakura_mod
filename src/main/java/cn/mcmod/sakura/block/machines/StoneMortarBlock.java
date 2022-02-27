@@ -27,7 +27,7 @@ public class StoneMortarBlock extends BaseEntityBlock {
     public StoneMortarBlock() {
         super(Properties.copy(Blocks.STONE).noOcclusion());
     }
-    
+
     @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
@@ -37,17 +37,15 @@ public class StoneMortarBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return BlockEntityRegistry.STONE_MORTAR.get().create(pos, state);
     }
-    
+
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player,
-            InteractionHand handIn, BlockHitResult result) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn,
+            BlockHitResult result) {
         if (!world.isClientSide) {
             BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof StoneMortarBlockEntity) {
-                StoneMortarBlockEntity blockEntity = (StoneMortarBlockEntity) tileEntity;
+            if (tileEntity instanceof StoneMortarBlockEntity blockEntity) {
                 NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
             }
-            return InteractionResult.SUCCESS;
         }
         return InteractionResult.SUCCESS;
     }
@@ -57,8 +55,7 @@ public class StoneMortarBlock extends BaseEntityBlock {
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-            if (tileEntity instanceof StoneMortarBlockEntity) {
-                StoneMortarBlockEntity blockEntity = (StoneMortarBlockEntity) tileEntity;
+            if (tileEntity instanceof StoneMortarBlockEntity blockEntity) {
                 Containers.dropContents(worldIn, pos, blockEntity.getDroppableInventory());
                 blockEntity.grantStoredRecipeExperience(worldIn, Vec3.atCenterOf(pos));
                 worldIn.updateNeighbourForOutputSignal(pos, this);
@@ -66,9 +63,12 @@ public class StoneMortarBlock extends BaseEntityBlock {
             super.onRemove(state, worldIn, pos, newState, isMoving);
         }
     }
-    
+
+    @Override
     @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
-        return createTickerHelper(blockEntity, BlockEntityRegistry.STONE_MORTAR.get(), StoneMortarBlockEntity::workingTick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
+            BlockEntityType<T> blockEntity) {
+        return createTickerHelper(blockEntity, BlockEntityRegistry.STONE_MORTAR.get(),
+                StoneMortarBlockEntity::workingTick);
     }
 }

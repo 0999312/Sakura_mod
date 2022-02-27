@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "minecraft:block/crop",
   "textures": {
-    "cross": "sakura:block/buckwheat_crop_stage0"
+    "crop": "sakura:block/buckwheat_crop_stage0"
   }
 }

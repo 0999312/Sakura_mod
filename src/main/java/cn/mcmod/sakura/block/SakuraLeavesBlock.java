@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SakuraLeavesBlock extends LeavesBlock {
     private final Supplier<SimpleParticleType> leaf_particle;
+
     public SakuraLeavesBlock(Properties builder, Supplier<SimpleParticleType> particle) {
         super(builder);
         this.leaf_particle = particle;

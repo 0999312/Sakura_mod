@@ -5,15 +5,15 @@ import java.util.Random;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class SakuraTreeGrower extends AbstractTreeGrower{
+public class SakuraTreeGrower extends AbstractTreeGrower {
 
     @Override
     protected ConfiguredFeature<?, ?> getConfiguredFeature(Random random, boolean hasBees) {
         if (random.nextInt(10) == 0) {
             return SakuraTreeFeatures.FANCY_SAKURA;
-         } else {
+        } else {
             return SakuraTreeFeatures.SAKURA;
-         }
+        }
     }
 
 }

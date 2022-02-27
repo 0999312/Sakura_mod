@@ -128,9 +128,9 @@ public class StoneMortarContainer extends AbstractContainerMenu {
     public int getProgressionRoll() {
         int i = this.containerData.get(0);
         int j = this.containerData.get(1);
-        return j != 0 && i != 0 ? i * 4 / j  : 0;
+        return j != 0 && i != 0 ? i * 4 / j : 0;
     }
-    
+
     @OnlyIn(Dist.CLIENT)
     public int getRolling() {
         int i = this.containerData.get(0);

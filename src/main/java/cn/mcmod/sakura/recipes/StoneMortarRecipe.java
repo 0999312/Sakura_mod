@@ -79,7 +79,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
     public ItemStack getResultItem() {
         return this.output.get(0);
     }
-    
+
     public NonNullList<ItemStack> getResultItemList() {
         return this.output;
     }
@@ -120,46 +120,46 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
-               throw new JsonParseException("No ingredients for sakura stone mortar recipe");
+                throw new JsonParseException("No ingredients for sakura stone mortar recipe");
             } else if (nonnulllist.size() > 4) {
-               throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 4");
-            } 
+                throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 4");
+            }
             NonNullList<ItemStack> nonnullResultList = itemsFromJson(GsonHelper.getAsJsonArray(json, "results"));
             if (nonnullResultList.isEmpty()) {
-               throw new JsonParseException("No result item for sakura stone mortar recipe");
+                throw new JsonParseException("No result item for sakura stone mortar recipe");
             } else if (nonnullResultList.size() > 2) {
-               throw new JsonParseException("Too many result items for sakura stone mortar recipe. The maximum is 2");
-            } 
+                throw new JsonParseException("Too many result items for sakura stone mortar recipe. The maximum is 2");
+            }
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
             final int cookTimeIn = GsonHelper.getAsInt(json, "recipeTime", 200);
             return new StoneMortarRecipe(recipeId, s, nonnulllist, nonnullResultList, experienceIn, cookTimeIn);
         }
-        
+
         private static NonNullList<ItemStack> itemsFromJson(JsonArray items) {
             NonNullList<ItemStack> nonnulllist = NonNullList.create();
 
-            for(int i = 0; i < items.size(); ++i) {
+            for (int i = 0; i < items.size(); ++i) {
                 ItemStack ingredient = CraftingHelper.getItemStack(items.get(i).getAsJsonObject(), true, true);
-               if (!ingredient.isEmpty()) {
-                  nonnulllist.add(ingredient);
-               }
+                if (!ingredient.isEmpty()) {
+                    nonnulllist.add(ingredient);
+                }
             }
 
             return nonnulllist;
         }
-        
+
         private static NonNullList<Ingredient> ingredientsFromJson(JsonArray ingredients) {
             NonNullList<Ingredient> nonnulllist = NonNullList.create();
 
-            for(int i = 0; i < ingredients.size(); ++i) {
-               Ingredient ingredient = Ingredient.fromJson(ingredients.get(i));
-               if (!ingredient.isEmpty()) {
-                  nonnulllist.add(ingredient);
-               }
+            for (int i = 0; i < ingredients.size(); ++i) {
+                Ingredient ingredient = Ingredient.fromJson(ingredients.get(i));
+                if (!ingredient.isEmpty()) {
+                    nonnulllist.add(ingredient);
+                }
             }
 
             return nonnulllist;
-         }
+        }
 
         @Override
         public StoneMortarRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
@@ -172,7 +172,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             for (int j = 0; j < inputItemsIn.size(); ++j) {
                 inputItemsIn.set(j, Ingredient.fromNetwork(buffer));
             }
-            
+
             for (int j2 = 0; j2 < outputItemsIn.size(); ++j2) {
                 outputItemsIn.set(j2, buffer.readItem());
             }
@@ -190,13 +190,13 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             for (Ingredient ingredient : recipe.inputItems) {
                 ingredient.toNetwork(buffer);
             }
-            
+
             buffer.writeVarInt(recipe.output.size());
-            
+
             for (ItemStack outputItem : recipe.output) {
                 buffer.writeItem(outputItem);
             }
-            
+
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.recipeTime);
         }

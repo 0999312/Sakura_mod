@@ -51,7 +51,8 @@ public class StoneMortarItemHandler implements IItemHandler {
         if (side == null || side.equals(Direction.UP)) {
             return slot < SLOTS_INPUT ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
         } else {
-            return slot == SLOT_OUTPUT||slot == SLOT_OUTPUT_EXTRA ? itemHandler.extractItem(slot, amount, simulate) : ItemStack.EMPTY;
+            return slot == SLOT_OUTPUT || slot == SLOT_OUTPUT_EXTRA ? itemHandler.extractItem(slot, amount, simulate)
+                    : ItemStack.EMPTY;
         }
     }
 

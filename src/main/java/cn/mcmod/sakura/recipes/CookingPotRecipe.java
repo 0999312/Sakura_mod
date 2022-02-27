@@ -35,13 +35,12 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
     private final NonNullList<Ingredient> inputItems;
     private final FluidIngredient fluidInput;
 
-
     private final ItemStack output;
     private final float experience;
     private final int recipeTime;
 
-    public CookingPotRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems, FluidIngredient fluidInput,
-            ItemStack output, float experience, int recipeTime) {
+    public CookingPotRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems,
+            FluidIngredient fluidInput, ItemStack output, float experience, int recipeTime) {
         this.id = id;
         this.group = group;
         this.inputItems = inputItems;
@@ -55,7 +54,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
     public boolean isSpecial() {
         return true;
     }
-    
+
     public FluidIngredient getRequiredFluid() {
         return fluidInput;
     }
@@ -63,7 +62,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
     public boolean matchesWithFluid(FluidStack fluid, RecipeWrapper inv, Level worldIn) {
         return this.getRequiredFluid().test(fluid) && matches(inv, worldIn);
     }
-    
+
     @Override
     public boolean matches(RecipeWrapper inv, Level worldIn) {
         List<ItemStack> inputs = new ArrayList<>();
@@ -130,9 +129,9 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
             String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
-               throw new JsonParseException("No ingredients for sakura stone mortar recipe");
-            } else if (nonnulllist.size() > 4) {
-               throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 4");
+                throw new JsonParseException("No ingredients for sakura stone mortar recipe");
+            } else if (nonnulllist.size() > 9) {
+                throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 9");
             }
             final FluidIngredient fluidInputIn = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
             final ItemStack outputIn = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
@@ -140,19 +139,19 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
             final int cookTimeIn = GsonHelper.getAsInt(json, "recipeTime", 200);
             return new CookingPotRecipe(recipeId, s, nonnulllist, fluidInputIn, outputIn, experienceIn, cookTimeIn);
         }
-        
+
         private static NonNullList<Ingredient> ingredientsFromJson(JsonArray ingredients) {
             NonNullList<Ingredient> nonnulllist = NonNullList.create();
 
-            for(int i = 0; i < ingredients.size(); ++i) {
-               Ingredient ingredient = Ingredient.fromJson(ingredients.get(i));
-               if (!ingredient.isEmpty()) {
-                  nonnulllist.add(ingredient);
-               }
+            for (int i = 0; i < ingredients.size(); ++i) {
+                Ingredient ingredient = Ingredient.fromJson(ingredients.get(i));
+                if (!ingredient.isEmpty()) {
+                    nonnulllist.add(ingredient);
+                }
             }
 
             return nonnulllist;
-         }
+        }
 
         @Override
         public CookingPotRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
@@ -166,7 +165,8 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
             ItemStack outputItem = buffer.readItem();
             float experienceIn = buffer.readFloat();
             int recipeTimeIn = buffer.readVarInt();
-            return new CookingPotRecipe(recipeID, groupIn, inputItemsIn, fluidInputIn,outputItem, experienceIn, recipeTimeIn);
+            return new CookingPotRecipe(recipeID, groupIn, inputItemsIn, fluidInputIn, outputItem, experienceIn,
+                    recipeTimeIn);
         }
 
         @Override
@@ -177,7 +177,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
                 ingredient.toNetwork(buffer);
             }
             recipe.fluidInput.write(buffer);
-            buffer.writeItem(recipe.output);     
+            buffer.writeItem(recipe.output);
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.recipeTime);
         }

@@ -71,8 +71,9 @@ public class RiceCropRoot extends BushBlock implements BonemealableBlock, Liquid
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         super.randomTick(state, worldIn, pos, rand);
-        if (!worldIn.isAreaLoaded(pos, 1))
+        if (!worldIn.isAreaLoaded(pos, 1)) {
             return;
+        }
         if (worldIn.getRawBrightness(pos.above(), 0) >= 6) {
             int age = this.getAge(state);
             if (age <= this.getMaxAge()) {

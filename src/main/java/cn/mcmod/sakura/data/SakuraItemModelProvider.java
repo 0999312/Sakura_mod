@@ -4,6 +4,7 @@ import cn.mcmod.sakura.block.BlockItemRegistry;
 import cn.mcmod_mmf.mmlib.data.AbstractItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class SakuraItemModelProvider extends AbstractItemModelProvider {
@@ -14,12 +15,17 @@ public class SakuraItemModelProvider extends AbstractItemModelProvider {
 
     @Override
     protected void registerModels() {
-        BlockItemRegistry.ITEMS.getEntries().forEach((item) -> {
-            if (item.get() instanceof BlockItem)
-                itemBlock(((BlockItem) item.get())::getBlock);
-            else
+        BlockItemRegistry.ITEMS.getEntries().forEach(item -> {
+            if (item.get() instanceof BlockItem) {
+                BlockItem blockItem = (BlockItem) item.get();
+                if(blockItem.getBlock() instanceof BushBlock)
+                    bushItem(item);
+                else itemBlock(blockItem::getBlock);
+            } else {
                 normalItem(item);
+            }
         });
+        
 //        FoodRegistry.ITEMS.getEntries().forEach((item)->{
 //            normalItem(item);
 //        });

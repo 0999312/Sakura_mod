@@ -83,7 +83,8 @@ public class BambooPlant extends Block implements BonemealableBlock {
     public void randomTick(BlockState state, ServerLevel levelIn, BlockPos pos, Random random) {
         if (levelIn.getRawBrightness(pos.above(), 0) >= 6) {
             int i = this.getHeightBelowUpToMax(levelIn, pos) + 1;
-            if (i < 16 && levelIn.isEmptyBlock(pos.above()) && ForgeHooks.onCropsGrowPre(levelIn, pos, state, random.nextInt(3) == 0)) {
+            if (i < 16 && levelIn.isEmptyBlock(pos.above())
+                    && ForgeHooks.onCropsGrowPre(levelIn, pos, state, random.nextInt(3) == 0)) {
                 this.growBamboo(state, levelIn, pos, random, i);
                 ForgeHooks.onCropsGrowPost(levelIn, pos, state);
             } else {
@@ -97,7 +98,8 @@ public class BambooPlant extends Block implements BonemealableBlock {
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState ground = worldIn.getBlockState(pos.below());
-        return (ground.is(BlockTags.BAMBOO_PLANTABLE_ON) || ground.is(this)) && !(ground.is(Blocks.BAMBOO)) && !(ground.is(Blocks.BAMBOO_SAPLING));
+        return (ground.is(BlockTags.BAMBOO_PLANTABLE_ON) || ground.is(this)) && !(ground.is(Blocks.BAMBOO))
+                && !(ground.is(Blocks.BAMBOO_SAPLING));
     }
 
     @Override
@@ -172,7 +174,8 @@ public class BambooPlant extends Block implements BonemealableBlock {
     }
 
     public void growBambooShoot(ServerLevel levelIn, BlockPos pos, Random random) {
-        BlockPos blockpos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2), random.nextInt(3) - 1);
+        BlockPos blockpos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(2) - random.nextInt(2),
+                random.nextInt(3) - 1);
         if (BlockRegistry.BAMBOOSHOOT.get().defaultBlockState().canSurvive(levelIn, blockpos1)
                 && levelIn.isEmptyBlock(blockpos1.above()) && levelIn.isEmptyBlock(blockpos1)) {
             levelIn.setBlockAndUpdate(blockpos1, BlockRegistry.BAMBOOSHOOT.get().defaultBlockState());

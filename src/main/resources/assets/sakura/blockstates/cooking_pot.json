@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "facing=north,tray_support=false,open=false": {
+      "model": "sakura:block/cooking_pot"
+    },
+    "facing=south,tray_support=false,open=false": {
+      "model": "sakura:block/cooking_pot",
+      "y": 180
+    },
+    "facing=west,tray_support=false,open=false": {
+      "model": "sakura:block/cooking_pot",
+      "y": 270
+    },
+    "facing=east,tray_support=false,open=false": {
+      "model": "sakura:block/cooking_pot",
+      "y": 90
+    },
+
+    "facing=north,tray_support=false,open=true": {
+      "model": "sakura:block/cooking_pot_open"
+    },
+    "facing=south,tray_support=false,open=true": {
+      "model": "sakura:block/cooking_pot_open",
+      "y": 180
+    },
+    "facing=west,tray_support=false,open=true": {
+      "model": "sakura:block/cooking_pot_open",
+      "y": 270
+    },
+    "facing=east,tray_support=false,open=true": {
+      "model": "sakura:block/cooking_pot_open",
+      "y": 90
+    },
+
+    "facing=north,tray_support=true,open=false": {
+      "model": "sakura:block/cooking_pot_tray"
+    },
+    "facing=south,tray_support=true,open=false": {
+      "model": "sakura:block/cooking_pot_tray",
+      "y": 180
+    },
+    "facing=west,tray_support=true,open=false": {
+      "model": "sakura:block/cooking_pot_tray",
+      "y": 270
+    },
+    "facing=east,tray_support=true,open=false": {
+      "model": "sakura:block/cooking_pot_tray",
+      "y": 90
+    },
+
+    "facing=north,tray_support=true,open=true": {
+      "model": "sakura:block/cooking_pot_open_tray"
+    },
+    "facing=south,tray_support=true,open=true": {
+      "model": "sakura:block/cooking_pot_open_tray",
+      "y": 180
+    },
+    "facing=west,tray_support=true,open=true": {
+      "model": "sakura:block/cooking_pot_open_tray",
+      "y": 270
+    },
+    "facing=east,tray_support=true,open=true": {
+      "model": "sakura:block/cooking_pot_open_tray",
+      "y": 90
+    }
+  }
+}

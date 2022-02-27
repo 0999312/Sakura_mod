@@ -1,3 +1,6 @@
 {
-  "parent": "sakura:block/bamboo_shoot"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sakura:block/bamboo_shoot"
+  }
 }

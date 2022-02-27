@@ -19,45 +19,45 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlac
 public class SakuraTreeFeatures {
 
     public static final ConfiguredFeature<TreeConfiguration, ?> SAKURA = FeatureUtils.register("sakura",
-            Feature.TREE.configured(
-                    createSimpleBlobTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get()).ignoreVines().build()));
-    
+            Feature.TREE
+                    .configured(createSimpleBlobTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get())
+                            .ignoreVines().build()));
+
     public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_SAKURA = FeatureUtils.register("fancy_sakura",
             Feature.TREE.configured(
                     createFancyTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get()).build()));
 
     public static final ConfiguredFeature<TreeConfiguration, ?> MAPLE_RED = FeatureUtils.register("maple_red",
-            Feature.TREE.configured(
-                    createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_RED.get(), 5, 2, 0, 2).ignoreVines().build()));
-    
-    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_RED = FeatureUtils.register("fancy_maple_red",
-            Feature.TREE.configured(
+            Feature.TREE.configured(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),
+                    BlockRegistry.MAPLE_LEAVES_RED.get(), 5, 2, 0, 2).ignoreVines().build()));
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_RED = FeatureUtils
+            .register("fancy_maple_red", Feature.TREE.configured(
                     createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_RED.get()).build()));
-    
+
     public static final ConfiguredFeature<TreeConfiguration, ?> MAPLE_YELLOW = FeatureUtils.register("maple_yellow",
-            Feature.TREE.configured(
-                    createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_YELLOW.get(), 5, 2, 0, 2).ignoreVines().build()));
-    
-    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_YELLOW = FeatureUtils.register("fancy_maple_yellow",
-            Feature.TREE.configured(
+            Feature.TREE.configured(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),
+                    BlockRegistry.MAPLE_LEAVES_YELLOW.get(), 5, 2, 0, 2).ignoreVines().build()));
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_YELLOW = FeatureUtils
+            .register("fancy_maple_yellow", Feature.TREE.configured(
                     createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_YELLOW.get()).build()));
-    
+
     public static final ConfiguredFeature<TreeConfiguration, ?> MAPLE_ORANGE = FeatureUtils.register("maple_orange",
-            Feature.TREE.configured(
-                    createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get(), 5, 2, 0, 2).ignoreVines().build()));
-    
-    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_ORANGE = FeatureUtils.register("fancy_maple_orange",
-            Feature.TREE.configured(
+            Feature.TREE.configured(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),
+                    BlockRegistry.MAPLE_LEAVES_ORANGE.get(), 5, 2, 0, 2).ignoreVines().build()));
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_ORANGE = FeatureUtils
+            .register("fancy_maple_orange", Feature.TREE.configured(
                     createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get()).build()));
-    
+
     public static final ConfiguredFeature<TreeConfiguration, ?> MAPLE_GREEN = FeatureUtils.register("maple_green",
-            Feature.TREE.configured(
-                    createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_GREEN.get(), 5, 2, 0, 2).ignoreVines().build()));
-    
-    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_GREEN = FeatureUtils.register("fancy_maple_green",
-            Feature.TREE.configured(
+            Feature.TREE.configured(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),
+                    BlockRegistry.MAPLE_LEAVES_GREEN.get(), 5, 2, 0, 2).ignoreVines().build()));
+
+    public static final ConfiguredFeature<TreeConfiguration, ?> FANCY_MAPLE_GREEN = FeatureUtils
+            .register("fancy_maple_green", Feature.TREE.configured(
                     createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_GREEN.get()).build()));
-    
 
     private static TreeConfiguration.TreeConfigurationBuilder createSimpleBlobTree(Block log, Block leaves) {
         return createStraightBlobTree(log, leaves, 4, 2, 0, 2);

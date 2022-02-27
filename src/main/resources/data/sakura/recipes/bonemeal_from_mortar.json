@@ -1,0 +1,19 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:bones"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:bone_meal",
+      "count": 3
+    },
+    {
+      "item": "minecraft:bone_meal",
+      "count": 3
+    }
+  ],
+  "recipeTime": 200
+}
