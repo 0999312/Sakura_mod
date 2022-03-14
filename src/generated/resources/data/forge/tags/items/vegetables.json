@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:vegetables/cabbage",
+    "#forge:vegetables/beetroot",
+    "#forge:vegetables/carrot",
+    "#forge:vegetables/eggplant",
+    "#forge:vegetables/onion",
+    "#forge:vegetables/potato",
+    "#forge:vegetables/radish",
+    "#forge:vegetables/tomato",
+    "sakura:imogara"
+  ]
+}

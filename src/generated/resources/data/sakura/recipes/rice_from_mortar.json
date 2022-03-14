@@ -1,0 +1,17 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "item": "sakura:brown_rice"
+    },
+    {
+      "item": "sakura:brown_rice"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:rice"
+    }
+  ],
+  "recipeTime": 200
+}

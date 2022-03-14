@@ -1,0 +1,19 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "item": "sakura:bamboo_shoot"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "minecraft:water",
+    "amount": 50
+  },
+  "result": {
+    "item": "sakura:rice_bamboo"
+  },
+  "recipeTime": 200
+}

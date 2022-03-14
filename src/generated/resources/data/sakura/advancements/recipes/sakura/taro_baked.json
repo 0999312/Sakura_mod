@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:taro_baked"
+    ]
+  },
+  "criteria": {
+    "has_sakura:taro": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:taro"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:taro_baked"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura:taro",
+      "has_the_recipe"
+    ]
+  ]
+}

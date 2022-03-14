@@ -11,6 +11,7 @@ import cn.mcmod.sakura.container.ContainerRegistry;
 import cn.mcmod.sakura.item.ComposterRegistry;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
+import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
 import cn.mcmod.sakura.loot_modifier.LootModifiterRegistry;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
@@ -34,7 +35,7 @@ public class SakuraMod {
     public static final CreativeModeTab GROUP = new CreativeModeTab(MODID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(FoodRegistry.getFood(FoodRegistry.FOODSET, "onigiri").get());
+            return new ItemStack(FoodRegistry.FOODSET.get(SakuraFoodSet.ONIGIRI).get());
         }
     };
 

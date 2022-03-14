@@ -28,7 +28,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
     public static RecipeType<CookingPotRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":cooking");
-    public static final MortarSerializer SERIALIZER = new MortarSerializer();
+    public static final CookingSerializer SERIALIZER = new CookingSerializer();
 
     private final ResourceLocation id;
     private final String group;
@@ -121,7 +121,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
         return recipeTime;
     }
 
-    public static class MortarSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
+    public static class CookingSerializer extends ForgeRegistryEntry<RecipeSerializer<?>>
             implements RecipeSerializer<CookingPotRecipe> {
 
         @Override
@@ -129,9 +129,9 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
             String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
-                throw new JsonParseException("No ingredients for sakura stone mortar recipe");
+                throw new JsonParseException("No ingredients for sakura cooking recipe");
             } else if (nonnulllist.size() > 9) {
-                throw new JsonParseException("Too many ingredients for sakura stone mortar recipe. The maximum is 9");
+                throw new JsonParseException("Too many ingredients for sakura cooking recipe. The maximum is 9");
             }
             final FluidIngredient fluidInputIn = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
             final ItemStack outputIn = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);

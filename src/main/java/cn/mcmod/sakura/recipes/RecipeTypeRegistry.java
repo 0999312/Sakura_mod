@@ -13,5 +13,5 @@ public class RecipeTypeRegistry {
     public static final RegistryObject<RecipeSerializer<StoneMortarRecipe>> STONE_MORTAR_RECIPE = RECIPES
             .register("stone_mortar", StoneMortarRecipe.MortarSerializer::new);
     public static final RegistryObject<RecipeSerializer<CookingPotRecipe>> COOKING_RECIPE = RECIPES.register("cooking",
-            CookingPotRecipe.MortarSerializer::new);
+            CookingPotRecipe.CookingSerializer::new);
 }

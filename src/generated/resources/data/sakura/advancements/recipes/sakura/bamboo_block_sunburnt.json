@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:bamboo_block_sunburnt"
+    ]
+  },
+  "criteria": {
+    "has_bamboo_sunburnt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo_sunburnt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo_sunburnt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:bamboo_block_sunburnt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bamboo_sunburnt",
+      "has_item",
+      "has_the_recipe"
+    ]
+  ]
+}

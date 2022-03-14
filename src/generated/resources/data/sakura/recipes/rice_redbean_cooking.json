@@ -1,0 +1,19 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "tag": "forge:crops/redbean"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "minecraft:water",
+    "amount": 50
+  },
+  "result": {
+    "item": "sakura:rice_redbean"
+  },
+  "recipeTime": 200
+}

@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import cn.mcmod.sakura.SakuraMod;
+import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod_mmf.mmlib.item.ItemFoodBase;
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import cn.mcmod_mmf.mmlib.registry.ItemRegistryUtil;
@@ -15,14 +16,9 @@ import net.minecraftforge.registries.RegistryObject;
 public class FoodRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, SakuraMod.MODID);
 
-    public static final Map<FoodInfo, RegistryObject<ItemFoodBase>> FOODSET = ItemRegistryUtil
-            .registerAllFoodInList(ItemList.FOODSET, info -> register(info.getName(), () -> normalFood(info)));
+    public static final Map<SakuraFoodSet, RegistryObject<ItemFoodBase>> FOODSET = ItemRegistryUtil
+            .mapOfKeys(SakuraFoodSet.class, info -> register(info.getFoodInfo().getName(), () -> normalFood(info.getFoodInfo())));
 
-    public static RegistryObject<ItemFoodBase> getFood(Map<FoodInfo, RegistryObject<ItemFoodBase>> foodset,
-            String name) {
-        return foodset.values().stream().filter(item -> item.get().getFoodInfo().getName().equals(name)).findAny()
-                .get();
-    }
 
     private static ItemFoodBase normalFood(FoodInfo info) {
         return new ItemFoodBase(SakuraMod.defaultItemProperties(), info);

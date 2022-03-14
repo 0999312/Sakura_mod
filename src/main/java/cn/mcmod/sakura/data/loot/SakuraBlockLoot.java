@@ -1,9 +1,12 @@
 package cn.mcmod.sakura.data.loot;
 
+import cn.mcmod.sakura.block.BambooPlant;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.crops.RiceCropRoot;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
+import cn.mcmod.sakura.item.enums.SakuraFoodSet;
+import cn.mcmod.sakura.item.enums.SakuraNormalItemSet;
 import cn.mcmod_mmf.mmlib.data.loot.AbstartctBlockLoot;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.world.item.Item;
@@ -25,6 +28,8 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
                 ;
             else if (block.get() instanceof RiceCropRoot)
                 ;
+            else if (block.get() instanceof BambooPlant)
+                dropOther(block.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO).get());
             else
                 dropSelf(block.get());
         });
@@ -39,34 +44,34 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
         this.add(BlockRegistry.SAKURA_LEAVES.get(),createLeavesDrops(BlockRegistry.SAKURA_LEAVES.get(), BlockRegistry.SAKURA_SAPLING.get(),
                 NORMAL_LEAVES_SAPLING_CHANCES));
 
-        createCrop(BlockRegistry.CABBAGE_CROP.get(), FoodRegistry.getFood(FoodRegistry.FOODSET, "cabbage").get(),
+        createCrop(BlockRegistry.CABBAGE_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.CABBAGE).get(),
                 ItemRegistry.CABBAGE_SEEDS.get(), 7);
         
-        createCrop(BlockRegistry.RADISH_CROP.get(), FoodRegistry.getFood(FoodRegistry.FOODSET, "radish").get(),
+        createCrop(BlockRegistry.RADISH_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.RADISH).get(),
                 ItemRegistry.RADISH_SEEDS.get(), 3);
         
-        createCrop(BlockRegistry.ONION_CROP.get(), FoodRegistry.getFood(FoodRegistry.FOODSET, "onion").get(),
+        createCrop(BlockRegistry.ONION_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.ONION).get(),
                 ItemRegistry.ONION_SEEDS.get(), 3);
         
         createCrop(BlockRegistry.REDBEAN_CROP.get(), ItemRegistry.RED_BEAN.get(),
                 ItemRegistry.RED_BEAN.get(), 3);
         
-        createCrop(BlockRegistry.EGGPLANT_CROP.get(), FoodRegistry.getFood(FoodRegistry.FOODSET, "eggplant").get(),
+        createCrop(BlockRegistry.EGGPLANT_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.EGGPLANT).get(),
                 ItemRegistry.EGGPLANT_SEEDS.get(), 3);
         
-        createCrop(BlockRegistry.TOMATO_CROP.get(), FoodRegistry.getFood(FoodRegistry.FOODSET, "tomato").get(),
+        createCrop(BlockRegistry.TOMATO_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.TOMATO).get(),
                 ItemRegistry.TOMATO_SEEDS.get(), 3);
         
-        createCrop(BlockRegistry.RICE_CROP.get(), ItemRegistry.MATERIALS.get("straw").get(),
+        createCrop(BlockRegistry.RICE_CROP.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.STRAW).get(),
                 ItemRegistry.RICE_SEEDS.get(), 7);
         
-        createCrop(BlockRegistry.RICE_CROP_ROOT.get(), ItemRegistry.MATERIALS.get("straw").get(),
+        createCrop(BlockRegistry.RICE_CROP_ROOT.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.STRAW).get(),
                 ItemRegistry.RICE_SEEDS.get(), 7);
         
         createCrop(BlockRegistry.RAPESEED_CROP.get(), ItemRegistry.RAPESEEDS.get(),
                 ItemRegistry.RAPESEEDS.get(), 7);
         
-        createCrop(BlockRegistry.TARO_CROP.get(), ItemRegistry.TARO.get(),
+        createCrop(BlockRegistry.TARO_CROP.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.IMOGARA).get(),
                 ItemRegistry.TARO.get(), 3);
         
         createCrop(BlockRegistry.BUCKWHEAT_CROP.get(), ItemRegistry.BUCKWHEAT.get(),

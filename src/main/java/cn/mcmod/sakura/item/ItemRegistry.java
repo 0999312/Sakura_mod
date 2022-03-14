@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.item.enums.SakuraNormalItemSet;
 import cn.mcmod_mmf.mmlib.item.ItemFoodSeeds;
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import cn.mcmod_mmf.mmlib.registry.ItemRegistryUtil;
@@ -43,8 +44,8 @@ public class ItemRegistry {
                     FoodInfo.builder().name("taro").amountAndCalories(2, 0.2F).water(0F).nutrients(2F, 2F, 0F, 0F, 0F)
                             .decayModifier(2F).heatCapacity(1F).cookingTemp(480F).build()));
 
-    public static final Map<String, RegistryObject<Item>> MATERIALS = ItemRegistryUtil
-            .registerAllItemInList(ItemList.MATERIAL_SET, name -> register(name, ItemRegistry::normalItem));
+    public static final Map<SakuraNormalItemSet, RegistryObject<Item>> MATERIALS = ItemRegistryUtil
+            .mapOfKeys(SakuraNormalItemSet.class, material -> register(material.getName(), ItemRegistry::normalItem));
 
     private static Item normalItem() {
         return new Item(SakuraMod.defaultItemProperties());

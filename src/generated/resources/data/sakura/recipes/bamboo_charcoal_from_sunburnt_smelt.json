@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sakura:bamboo_sunburnt"
+  },
+  "result": "sakura:bamboo_charcoal",
+  "experience": 0.5,
+  "cookingtime": 200
+}

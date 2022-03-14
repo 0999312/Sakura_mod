@@ -1,0 +1,16 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "minecraft:water",
+    "amount": 50
+  },
+  "result": {
+    "item": "sakura:rice_cooked"
+  },
+  "recipeTime": 200
+}

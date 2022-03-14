@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.tags;
 
+import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod_mmf.mmlib.utils.TagUtils;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.Tags.IOptionalNamedTag;
@@ -45,6 +46,7 @@ public class SakuraItemTags {
     public static final IOptionalNamedTag<Item> CROPS_EGGPLANT = TagUtils.forgeItemTag("crops/eggplant");
     public static final IOptionalNamedTag<Item> CROPS_RADISH = TagUtils.forgeItemTag("crops/radish");
     public static final IOptionalNamedTag<Item> CROPS_TARO = TagUtils.forgeItemTag("crops/taro");
+    public static final IOptionalNamedTag<Item> CROPS_REDBEAN = TagUtils.forgeItemTag("crops/redbean");
 
     public static final IOptionalNamedTag<Item> EGGS = TagUtils.forgeItemTag("eggs");
     
@@ -55,6 +57,10 @@ public class SakuraItemTags {
     public static final IOptionalNamedTag<Item> GRAIN_WHEAT = TagUtils.forgeItemTag("grain/wheat");
     public static final IOptionalNamedTag<Item> GRAIN_BUCKWHEAT = TagUtils.forgeItemTag("grain/buckwheat");
     public static final IOptionalNamedTag<Item> GRAIN_RICE = TagUtils.forgeItemTag("grain/rice");
+    
+    public static final IOptionalNamedTag<Item> RICE = TagUtils.modItemTag(SakuraMod.MODID, "rice");
+    public static final IOptionalNamedTag<Item> RICE_BROWN = TagUtils.modItemTag(SakuraMod.MODID, "rice/brown");
+    public static final IOptionalNamedTag<Item> RICE_RICE = TagUtils.modItemTag(SakuraMod.MODID, "rice/rice");
 
     public static final IOptionalNamedTag<Item> MILK = TagUtils.forgeItemTag("milk");
     public static final IOptionalNamedTag<Item> MILK_BUCKET = TagUtils.forgeItemTag("milk/milk");
@@ -83,7 +89,10 @@ public class SakuraItemTags {
     public static final IOptionalNamedTag<Item> SEEDS_EGGPLANT = TagUtils.forgeItemTag("seeds/eggplant");
     public static final IOptionalNamedTag<Item> SEEDS_RADISH = TagUtils.forgeItemTag("seeds/radish");
     public static final IOptionalNamedTag<Item> SEEDS_RICE = TagUtils.forgeItemTag("seeds/rice");
+    public static final IOptionalNamedTag<Item> SEEDS_BUCKWHEAT = TagUtils.forgeItemTag("seeds/buckwheat");
     public static final IOptionalNamedTag<Item> SEEDS_TOMATO = TagUtils.forgeItemTag("seeds/tomato");
+    public static final IOptionalNamedTag<Item> SEEDS_RAPESEED = TagUtils.forgeItemTag("seeds/rapeseed");
+    public static final IOptionalNamedTag<Item> SEEDS_REDBEAN = TagUtils.forgeItemTag("seeds/redbean");
 
     public static final IOptionalNamedTag<Item> VEGETABLES = TagUtils.forgeItemTag("vegetables");
     public static final IOptionalNamedTag<Item> VEGETABLES_BEETROOT = TagUtils.forgeItemTag("vegetables/beetroot");
@@ -103,6 +112,14 @@ public class SakuraItemTags {
     public static final IOptionalNamedTag<Item> FRUITS_GRAPE = TagUtils.forgeItemTag("fruits/grape");
     public static final IOptionalNamedTag<Item> FRUITS_GREENGRAPE = TagUtils.forgeItemTag("fruits/greengrape");
     public static final IOptionalNamedTag<Item> FRUITS_UME = TagUtils.forgeItemTag("fruits/ume");
+    
+    public static final IOptionalNamedTag<Item> BAMBOO = TagUtils.forgeItemTag("bamboo");
+    
+    public static final IOptionalNamedTag<Item> LUMBER = TagUtils.forgeItemTag("lumber");
+    public static final IOptionalNamedTag<Item> LUMBER_TFC = TagUtils.modItemTag("tfc","lumber");
+    public static final IOptionalNamedTag<Item> LUMBER_BAMBOO = TagUtils.forgeItemTag("lumber/bamboo");
+    public static final IOptionalNamedTag<Item> LUMBER_MAPLE = TagUtils.forgeItemTag("lumber/maple");
+    public static final IOptionalNamedTag<Item> LUMBER_SAKURA = TagUtils.forgeItemTag("lumber/sakura");
 
     public static final IOptionalNamedTag<Item> TOOLS = TagUtils.forgeItemTag("tools");
     public static final IOptionalNamedTag<Item> TOOLS_AXES = TagUtils.forgeItemTag("tools/axes");
