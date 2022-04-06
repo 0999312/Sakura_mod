@@ -10,7 +10,17 @@ public enum SakuraNormalItemSet {
     STRAW("straw"),
     IMOGARA("imogara"),
     BROWN_RICE("brown_rice"),
-    RICE("rice");
+    RICE("rice"),
+    SALT("salt"),
+    FLOUR("flour"),
+    FLOUR_BUCKWHEAT("flour_buckwheat"),
+    FLOUR_RICE("flour_rice"),
+    DOUGH("dough"),
+    DOUGH_BUCKWHEAT("dough_buckwheat"),
+    DOUGH_RICE("dough_rice"),
+    SOYSAUCE("soysauce"),
+    MISO("miso"),
+    TEMPURA_BATTER("tempura_batter");
     private final String name;
     private SakuraNormalItemSet(String name) {
         this.name = name;

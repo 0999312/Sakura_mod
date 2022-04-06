@@ -22,17 +22,17 @@ public class BurnTimeEvent {
         register(event, ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_CHARCOAL), 1600);
         register(event, BlockItemRegistry.BAMBOO_CHARCOAL_BLOCK, 16000);
     }
-    
+
     private static void register(FurnaceFuelBurnTimeEvent event, Supplier<? extends Item> item, int burnTime) {
         register(event, item.get(), burnTime);
     }
-    
+
     private static void register(FurnaceFuelBurnTimeEvent event, Item item, int burnTime) {
         register(event, new ItemStack(item), burnTime);
     }
-    
+
     private static void register(FurnaceFuelBurnTimeEvent event, ItemStack item, int burnTime) {
-        if(item.equals(event.getItemStack(), false)) 
+        if (item.getItem() == event.getItemStack().getItem())
             event.setBurnTime(burnTime);
     }
 }

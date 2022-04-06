@@ -1,0 +1,14 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:flour_rice"
+    }
+  ],
+  "recipeTime": 200
+}

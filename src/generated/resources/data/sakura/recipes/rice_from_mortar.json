@@ -2,10 +2,10 @@
   "type": "sakura:stone_mortar",
   "ingredients": [
     {
-      "item": "sakura:brown_rice"
+      "tag": "sakura:rice/brown"
     },
     {
-      "item": "sakura:brown_rice"
+      "tag": "sakura:rice/brown"
     }
   ],
   "results": [

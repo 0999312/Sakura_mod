@@ -16,8 +16,10 @@
   ],
   "results": [
     {
-      "item": "sakura:brown_rice",
-      "count": 2
+      "item": "sakura:brown_rice"
+    },
+    {
+      "item": "sakura:brown_rice"
     }
   ],
   "recipeTime": 200

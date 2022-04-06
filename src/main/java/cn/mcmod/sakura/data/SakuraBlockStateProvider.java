@@ -42,8 +42,7 @@ public class SakuraBlockStateProvider extends AbstractBlockStateProvider {
         stageBlock(BlockRegistry.BUCKWHEAT_CROP::get, BlockStateProperties.AGE_7);
         stageBlock(BlockRegistry.RAPESEED_CROP::get, BlockStateProperties.AGE_7);
         stageBlock(BlockRegistry.REDBEAN_CROP::get, BlockStateProperties.AGE_3);
-        
-        
+
     }
 
 }

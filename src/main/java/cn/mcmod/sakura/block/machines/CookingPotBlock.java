@@ -47,13 +47,15 @@ public class CookingPotBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty TRAY_SUPPORT = BooleanProperty.create("tray_support");
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
-    
+
     protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D);
-    protected static final VoxelShape SHAPE_WITH_TRAY = Shapes.or(SHAPE, Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
-    
+    protected static final VoxelShape SHAPE_WITH_TRAY = Shapes.or(SHAPE,
+            Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
+
     public CookingPotBlock() {
         super(Properties.of(Material.METAL).strength(0.5F, 5.0F).sound(SoundType.LANTERN));
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TRAY_SUPPORT, false).setValue(OPEN, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
+                .setValue(TRAY_SUPPORT, false).setValue(OPEN, false));
     }
 
     @Override
@@ -65,7 +67,7 @@ public class CookingPotBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return BlockEntityRegistry.COOKING_POT.get().create(pos, state);
     }
-    
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return SHAPE;
@@ -75,14 +77,14 @@ public class CookingPotBlock extends BaseEntityBlock {
     public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         return state.getValue(TRAY_SUPPORT) ? SHAPE_WITH_TRAY : SHAPE;
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos pos = context.getClickedPos();
         Level world = context.getLevel();
         Block belowBlock = world.getBlockState(pos.below()).getBlock();
         BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-        
+
         return state.setValue(TRAY_SUPPORT, SakuraBlockTags.TRAY_HEAT_SOURCES.contains(belowBlock));
     }
 
@@ -100,7 +102,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             FluidUtil.interactWithFluidHandler(player, handIn, cookingPot.getFluidTank().orElse(null));
             return InteractionResult.SUCCESS;
         }
-        
+
         ItemStack heldStack = player.getItemInHand(handIn);
         if (heldStack.isEmpty() && player.isShiftKeyDown()) {
             level.setBlockAndUpdate(pos, state.setValue(OPEN, state.getValue(OPEN) ? false : true));
@@ -130,17 +132,19 @@ public class CookingPotBlock extends BaseEntityBlock {
         super.createBlockStateDefinition(builder);
         builder.add(FACING, TRAY_SUPPORT, OPEN);
     }
-    
+
     @Override
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world,
+            BlockPos currentPos, BlockPos facingPos) {
         Block belowBlock = world.getBlockState(currentPos.below()).getBlock();
         return state.setValue(TRAY_SUPPORT, SakuraBlockTags.TRAY_HEAT_SOURCES.contains(belowBlock));
     }
-    
+
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state,
             BlockEntityType<T> blockEntity) {
-        return createTickerHelper(blockEntity, BlockEntityRegistry.COOKING_POT.get(), CookingPotBlockEntity::workingTick);
+        return createTickerHelper(blockEntity, BlockEntityRegistry.COOKING_POT.get(),
+                CookingPotBlockEntity::workingTick);
     }
 }

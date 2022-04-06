@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sakura:bun"
+    },
+    {
+      "item": "sakura:burger"
+    },
+    {
+      "item": "sakura:tomato_sauce"
+    }
+  ],
+  "result": {
+    "item": "sakura:hamburger"
+  }
+}

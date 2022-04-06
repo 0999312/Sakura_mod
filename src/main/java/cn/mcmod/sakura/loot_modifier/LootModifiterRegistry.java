@@ -11,4 +11,6 @@ public class LootModifiterRegistry {
             .create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, SakuraMod.MODID);
     public static final RegistryObject<SeedsDrop.Serializer> SEEDSDROP = GLM.register("grass_drops",
             SeedsDrop.Serializer::new);
+    public static final RegistryObject<FishingModifiter.Serializer> FISHING = GLM.register("fishing_modifiter",
+            FishingModifiter.Serializer::new);
 }

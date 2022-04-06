@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "farmersdelight",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "sakura:stone_mortar",
+        "ingredients": [
+          {
+            "item": "farmersdelight:rice_panicle"
+          }
+        ],
+        "results": [
+          {
+            "item": "farmersdelight:rice"
+          },
+          {
+            "item": "sakura:straw"
+          }
+        ],
+        "recipeTime": 200
+      }
+    }
+  ]
+}

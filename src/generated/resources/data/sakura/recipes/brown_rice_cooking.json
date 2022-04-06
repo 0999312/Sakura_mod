@@ -6,8 +6,8 @@
     }
   ],
   "fluid": {
-    "fluidTag": "minecraft:water",
-    "amount": 50
+    "fluidTag": "forge:water/water",
+    "amount": 125
   },
   "result": {
     "item": "sakura:brown_rice_cooked"

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:burger"
+    ]
+  },
+  "criteria": {
+    "has_sakura:burger_raw": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:burger_raw"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:burger"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura:burger_raw",
+      "has_the_recipe"
+    ]
+  ]
+}

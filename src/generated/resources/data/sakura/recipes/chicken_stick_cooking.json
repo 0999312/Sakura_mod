@@ -1,0 +1,16 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:bamboo"
+    }
+  ],
+  "result": {
+    "item": "sakura:chicken_stick",
+    "count": 2
+  },
+  "recipeTime": 200
+}

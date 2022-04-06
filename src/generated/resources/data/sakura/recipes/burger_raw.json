@@ -1,0 +1,28 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:raw_beef"
+    },
+    {
+      "tag": "forge:raw_pork"
+    },
+    {
+      "tag": "forge:crops/onion"
+    },
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:burger_raw",
+      "count": 2
+    },
+    {
+      "item": "sakura:burger_raw",
+      "count": 2
+    }
+  ],
+  "recipeTime": 200
+}

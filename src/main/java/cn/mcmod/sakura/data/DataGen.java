@@ -14,10 +14,11 @@ public class DataGen {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 //        dataGenerator.addProvider(new SakuraBlockStateProvider(dataGenerator, SakuraMod.MODID, existingFileHelper));
-//        dataGenerator.addProvider(new SakuraItemModelProvider(dataGenerator, SakuraMod.MODID, existingFileHelper));
-        SakuraBlockTagsProvider block_tag = new SakuraBlockTagsProvider(dataGenerator, SakuraMod.MODID,existingFileHelper);
+        dataGenerator.addProvider(new SakuraItemModelProvider(dataGenerator, SakuraMod.MODID, existingFileHelper));
+        SakuraBlockTagsProvider block_tag = new SakuraBlockTagsProvider(dataGenerator, SakuraMod.MODID, existingFileHelper);
         dataGenerator.addProvider(block_tag);
         dataGenerator.addProvider(new SakuraItemTagsProvider(dataGenerator, block_tag, SakuraMod.MODID, existingFileHelper));
+        dataGenerator.addProvider(new SakuraFluidTagsProvider(dataGenerator, SakuraMod.MODID, existingFileHelper));
         dataGenerator.addProvider(new SakuraRecipeProvider(dataGenerator));
         dataGenerator.addProvider(new SakuraLootTableProvider(dataGenerator));
     }

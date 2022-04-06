@@ -12,6 +12,7 @@ import cn.mcmod.sakura.inventory.CookingPotItemHandler;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
 import cn.mcmod_mmf.mmlib.block.entity.HeatableBlockEntity;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
+import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import cn.mcmod_mmf.mmlib.utils.LevelUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -44,7 +45,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
-    
+
     private final ItemStackHandler inventory;
     private LazyOptional<IItemHandler> inputHandler;
     private LazyOptional<IItemHandler> outputHandler;
@@ -80,7 +81,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
                 blockEntity.recipeTime = 0;
             }
         } else if (blockEntity.recipeTime > 0) {
-            if(state.is(BlockRegistry.COOKING_POT.get()))
+            if (state.is(BlockRegistry.COOKING_POT.get()))
                 state.setValue(CookingPotBlock.OPEN, true);
             blockEntity.recipeTime = 0;
         }
@@ -172,9 +173,9 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         } else if (outStack.sameItem(resultStack)) {
             outStack.grow(resultStack.getCount());
         }
-
-        this.fluidTank.orElse(new FluidTank(0)).drain(recipe.getRequiredFluid().getRequiredAmount(),
-                FluidAction.EXECUTE);
+        if(recipe.getRequiredFluid() != FluidIngredient.EMPTY)
+            this.fluidTank.orElse(new FluidTank(0)).drain(recipe.getRequiredFluid().getRequiredAmount(),
+                    FluidAction.EXECUTE);
 
         trackRecipeExperience(recipe);
 
@@ -291,7 +292,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     }
 
     private FluidTank createFluidHandler() {
-        return new FluidTank(3000) {
+        return new FluidTank(8000) {
             @Override
             protected void onContentsChanged() {
                 inventoryChanged();

@@ -31,6 +31,8 @@ public class ItemRegistry {
             () -> seed(BlockRegistry.RAPESEED_CROP.get()));
     public static final RegistryObject<Item> RED_BEAN = ITEMS.register("red_bean",
             () -> seed(BlockRegistry.REDBEAN_CROP.get()));
+    public static final RegistryObject<Item> SOYBEAN = ITEMS.register("soybean",
+            () -> seed(BlockRegistry.SOYBEAN_CROP.get()));
     public static final RegistryObject<Item> BUCKWHEAT = ITEMS.register("buckwheat",
             () -> seed(BlockRegistry.BUCKWHEAT_CROP.get()));
 

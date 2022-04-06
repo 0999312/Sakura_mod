@@ -1,6 +1,8 @@
 package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.block.BlockItemRegistry;
+import cn.mcmod.sakura.block.machines.StoneMortarBlock;
+import cn.mcmod.sakura.fluid.BucketItemRegistry;
 import cn.mcmod_mmf.mmlib.data.AbstractItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.BlockItem;
@@ -18,14 +20,21 @@ public class SakuraItemModelProvider extends AbstractItemModelProvider {
         BlockItemRegistry.ITEMS.getEntries().forEach(item -> {
             if (item.get() instanceof BlockItem) {
                 BlockItem blockItem = (BlockItem) item.get();
-                if(blockItem.getBlock() instanceof BushBlock)
+                if (blockItem.getBlock() instanceof StoneMortarBlock)
+                    return;
+                if (blockItem.getBlock() instanceof BushBlock)
                     bushItem(item);
-                else itemBlock(blockItem::getBlock);
+                else
+                    itemBlock(blockItem::getBlock);
             } else {
                 normalItem(item);
             }
         });
         
+        BucketItemRegistry.ITEMS.getEntries().forEach((item)->{
+            normalItem(item);
+        });
+
 //        FoodRegistry.ITEMS.getEntries().forEach((item)->{
 //            normalItem(item);
 //        });

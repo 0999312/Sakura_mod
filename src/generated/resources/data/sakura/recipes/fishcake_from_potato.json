@@ -1,0 +1,28 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:fishes"
+    },
+    {
+      "tag": "forge:fishes"
+    },
+    {
+      "tag": "forge:crops/potato"
+    },
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:fishcake",
+      "count": 4
+    },
+    {
+      "item": "sakura:fishcake",
+      "count": 4
+    }
+  ],
+  "recipeTime": 200
+}

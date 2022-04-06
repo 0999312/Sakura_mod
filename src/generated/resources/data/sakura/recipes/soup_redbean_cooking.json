@@ -1,0 +1,20 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/redbean"
+    },
+    {
+      "item": "sakura:mochi"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:soup_red_bean",
+    "count": 2
+  },
+  "recipeTime": 200
+}

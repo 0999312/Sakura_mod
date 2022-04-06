@@ -15,10 +15,12 @@ public class BiomeEvent {
 
     @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event) {
-        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT, SakuraConfig.GENERATE_BAMBOOSHOOT.get(), 0.4F, 1.0F);
+        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT, SakuraConfig.GENERATE_BAMBOOSHOOT.get(),
+                0.4F, 1.0F);
     }
 
-    public static void setVegetalFeature(BiomeLoadingEvent event, PlacedFeature feature, boolean canGen, float low, float high) {
+    public static void setVegetalFeature(BiomeLoadingEvent event, PlacedFeature feature, boolean canGen, float low,
+            float high) {
         BiomeGenerationSettingsBuilder builder = event.getGeneration();
         Biome.ClimateSettings climate = event.getClimate();
         if (climate.temperature > low && climate.temperature <= high) {

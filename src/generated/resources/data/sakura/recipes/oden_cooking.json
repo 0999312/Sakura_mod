@@ -1,0 +1,22 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "item": "sakura:fishcake"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:crops/radish"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:oden"
+  },
+  "recipeTime": 200
+}

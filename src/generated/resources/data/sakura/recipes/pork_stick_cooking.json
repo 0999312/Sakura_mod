@@ -1,0 +1,16 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_pork"
+    },
+    {
+      "tag": "forge:bamboo"
+    }
+  ],
+  "result": {
+    "item": "sakura:pork_stick",
+    "count": 2
+  },
+  "recipeTime": 200
+}

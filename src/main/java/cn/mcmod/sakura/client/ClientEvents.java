@@ -6,6 +6,7 @@ import cn.mcmod.sakura.block.entity.BlockEntityRegistry;
 import cn.mcmod.sakura.client.particle.FallenLeafParticle;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
 import cn.mcmod.sakura.client.render.StoneMortarRenderer;
+import cn.mcmod.sakura.fluid.FluidRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -27,12 +28,16 @@ public class ClientEvents {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.RICE_CROP_ROOT.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOO_PLANT.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOOSHOOT.get(), RenderType.cutout());
+            
             BlockRegistry.BLOCKS.getEntries().forEach(block -> {
                 if (block.get() instanceof BushBlock) {
                     ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
                 }
             });
-
+            FluidRegistry.FLUIDS.getEntries().forEach(fluid -> {
+                ItemBlockRenderTypes.setRenderLayer(fluid.get(), RenderType.translucent());
+            });
+            
             BlockEntityRenderers.register(BlockEntityRegistry.STONE_MORTAR.get(), StoneMortarRenderer::new);
         });
     }

@@ -25,8 +25,6 @@ public class CookingPotRecipeBuilder {
     private final ItemStack result;
     private final List<Ingredient> ingredients = Lists.newArrayList();
     private final FluidIngredient fluid;
-    @Nullable
-    private String group;
     private final float experience;
     private final int recipeTime;
 
@@ -80,18 +78,13 @@ public class CookingPotRecipeBuilder {
         return this;
     }
 
-    public CookingPotRecipeBuilder group(@Nullable String group) {
-        this.group = group;
-        return this;
-    }
-
     public Item getResult() {
         return this.result.getItem();
     }
 
     public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
-        consumer.accept(new CookingPotRecipeBuilder.Result(id, this.fluid, this.result,
-                this.group == null ? "" : this.group, this.ingredients, this.experience, this.recipeTime));
+        consumer.accept(new CookingPotRecipeBuilder.Result(id, this.fluid, this.result, this.ingredients,
+                this.experience, this.recipeTime));
     }
 
     public int getRecipeTime() {
@@ -105,17 +98,15 @@ public class CookingPotRecipeBuilder {
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final ItemStack result;
-        private final String group;
         private final List<Ingredient> ingredients;
         private final float experience;
         private final int recipeTime;
         private final FluidIngredient fluid;
 
-        public Result(ResourceLocation id, FluidIngredient fluid, ItemStack result, String group,
-                List<Ingredient> ingredients, float exp, int time) {
+        public Result(ResourceLocation id, FluidIngredient fluid, ItemStack result, List<Ingredient> ingredients,
+                float exp, int time) {
             this.id = id;
             this.result = result;
-            this.group = group;
             this.fluid = fluid;
             this.ingredients = ingredients;
             this.experience = exp;
@@ -124,10 +115,6 @@ public class CookingPotRecipeBuilder {
 
         @Override
         public void serializeRecipeData(JsonObject json) {
-            if (!this.group.isEmpty()) {
-                json.addProperty("group", this.group);
-            }
-
             JsonArray jsonarray = new JsonArray();
 
             for (Ingredient ingredient : this.ingredients) {
@@ -135,7 +122,8 @@ public class CookingPotRecipeBuilder {
             }
 
             json.add("ingredients", jsonarray);
-            json.add("fluid", this.fluid.serialize());
+            if(this.fluid != FluidIngredient.EMPTY)
+                json.add("fluid", this.fluid.serialize());
             JsonObject objectResult = new JsonObject();
             objectResult.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result.getItem()).toString());
             if (this.result.getCount() > 1) {

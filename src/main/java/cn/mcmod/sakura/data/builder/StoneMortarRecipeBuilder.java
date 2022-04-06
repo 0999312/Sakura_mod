@@ -23,8 +23,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class StoneMortarRecipeBuilder {
     private final List<ItemStack> result = Lists.newArrayList();
     private final List<Ingredient> ingredients = Lists.newArrayList();
-    @Nullable
-    private String group;
     private final float experience;
     private final int recipeTime;
 
@@ -85,18 +83,13 @@ public class StoneMortarRecipeBuilder {
         return this;
     }
 
-    public StoneMortarRecipeBuilder group(@Nullable String group) {
-        this.group = group;
-        return this;
-    }
-
     public Item getResult() {
         return this.result.get(0).getItem();
     }
 
     public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
-        consumer.accept(new StoneMortarRecipeBuilder.Result(id, this.result, this.group == null ? "" : this.group,
-                this.ingredients, this.experience, this.recipeTime));
+        consumer.accept(new StoneMortarRecipeBuilder.Result(id, this.result, this.ingredients, this.experience,
+                this.recipeTime));
     }
 
     public int getRecipeTime() {
@@ -110,16 +103,13 @@ public class StoneMortarRecipeBuilder {
     public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final List<ItemStack> result;
-        private final String group;
         private final List<Ingredient> ingredients;
         private final float experience;
         private final int recipeTime;
 
-        public Result(ResourceLocation id, List<ItemStack> results, String group, List<Ingredient> ingredients,
-                float exp, int time) {
+        public Result(ResourceLocation id, List<ItemStack> results, List<Ingredient> ingredients, float exp, int time) {
             this.id = id;
             this.result = results;
-            this.group = group;
             this.ingredients = ingredients;
             this.experience = exp;
             this.recipeTime = time;
@@ -127,9 +117,6 @@ public class StoneMortarRecipeBuilder {
 
         @Override
         public void serializeRecipeData(JsonObject json) {
-            if (!this.group.isEmpty()) {
-                json.addProperty("group", this.group);
-            }
 
             JsonArray jsonarray = new JsonArray();
 

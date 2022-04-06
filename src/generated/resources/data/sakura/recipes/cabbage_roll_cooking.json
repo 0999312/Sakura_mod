@@ -1,0 +1,33 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:salad_ingredients/cabbage"
+    },
+    [
+      {
+        "tag": "forge:raw_chicken"
+      },
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      },
+      {
+        "tag": "forge:raw_mutton"
+      },
+      {
+        "tag": "forge:fishes"
+      }
+    ]
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:cabbage_roll"
+  },
+  "recipeTime": 200
+}

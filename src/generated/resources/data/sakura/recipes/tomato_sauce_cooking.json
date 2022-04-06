@@ -1,0 +1,20 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/tomato"
+    },
+    {
+      "tag": "forge:crops/tomato"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:tomato_sauce",
+    "count": 2
+  },
+  "recipeTime": 200
+}

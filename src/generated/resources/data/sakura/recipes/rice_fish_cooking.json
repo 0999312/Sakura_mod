@@ -9,8 +9,8 @@
     }
   ],
   "fluid": {
-    "fluidTag": "minecraft:water",
-    "amount": 50
+    "fluidTag": "forge:water/water",
+    "amount": 125
   },
   "result": {
     "item": "sakura:rice_fish"

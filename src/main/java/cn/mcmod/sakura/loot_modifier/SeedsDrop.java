@@ -21,28 +21,22 @@ public class SeedsDrop {
         protected SeedDropModifier(LootItemCondition[] conditionsIn) {
             super(conditionsIn);
         }
-        
+
         @Nonnull
         @Override
         protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
-            List<Item> seeds = Lists.newArrayList(
-                    ItemRegistry.CABBAGE_SEEDS.get(),
-                    ItemRegistry.EGGPLANT_SEEDS.get(),
-                    ItemRegistry.ONION_SEEDS.get(),
-                    ItemRegistry.RADISH_SEEDS.get(),
-                    ItemRegistry.TOMATO_SEEDS.get(),
-                    ItemRegistry.RICE_SEEDS.get(),
-                    ItemRegistry.RAPESEEDS.get(),
-                    ItemRegistry.TARO.get()
-            );
-            generatedLoot.add(new ItemStack(seeds.get((int)(Math.random() * seeds.size()))));
+            List<Item> seeds = Lists.newArrayList(ItemRegistry.CABBAGE_SEEDS.get(), ItemRegistry.EGGPLANT_SEEDS.get(),
+                    ItemRegistry.ONION_SEEDS.get(), ItemRegistry.RADISH_SEEDS.get(), ItemRegistry.TOMATO_SEEDS.get(),
+                    ItemRegistry.RICE_SEEDS.get(), ItemRegistry.RAPESEEDS.get(), ItemRegistry.TARO.get());
+            generatedLoot.add(new ItemStack(seeds.get((int) (Math.random() * seeds.size()))));
             return generatedLoot;
         }
     }
 
     public static class Serializer extends GlobalLootModifierSerializer<SeedDropModifier> {
         @Override
-        public SeedDropModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] ailootcondition) {
+        public SeedDropModifier read(ResourceLocation location, JsonObject object,
+                LootItemCondition[] ailootcondition) {
             return new SeedDropModifier(ailootcondition);
         }
 

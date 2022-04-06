@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:mochi_sakura"
+    ]
+  },
+  "criteria": {
+    "has_mochi": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:mochi"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:mochi_sakura"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mochi",
+      "has_the_recipe"
+    ]
+  ]
+}

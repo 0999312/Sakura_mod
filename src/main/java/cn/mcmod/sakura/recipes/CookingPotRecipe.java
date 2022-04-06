@@ -26,12 +26,8 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class CookingPotRecipe implements Recipe<RecipeWrapper> {
-
     public static RecipeType<CookingPotRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":cooking");
-    public static final CookingSerializer SERIALIZER = new CookingSerializer();
-
     private final ResourceLocation id;
-    private final String group;
     private final NonNullList<Ingredient> inputItems;
     private final FluidIngredient fluidInput;
 
@@ -39,15 +35,19 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
     private final float experience;
     private final int recipeTime;
 
-    public CookingPotRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems,
-            FluidIngredient fluidInput, ItemStack output, float experience, int recipeTime) {
+    public CookingPotRecipe(ResourceLocation id, NonNullList<Ingredient> inputItems, FluidIngredient fluidInput,
+            ItemStack output, float experience, int recipeTime) {
         this.id = id;
-        this.group = group;
         this.inputItems = inputItems;
         this.fluidInput = fluidInput;
         this.output = output;
         this.experience = experience;
         this.recipeTime = recipeTime;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return this.inputItems;
     }
 
     @Override
@@ -60,6 +60,8 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
     }
 
     public boolean matchesWithFluid(FluidStack fluid, RecipeWrapper inv, Level worldIn) {
+        if(this.getRequiredFluid() == FluidIngredient.EMPTY)
+            return matches(inv, worldIn);
         return this.getRequiredFluid().test(fluid) && matches(inv, worldIn);
     }
 
@@ -75,7 +77,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
                 inputs.add(itemstack);
             }
         }
-        return i == this.inputItems.size() && RecipeMatcher.findMatches(inputs, this.inputItems) != null;
+        return i == this.getIngredients().size() && RecipeMatcher.findMatches(inputs, this.getIngredients()) != null;
     }
 
     @Override
@@ -85,7 +87,7 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= this.inputItems.size();
+        return width * height >= this.getIngredients().size();
     }
 
     @Override
@@ -100,12 +102,12 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public String getGroup() {
-        return this.group;
+        return "cooking";
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RecipeTypeRegistry.COOKING_RECIPE.get();
     }
 
     @Override
@@ -126,18 +128,19 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
         @Override
         public CookingPotRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for sakura cooking recipe");
             } else if (nonnulllist.size() > 9) {
                 throw new JsonParseException("Too many ingredients for sakura cooking recipe. The maximum is 9");
             }
-            final FluidIngredient fluidInputIn = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid"));
+            final FluidIngredient fluidInputIn = json.has("fluid") 
+                    ? FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "fluid")) 
+                    : FluidIngredient.EMPTY;
             final ItemStack outputIn = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
             final int cookTimeIn = GsonHelper.getAsInt(json, "recipeTime", 200);
-            return new CookingPotRecipe(recipeId, s, nonnulllist, fluidInputIn, outputIn, experienceIn, cookTimeIn);
+            return new CookingPotRecipe(recipeId, nonnulllist, fluidInputIn, outputIn, experienceIn, cookTimeIn);
         }
 
         private static NonNullList<Ingredient> ingredientsFromJson(JsonArray ingredients) {
@@ -155,28 +158,30 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
         @Override
         public CookingPotRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
-            String groupIn = buffer.readUtf(32767);
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
             for (int j = 0; j < inputItemsIn.size(); ++j) {
                 inputItemsIn.set(j, Ingredient.fromNetwork(buffer));
             }
-            FluidIngredient fluidInputIn = FluidIngredient.read(buffer);
+            FluidIngredient fluidInputIn = FluidIngredient.EMPTY;
+            if(buffer.readBoolean())
+                fluidInputIn = FluidIngredient.read(buffer);
             ItemStack outputItem = buffer.readItem();
             float experienceIn = buffer.readFloat();
             int recipeTimeIn = buffer.readVarInt();
-            return new CookingPotRecipe(recipeID, groupIn, inputItemsIn, fluidInputIn, outputItem, experienceIn,
-                    recipeTimeIn);
+            return new CookingPotRecipe(recipeID, inputItemsIn, fluidInputIn, outputItem, experienceIn, recipeTimeIn);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, CookingPotRecipe recipe) {
-            buffer.writeUtf(recipe.group);
-            buffer.writeVarInt(recipe.inputItems.size());
+            buffer.writeVarInt(recipe.getIngredients().size());
             for (Ingredient ingredient : recipe.inputItems) {
                 ingredient.toNetwork(buffer);
             }
-            recipe.fluidInput.write(buffer);
+            buffer.writeBoolean(recipe.fluidInput != FluidIngredient.EMPTY);
+            if(recipe.fluidInput != FluidIngredient.EMPTY)
+                recipe.fluidInput.write(buffer);
+            
             buffer.writeItem(recipe.output);
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.recipeTime);

@@ -120,6 +120,9 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> REDBEAN_CROP = BLOCKS.register("redbean_crop",
             () -> new Age3CropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RED_BEAN));
+    
+    public static final RegistryObject<Block> SOYBEAN_CROP = BLOCKS.register("soybean_crop",
+            () -> new Age3CropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RED_BEAN));
 
     public static final RegistryObject<Block> RAPESEED_CROP = BLOCKS.register("rapeseed_crop",
             () -> new BaseCropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RAPESEEDS));

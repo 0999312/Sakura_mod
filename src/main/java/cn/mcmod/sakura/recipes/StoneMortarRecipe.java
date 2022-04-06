@@ -24,25 +24,25 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
-
     public static RecipeType<StoneMortarRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":stone_mortar");
-    public static final MortarSerializer SERIALIZER = new MortarSerializer();
-
     private final ResourceLocation id;
-    private final String group;
     private final NonNullList<Ingredient> inputItems;
     private final NonNullList<ItemStack> output;
     private final float experience;
     private final int recipeTime;
 
-    public StoneMortarRecipe(ResourceLocation id, String group, NonNullList<Ingredient> inputItems,
-            NonNullList<ItemStack> output, float experience, int recipeTime) {
+    public StoneMortarRecipe(ResourceLocation id, NonNullList<Ingredient> inputItems, NonNullList<ItemStack> output,
+            float experience, int recipeTime) {
         this.id = id;
-        this.group = group;
         this.inputItems = inputItems;
         this.output = output;
         this.experience = experience;
         this.recipeTime = recipeTime;
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return this.inputItems;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
                 inputs.add(itemstack);
             }
         }
-        return i == this.inputItems.size() && RecipeMatcher.findMatches(inputs, this.inputItems) != null;
+        return i == this.getIngredients().size() && RecipeMatcher.findMatches(inputs, this.getIngredients()) != null;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= this.inputItems.size();
+        return width * height >= this.getIngredients().size();
     }
 
     @Override
@@ -91,12 +91,12 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public String getGroup() {
-        return this.group;
+        return "stone_mortar";
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return SERIALIZER;
+        return RecipeTypeRegistry.STONE_MORTAR_RECIPE.get();
     }
 
     @Override
@@ -117,7 +117,6 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
         @Override
         public StoneMortarRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-            String s = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> nonnulllist = ingredientsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for sakura stone mortar recipe");
@@ -132,7 +131,7 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
             }
             final float experienceIn = GsonHelper.getAsFloat(json, "experience", 0.0F);
             final int cookTimeIn = GsonHelper.getAsInt(json, "recipeTime", 200);
-            return new StoneMortarRecipe(recipeId, s, nonnulllist, nonnullResultList, experienceIn, cookTimeIn);
+            return new StoneMortarRecipe(recipeId, nonnulllist, nonnullResultList, experienceIn, cookTimeIn);
         }
 
         private static NonNullList<ItemStack> itemsFromJson(JsonArray items) {
@@ -163,29 +162,24 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
         @Override
         public StoneMortarRecipe fromNetwork(ResourceLocation recipeID, FriendlyByteBuf buffer) {
-            String groupIn = buffer.readUtf(32767);
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
-            int i2 = buffer.readVarInt();
-            NonNullList<ItemStack> outputItemsIn = NonNullList.withSize(i2, ItemStack.EMPTY);
-
             for (int j = 0; j < inputItemsIn.size(); ++j) {
                 inputItemsIn.set(j, Ingredient.fromNetwork(buffer));
             }
-
+            int i2 = buffer.readVarInt();
+            NonNullList<ItemStack> outputItemsIn = NonNullList.withSize(i2, ItemStack.EMPTY);
             for (int j2 = 0; j2 < outputItemsIn.size(); ++j2) {
                 outputItemsIn.set(j2, buffer.readItem());
             }
-
             float experienceIn = buffer.readFloat();
             int recipeTimeIn = buffer.readVarInt();
-            return new StoneMortarRecipe(recipeID, groupIn, inputItemsIn, outputItemsIn, experienceIn, recipeTimeIn);
+            return new StoneMortarRecipe(recipeID, inputItemsIn, outputItemsIn, experienceIn, recipeTimeIn);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, StoneMortarRecipe recipe) {
-            buffer.writeUtf(recipe.group);
-            buffer.writeVarInt(recipe.inputItems.size());
+            buffer.writeVarInt(recipe.getIngredients().size());
 
             for (Ingredient ingredient : recipe.inputItems) {
                 ingredient.toNetwork(buffer);

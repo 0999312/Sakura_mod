@@ -32,7 +32,7 @@ public class BambooShoot extends BushBlock implements BonemealableBlock {
     public VoxelShape getShape(BlockState state, BlockGetter levelIn, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
-    
+
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         super.randomTick(state, worldIn, pos, rand);

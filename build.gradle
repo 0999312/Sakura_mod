@@ -29,7 +29,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
+			properties 'mixin.env.disableRefMap': 'true'
             mods {
                 sakura {
                     source sourceSets.main
@@ -41,7 +41,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
+			properties 'mixin.env.disableRefMap': 'true'
             mods {
                 sakura {
                     source sourceSets.main
@@ -54,7 +54,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
 			args '--mod', 'sakura', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
+			properties 'mixin.env.disableRefMap': 'true'
             mods {
                 sakura {
                     source sourceSets.main
@@ -91,9 +91,10 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
 
     implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.2-1.18.1")
-        compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.2.3.84:api")
+        compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.4.1.112:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.2.3.84")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.4.1.112")
+    implementation fg.deobf("curse.maven:farmers-delight-398521:3615366")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

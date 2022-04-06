@@ -1,0 +1,17 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:dough/rice"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:dango",
+    "count": 2
+  },
+  "recipeTime": 200
+}

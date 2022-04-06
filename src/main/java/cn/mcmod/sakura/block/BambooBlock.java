@@ -16,7 +16,8 @@ public class BambooBlock extends RotatedPillarBlock {
 
     public BambooBlock() {
         super(Properties.of(Material.BAMBOO,
-                state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.SAND : MaterialColor.PLANT))
+                state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.SAND
+                        : MaterialColor.PLANT))
                 .strength(2.0F).sound(SoundType.BAMBOO).randomTicks());
     }
 

@@ -1,0 +1,19 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "tag": "forge:mushrooms"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:rice_mushroom"
+  },
+  "recipeTime": 200
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:mochi_toasted_from_campfire_cooking"
+    ]
+  },
+  "criteria": {
+    "has_sakura:mochi": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:mochi"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:mochi_toasted_from_campfire_cooking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura:mochi",
+      "has_the_recipe"
+    ]
+  ]
+}
