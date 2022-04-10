@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.container.StoneMortarContainer;
 import cn.mcmod.sakura.inventory.StoneMortarItemHandler;
+import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import cn.mcmod.sakura.recipes.StoneMortarRecipe;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import cn.mcmod_mmf.mmlib.utils.LevelUtils;
@@ -98,7 +99,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         }
 
         if (lastRecipeID != null) {
-            Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(StoneMortarRecipe.TYPE).stream()
+            Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.STONE_MORTAR_RECIPE_TYPE.get()).stream()
                     .filter(now -> now.getId().equals(lastRecipeID)).findFirst().get();
             if (recipe instanceof StoneMortarRecipe) {
                 if (recipe.matches(inventoryWrapper, level)) {
@@ -108,7 +109,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
         }
 
         if (checkNewRecipe) {
-            Optional<StoneMortarRecipe> recipe = level.getRecipeManager().getRecipeFor(StoneMortarRecipe.TYPE,
+            Optional<StoneMortarRecipe> recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.STONE_MORTAR_RECIPE_TYPE.get(),
                     inventoryWrapper, level);
             if (recipe.isPresent()) {
                 lastRecipeID = recipe.get().getId();

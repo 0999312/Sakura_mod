@@ -54,7 +54,7 @@ public class RiceCropRoot extends BushBlock implements BonemealableBlock, Liquid
 
     @Override
     protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
-        return super.mayPlaceOn(state, worldIn, pos) || BlockTags.DIRT.contains(state.getBlock());
+        return super.mayPlaceOn(state, worldIn, pos) || state.is(BlockTags.DIRT);
     }
 
     @Override

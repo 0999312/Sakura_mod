@@ -82,10 +82,10 @@ public class CookingPotBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos pos = context.getClickedPos();
         Level world = context.getLevel();
-        Block belowBlock = world.getBlockState(pos.below()).getBlock();
+        BlockState belowBlock = world.getBlockState(pos.below());
         BlockState state = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 
-        return state.setValue(TRAY_SUPPORT, SakuraBlockTags.TRAY_HEAT_SOURCES.contains(belowBlock));
+        return state.setValue(TRAY_SUPPORT, belowBlock.is(SakuraBlockTags.TRAY_HEAT_SOURCES));
     }
 
     @Override
@@ -136,8 +136,8 @@ public class CookingPotBlock extends BaseEntityBlock {
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world,
             BlockPos currentPos, BlockPos facingPos) {
-        Block belowBlock = world.getBlockState(currentPos.below()).getBlock();
-        return state.setValue(TRAY_SUPPORT, SakuraBlockTags.TRAY_HEAT_SOURCES.contains(belowBlock));
+        BlockState belowBlock = world.getBlockState(currentPos.below());
+        return state.setValue(TRAY_SUPPORT, belowBlock.is(SakuraBlockTags.TRAY_HEAT_SOURCES));
     }
 
     @Override

@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0.0-1.18.1'
+version = '1.0.0-1.18.2'
 group = 'cn.mcmod.sakura'
 archivesBaseName = 'sakura'
 
@@ -22,7 +22,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
     runs {
         client {
@@ -88,13 +88,13 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.1.2'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.44'
 
-    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.2-1.18.1")
-        compileOnly fg.deobf("mezz.jei:jei-1.18.1:9.4.1.112:api")
+    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.0-1.18.2")
+    implementation fg.deobf("curse.maven:farmers-delight-398521:3739914")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.4.166:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:9.4.1.112")
-    implementation fg.deobf("curse.maven:farmers-delight-398521:3615366")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.4.166")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

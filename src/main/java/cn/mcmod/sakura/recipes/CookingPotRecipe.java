@@ -7,7 +7,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
@@ -26,7 +25,6 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class CookingPotRecipe implements Recipe<RecipeWrapper> {
-    public static RecipeType<CookingPotRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":cooking");
     private final ResourceLocation id;
     private final NonNullList<Ingredient> inputItems;
     private final FluidIngredient fluidInput;
@@ -107,12 +105,12 @@ public class CookingPotRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipeTypeRegistry.COOKING_RECIPE.get();
+        return RecipeTypeRegistry.COOKING_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return TYPE;
+        return RecipeTypeRegistry.COOKING_RECIPE_TYPE.get();
     }
 
     public float getExperience() {

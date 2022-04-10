@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -48,7 +48,7 @@ public class StoneMortarRecipeBuilder {
         return new StoneMortarRecipeBuilder(resultItem, count, exp, time);
     }
 
-    public StoneMortarRecipeBuilder requires(Tag<Item> tag) {
+    public StoneMortarRecipeBuilder requires(TagKey<Item> tag) {
         return this.requires(Ingredient.of(tag));
     }
 
@@ -143,7 +143,7 @@ public class StoneMortarRecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return RecipeTypeRegistry.STONE_MORTAR_RECIPE.get();
+            return RecipeTypeRegistry.STONE_MORTAR_RECIPE_SERIALIZER.get();
         }
 
         @Override

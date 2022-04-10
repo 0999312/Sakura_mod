@@ -1,19 +1,21 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import java.util.Arrays;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.block.entity.CookingPotBlockEntity;
+import cn.mcmod.sakura.compat.jei.JEIPlugin;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -22,7 +24,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-@SuppressWarnings("removal")
 public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
 
     public static final ResourceLocation UID = new ResourceLocation(SakuraMod.MODID, "cooking");
@@ -38,8 +39,7 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
         background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockRegistry.COOKING_POT.get()));
         heatIndicator = helper.createDrawable(backgroundImage, 176, 0, 18, 18);
-        arrow = helper.drawableBuilder(backgroundImage, 176, 18, 24, 17).buildAnimated(200,
-                IDrawableAnimated.StartDirection.LEFT, false);
+        arrow = helper.drawableBuilder(backgroundImage, 176, 18, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
     @Override
@@ -50,6 +50,11 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
     @Override
     public Class<? extends CookingPotRecipe> getRecipeClass() {
         return CookingPotRecipe.class;
+    }
+    
+    @Override
+    public RecipeType<CookingPotRecipe> getRecipeType() {
+        return JEIPlugin.COOKING_POT_JEI_TYPE;
     }
 
     @Override
@@ -66,36 +71,26 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
     public IDrawable getIcon() {
         return icon;
     }
-
+    
     @Override
-    public void setIngredients(CookingPotRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(recipe.getIngredients());
-        if(recipe.getRequiredFluid() != FluidIngredient.EMPTY)
-            ingredients.setInputs(VanillaTypes.FLUID, recipe.getRequiredFluid().getMatchingFluidStacks());
-        ingredients.setOutput(VanillaTypes.ITEM, recipe.getResultItem());
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, CookingPotRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
+    public void setRecipe(IRecipeLayoutBuilder builder, CookingPotRecipe recipe, IFocusGroup focuses) {
         NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
         int borderSlotSize = 18;
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 3; ++column) {
                 int inputIndex = row * 3 + column;
                 if (inputIndex < recipeIngredients.size()) {
-                    itemStacks.init(inputIndex, true, 22 + column * borderSlotSize, row * borderSlotSize);
-                    itemStacks.set(inputIndex, Arrays.asList(recipeIngredients.get(inputIndex).getItems()));
+                    builder.addSlot(RecipeIngredientRole.INPUT, 23 + column * borderSlotSize, 1 + row * borderSlotSize)
+                    .addIngredients(recipeIngredients.get(inputIndex));
                 }
             }
         }
-        
-        recipeLayout.getFluidStacks().init(0, true, 1, 1, 16, 52, 3000, true, null);
         if(recipe.getRequiredFluid() != FluidIngredient.EMPTY)
-            recipeLayout.getFluidStacks().set(0, recipe.getRequiredFluid().getMatchingFluidStacks());
-
-        itemStacks.init(9, false, 119, 21);
-        itemStacks.set(9, recipe.getResultItem());
+            builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
+            .setFluidRenderer(CookingPotBlockEntity.TANK_CAPACITY, true, 16, 52)
+            .addIngredients(VanillaTypes.FLUID, recipe.getRequiredFluid().getMatchingFluidStacks());
+        
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem());
     }
 
     @Override

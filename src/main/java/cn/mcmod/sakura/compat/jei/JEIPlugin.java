@@ -1,8 +1,6 @@
 package cn.mcmod.sakura.compat.jei;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.client.gui.CookingPotScreen;
@@ -12,6 +10,7 @@ import cn.mcmod.sakura.compat.jei.category.StoneMortarCategory;
 import cn.mcmod.sakura.container.CookingPotContainer;
 import cn.mcmod.sakura.container.StoneMortarContainer;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
+import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import cn.mcmod.sakura.recipes.StoneMortarRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -22,6 +21,7 @@ import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.registration.IRecipeTransferRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -32,10 +32,16 @@ public class JEIPlugin implements IModPlugin {
 
     private static final Minecraft MC = Minecraft.getInstance();
 
-    private static List<Recipe<?>> findRecipesByType(RecipeType<?> type) {
-        return MC.level.getRecipeManager().getRecipes().stream().filter(r -> r.getType() == type)
-                .collect(Collectors.toList());
+    private static <C extends Container, T extends Recipe<C>> List<T> findRecipesByType(RecipeType<T> type) {
+        return MC.level.getRecipeManager().getAllRecipesFor(type);
     }
+    
+    public static final mezz.jei.api.recipe.RecipeType<CookingPotRecipe> COOKING_POT_JEI_TYPE = 
+            mezz.jei.api.recipe.RecipeType.create(SakuraMod.MODID, "cooking", CookingPotRecipe.class);
+    
+    public static final mezz.jei.api.recipe.RecipeType<StoneMortarRecipe> STONE_MORTAR_JEI_TYPE = 
+            mezz.jei.api.recipe.RecipeType.create(SakuraMod.MODID, "stone_mortar", StoneMortarRecipe.class);
+    
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
@@ -45,26 +51,26 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(findRecipesByType(CookingPotRecipe.TYPE), CookingPotCategory.UID);
-        registration.addRecipes(findRecipesByType(StoneMortarRecipe.TYPE), StoneMortarCategory.UID);
+        registration.addRecipes(COOKING_POT_JEI_TYPE, findRecipesByType(RecipeTypeRegistry.COOKING_RECIPE_TYPE.get()));
+        registration.addRecipes(STONE_MORTAR_JEI_TYPE, findRecipesByType(RecipeTypeRegistry.STONE_MORTAR_RECIPE_TYPE.get()));
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.COOKING_POT.get()), CookingPotCategory.UID);
-        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.STONE_MORTAR.get()), StoneMortarCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.COOKING_POT.get()), COOKING_POT_JEI_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(BlockRegistry.STONE_MORTAR.get()), STONE_MORTAR_JEI_TYPE);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(CookingPotScreen.class, 94, 16, 32, 54, CookingPotCategory.UID);
-        registration.addRecipeClickArea(StoneMortarScreen.class, 79, 32, 18, 24, StoneMortarCategory.UID);
+        registration.addRecipeClickArea(CookingPotScreen.class, 94, 16, 32, 54, COOKING_POT_JEI_TYPE);
+        registration.addRecipeClickArea(StoneMortarScreen.class, 79, 32, 18, 24, STONE_MORTAR_JEI_TYPE);
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(CookingPotContainer.class, CookingPotCategory.UID, 0, 9, 10, 36);
-        registration.addRecipeTransferHandler(StoneMortarContainer.class, StoneMortarCategory.UID, 0, 4, 6, 36);
+        registration.addRecipeTransferHandler(CookingPotContainer.class, COOKING_POT_JEI_TYPE, 0, 9, 10, 36);
+        registration.addRecipeTransferHandler(StoneMortarContainer.class, STONE_MORTAR_JEI_TYPE, 0, 4, 6, 36);
     }
 
     @Override

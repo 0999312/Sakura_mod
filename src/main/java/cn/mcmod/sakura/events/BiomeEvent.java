@@ -2,6 +2,7 @@ package cn.mcmod.sakura.events;
 
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -15,7 +16,7 @@ public class BiomeEvent {
 
     @SubscribeEvent
     public static void onBiomeLoad(BiomeLoadingEvent event) {
-        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT, SakuraConfig.GENERATE_BAMBOOSHOOT.get(),
+        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT.get(), SakuraConfig.GENERATE_BAMBOOSHOOT.get(),
                 0.4F, 1.0F);
     }
 
@@ -25,7 +26,7 @@ public class BiomeEvent {
         Biome.ClimateSettings climate = event.getClimate();
         if (climate.temperature > low && climate.temperature <= high) {
             if (canGen) {
-                builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, feature);
+                builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, Holder.direct(feature));
             }
         }
     }

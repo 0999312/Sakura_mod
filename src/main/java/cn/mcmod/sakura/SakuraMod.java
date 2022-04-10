@@ -16,14 +16,11 @@ import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
 import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
-import cn.mcmod.sakura.level.biome.BiomeRegistryExample;
 import cn.mcmod.sakura.loot_modifier.LootModifiterRegistry;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -58,20 +55,18 @@ public class SakuraMod {
         FluidRegistry.FLUIDS.register(modEventBus);
         FluidBlockRegistry.BLOCKS.register(modEventBus);
         BucketItemRegistry.ITEMS.register(modEventBus);
+        WorldGenerationRegistry.FEATURES.register(modEventBus);
+        WorldGenerationRegistry.PATCHES.register(modEventBus);
         ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
         LootModifiterRegistry.GLM.register(modEventBus);
-        RecipeTypeRegistry.RECIPES.register(modEventBus);
-        BiomeRegistryExample.BIOMES.register(modEventBus);
+        RecipeTypeRegistry.RECIPE_TYPES.register(modEventBus);
+        RecipeTypeRegistry.RECIPE_SERIALIZERS.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SakuraConfig.COMMON_CONFIG);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            WorldGenerationRegistry.registerGeneration();
-            BiomeDictionary.addTypes(BiomeRegistryExample.EXAMPLE_KEY, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
-            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, 
-                    new BiomeManager.BiomeEntry(BiomeRegistryExample.EXAMPLE_KEY, 15));
             ComposterRegistry.registerCompost();
         });
     }

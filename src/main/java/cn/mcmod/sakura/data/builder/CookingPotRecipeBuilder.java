@@ -13,7 +13,7 @@ import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -52,7 +52,7 @@ public class CookingPotRecipeBuilder {
         return new CookingPotRecipeBuilder(fluid, resultItem, count, exp, time);
     }
 
-    public CookingPotRecipeBuilder requires(Tag<Item> tag) {
+    public CookingPotRecipeBuilder requires(TagKey<Item> tag) {
         return this.requires(Ingredient.of(tag));
     }
 
@@ -139,7 +139,7 @@ public class CookingPotRecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return RecipeTypeRegistry.COOKING_RECIPE.get();
+            return RecipeTypeRegistry.COOKING_RECIPE_SERIALIZER.get();
         }
 
         @Override

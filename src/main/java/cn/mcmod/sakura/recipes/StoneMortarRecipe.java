@@ -7,7 +7,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-import cn.mcmod.sakura.SakuraMod;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +23,6 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
-    public static RecipeType<StoneMortarRecipe> TYPE = RecipeType.register(SakuraMod.MODID + ":stone_mortar");
     private final ResourceLocation id;
     private final NonNullList<Ingredient> inputItems;
     private final NonNullList<ItemStack> output;
@@ -96,12 +94,12 @@ public class StoneMortarRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return RecipeTypeRegistry.STONE_MORTAR_RECIPE.get();
+        return RecipeTypeRegistry.STONE_MORTAR_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return TYPE;
+        return RecipeTypeRegistry.STONE_MORTAR_RECIPE_TYPE.get();
     }
 
     public float getExperience() {

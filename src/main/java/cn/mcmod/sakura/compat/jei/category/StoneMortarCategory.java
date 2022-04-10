@@ -1,17 +1,18 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import java.util.Arrays;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
+import cn.mcmod.sakura.compat.jei.JEIPlugin;
 import cn.mcmod.sakura.recipes.StoneMortarRecipe;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -20,7 +21,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-@SuppressWarnings("removal")
 public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
 
     public static final ResourceLocation UID = new ResourceLocation(SakuraMod.MODID, "stone_mortar");
@@ -48,6 +48,11 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
     public Class<? extends StoneMortarRecipe> getRecipeClass() {
         return StoneMortarRecipe.class;
     }
+    
+    @Override
+    public RecipeType<StoneMortarRecipe> getRecipeType() {
+        return JEIPlugin.STONE_MORTAR_JEI_TYPE;
+    }
 
     @Override
     public Component getTitle() {
@@ -63,34 +68,24 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
     public IDrawable getIcon() {
         return icon;
     }
-
+    
     @Override
-    public void setIngredients(StoneMortarRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(recipe.getIngredients());
-        ingredients.setOutputs(VanillaTypes.ITEM, recipe.getResultItemList());
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, StoneMortarRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-        NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
-        int borderSlotSize = 18;
-        for (int row = 0; row < 2; ++row) {
-            for (int column = 0; column < 2; ++column) {
-                int inputIndex = row * 2 + column;
-                if (inputIndex < recipeIngredients.size()) {
-                    itemStacks.init(inputIndex, true, column * borderSlotSize, 13 + row * borderSlotSize);
-                    itemStacks.set(inputIndex, Arrays.asList(recipeIngredients.get(inputIndex).getItems()));
-                }
-            }
-        }
-
-        itemStacks.init(4, false, 65, 4);
-        itemStacks.set(4, recipe.getResultItemList().get(0));
-        if (recipe.getResultItemList().size() > 1) {
-            itemStacks.init(5, false, 65, 40);
-            itemStacks.set(5, recipe.getResultItemList().get(1));
-        }
+    public void setRecipe(IRecipeLayoutBuilder builder, StoneMortarRecipe recipe, IFocusGroup focuses) {
+      NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
+      int borderSlotSize = 18;
+      for (int row = 0; row < 2; ++row) {
+          for (int column = 0; column < 2; ++column) {
+              int inputIndex = row * 2 + column;
+              if (inputIndex < recipeIngredients.size()) {
+                  builder.addSlot(RecipeIngredientRole.INPUT, 1+column * borderSlotSize, 14 + row * borderSlotSize)
+                  .addIngredients(recipeIngredients.get(inputIndex));
+              }
+          }
+      }
+      builder.addSlot(RecipeIngredientRole.OUTPUT, 66, 5).addItemStack(recipe.getResultItemList().get(0));
+      if (recipe.getResultItemList().size() > 1) {
+          builder.addSlot(RecipeIngredientRole.OUTPUT, 66, 41).addItemStack(recipe.getResultItemList().get(1));
+      }
     }
 
     @Override

@@ -10,6 +10,7 @@ import cn.mcmod.sakura.block.machines.CookingPotBlock;
 import cn.mcmod.sakura.container.CookingPotContainer;
 import cn.mcmod.sakura.inventory.CookingPotItemHandler;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
+import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import cn.mcmod_mmf.mmlib.block.entity.HeatableBlockEntity;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
@@ -46,6 +47,7 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
 
+    public static final int TANK_CAPACITY = 8000;
     private final ItemStackHandler inventory;
     private LazyOptional<IItemHandler> inputHandler;
     private LazyOptional<IItemHandler> outputHandler;
@@ -106,7 +108,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         }
 
         if (lastRecipeID != null) {
-            Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(CookingPotRecipe.TYPE).stream()
+            Recipe<RecipeWrapper> recipe = level.getRecipeManager().getAllRecipesFor(RecipeTypeRegistry.COOKING_RECIPE_TYPE.get()).stream()
                     .filter(now -> now.getId().equals(lastRecipeID)).findFirst().get();
             if (recipe instanceof CookingPotRecipe cookingRecipe) {
                 if (cookingRecipe.matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper,
@@ -117,7 +119,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         }
 
         if (checkNewRecipe) {
-            Optional<CookingPotRecipe> recipe = level.getRecipeManager().getRecipeFor(CookingPotRecipe.TYPE,
+            Optional<CookingPotRecipe> recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.COOKING_RECIPE_TYPE.get(),
                     inventoryWrapper, level);
             if (recipe.isPresent() && recipe.get().matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(),
                     inventoryWrapper, level)) {
@@ -292,7 +294,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     }
 
     private FluidTank createFluidHandler() {
-        return new FluidTank(8000) {
+        return new FluidTank(TANK_CAPACITY) {
             @Override
             protected void onContentsChanged() {
                 inventoryChanged();

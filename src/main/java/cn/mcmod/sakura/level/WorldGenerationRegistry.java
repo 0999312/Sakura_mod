@@ -1,52 +1,52 @@
 package cn.mcmod.sakura.level;
 
+import java.util.function.Supplier;
+
+import com.google.common.collect.Lists;
+
 import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+import vectorwing.farmersdelight.common.world.WildCropGeneration;
 
 public class WorldGenerationRegistry {
-    public static ConfiguredFeature<RandomPatchConfiguration, ?> FEATURE_PATCH_BAMBOOSHOOT;
+    public static final DeferredRegister<ConfiguredFeature<?, ?>> FEATURES = DeferredRegister
+            .create(BuiltinRegistries.CONFIGURED_FEATURE.key(), SakuraMod.MODID);
+    public static final DeferredRegister<PlacedFeature> PATCHES = DeferredRegister
+            .create(BuiltinRegistries.PLACED_FEATURE.key(), SakuraMod.MODID);
+    
+    public static final RegistryObject<ConfiguredFeature<?, ?>> FEATURE_PATCH_BAMBOOSHOOT = FEATURES.register("patch_bambooshoot", 
+            ()->wildPlantFeature(BlockRegistry.BAMBOOSHOOT, BlockTags.DIRT));
 
-    public static PlacedFeature PATCH_BAMBOOSHOOT;
+    public static final RegistryObject<PlacedFeature> PATCH_BAMBOOSHOOT = PATCHES.register("patch_bambooshoot", 
+            ()->wildPlantPatch(FEATURE_PATCH_BAMBOOSHOOT, RarityFilter.onAverageOnceEvery(SakuraConfig.CHANCE_BAMBOOSHOOT.get()),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
 
     public static final BlockPos BLOCK_BELOW = new BlockPos(0, -1, 0);
 
-    public static void registerGeneration() {
-        FEATURE_PATCH_BAMBOOSHOOT = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE,
-                new ResourceLocation(SakuraMod.MODID, "patch_bamboo_shoot"),
-                Feature.RANDOM_PATCH.configured(getSingleConfiguration(BlockRegistry.BAMBOOSHOOT.get(), 64,
-                        BlockPredicate.matchesBlock(Blocks.GRASS_BLOCK, BLOCK_BELOW))));
-        PATCH_BAMBOOSHOOT = Registry.register(BuiltinRegistries.PLACED_FEATURE,
-                new ResourceLocation(SakuraMod.MODID, "patch_bamboo_shoot"),
-                FEATURE_PATCH_BAMBOOSHOOT.placed(RarityFilter.onAverageOnceEvery(SakuraConfig.CHANCE_BAMBOOSHOOT.get()),
-                        InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+    private static ConfiguredFeature<?, ?> wildPlantFeature(Supplier<Block> wildCrop, TagKey<Block> blockTag) {
+        return new ConfiguredFeature<>(Feature.RANDOM_PATCH, WildCropGeneration.getWildCropConfiguration(wildCrop.get(),
+                64, 4, BlockPredicate.matchesTag(blockTag, BLOCK_BELOW)));
     }
-
-    public static RandomPatchConfiguration getSingleConfiguration(Block block, int tries, BlockPredicate plantedOn) {
-        return getSpreadConfiguration(block, tries, 0, plantedOn);
-    }
-
-    public static RandomPatchConfiguration getSpreadConfiguration(Block block, int tries, int xzSpread,
-            BlockPredicate plantedOn) {
-        return new RandomPatchConfiguration(tries, xzSpread, 3,
-                () -> Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(block)))
-                        .filtered(BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, plantedOn)));
+    private static PlacedFeature wildPlantPatch(Supplier<ConfiguredFeature<?, ?>> feature,
+            PlacementModifier... modifiers) {
+        return new PlacedFeature(Holder.direct(feature.get()), Lists.newArrayList(modifiers));
     }
 }
