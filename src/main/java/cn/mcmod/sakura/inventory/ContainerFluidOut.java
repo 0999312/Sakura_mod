@@ -55,8 +55,8 @@ public class ContainerFluidOut extends Container {
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
     {
         // 0-1: Contain inventory
-        // 2-29: Player inventory
-        // 30-39: Hot bar in the player inventory
+        // 2-28: Player inventory
+        // 29-38: Hot bar in the player inventory
 
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
@@ -67,7 +67,7 @@ public class ContainerFluidOut extends Container {
             itemStack = itemStack1.copy();
 
             if (index >= 0 && index <= 4){
-                if (!this.mergeItemStack(itemStack1, 2, 39, true))
+                if (!this.mergeItemStack(itemStack1, 2, 38, true))
                 {
                     return ItemStack.EMPTY;
                 }
@@ -76,17 +76,17 @@ public class ContainerFluidOut extends Container {
             }
             else if (index >= 5){
             	if (index >= 5 && index < 32){
-                    if (!this.mergeItemStack(itemStack1, 30, 39, false))
+                    if (!this.mergeItemStack(itemStack1, 29, 38, false))
                     {
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (index >= 30 && index < 39 && !this.mergeItemStack(itemStack1, 2, 30, false))
+                else if (index >= 29 && index < 38 && !this.mergeItemStack(itemStack1, 2, 29, false))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if (!this.mergeItemStack(itemStack1, 2, 39, false))
+            else if (!this.mergeItemStack(itemStack1, 2, 38, false))
             {
                 return ItemStack.EMPTY;
             }
