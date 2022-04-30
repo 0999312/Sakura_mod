@@ -1,15 +1,12 @@
 package cn.mcmod.sakura.block.entity;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.machines.CookingPotBlock;
 import cn.mcmod.sakura.inventory.CookingPotItemHandler;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
+import cn.mcmod.sakura.recipes.recipes.recipe.FermenterFluidRecipe;
+import cn.mcmod.sakura.recipes.recipes.register.RecipeManager;
 import cn.mcmod_mmf.mmlib.block.entity.HeatableBlockEntity;
 import cn.mcmod_mmf.mmlib.block.entity.SyncedBlockEntity;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
@@ -43,6 +40,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
 
@@ -92,6 +93,21 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         if (didInventoryChange) {
             blockEntity.inventoryChanged();
         }
+    }
+
+    protected ItemStack outputFluidToItem(ItemStack upSlot) {
+        if (outputfluidTank.resolve().isPresent() && !upSlot.isEmpty()) {
+            FluidStack fluid = outputfluidTank.resolve().get().getFluid();
+
+            FermenterFluidRecipe recipe = RecipeManager.getFermenterFuildRecipe(getLevel(), upSlot, fluid);
+
+            if (recipe != null) {
+                fluid.shrink(recipe.fluidStack.amount);
+                return recipe.output;
+            }
+        }
+
+        return ItemStack.EMPTY;
     }
 
     private boolean hasInput() {
