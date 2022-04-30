@@ -1,6 +1,7 @@
 package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.SakuraMod;
+import cn.mcmod.sakura.data.recipe.AvarusRecipeProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,5 +22,7 @@ public class DataGen {
         dataGenerator.addProvider(new SakuraFluidTagsProvider(dataGenerator, SakuraMod.MODID, existingFileHelper));
         dataGenerator.addProvider(new SakuraRecipeProvider(dataGenerator));
         dataGenerator.addProvider(new SakuraLootTableProvider(dataGenerator));
+
+        dataGenerator.addProvider(new AvarusRecipeProvider(dataGenerator));
     }
 }
