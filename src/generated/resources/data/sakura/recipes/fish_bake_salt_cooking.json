@@ -1,0 +1,19 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:salt"
+    },
+    {
+      "tag": "forge:raw_fishes"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:fish_bake_salt"
+  },
+  "recipeTime": 200
+}

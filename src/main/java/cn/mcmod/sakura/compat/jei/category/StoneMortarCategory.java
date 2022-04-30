@@ -34,7 +34,7 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
         title = new TranslatableComponent("sakura.jei.stone_mortar");
         ResourceLocation backgroundImage = new ResourceLocation(SakuraMod.MODID, "textures/gui/stonemortar.png");
         background = helper.createDrawable(backgroundImage, 39, 13, 87, 62);
-        icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockRegistry.STONE_MORTAR.get()));
+        icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.STONE_MORTAR.get()));
         mortar = helper.createDrawable(backgroundImage, 176, 0, 14, 16);
         basket = helper.createDrawable(backgroundImage, 190, 18, 16, 6);
     }

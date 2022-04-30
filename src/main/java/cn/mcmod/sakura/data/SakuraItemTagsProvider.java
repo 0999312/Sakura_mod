@@ -45,6 +45,8 @@ public class SakuraItemTagsProvider extends ItemTagsProvider {
         tag(SakuraItemTags.BAMBOO).add(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO).get());
         tag(SakuraItemTags.BAMBOO).add(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_SUNBURNT).get());
         tag(SakuraItemTags.BAMBOO).add(Items.BAMBOO);
+        
+        tag(SakuraItemTags.SHRIMP).add(FoodRegistry.FOODSET.get(SakuraFoodSet.SHRIMP).get());
 
         tag(SakuraItemTags.CROPS_REDBEAN).add(ItemRegistry.RED_BEAN.get());
         tag(SakuraItemTags.CROPS_BUCKWHEAT).add(ItemRegistry.BUCKWHEAT.get());

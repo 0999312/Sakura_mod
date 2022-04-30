@@ -141,6 +141,8 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> STONE_MORTAR = BLOCKS.register("stone_mortar", StoneMortarBlock::new);
     public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
+    
+    public static final RegistryObject<Block> OBON = BLOCKS.register("obon", ObonBlock::new);
 
     private static RotatedPillarBlock log(MaterialColor top, MaterialColor bark) {
         return new RotatedPillarBlock(BlockBehaviour.Properties

@@ -18,4 +18,8 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<CookingPotBlockEntity>> COOKING_POT = BLOCK_ENTITIES.register(
             "cooking_pot",
             () -> BlockEntityType.Builder.of(CookingPotBlockEntity::new, BlockRegistry.COOKING_POT.get()).build(null));
+    
+    public static final RegistryObject<BlockEntityType<ObonBlockEntity>> OBON = BLOCK_ENTITIES.register(
+            "cooking_pot",
+            () -> BlockEntityType.Builder.of(ObonBlockEntity::new, BlockRegistry.OBON.get()).build(null));
 }

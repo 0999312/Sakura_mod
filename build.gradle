@@ -90,11 +90,11 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.0.44'
 
-    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.0-1.18.2")
+    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.1-1.18.2")
     implementation fg.deobf("curse.maven:farmers-delight-398521:3739914")
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.4.166:api")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.5.4.166")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

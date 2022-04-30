@@ -520,6 +520,20 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .requires(FoodRegistry.FOODSET.get(SakuraFoodSet.FISHCAKE).get()).requires(SakuraItemTags.EGGS)
                 .requires(SakuraItemTags.CROPS_RADISH)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "oden_cooking"));
+        
+        CookingPotRecipeBuilder
+                .cooking(FluidIngredient.fromTag(SakuraFluidTags.FOOD_OIL, 125),
+                        FoodRegistry.FOODSET.get(SakuraFoodSet.TEMPURA).get())
+                .requires(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.TEMPURA_BATTER).get())
+                .requires(SakuraItemTags.SHRIMP)
+                .save(consumer, new ResourceLocation(SakuraMod.MODID, "tempura_cooking"));
+        
+        CookingPotRecipeBuilder
+                .cooking(FluidIngredient.fromTag(SakuraFluidTags.FOOD_OIL, 125),
+                        FoodRegistry.FOODSET.get(SakuraFoodSet.FISH_BAKE_SALT).get())
+                .requires(SakuraItemTags.SALT)
+                .requires(SakuraItemTags.RAW_FISHES)
+                .save(consumer, new ResourceLocation(SakuraMod.MODID, "fish_bake_salt_cooking"));
     }
 
     private void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience,

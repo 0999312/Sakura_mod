@@ -1,7 +1,8 @@
 package cn.mcmod.sakura;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+
+import com.mojang.logging.LogUtils;
 
 import cn.mcmod.sakura.block.BlockItemRegistry;
 import cn.mcmod.sakura.block.BlockRegistry;
@@ -31,7 +32,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(SakuraMod.MODID)
 public class SakuraMod {
     public static final String MODID = "sakura";
-    private static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogUtils.getLogger();
     public static final CreativeModeTab GROUP = new CreativeModeTab(MODID) {
         @Override
         public ItemStack makeIcon() {

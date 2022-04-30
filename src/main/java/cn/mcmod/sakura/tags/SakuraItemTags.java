@@ -32,6 +32,8 @@ public class SakuraItemTags {
     public static final TagKey<Item> PROTEIN_RICE = TagUtils.forgeItemTag("protein/rice");
 
     public static final TagKey<Item> STRAW = TagUtils.forgeItemTag("straw");
+    
+    public static final TagKey<Item> SHRIMP = TagUtils.forgeItemTag("shrimp");
 
     public static final TagKey<Item> BREAD = TagUtils.forgeItemTag("bread");
     public static final TagKey<Item> BREAD_WHEAT = TagUtils.forgeItemTag("bread/wheat");

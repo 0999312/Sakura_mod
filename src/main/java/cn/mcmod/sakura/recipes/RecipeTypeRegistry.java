@@ -19,11 +19,15 @@ public class RecipeTypeRegistry {
             ()->recipeType("cooking"));
     public static final RegistryObject<RecipeType<StoneMortarRecipe>> STONE_MORTAR_RECIPE_TYPE = RECIPE_TYPES.register("stone_mortar", 
             ()->recipeType("stone_mortar"));
+    public static final RegistryObject<RecipeType<FermenterRecipe>> FERMENTER_RECIPE_TYPE = RECIPE_TYPES.register("fermenting", 
+            ()->recipeType("fermenting"));
     
     public static final RegistryObject<RecipeSerializer<StoneMortarRecipe>> STONE_MORTAR_RECIPE_SERIALIZER = RECIPE_SERIALIZERS
             .register("stone_mortar", StoneMortarRecipe.MortarSerializer::new);
     public static final RegistryObject<RecipeSerializer<CookingPotRecipe>> COOKING_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("cooking",
             CookingPotRecipe.CookingSerializer::new);
+    public static final RegistryObject<RecipeSerializer<FermenterRecipe>> FERMENTER_RECIPE_SERIALIZER = RECIPE_SERIALIZERS.register("fermenting",
+            FermenterRecipe.FermenterSerializer::new);
     
     private static <T extends Recipe<?>> RecipeType<T> recipeType(String name) {
        return new RecipeType<T>() {

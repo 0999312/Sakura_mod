@@ -102,6 +102,7 @@ a535e0b209c638078acf996fe1beed6b081066eb data/forge/tags/items/seeds/rapeseed.js
 7d690853df4b1564ed8b1766a6b7082b763703e3 data/forge/tags/items/seeds/redbean.json
 fb177205f1704dfd68d9404f4b1ba9c52b341d4e data/forge/tags/items/seeds/rice.json
 c55c37ed44793a736f183569d24c94ff35275710 data/forge/tags/items/seeds/tomato.json
+eb382428758b4507f84914a21f64c3abd76bd9ad data/forge/tags/items/shrimp.json
 7c5a379d72d786dbf96e584624761e8829b008a7 data/forge/tags/items/straw.json
 030f7bc34e90f82e92aa03b308d5d9a58a2ebd79 data/forge/tags/items/sugar.json
 d9e7fdae290b5783994452dbae8ccd569f521240 data/forge/tags/items/sugar/sugar.json
@@ -291,6 +292,7 @@ be60ee5bac91d54879bb33b4e59aebd0b7fbc410 data/sakura/recipes/eggplant_bake_from_
 9ec7c645c51908428eb69412eacfe5e622ddd9d3 data/sakura/recipes/eggplant_baked.json
 39088493fe48c3280dd7f9bfa0fe3fbe28b20a77 data/sakura/recipes/farmer_rice_mortar_from_sakura.json
 60e6ff5a72c7b27a2c6a592a21f8051b45348ba7 data/sakura/recipes/farmer_tatami_from_sakura.json
+34644cd7a792cd277f105df10dc28b8d291d1286 data/sakura/recipes/fish_bake_salt_cooking.json
 4bc5e55361dbde6e7d9e4c470dc8c412778c53eb data/sakura/recipes/fishcake_from_potato.json
 54bef2ad33dba27236c44faa89ebc4b9561ffe78 data/sakura/recipes/fishcake_from_taro.json
 3545adc8b24a2113d051d0116f0a9492bf466cee data/sakura/recipes/flint_from_mortar.json
@@ -356,6 +358,7 @@ ff9340d36abe4e3b85f8b4107fdca101d94e26a8 data/sakura/recipes/taro_bake_from_camp
 2eb0d9823fb490c70849dbc14da7048d5a69007d data/sakura/recipes/taro_bake_from_smoking.json
 329f351404f92f32d6a68d365d57dcda38f85665 data/sakura/recipes/taro_baked.json
 94035b2b9436040b142e90ce25fb34181f93806e data/sakura/recipes/tempura_batter.json
+e8419ed227f773f55390efb4c9be023350c302fe data/sakura/recipes/tempura_cooking.json
 9d81bf729457cd050777f23c854b3228ad9d0541 data/sakura/recipes/tomato_sauce_cooking.json
 c4710c6e79f4e9c84c397c4b5ae0fd92550d0234 data/sakura/recipes/torchs_from_charcoal.json
 5e6c29e6dcfe28181d9588e7d9f9b23ae17a7142 data/sakura/tags/items/rice.json

@@ -9,6 +9,7 @@ import cn.mcmod.sakura.compat.jei.JEIPlugin;
 import cn.mcmod.sakura.recipes.CookingPotRecipe;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -37,7 +38,7 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
         title = new TranslatableComponent("sakura.jei.cooking");
         ResourceLocation backgroundImage = new ResourceLocation(SakuraMod.MODID, "textures/gui/pot.png");
         background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
-        icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(BlockRegistry.COOKING_POT.get()));
+        icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.COOKING_POT.get()));
         heatIndicator = helper.createDrawable(backgroundImage, 176, 0, 18, 18);
         arrow = helper.drawableBuilder(backgroundImage, 176, 18, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
@@ -88,7 +89,7 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
         if(recipe.getRequiredFluid() != FluidIngredient.EMPTY)
             builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
             .setFluidRenderer(CookingPotBlockEntity.TANK_CAPACITY, true, 16, 52)
-            .addIngredients(VanillaTypes.FLUID, recipe.getRequiredFluid().getMatchingFluidStacks());
+            .addIngredients(ForgeTypes.FLUID_STACK, recipe.getRequiredFluid().getMatchingFluidStacks());
         
         builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem());
     }
