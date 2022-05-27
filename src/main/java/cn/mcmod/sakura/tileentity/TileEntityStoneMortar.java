@@ -7,12 +7,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 
@@ -22,7 +23,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
-public class TileEntityStoneMortar extends TileEntity implements ITickable, IInventory {
+public class TileEntityStoneMortar extends TileEntity implements ITickable, ISidedInventory {
     private int processTimer = 0;
     private int maxprocessTimer = 200;
 
@@ -262,5 +263,30 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, IInv
     @Override
     public void onDataPacket(net.minecraft.network.NetworkManager net, net.minecraft.network.play.server.SPacketUpdateTileEntity pkt) {
         this.readFromNBT(pkt.getNbtCompound());
+    }
+
+    private static final int[] OUTPUT_SLOTS = {4, 5};
+    private static final int[] INPUT_SLOTS = {0, 1, 2, 3};
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing enumFacing) {
+        switch (enumFacing) {
+            case DOWN:
+                return OUTPUT_SLOTS;
+            case UP:
+                return INPUT_SLOTS;
+            default:
+                return new int[0];
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemStack, EnumFacing enumFacing) {
+        return true;
+    }
+
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemStack, EnumFacing enumFacing) {
+        return true;
     }
 }
