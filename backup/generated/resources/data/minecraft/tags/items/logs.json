@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "sakura:maple_log",
+    "sakura:sakura_log",
+    "sakura:maple_wood",
+    "sakura:sakura_wood",
+    "sakura:stripped_maple_log",
+    "sakura:stripped_sakura_log"
+  ]
+}

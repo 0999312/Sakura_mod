@@ -2,12 +2,12 @@
 	"block.sakura.sakura_diamond_block": "樱色钻石块",
 	"block.sakura.kawara_block": "瓦块",
 	"block.sakura.kawara": "瓦",
-	"block.sakura.tatami_tan": "榻榻米（日晒）",
+	"block.sakura.tatami_sunburnt": "榻榻米（日晒）",
 	"block.sakura.tatami": "榻榻米",
 	"block.sakura.tatami_tan_ns": "无边缘榻榻米（日晒）",
 	"block.sakura.tatami_ns": "无边缘榻榻米",
-	"block.sakura.tatami_tan_half": "榻榻米台阶（日晒）",
-	"block.sakura.tatami_half": "榻榻米台阶",
+	"block.sakura.tatami_slab_sunburnt": "榻榻米台阶（日晒）",
+	"block.sakura.tatami_slab": "榻榻米台阶",
 	"block.sakura.tatami_tan_ns_half": "无边缘榻榻米台阶（日晒）",
 	"block.sakura.tatami_ns_half": "无边缘榻榻米台阶",
 	"block.sakura.tatami_tan_carpet": "榻榻米地毯（日晒）",
@@ -15,7 +15,7 @@
 	"block.sakura.tatami_tan_ns_carpet": "无边缘榻榻米地毯（日晒）",
 	"block.sakura.tatami_ns_carpet": "无边缘榻榻米地毯",
 	"block.sakura.bamboo_door": "竹门",
-	
+
 	"block.sakura.bamboo_shoot": "竹笋",
 	"block.sakura.bamboo_lantern": "竹灯笼",
 	"block.sakura.bamboo_block": "竹块",
@@ -43,6 +43,7 @@
 	"block.sakura.ume_sapling": "梅树树苗",
 	"block.sakura.ume_log": "梅树原木",
 	"block.sakura.cooking_pot": "烹饪锅",
+	"block.sakura.chopping_board": "砧板",
 	"block.sakura.campfire_idle": "篝火",
 	"block.sakura.campfire_lit": "篝火（点燃）",
 	"block.sakura.campfire_pot_idle": "烹饪锅",
@@ -72,8 +73,8 @@
 	"block.sakura.plank_sakura": "樱树木板",
 	"block.sakura.plank_maple": "枫树木板",
 	"block.sakura.plank_bamboo": "竹板",
-	"block.sakura.barrel": "酿造桶",
-	"block.sakura.barrel_distillation": "蒸馏桶",
+	"block.sakura.fermenter": "酿造桶",
+	"block.sakura.distiller": "蒸馏桶",
 	"block.sakura.barrel_out": "储藏桶",
 	"block.sakura.kitunebi": "狐火",
 	"block.sakura.windbell": "风铃",
@@ -118,7 +119,7 @@
 	"block.sakura.stone_lantern": "石灯笼",
 	"block.sakura.cobblestone_lantern": "圆石灯笼",
 	"block.sakura.mossy_stone_lantern": "苔石灯笼",
-	
+
 	"block.sakura.tempura_plate": "盘装天妇罗",
 	"block.sakura.sushi_plate": "盘装寿司",
 	"block.sakura.teishoku_katsu": "猪排饭定食",
@@ -131,42 +132,67 @@
 	"block.sakura.teishoku_fish_cooked": "烤鱼定食",
 	"block.sakura.teishoku_fish_salt": "盐烤鱼定食",
 	
+	"block.sakura.nabe_sukiyaki": "寿喜烧锅",
+	"block.sakura.nabe_oden": "关东煮锅",
+
 	"item.sakura.machined_fish": "加工鱼肉",
 	"item.sakura.futon": "布团",
 	"item.sakura.silk": "丝绸",
 	"item.sakura.bento_box": "便当盒",
-	
+	"item.sakura.charcoal_powder":"炭粉",
+    "item.sakura.kouji":"米曲",
+
 	"item.sakura.matsutake": "松茸",
 	"item.sakura.shimeji": "食用菌",
 	"item.sakura.edodes": "香菇",
 	"item.sakura.roast_matsutake": "烤松茸",
-	
+
 	"item.sakura.nimono_fish": "鱼煮物",
 	"item.sakura.nimono_radish": "大根煮物",
 	"item.sakura.nimono_pumpkin": "南瓜煮物",
 	
+	"item.sakura.minced_meat": "肉糜",
+	"item.sakura.surimi": "鱼糜",
+	"item.sakura.soysauce": "酱油",
+	"item.sakura.dashi": "高汤",
+	"item.sakura.mirin": "味淋",
+	"item.sakura.sake_kasu": "清酒酒糟",
+	
+	"item.sakura.kamaboko": "蒲鉾",
+	"item.sakura.chikuwa_raw": "生竹轮",
+	"item.sakura.chikuwa": "竹轮",
+	"item.sakura.satsumaage": "萨摩扬",
+
 	"item.sakura.okinoyaki": "大阪烧",
 	"item.sakura.dough_okinoyaki": "大阪烧面团",
 	"item.sakura.okinoyaki_plus": "加强大阪烧",
 	"item.sakura.okinoyaki_final": "终极大阪烧",
-	
+
 	"item.sakura.bento_0": "便当",
 	"item.sakura.bento_1": "便当",
 	"item.sakura.bento_2": "蛋包饭便当",
 	"item.sakura.bento_3": "便当",
-	
+
+	"item.sakura.yakiniku":"日式烤肉",
+	"item.sakura.dango":"白团子",
+	"item.sakura.daifuku":"大福饼",
+	"item.sakura.kusa_daifuku":"草大福",
+
 	"item.sakura.bonito": "柴鱼",
 	"item.sakura.machined_bonito": "加工柴鱼",
 	"item.sakura.boiled_bonito": "煮柴鱼",
 	"item.sakura.smoked_bonito": "熏柴鱼",
 	"item.sakura.dried_bonito": "柴鱼干",
 	"item.sakura.bonito_shaving": "柴鱼碎",
-	
+
 	"item.sakura.pound_cake_mocha": "抹茶磅蛋糕",
 	"item.sakura.pudding_mocha": "抹茶布丁",
 	"item.sakura.mocha_cookie": "抹茶曲奇",
 	"item.sakura.taiyaki_mocha": "抹茶鲷鱼烧",
 	
+	"item.sakura.soybean":"大豆",
+    "item.sakura.molasses":"糖蜜",
+
 	"item.sakura.soup_miso": "味噌汤",
 	"item.sakura.yaki_pasta": "意面",
 	"item.sakura.yaki_soba": "烧荞麦面",
@@ -178,7 +204,7 @@
 	"item.sakura.vinegar": "醋",
 	"item.sakura.mayo": "蛋黄酱",
 	"item.sakura.worcester_sauce": "伍斯特酱",
-	
+
 	"item.sakura.taro": "芋头",
 	"item.sakura.taro_baked": "熟芋头",
 	"item.sakura.imogara": "芋茎",
@@ -270,7 +296,7 @@
 	"item.sakura.ochazuke": "茶泡饭",
 	"item.sakura.shrimp": "虾",
 	"item.sakura.tempura": "天妇罗",
-	"item.sakura.fishcake": "鱼糕",
+	"item.sakura.fishcake": "半平",
 	"item.sakura.tofu": "豆腐",
 	"item.sakura.tofu_fried": "炸豆腐",
 	"item.sakura.oden": "关东煮",
@@ -392,9 +418,9 @@
 	"item.sakura.yukata_3": "黄绿色浴衣",
 	"item.sakura.yukata_4": "黄色浴衣",
 	"item.sakura.kimono_miko": "巫女服",
-	
+
 	"item.sakura.kimono_ene": "赞助者：榎本贵音 「雪樱」",
-	
+
 	"sakuraarmor_samurai.texture": "盔甲颜色",
 	"item.sakura.soldier_armor": "灰色",
 	"item.sakura.soldier_armor_1": "黑色",
@@ -413,30 +439,30 @@
 	"item.sakura.bamboo_charcoal": "竹炭",
 	"item.sakura.zuku": "碎生铁",
 	"item.sakura.zuku_ingot": "生铁锭",
-	
+
 	"item.sakura:sakura_guide": "农夫指南",
-	
+
 	"item.sakura.noodle_soup": "面汤",
 	"item.sakura.soysause": "酱油",
 	"item.sakura.rice_redbean": "红豆饭",
 	"item.sakura.fish_bake": "烤鱼",
 	"item.sakura.fish_bake_salt": "盐烤鱼",
 	"item.sakura.fries": "薯条",
-	
+
 	"item.sakura.furofuki_daikon": "炊煮大根",
 	"item.sakura.cabbage_roll": "生菜肉卷",
 	"item.sakura.white_stew": "奶油炖汤",
 	"item.sakura.fruitsalad": "水果沙拉",
 	"item.sakura.buggys_meat": "Bagu爱吃的肉",
-	
+
 	"item.sakura.pasta_raw": "生意面",
 	"item.sakura.pasta_tomato": "番茄意面",
 	"item.sakura.pasta_mushroom": "蘑菇意面",
 	"item.sakura.pasta_whitesauce": "白酱意面",
-	
+
 	"item.sakura.egg_soft": "温泉蛋",
 	"item.sakura.egg_soysauce": "酱油温泉蛋",
-	
+
 	"item.sakura.earl_grey_leaves": "伯爵茶茶叶",
 	"item.sakura.black_tea_leaves": "红茶茶叶",
 	"item.sakura.green_tea_leaves": "绿茶茶叶",
@@ -485,15 +511,15 @@
 	"item.sakura.tequila_bottle": "龙舌兰酒瓶",
 	"item.sakura.liqueur_bottle": "利口酒瓶",
 	"item.sakura.cocoa_liqueur_bottle": "可可利口酒瓶",
-	
+
 	"item.sakura.zosui": "杂炊",
 	"item.sakura.zosui_zuiki": "芋茎杂炊",
 	"item.sakura.imotaki": "芋炊",
-	"item.sakura.noppei_jiru": "能平汤",
-	
+	"item.sakura.noppei_jiru": "能平煮",
+
 	"item.sakura.hyorogan": "兵粮丸",
 	"item.sakura.suikatsugan": "水渴丸",
-	
+
 	"item.sakura.cup": "杯子",
 	"item.sakura.black_tea": "红茶",
 	"item.sakura.milk_tea": "奶茶",
@@ -508,7 +534,7 @@
 	"item.sakura.mint_tea": "薄荷茶",
 	"item.sakura.barley_tea": "大麦茶",
 	"item.sakura.brown_rice_tea": "糙米茶",
-	
+
 	"item.sakura.glass_beer": "啤酒",
 	"item.sakura.glass_doburoku": "浊酒",
 	"item.sakura.glass_sake": "清酒",
@@ -566,7 +592,7 @@
 	"item.sakura.glass_scorpion": "天蝎",
 	"item.sakura.glass_moscow_mule": "莫斯科骡子",
 	"item.sakura.glass_boilermaker": "酒鬼炸弹",
-	
+
 	"fluid.sakura.food_oil": "食用油",
 	"item.sakura.food_oil_bucket":"食用油桶",
 	"fluid.sakura.grape_fluid": "葡萄汁",
@@ -587,30 +613,30 @@
 	"fluid.sakura.maple_syrup": "枫糖浆",
 	"fluid.sakura.yeast_liquid": "酵母液",
 	"fluid.sakura.hot_spring_water": "温泉水",
-	
+
 	"sakurakimono.texture": "和服材质",
 	"sakurahaori.texture": "羽织材质",
-	
+
 	"key.categories.sakura": "樱",
 	"key.sakura.sheath_in": "收刀入鞘",
-	
+
 	"sakurakatana.wrong_duel_shinai": "竹刀必须双手握持。",
 	"sakurakatana.wrong_duel": "你不能双持打刀。",
 	"sakurakatana.sheath.not_empty_hand": "空出一只手才可以拔刀。",
-	
-	"container.sakura.stonemortar": "石磨",
-	"container.sakura.campfirepot": "烹饪锅",
-	
+
+	"container.sakura.stone_mortar": "石磨",
+	"container.sakura.cooking_pot": "烹饪锅",
+
 	"barrel.contains.fluid": "这个桶含有%1$s液体",
 	"barrel.contains.nonfluid": "这个桶是空的",
-	
-	"jei.sakura.category.cooking_pot": "烹饪锅",
-	"jei.sakura.category.mortar": "石磨",
-	"jei.sakura.category.barrel": "酿造桶",
-	"jei.sakura.category.distillation": "蒸馏桶",
-	"jei.sakura.category.liquid_item": "液体装桶",
+
+	"sakura.jei.cooking": "烹饪锅",
+	"sakura.jei.stone_mortar": "石磨",
+	"sakura.jei.fermenting": "酿造桶",
+	"sakura.jei.distillation": "蒸馏桶",
+	"sakura.jei.chopping": "砧板",
 	"jei.sakura.category.straw_web": "风干",
-	
+
 	"entity.sakura.Deer": "鹿",
 	"entity.sakura.SamuraiIllager": "灾厄武士",
 	"entity.Villager.wa_farmer": "日本农民",
@@ -618,33 +644,20 @@
 	"entity.Villager.wa_trader": "日本商人",
 	"entity.Villager.wine_trader": "酒品贩子",
 	"entity.Villager.wa_silk": "丝绸商人",
-	
+
 	"guide.sakura_guide.landing_text": "世界上有许多作物。而本书主要收录收割者必须掌握的作物知识。",
 	
+	"sakura.jei.chopping.count":"需要切%s刀",
+
 	"itemGroup.sakura": "樱",
-	
-	"sakuraconfig.vanilla_weight": "香草世界生成率",
-	"sakuraconfig.vanilla_weight.tooltip": "变更香草的生成率，数字越高生成越多。",
-	"sakuraconfig.pepper_weight": "胡椒世界生成率",
-	"sakuraconfig.pepper_weight.tooltip": "变更胡椒的生成率，数字越高生成越多。",
-	"sakuraconfig.bambooshot_weight": "竹笋世界生成率",
-	"sakuraconfig.bambooshot_weight.tooltip": "变更竹笋的生成率，数字越高生成越多。",
-	"sakuraconfig.iron_sand_amount": "铁砂世界生成量",
-	"sakuraconfig.iron_sand_amount.tooltip": "变更铁砂的生成量，数字越高生成越多。",
-	"sakuraconfig.harder_iron_recipe": "硬核和钢冶炼机制",
-	"sakuraconfig.harder_iron_recipe.tooltip": "设为true启用铁锭的硬核合成配方。",
-	"sakuraconfig.hotspring_weight": "温泉世界生成率",
-	"sakuraconfig.hotspring_weight.tooltip": "变更温泉的生成率，数字越高生成越多。",
-	"sakuraconfig.every_where_sakura_diamond": "任意群系生成樱钻",
-	"sakuraconfig.every_where_sakura_diamond.tooltip": "设为true使樱色钻石生成在任何群系。",
-	
+
 	"sakurawarning.harder_iron_recipe_enabled": "硬核和钢冶炼机制启用，享受锻造的乐趣吧！",
-	
+
 	"wailaharvestability.toolclass.forging_hammer": "锻造锤",
-	
+
 	"sakuratooltip.campfire.fire_remain": "剩余燃料: %1$s Ticks",
 	"sakuratooltip.campfire.item_in": "篝火里的物品: %1$s",
-	
+
 	"sakuraeffect.scorpion": "蝎毒",
 	"sakuraeffect.cannon": "大炮",
 	"sakuraeffect.exp_up": "经验提升",

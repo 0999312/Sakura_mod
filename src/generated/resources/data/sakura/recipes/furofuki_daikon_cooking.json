@@ -1,0 +1,24 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/radish"
+    },
+    {
+      "tag": "forge:miso"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:furofuki_daikon",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

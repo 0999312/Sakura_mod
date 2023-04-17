@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0.0-1.18.2'
+version = '1.0.7-1.18.2'
 group = 'cn.mcmod.sakura'
 archivesBaseName = 'sakura'
 
@@ -69,7 +69,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
-    mavenLocal()
+    maven { url = "https://raw.github.com/0999312/MMMaven/main/repository" }
     // JEI, Tinker's Construct, Mantle, Iron Chests, Natura, etc.
     maven { url = "https://dvs1.progwml6.com/files/maven" }
     // Patchouli
@@ -88,9 +88,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.44'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
 
-    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.0.1-1.18.2")
+    implementation fg.deobf("cn.mcmod_mmf.mmlib:MMLib:1.1.2-1.18.2")
     implementation fg.deobf("curse.maven:farmers-delight-398521:3739914")
     compileOnly fg.deobf("mezz.jei:jei-1.18.2-forge:10.0.0.191")
     // at runtime, use the full JEI jar

@@ -1,0 +1,27 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:sugar"
+    },
+    {
+      "tag": "forge:dashi"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:tamagoyaki",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

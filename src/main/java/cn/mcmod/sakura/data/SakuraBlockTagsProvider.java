@@ -23,6 +23,8 @@ public class SakuraBlockTagsProvider extends BlockTagsProvider {
                 BlockRegistry.MAPLE_WOOD.get(), BlockRegistry.STRIPPED_SAKURA_LOG.get(),
                 BlockRegistry.STRIPPED_MAPLE_LOG.get(), BlockRegistry.SAKURA_LOG.get(), BlockRegistry.MAPLE_LOG.get(),
                 BlockRegistry.MAPLE_SAP_LOG.get());
+        
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockRegistry.STONE_MORTAR.get());
 
         this.tag(BlockTags.LEAVES).add(BlockRegistry.SAKURA_LEAVES.get(), BlockRegistry.MAPLE_LEAVES_RED.get(),
                 BlockRegistry.MAPLE_LEAVES_GREEN.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get(),

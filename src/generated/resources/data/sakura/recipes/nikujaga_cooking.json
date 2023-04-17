@@ -1,0 +1,35 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    [
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      }
+    ],
+    {
+      "tag": "forge:crops/carrot"
+    },
+    {
+      "tag": "forge:crops/potato"
+    },
+    {
+      "tag": "forge:soysauce"
+    },
+    {
+      "item": "sakura:mirin"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:nikujaga",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "farmersdelight",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "S#",
+          "#S"
+        ],
+        "key": {
+          "#": {
+            "tag": "forge:straw"
+          },
+          "S": {
+            "item": "farmersdelight:canvas"
+          }
+        },
+        "result": {
+          "item": "farmersdelight:tatami",
+          "count": 2
+        }
+      }
+    }
+  ]
+}

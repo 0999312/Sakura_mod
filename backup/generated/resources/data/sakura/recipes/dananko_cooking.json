@@ -1,0 +1,19 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "item": "sakura:dango"
+    },
+    {
+      "item": "sakura:red_bean_paste"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:dananko"
+  },
+  "recipeTime": 200
+}

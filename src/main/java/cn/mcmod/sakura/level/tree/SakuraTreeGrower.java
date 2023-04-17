@@ -11,9 +11,9 @@ public class SakuraTreeGrower extends AbstractTreeGrower {
     @Override
     protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean hasBees) {
         if (random.nextInt(10) == 0) {
-            return Holder.direct(SakuraTreeFeatures.FANCY_SAKURA.get());
+            return SakuraTreeFeatures.FANCY_SAKURA.getHolder().get();
         } else {
-            return Holder.direct(SakuraTreeFeatures.SAKURA.get());
+            return SakuraTreeFeatures.SAKURA.getHolder().get();
         }
     }
 

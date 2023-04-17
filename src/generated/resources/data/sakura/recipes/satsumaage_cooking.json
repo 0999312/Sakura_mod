@@ -1,0 +1,21 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:salt"
+    },
+    {
+      "item": "sakura:surimi"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:satsumaage",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

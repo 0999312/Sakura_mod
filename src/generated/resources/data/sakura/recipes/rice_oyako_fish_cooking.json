@@ -9,6 +9,9 @@
     },
     {
       "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:soysauce"
     }
   ],
   "fluid": {
@@ -18,5 +21,6 @@
   "result": {
     "item": "sakura:rice_oyako_fish"
   },
+  "experience": 0.0,
   "recipeTime": 200
 }

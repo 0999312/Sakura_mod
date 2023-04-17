@@ -28,7 +28,7 @@ public class FermenterContainer extends AbstractContainerMenu {
 
     public FermenterContainer(final int windowId, final Inventory playerInventory,
             final FermenterBlockEntity tileEntity, ContainerData cookingPotDataIn) {
-        super(ContainerRegistry.COOKING_POT.get(), windowId);
+        super(ContainerRegistry.FERMENTER.get(), windowId);
         this.tileEntity = tileEntity;
         this.inventory = tileEntity.getInventory();
         this.containerData = cookingPotDataIn;
@@ -36,12 +36,12 @@ public class FermenterContainer extends AbstractContainerMenu {
         int startX = 8;
         int startY = 18;
         for (int row = 0; row < 3; ++row) {
-            for (int column = 0; column < 3; ++column) {
-                this.addSlot(new SlotItemHandler(inventory, (row * 3) + column, 39 + (column * 18), 17 + (row * 18)));
-            }
+                this.addSlot(new SlotItemHandler(inventory, row, 55, 17 + (row * 18)));
         }
-
-        this.addSlot(new FermenterResultSlot(playerInventory.player, tileEntity, inventory, 9, 136, 38));
+        
+        for (int row = 0; row < 3; ++row) {
+            this.addSlot(new FermenterResultSlot(playerInventory.player, tileEntity, inventory, 3 + row, 103, 17 + (row * 18)));
+        }
 
         // Main Player Inventory
         int startPlayerInvY = startY * 4 + 12;
@@ -62,9 +62,9 @@ public class FermenterContainer extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
-        // 0-9: Contain inventory
-        // 10-36: Player inventory
-        // 37-46: Hot bar in the player inventory
+        // 0-5: Contain inventory
+        // 6-32: Player inventory
+        // 33-42: Hot bar in the player inventory
 
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
@@ -73,21 +73,21 @@ public class FermenterContainer extends AbstractContainerMenu {
             ItemStack itemStack1 = slot.getItem();
             itemStack = itemStack1.copy();
 
-            if (index >= 0 && index <= 9) {
-                if (!this.moveItemStackTo(itemStack1, 10, 46, true)) {
+            if (index >= 0 && index <= 5) {
+                if (!this.moveItemStackTo(itemStack1, 6, 42, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onQuickCraft(itemStack1, itemStack);
-            } else if (index >= 10) {
-                if (index >= 10 && index < 37) {
-                    if (!this.moveItemStackTo(itemStack1, 37, 46, false)) {
+            } else if (index >= 7) {
+                if (index >= 7 && index < 34) {
+                    if (!this.moveItemStackTo(itemStack1, 33, 42, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (index >= 37 && index < 46 && !this.moveItemStackTo(itemStack1, 10, 37, false)) {
+                } else if (index >= 33 && index < 42 && !this.moveItemStackTo(itemStack1, 7, 33, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemStack1, 10, 46, false)) {
+            } else if (!this.moveItemStackTo(itemStack1, 7, 42, false)) {
                 return ItemStack.EMPTY;
             }
 
@@ -123,7 +123,7 @@ public class FermenterContainer extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player playerIn) {
-        return stillValid(canInteractWithCallable, playerIn, BlockRegistry.COOKING_POT.get());
+        return stillValid(canInteractWithCallable, playerIn, BlockRegistry.FERMENTER.get());
     }
 
     @OnlyIn(Dist.CLIENT)

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L  ",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:cobblestone"
+    },
+    "L": {
+      "tag": "forge:lumber"
+    }
+  },
+  "result": {
+    "item": "sakura:stone_mortar"
+  }
+}

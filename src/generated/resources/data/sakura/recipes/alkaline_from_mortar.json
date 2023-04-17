@@ -10,9 +10,10 @@
       "item": "minecraft:cobblestone"
     },
     {
-      "item": "sakura:salt",
+      "item": "sakura:alkaline",
       "count": 2
     }
   ],
+  "experience": 0.0,
   "recipeTime": 200
 }

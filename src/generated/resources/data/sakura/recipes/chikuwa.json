@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "sakura:chikuwa_raw"
+  },
+  "result": "sakura:chikuwa",
+  "experience": 0.5,
+  "cookingtime": 200
+}

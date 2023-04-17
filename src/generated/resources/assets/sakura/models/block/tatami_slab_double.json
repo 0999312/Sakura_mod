@@ -1,0 +1,8 @@
+{
+  "parent": "mmlib:block/facing_block",
+  "textures": {
+    "side": "sakura:block/tatami",
+    "bottom": "sakura:block/tatami",
+    "top": "sakura:block/tatami"
+  }
+}

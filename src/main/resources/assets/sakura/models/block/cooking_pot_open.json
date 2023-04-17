@@ -4,6 +4,7 @@
 		"0": "sakura:block/cooking_pot_bottom",
 		"1": "sakura:block/cooking_pot_side",
 		"2": "sakura:block/cooking_pot_top",
+		"3": "sakura:block/cooking_pot_top_side",
 		"particle": "sakura:block/cooking_pot_bottom"
 	},
 	"elements": [
@@ -15,7 +16,7 @@
 				"east": {"uv": [1, 8, 15, 16], "texture": "#1"},
 				"south": {"uv": [1, 8, 15, 16], "texture": "#1"},
 				"west": {"uv": [1, 8, 15, 16], "texture": "#1"},
-				"up": {"uv": [1, 1, 15, 15], "texture": "#2"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#3"},
 				"down": {"uv": [1, 1, 15, 15], "texture": "#0"}
 			}
 		},
@@ -42,6 +43,20 @@
 				"up": {"uv": [5, 8, 9, 9], "texture": "#1"},
 				"down": {"uv": [5, 8, 9, 9], "texture": "#1"}
 			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [13, 8.1, 13],
+			"to": [3, 2.1, 3],
+			"faces": {
+				"north": {"uv": [1.1, 8.1, 14.9, 13.9], "rotation": 180, "texture": "#1"},
+				"east": {"uv": [1.1, 8.1, 14.9, 13.9], "rotation": 180, "texture": "#1"},
+				"south": {"uv": [1.1, 8.1, 14.9, 13.9], "rotation": 180, "texture": "#1"},
+				"west": {"uv": [1.1, 8.1, 14.9, 13.9], "rotation": 180, "texture": "#1"},
+				"up": {"uv": [3, 3, 13, 13], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [3, 3, 13, 13], "rotation": 180, "texture": "#2"}
+			}
 		}
-	]
+	],
+	"display": {}
 }

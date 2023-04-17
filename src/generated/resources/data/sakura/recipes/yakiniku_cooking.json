@@ -1,0 +1,28 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    [
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      },
+      {
+        "tag": "forge:raw_mutton"
+      }
+    ],
+    {
+      "tag": "forge:soysauce"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:yakiniku"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -1,0 +1,25 @@
+{
+  "type": "sakura:fermenting",
+  "ingredients": [
+    {
+      "tag": "forge:dust/charcoal"
+    }
+  ],
+  "fluid": {
+    "fluid": "sakura:doburoku",
+    "nbt": {},
+    "amount": 500
+  },
+  "results": [
+    {
+      "item": "sakura:sake_kasu",
+      "count": 2
+    }
+  ],
+  "result_fluid": {
+    "fluid": "sakura:sake",
+    "amount": 250
+  },
+  "experience": 10.0,
+  "recipeTime": 500
+}

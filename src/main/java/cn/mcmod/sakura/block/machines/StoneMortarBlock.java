@@ -25,7 +25,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class StoneMortarBlock extends BaseEntityBlock {
 
     public StoneMortarBlock() {
-        super(Properties.copy(Blocks.STONE).noOcclusion());
+        super(Properties.copy(Blocks.COBBLESTONE).noOcclusion());
     }
 
     @Override

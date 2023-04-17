@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:food_oil_bucket"
+    ]
+  },
+  "criteria": {
+    "has_seeds": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:seeds/rapeseed"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:food_oil_bucket"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_seeds",
+      "has_the_recipe"
+    ]
+  ]
+}

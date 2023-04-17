@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "L#L"
+  ],
+  "key": {
+    "#": {
+      "item": "sakura:sakuraleaves"
+    },
+    "L": {
+      "tag": "forge:lumber"
+    }
+  },
+  "result": {
+    "item": "sakura:obon"
+  }
+}

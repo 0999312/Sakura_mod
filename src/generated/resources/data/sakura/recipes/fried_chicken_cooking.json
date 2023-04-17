@@ -1,0 +1,29 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_chicken"
+    },
+    [
+      {
+        "item": "sakura:breadcrumbs"
+      },
+      {
+        "tag": "forge:flour"
+      }
+    ],
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:fried_chicken",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

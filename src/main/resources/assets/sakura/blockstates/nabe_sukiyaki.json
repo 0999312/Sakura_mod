@@ -1,0 +1,37 @@
+{
+  "variants": {
+    "is_cooked=false,facing=north,bites=0":  { "model": "sakura:block/nabe_uncooked" },
+    "is_cooked=false,facing=south,bites=0":  { "model": "sakura:block/nabe_uncooked", "y": 180 },
+    "is_cooked=false,facing=west,bites=0":  { "model": "sakura:block/nabe_uncooked", "y": 270 },
+    "is_cooked=false,facing=east,bites=0":  { "model": "sakura:block/nabe_uncooked", "y": 90 },
+    "is_cooked=false,facing=north,bites=1":  { "model": "sakura:block/nabe_uncooked" },
+    "is_cooked=false,facing=south,bites=1":  { "model": "sakura:block/nabe_uncooked", "y": 180 },
+    "is_cooked=false,facing=west,bites=1":  { "model": "sakura:block/nabe_uncooked", "y": 270 },
+    "is_cooked=false,facing=east,bites=1":  { "model": "sakura:block/nabe_uncooked", "y": 90 },
+    "is_cooked=false,facing=north,bites=2":  { "model": "sakura:block/nabe_uncooked" },
+    "is_cooked=false,facing=south,bites=2":  { "model": "sakura:block/nabe_uncooked", "y": 180 },
+    "is_cooked=false,facing=west,bites=2":  { "model": "sakura:block/nabe_uncooked", "y": 270 },
+    "is_cooked=false,facing=east,bites=2":  { "model": "sakura:block/nabe_uncooked", "y": 90 },
+    "is_cooked=false,facing=north,bites=3":  { "model": "sakura:block/nabe_uncooked" },
+    "is_cooked=false,facing=south,bites=3":  { "model": "sakura:block/nabe_uncooked", "y": 180 },
+    "is_cooked=false,facing=west,bites=3":  { "model": "sakura:block/nabe_uncooked", "y": 270 },
+    "is_cooked=false,facing=east,bites=3":  { "model": "sakura:block/nabe_uncooked", "y": 90 },
+
+    "is_cooked=true,facing=north,bites=0":  { "model": "sakura:block/nabe_sukiyaki" },
+    "is_cooked=true,facing=south,bites=0":  { "model": "sakura:block/nabe_sukiyaki", "y": 180 },
+    "is_cooked=true,facing=west,bites=0":  { "model": "sakura:block/nabe_sukiyaki", "y": 270 },
+    "is_cooked=true,facing=east,bites=0":  { "model": "sakura:block/nabe_sukiyaki", "y": 90 },
+    "is_cooked=true,facing=north,bites=1":  { "model": "sakura:block/nabe_sukiyaki_1" },
+    "is_cooked=true,facing=south,bites=1":  { "model": "sakura:block/nabe_sukiyaki_1", "y": 180 },
+    "is_cooked=true,facing=west,bites=1":  { "model": "sakura:block/nabe_sukiyaki_1", "y": 270 },
+    "is_cooked=true,facing=east,bites=1":  { "model": "sakura:block/nabe_sukiyaki_1", "y": 90 },
+    "is_cooked=true,facing=north,bites=2":  { "model": "sakura:block/nabe_sukiyaki_2" },
+    "is_cooked=true,facing=south,bites=2":  { "model": "sakura:block/nabe_sukiyaki_2", "y": 180 },
+    "is_cooked=true,facing=west,bites=2":  { "model": "sakura:block/nabe_sukiyaki_2", "y": 270 },
+    "is_cooked=true,facing=east,bites=2":  { "model": "sakura:block/nabe_sukiyaki_2", "y": 90 },
+    "is_cooked=true,facing=north,bites=3":  { "model": "sakura:block/nabe_sukiyaki_3" },
+    "is_cooked=true,facing=south,bites=3":  { "model": "sakura:block/nabe_sukiyaki_3", "y": 180 },
+    "is_cooked=true,facing=west,bites=3":  { "model": "sakura:block/nabe_sukiyaki_3", "y": 270 },
+    "is_cooked=true,facing=east,bites=3":  { "model": "sakura:block/nabe_sukiyaki_3", "y": 90 }
+  }
+}

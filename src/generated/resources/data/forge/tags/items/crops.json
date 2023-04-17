@@ -10,6 +10,7 @@
     "#forge:crops/tomato",
     "#forge:crops/taro",
     "#forge:seeds/rapeseed",
-    "#forge:crops/redbean"
+    "#forge:crops/redbean",
+    "#forge:crops/pumpkin"
   ]
 }

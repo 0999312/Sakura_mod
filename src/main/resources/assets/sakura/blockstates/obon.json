@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north":  { "model": "sakura:block/obon" },
+    "facing=south":  { "model": "sakura:block/obon", "y": 180 },
+    "facing=west":  { "model": "sakura:block/obon", "y": 270 },
+    "facing=east":  { "model": "sakura:block/obon", "y": 90 }
+  }
+}

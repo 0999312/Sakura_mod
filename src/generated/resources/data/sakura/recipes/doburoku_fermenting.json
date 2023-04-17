@@ -1,0 +1,22 @@
+{
+  "type": "sakura:fermenting",
+  "ingredients": [
+    {
+      "item": "sakura:rice_cooked"
+    },
+    {
+      "tag": "forge:kouji"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 1000
+  },
+  "results": [],
+  "result_fluid": {
+    "fluid": "sakura:doburoku",
+    "amount": 500
+  },
+  "experience": 0.0,
+  "recipeTime": 800
+}

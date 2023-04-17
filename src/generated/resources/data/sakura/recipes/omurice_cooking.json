@@ -1,0 +1,37 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    [
+      {
+        "tag": "forge:raw_chicken"
+      },
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      },
+      {
+        "tag": "forge:raw_mutton"
+      },
+      {
+        "tag": "forge:fishes"
+      }
+    ],
+    {
+      "tag": "forge:tomatosauce"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:omurice"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

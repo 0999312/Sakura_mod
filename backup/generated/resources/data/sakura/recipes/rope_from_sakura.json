@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "modid": "farmersdelight",
+          "type": "forge:mod_loaded"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "s",
+          "s",
+          "s"
+        ],
+        "key": {
+          "s": {
+            "tag": "forge:straw"
+          }
+        },
+        "result": {
+          "item": "farmersdelight:rope",
+          "count": 3
+        }
+      }
+    }
+  ]
+}

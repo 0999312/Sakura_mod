@@ -29,6 +29,8 @@ public class FoodRegistry {
     }
 
     private static ItemFoodBase normalFood(FoodInfo info, Item container) {
+        if(container == null)
+            return normalFood(info);
         return new ItemFoodBase(SakuraMod.defaultItemProperties().craftRemainder(container), info);
     }
 

@@ -1,0 +1,24 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_fishes"
+    },
+    {
+      "tag": "forge:miso"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:nimono_fish",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

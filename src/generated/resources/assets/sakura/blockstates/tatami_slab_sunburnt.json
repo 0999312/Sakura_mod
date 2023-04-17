@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=north,type=top,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_top"
+    },
+    "facing=south,type=top,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 180
+    },
+    "facing=west,type=top,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 270
+    },
+    "facing=east,type=top,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 90
+    },
+    "facing=north,type=bottom,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt"
+    },
+    "facing=south,type=bottom,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 180
+    },
+    "facing=west,type=bottom,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 270
+    },
+    "facing=east,type=bottom,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 90
+    },
+    "facing=north,type=double,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_double"
+    },
+    "facing=south,type=double,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 180
+    },
+    "facing=west,type=double,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 270
+    },
+    "facing=east,type=double,waterlogged=false": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 90
+    },
+    "facing=north,type=top,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_top"
+    },
+    "facing=south,type=top,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 180
+    },
+    "facing=west,type=top,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 270
+    },
+    "facing=east,type=top,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_top",
+      "y": 90
+    },
+    "facing=north,type=bottom,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt"
+    },
+    "facing=south,type=bottom,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 180
+    },
+    "facing=west,type=bottom,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 270
+    },
+    "facing=east,type=bottom,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt",
+      "y": 90
+    },
+    "facing=north,type=double,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_double"
+    },
+    "facing=south,type=double,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 180
+    },
+    "facing=west,type=double,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 270
+    },
+    "facing=east,type=double,waterlogged=true": {
+      "model": "sakura:block/tatami_slab_sunburnt_double",
+      "y": 90
+    }
+  }
+}

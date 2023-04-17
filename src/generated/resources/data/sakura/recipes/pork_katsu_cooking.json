@@ -1,0 +1,24 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_pork"
+    },
+    {
+      "item": "sakura:breadcrumbs"
+    },
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:katsu",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

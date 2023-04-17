@@ -2,6 +2,14 @@
   "replace": false,
   "values": [
     "sakura:food_oil",
-    "sakura:food_oil_flowing"
+    "sakura:food_oil_flowing",
+    {
+      "id": "tfc:flowing_olive_oil",
+      "required": false
+    },
+    {
+      "id": "tfc:olive_oil",
+      "required": false
+    }
   ]
 }

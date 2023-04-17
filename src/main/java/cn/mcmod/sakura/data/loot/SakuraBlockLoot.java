@@ -1,8 +1,11 @@
 package cn.mcmod.sakura.data.loot;
 
 import cn.mcmod.sakura.block.BambooPlant;
+import cn.mcmod.sakura.block.BlockItemRegistry;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.crops.RiceCropRoot;
+import cn.mcmod.sakura.block.foods.TeishokuBlock;
+import cn.mcmod.sakura.block.foods.TeishokuFinishedBlock;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
 import cn.mcmod.sakura.item.enums.SakuraFoodSet;
@@ -13,6 +16,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
@@ -26,10 +32,14 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
                 ;
             else if (block.get() instanceof CropBlock)
                 ;
+            else if (block.get() instanceof TeishokuBlock)
+                ;
             else if (block.get() instanceof RiceCropRoot)
                 ;
             else if (block.get() instanceof BambooPlant)
                 dropOther(block.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO).get());
+            else if (block.get() instanceof TeishokuFinishedBlock)
+                dropOther(block.get(), BlockItemRegistry.OBON.get());
             else
                 dropSelf(block.get());
         });
@@ -44,6 +54,11 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
         this.add(BlockRegistry.SAKURA_LEAVES.get(), createLeavesDrops(BlockRegistry.SAKURA_LEAVES.get(),
                 BlockRegistry.SAKURA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
+        this.createTeishoku(BlockRegistry.TEISHOUKU_FISH_COOKED.get());
+        this.createTeishoku(BlockRegistry.TEISHOUKU_FISH_RAW.get());
+        this.createTeishoku(BlockRegistry.TEISHOUKU_FISH_SALT.get());
+        this.createTeishoku(BlockRegistry.TEISHOKO_TAMAGOYAKI.get());
+        
         createCrop(BlockRegistry.CABBAGE_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.CABBAGE).get(),
                 ItemRegistry.CABBAGE_SEEDS.get(), 7);
 
@@ -57,10 +72,10 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
         createCrop(BlockRegistry.SOYBEAN_CROP.get(), ItemRegistry.SOYBEAN.get(), ItemRegistry.SOYBEAN.get(), 3);
 
         createCrop(BlockRegistry.EGGPLANT_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.EGGPLANT).get(),
-                ItemRegistry.EGGPLANT_SEEDS.get(), 3);
+                ItemRegistry.EGGPLANT_SEEDS.get(), 7);
 
         createCrop(BlockRegistry.TOMATO_CROP.get(), FoodRegistry.FOODSET.get(SakuraFoodSet.TOMATO).get(),
-                ItemRegistry.TOMATO_SEEDS.get(), 3);
+                ItemRegistry.TOMATO_SEEDS.get(), 7);
 
         createCrop(BlockRegistry.RICE_CROP.get(), ItemRegistry.MATERIALS.get(SakuraNormalItemSet.STRAW).get(),
                 ItemRegistry.RICE_SEEDS.get(), 7);
@@ -74,6 +89,21 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
                 ItemRegistry.TARO.get(), 3);
 
         createCrop(BlockRegistry.BUCKWHEAT_CROP.get(), ItemRegistry.BUCKWHEAT.get(), ItemRegistry.BUCKWHEAT.get(), 7);
+    }
+
+    private void createTeishoku(Block block) {
+        LootItemCondition.Builder builder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TeishokuBlock.BITES, 0));
+        this.add(block, createTeishokuDrops(block, BlockItemRegistry.OBON.get(), block.asItem(), builder));
+    }
+
+    protected static LootTable.Builder createTeishokuDrops(Block p_124143_, Item p_124144_, Item p_124145_,
+            LootItemCondition.Builder p_124146_) {
+        return applyExplosionDecay(p_124143_, LootTable.lootTable()
+                .withPool(LootPool.lootPool().add(
+                        LootItem.lootTableItem(p_124145_).when(p_124146_)))
+                .withPool(
+                        LootPool.lootPool().when(p_124146_.invert()).add(LootItem.lootTableItem(p_124144_))));
     }
 
     private void createCrop(Block block, Item crop, Item seeds, int age) {

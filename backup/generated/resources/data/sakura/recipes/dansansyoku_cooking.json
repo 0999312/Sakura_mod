@@ -1,0 +1,22 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "item": "sakura:dango"
+    },
+    {
+      "item": "sakura:sakuraleaves"
+    },
+    {
+      "item": "minecraft:grass"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:dansansyoku"
+  },
+  "recipeTime": 200
+}

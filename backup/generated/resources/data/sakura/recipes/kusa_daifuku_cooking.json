@@ -1,0 +1,23 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:dough/rice"
+    },
+    {
+      "item": "minecraft:grass"
+    },
+    {
+      "item": "sakura:red_bean_paste"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:kusa_daifuku",
+    "count": 2
+  },
+  "recipeTime": 200
+}

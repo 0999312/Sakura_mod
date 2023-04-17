@@ -1,0 +1,45 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    [
+      {
+        "tag": "forge:raw_chicken"
+      },
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      },
+      {
+        "tag": "forge:raw_mutton"
+      }
+    ],
+    [
+      {
+        "tag": "forge:raw_chicken"
+      },
+      {
+        "tag": "forge:raw_pork"
+      },
+      {
+        "tag": "forge:raw_beef"
+      },
+      {
+        "tag": "forge:raw_mutton"
+      }
+    ]
+  ],
+  "results": [
+    {
+      "item": "sakura:minced_meat",
+      "count": 2
+    },
+    {
+      "item": "sakura:minced_meat",
+      "count": 2
+    }
+  ],
+  "experience": 0.0,
+  "recipeTime": 200
+}

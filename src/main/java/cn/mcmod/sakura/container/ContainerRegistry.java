@@ -16,4 +16,10 @@ public class ContainerRegistry {
 
     public static final RegistryObject<MenuType<CookingPotContainer>> COOKING_POT = CONTAINER_TYPES
             .register("cooking_pot", () -> IForgeMenuType.create(CookingPotContainer::new));
+    
+    public static final RegistryObject<MenuType<FermenterContainer>> FERMENTER = CONTAINER_TYPES
+            .register("fermenter", () -> IForgeMenuType.create(FermenterContainer::new));
+    
+    public static final RegistryObject<MenuType<DistillerContainer>> DISTILLER = CONTAINER_TYPES
+            .register("distiller", () -> IForgeMenuType.create(DistillerContainer::new));
 }

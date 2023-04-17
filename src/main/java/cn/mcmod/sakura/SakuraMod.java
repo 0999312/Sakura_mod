@@ -1,6 +1,5 @@
 package cn.mcmod.sakura;
 
-import cn.mcmod.sakura.recipes.recipes.register.RecipeManager;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -66,7 +65,6 @@ public class SakuraMod {
         RecipeTypeRegistry.RECIPE_SERIALIZERS.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SakuraConfig.COMMON_CONFIG);
 
-        RecipeManager.register(modEventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event) {

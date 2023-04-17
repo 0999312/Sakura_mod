@@ -1,0 +1,31 @@
+{
+  "type": "sakura:chopping",
+  "ingredient": [
+    {
+      "item": "minecraft:cod"
+    },
+    {
+      "item": "minecraft:salmon"
+    },
+    {
+      "item": "minecraft:tropical_fish"
+    }
+  ],
+  "tool": {
+    "tag": "sakura:tools/knives/fish"
+  },
+  "result": {
+    "item": "sakura:machined_fish"
+  },
+  "byproducts": [
+    {
+      "item": "sakura:machined_fish"
+    },
+    {
+      "item": "minecraft:bone_meal",
+      "chance": 0.5
+    }
+  ],
+  "experience": 1.0,
+  "recipeTime": 1
+}

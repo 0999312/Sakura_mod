@@ -1,16 +1,15 @@
 package cn.mcmod.sakura.data.builder;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Lists;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import cn.mcmod.sakura.recipes.CookingPotRecipe;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -19,16 +18,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class CookingPotRecipeBuilder {
     private final ItemStack result;
-    private final List<Ingredient> ingredients = Lists.newArrayList();
+    private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final FluidIngredient fluid;
     private final float experience;
     private final int recipeTime;
 
-    public CookingPotRecipeBuilder(FluidIngredient fluid, ItemLike resultItem, int count, float exp, int time) {
+    private CookingPotRecipeBuilder(FluidIngredient fluid, ItemLike resultItem, int count, float exp, int time) {
         this.result = new ItemStack(resultItem.asItem(), count);
         this.fluid = fluid;
         this.experience = exp;
@@ -78,63 +76,32 @@ public class CookingPotRecipeBuilder {
         return this;
     }
 
-    public Item getResult() {
-        return this.result.getItem();
-    }
-
     public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         consumer.accept(new CookingPotRecipeBuilder.Result(id, this.fluid, this.result, this.ingredients,
                 this.experience, this.recipeTime));
     }
 
-    public int getRecipeTime() {
-        return recipeTime;
-    }
-
-    public float getExperience() {
-        return experience;
-    }
-
     public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
-        private final ItemStack result;
-        private final List<Ingredient> ingredients;
-        private final float experience;
-        private final int recipeTime;
-        private final FluidIngredient fluid;
+        private final CookingPotRecipe recipe = new CookingPotRecipe();
 
-        public Result(ResourceLocation id, FluidIngredient fluid, ItemStack result, List<Ingredient> ingredients,
+        public Result(ResourceLocation id, FluidIngredient fluid, ItemStack result, NonNullList<Ingredient> ingredients,
                 float exp, int time) {
-            this.id = id;
-            this.result = result;
-            this.fluid = fluid;
-            this.ingredients = ingredients;
-            this.experience = exp;
-            this.recipeTime = time;
+            recipe.setId(id);
+            recipe.output = result;
+            recipe.fluidInput = fluid;
+            recipe.inputItems = ingredients;
+            recipe.experience = exp;
+            recipe.recipeTime = time;
         }
 
         @Override
         public void serializeRecipeData(JsonObject json) {
-            JsonArray jsonarray = new JsonArray();
-
-            for (Ingredient ingredient : this.ingredients) {
-                jsonarray.add(ingredient.toJson());
-            }
-
-            json.add("ingredients", jsonarray);
-            if(this.fluid != FluidIngredient.EMPTY)
-                json.add("fluid", this.fluid.serialize());
-            JsonObject objectResult = new JsonObject();
-            objectResult.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result.getItem()).toString());
-            if (this.result.getCount() > 1) {
-                objectResult.addProperty("count", this.result.getCount());
-            }
-            json.add("result", objectResult);
-
-            if (this.experience > 0) {
-                json.addProperty("experience", this.experience);
-            }
-            json.addProperty("recipeTime", this.recipeTime);
+            JsonObject recipeJson = RecipeTypeRegistry.COOKING_RECIPE_SERIALIZER.get().toJson(recipe);
+            json.add("ingredients", recipeJson.get("ingredients"));
+            json.add("fluid", recipeJson.get("fluid"));
+            json.add("result", recipeJson.get("result"));
+            json.add("experience", recipeJson.get("experience"));
+            json.add("recipeTime", recipeJson.get("recipeTime"));
         }
 
         @Override
@@ -144,7 +111,7 @@ public class CookingPotRecipeBuilder {
 
         @Override
         public ResourceLocation getId() {
-            return this.id;
+            return recipe.getId();
         }
 
         @Nullable

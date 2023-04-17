@@ -1,0 +1,26 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:vegetables"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:rice_fried"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

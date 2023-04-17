@@ -5,6 +5,8 @@ import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.entity.BlockEntityRegistry;
 import cn.mcmod.sakura.client.particle.FallenLeafParticle;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
+import cn.mcmod.sakura.client.render.ChoppingBoardRender;
+import cn.mcmod.sakura.client.render.ObonRender;
 import cn.mcmod.sakura.client.render.StoneMortarRenderer;
 import cn.mcmod.sakura.fluid.FluidRegistry;
 import net.minecraft.client.Minecraft;
@@ -24,14 +26,18 @@ public class ClientEvents {
     @SubscribeEvent
     public static void clientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAKURA_SAPLING.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.RICE_CROP_ROOT.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOO_PLANT.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOOSHOOT.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAKURA_SAPLING.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.RICE_CROP_ROOT.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOO_PLANT.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.BAMBOOSHOOT.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COOKING_POT.get(), RenderType.cutoutMipped());
+            
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.NABE_ODEN.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(BlockRegistry.NABE_SUKIYAKI.get(), RenderType.cutoutMipped());
             
             BlockRegistry.BLOCKS.getEntries().forEach(block -> {
                 if (block.get() instanceof BushBlock) {
-                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutout());
+                    ItemBlockRenderTypes.setRenderLayer(block.get(), RenderType.cutoutMipped());
                 }
             });
             FluidRegistry.FLUIDS.getEntries().forEach(fluid -> {
@@ -39,6 +45,8 @@ public class ClientEvents {
             });
             
             BlockEntityRenderers.register(BlockEntityRegistry.STONE_MORTAR.get(), StoneMortarRenderer::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.CHOPPING_BOARD.get(), ChoppingBoardRender::new);
+            BlockEntityRenderers.register(BlockEntityRegistry.OBON.get(), ObonRender::new);
         });
     }
 

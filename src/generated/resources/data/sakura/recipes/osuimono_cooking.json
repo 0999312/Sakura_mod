@@ -1,0 +1,21 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "tag": "forge:soysauce"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:osuimono",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

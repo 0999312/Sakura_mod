@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "age=0":  { "model": "sakura:block/taro_0" },
-    "age=1":  { "model": "sakura:block/taro_1" },
-    "age=2":  { "model": "sakura:block/taro_2" },
-    "age=3":  { "model": "sakura:block/taro_3" }
-  }
-}

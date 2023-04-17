@@ -8,7 +8,7 @@
       "item": "sakura:burger"
     },
     {
-      "item": "sakura:tomato_sauce"
+      "tag": "forge:tomatosauce"
     }
   ],
   "result": {

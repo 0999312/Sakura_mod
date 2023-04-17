@@ -348,7 +348,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("sakura.stone_mortar");
+        return new TranslatableComponent("container.sakura.stone_mortar");
     }
 
     @OnlyIn(Dist.CLIENT)

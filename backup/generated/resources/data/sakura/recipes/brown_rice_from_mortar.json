@@ -1,0 +1,26 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:seeds/rice"
+    },
+    {
+      "tag": "forge:seeds/rice"
+    },
+    {
+      "tag": "forge:seeds/rice"
+    },
+    {
+      "tag": "forge:seeds/rice"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:brown_rice"
+    },
+    {
+      "item": "sakura:brown_rice"
+    }
+  ],
+  "recipeTime": 200
+}

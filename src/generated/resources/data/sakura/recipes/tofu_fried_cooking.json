@@ -1,0 +1,21 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:tofu"
+    },
+    {
+      "tag": "forge:flour"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:food_oil",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:tofu_fried",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

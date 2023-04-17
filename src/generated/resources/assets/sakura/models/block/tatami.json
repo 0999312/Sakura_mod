@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "sakura:block/tatami",
+    "front": "sakura:block/tatami",
+    "top": "sakura:block/tatami"
+  }
+}

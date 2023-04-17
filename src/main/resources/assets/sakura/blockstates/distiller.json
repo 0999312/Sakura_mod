@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,tray_support=false":  { "model": "sakura:block/distiller" },
+    "facing=south,tray_support=false":  { "model": "sakura:block/distiller", "y": 180 },
+    "facing=west,tray_support=false":  { "model": "sakura:block/distiller", "y": 270 },
+    "facing=east,tray_support=false":  { "model": "sakura:block/distiller", "y": 90 },
+    "facing=north,tray_support=true":  { "model": "sakura:block/distiller_tray" },
+    "facing=south,tray_support=true":  { "model": "sakura:block/distiller_tray", "y": 180 },
+    "facing=west,tray_support=true":  { "model": "sakura:block/distiller_tray", "y": 270 },
+    "facing=east,tray_support=true":  { "model": "sakura:block/distiller_tray", "y": 90 }
+  }
+}

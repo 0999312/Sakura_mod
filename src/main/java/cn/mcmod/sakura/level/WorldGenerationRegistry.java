@@ -8,7 +8,6 @@ import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.tags.BlockTags;
@@ -47,9 +46,9 @@ public class WorldGenerationRegistry {
         return new ConfiguredFeature<>(Feature.RANDOM_PATCH, getWildCropConfiguration(wildCrop.get(),
                 64, 1, BlockPredicate.matchesTag(blockTag, BLOCK_BELOW)));
     }
-    private static PlacedFeature wildPlantPatch(Supplier<ConfiguredFeature<?, ?>> feature,
+    private static PlacedFeature wildPlantPatch(RegistryObject<ConfiguredFeature<?, ?>> feature,
             PlacementModifier... modifiers) {
-        return new PlacedFeature(Holder.direct(feature.get()), Lists.newArrayList(modifiers));
+        return new PlacedFeature(feature.getHolder().get(), Lists.newArrayList(modifiers));
     }
     
     private static RandomPatchConfiguration getWildCropConfiguration(Block block, int tries, int xzSpread, BlockPredicate plantedOn) {

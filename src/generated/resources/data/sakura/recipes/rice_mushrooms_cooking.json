@@ -6,6 +6,9 @@
     },
     {
       "tag": "forge:mushrooms"
+    },
+    {
+      "tag": "forge:soysauce"
     }
   ],
   "fluid": {
@@ -15,5 +18,6 @@
   "result": {
     "item": "sakura:rice_mushroom"
   },
+  "experience": 0.0,
   "recipeTime": 200
 }

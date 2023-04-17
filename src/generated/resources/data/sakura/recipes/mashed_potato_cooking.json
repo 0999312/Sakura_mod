@@ -1,0 +1,21 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/potato"
+    },
+    {
+      "tag": "forge:salt"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:mashed_potato",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

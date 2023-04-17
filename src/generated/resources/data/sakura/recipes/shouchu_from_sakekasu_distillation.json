@@ -1,0 +1,22 @@
+{
+  "type": "sakura:distillation",
+  "ingredients": [
+    {
+      "item": "sakura:sake_kasu"
+    },
+    {
+      "item": "sakura:sake_kasu"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 500
+  },
+  "results": [],
+  "result_fluid": {
+    "fluid": "sakura:shouchu",
+    "amount": 100
+  },
+  "experience": 0.0,
+  "recipeTime": 400
+}

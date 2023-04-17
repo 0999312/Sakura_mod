@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=north,bites=0":  { "model": "sakura:block/teishoku_fish_salt" },
+    "facing=south,bites=0":  { "model": "sakura:block/teishoku_fish_salt", "y": 180 },
+    "facing=west,bites=0":  { "model": "sakura:block/teishoku_fish_salt", "y": 270 },
+    "facing=east,bites=0":  { "model": "sakura:block/teishoku_fish_salt", "y": 90 },
+
+    "facing=north,bites=1":  { "model": "sakura:block/teishoku_fish_salt_1" },
+    "facing=south,bites=1":  { "model": "sakura:block/teishoku_fish_salt_1", "y": 180 },
+    "facing=west,bites=1":  { "model": "sakura:block/teishoku_fish_salt_1", "y": 270 },
+    "facing=east,bites=1":  { "model": "sakura:block/teishoku_fish_salt_1", "y": 90 },
+
+    "facing=north,bites=2":  { "model": "sakura:block/teishoku_fish_salt_2" },
+    "facing=south,bites=2":  { "model": "sakura:block/teishoku_fish_salt_2", "y": 180 },
+    "facing=west,bites=2":  { "model": "sakura:block/teishoku_fish_salt_2", "y": 270 },
+    "facing=east,bites=2":  { "model": "sakura:block/teishoku_fish_salt_2", "y": 90 },
+
+    "facing=north,bites=3":  { "model": "sakura:block/teishoku_fish_salt_3" },
+    "facing=south,bites=3":  { "model": "sakura:block/teishoku_fish_salt_3", "y": 180 },
+    "facing=west,bites=3":  { "model": "sakura:block/teishoku_fish_salt_3", "y": 270 },
+    "facing=east,bites=3":  { "model": "sakura:block/teishoku_fish_salt_3", "y": 90 }
+  }
+}

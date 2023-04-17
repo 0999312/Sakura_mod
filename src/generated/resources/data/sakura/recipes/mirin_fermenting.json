@@ -1,0 +1,30 @@
+{
+  "type": "sakura:fermenting",
+  "ingredients": [
+    {
+      "item": "sakura:rice_cooked"
+    },
+    {
+      "tag": "forge:kouji"
+    },
+    {
+      "tag": "forge:sugar"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "sakura:brewers_alcohol",
+    "amount": 500
+  },
+  "results": [
+    {
+      "item": "sakura:mirin",
+      "count": 8
+    }
+  ],
+  "result_fluid": {
+    "fluid": "minecraft:empty",
+    "amount": 0
+  },
+  "experience": 0.0,
+  "recipeTime": 800
+}

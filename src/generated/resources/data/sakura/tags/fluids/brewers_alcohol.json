@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "sakura:rum",
+    "sakura:rum_flowing",
+    "sakura:whiskey",
+    "sakura:whiskey_flowing",
+    "sakura:shouchu",
+    "sakura:shouchu_flowing"
+  ]
+}

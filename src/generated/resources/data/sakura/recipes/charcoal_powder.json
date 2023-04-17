@@ -1,0 +1,28 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:charcoal"
+      },
+      {
+        "item": "sakura:bamboo_charcoal"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:charcoal"
+      },
+      {
+        "item": "sakura:bamboo_charcoal"
+      }
+    ]
+  ],
+  "results": [
+    {
+      "item": "sakura:charcoal_powder"
+    }
+  ],
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -1,0 +1,24 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/radish"
+    },
+    {
+      "tag": "forge:soysauce"
+    },
+    {
+      "item": "sakura:mirin"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:nimono_radish",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -296,7 +296,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     private FluidTank createFluidHandler() {
         return new FluidTank(TANK_CAPACITY) {
             @Override
-            protected void onContentsChanged() {
+            public void onContentsChanged() {
                 inventoryChanged();
                 super.onContentsChanged();
             }
@@ -349,7 +349,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("sakura.cooking_pot");
+        return new TranslatableComponent("container.sakura.cooking_pot");
     }
 
     public boolean isHeated() {
@@ -361,6 +361,11 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
     public LazyOptional<FluidTank> getFluidTank() {
         return fluidTank;
+    }
+    
+    @Override
+    public void inventoryChanged() {
+        super.inventoryChanged();
     }
 
     @Override

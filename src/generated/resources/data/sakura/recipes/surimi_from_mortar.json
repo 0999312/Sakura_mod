@@ -1,0 +1,18 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:fishes"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:surimi"
+    },
+    {
+      "item": "sakura:surimi"
+    }
+  ],
+  "experience": 0.0,
+  "recipeTime": 200
+}

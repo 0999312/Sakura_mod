@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ISI",
+    "PPP",
+    "III"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:lumber"
+    },
+    "P": {
+      "tag": "minecraft:logs"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "sakura:distiller"
+  }
+}

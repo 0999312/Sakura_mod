@@ -1,0 +1,30 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_chicken"
+    },
+    {
+      "tag": "forge:crops/taro"
+    },
+    {
+      "tag": "forge:vegetables"
+    },
+    {
+      "tag": "forge:soysauce"
+    },
+    {
+      "item": "sakura:mirin"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:noppei_jiru",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

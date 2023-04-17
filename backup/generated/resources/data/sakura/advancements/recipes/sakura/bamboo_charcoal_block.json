@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:bamboo_charcoal_block"
+    ]
+  },
+  "criteria": {
+    "has_bamboo_charcoal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo_charcoal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo_charcoal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:bamboo_charcoal_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bamboo_charcoal",
+      "has_item",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -2,10 +2,10 @@
   "type": "sakura:stone_mortar",
   "ingredients": [
     {
-      "tag": "forge:raw_beef"
+      "item": "sakura:minced_meat"
     },
     {
-      "tag": "forge:raw_pork"
+      "item": "sakura:breadcrumbs"
     },
     {
       "tag": "forge:crops/onion"
@@ -24,5 +24,6 @@
       "count": 2
     }
   ],
+  "experience": 0.0,
   "recipeTime": 200
 }

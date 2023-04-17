@@ -8,9 +8,13 @@
       "tag": "forge:bamboo"
     }
   ],
+  "fluid": {
+    "null_fluid": true
+  },
   "result": {
     "item": "sakura:beef_stick",
     "count": 2
   },
+  "experience": 0.0,
   "recipeTime": 200
 }

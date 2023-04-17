@@ -15,7 +15,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "sakura:tomato_crop",
                   "properties": {
-                    "age": "3"
+                    "age": "7"
                   }
                 }
               ],
@@ -54,7 +54,7 @@
           "condition": "minecraft:block_state_property",
           "block": "sakura:tomato_crop",
           "properties": {
-            "age": "3"
+            "age": "7"
           }
         }
       ]

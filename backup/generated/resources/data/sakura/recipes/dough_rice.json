@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:flour/rice"
+    },
+    {
+      "tag": "forge:flour/rice"
+    },
+    {
+      "tag": "forge:flour/rice"
+    },
+    {
+      "tag": "forge:water"
+    }
+  ],
+  "result": {
+    "item": "sakura:dough_rice",
+    "count": 3
+  }
+}

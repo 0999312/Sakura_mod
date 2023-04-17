@@ -1,0 +1,23 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/redbean"
+    },
+    {
+      "tag": "forge:crops/redbean"
+    },
+    {
+      "tag": "forge:sugar"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:red_bean_paste",
+    "count": 2
+  },
+  "recipeTime": 200
+}

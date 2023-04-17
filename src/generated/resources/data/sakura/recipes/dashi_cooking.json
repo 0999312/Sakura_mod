@@ -1,0 +1,20 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:raw_fishes"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 500
+  },
+  "result": {
+    "item": "sakura:dashi"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

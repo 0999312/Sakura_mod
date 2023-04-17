@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +31,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-@SuppressWarnings("deprecation")
 public class RiceCropRoot extends BushBlock implements BonemealableBlock, LiquidBlockContainer {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static final BooleanProperty SUPPORTING = BooleanProperty.create("supporting");
@@ -68,6 +66,7 @@ public class RiceCropRoot extends BushBlock implements BonemealableBlock, Liquid
         return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         super.randomTick(state, worldIn, pos, rand);
@@ -134,7 +133,6 @@ public class RiceCropRoot extends BushBlock implements BonemealableBlock, Liquid
                 int remainingGrowth = ageGrowth - this.getMaxAge() - 1;
                 if (riceUpper.defaultBlockState().canSurvive(worldIn, pos.above())
                         && worldIn.isEmptyBlock(pos.above())) {
-                    SakuraMod.getLogger().error("2022- HAPPY NEW YEAR");
                     worldIn.setBlockAndUpdate(pos, state.setValue(AGE, this.getMaxAge()));
                     worldIn.setBlockAndUpdate(pos.above(),
                             riceUpper.defaultBlockState().setValue(RiceCrop.RICE_AGE, remainingGrowth));

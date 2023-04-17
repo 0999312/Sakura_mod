@@ -1,0 +1,23 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "tag": "forge:natto"
+    },
+    {
+      "tag": "forge:eggs"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:rice_natto_egg"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -1,0 +1,21 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:miso"
+    },
+    {
+      "tag": "forge:tofu"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 250
+  },
+  "result": {
+    "item": "sakura:soup_miso",
+    "count": 2
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

@@ -1,0 +1,23 @@
+{
+  "type": "sakura:chopping",
+  "ingredient": {
+    "tag": "forge:crops/cabbage"
+  },
+  "tool": {
+    "tag": "sakura:tools/knives/fish"
+  },
+  "result": {
+    "item": "sakura:sliced_cabbage"
+  },
+  "byproducts": [
+    {
+      "item": "sakura:sliced_cabbage"
+    },
+    {
+      "item": "sakura:sliced_cabbage",
+      "chance": 0.5
+    }
+  ],
+  "experience": 1.0,
+  "recipeTime": 1
+}

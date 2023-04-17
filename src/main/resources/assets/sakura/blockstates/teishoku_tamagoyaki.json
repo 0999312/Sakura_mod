@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=north,bites=0":  { "model": "sakura:block/teishoku_tamagoyaki" },
+    "facing=south,bites=0":  { "model": "sakura:block/teishoku_tamagoyaki", "y": 180 },
+    "facing=west,bites=0":  { "model": "sakura:block/teishoku_tamagoyaki", "y": 270 },
+    "facing=east,bites=0":  { "model": "sakura:block/teishoku_tamagoyaki", "y": 90 },
+
+    "facing=north,bites=1":  { "model": "sakura:block/teishoku_tamagoyaki_1" },
+    "facing=south,bites=1":  { "model": "sakura:block/teishoku_tamagoyaki_1", "y": 180 },
+    "facing=west,bites=1":  { "model": "sakura:block/teishoku_tamagoyaki_1", "y": 270 },
+    "facing=east,bites=1":  { "model": "sakura:block/teishoku_tamagoyaki_1", "y": 90 },
+
+    "facing=north,bites=2":  { "model": "sakura:block/teishoku_tamagoyaki_2" },
+    "facing=south,bites=2":  { "model": "sakura:block/teishoku_tamagoyaki_2", "y": 180 },
+    "facing=west,bites=2":  { "model": "sakura:block/teishoku_tamagoyaki_2", "y": 270 },
+    "facing=east,bites=2":  { "model": "sakura:block/teishoku_tamagoyaki_2", "y": 90 },
+
+    "facing=north,bites=3":  { "model": "sakura:block/teishoku_tamagoyaki_3" },
+    "facing=south,bites=3":  { "model": "sakura:block/teishoku_tamagoyaki_3", "y": 180 },
+    "facing=west,bites=3":  { "model": "sakura:block/teishoku_tamagoyaki_3", "y": 270 },
+    "facing=east,bites=3":  { "model": "sakura:block/teishoku_tamagoyaki_3", "y": 90 }
+  }
+}

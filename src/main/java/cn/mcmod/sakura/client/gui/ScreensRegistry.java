@@ -15,6 +15,8 @@ public class ScreensRegistry {
         event.enqueueWork(() -> {
             MenuScreens.register(ContainerRegistry.STONE_MORTAR.get(), StoneMortarScreen::new);
             MenuScreens.register(ContainerRegistry.COOKING_POT.get(), CookingPotScreen::new);
+            MenuScreens.register(ContainerRegistry.FERMENTER.get(), FermenterScreen::new);
+            MenuScreens.register(ContainerRegistry.DISTILLER.get(), DistillerScreen::new);
         });
     }
 }

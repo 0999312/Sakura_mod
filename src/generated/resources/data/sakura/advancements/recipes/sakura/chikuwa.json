@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:chikuwa"
+    ]
+  },
+  "criteria": {
+    "has_sakura:chikuwa_raw": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:chikuwa_raw"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:chikuwa"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura:chikuwa_raw",
+      "has_the_recipe"
+    ]
+  ]
+}

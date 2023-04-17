@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "farmersdelight:cod_slice",
+      "required": false
+    }
+  ]
+}

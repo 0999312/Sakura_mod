@@ -8,7 +8,7 @@
 		"4": "sakura:models/bento/red2",
 		"5": "sakura:models/bento/miso_soup",
 		"6": "sakura:block/white_bg",
-		"7": "sakura:items/fish_bake_salt",
+		"7": "sakura:item/fish_bake_salt",
 		"particle": "sakura:block/pant"
 	},
 	"elements": [

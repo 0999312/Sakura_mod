@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "minecraft:water",
-    "minecraft:flowing_water"
+    "minecraft:flowing_water",
+    {
+      "id": "tfc:river_water",
+      "required": false
+    }
   ]
 }

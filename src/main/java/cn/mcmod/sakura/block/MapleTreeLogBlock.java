@@ -10,6 +10,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -53,12 +54,12 @@ public class MapleTreeLogBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public BlockState getToolModifiedState(BlockState state, Level world, BlockPos pos, Player player, ItemStack stack,
-            ToolAction toolAction) {
-        if (stack.canPerformAction(ToolActions.SHEARS_CARVE)) {
+    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction,
+            boolean simulate) {
+        if (context.getItemInHand().canPerformAction(ToolActions.SHEARS_CARVE)) {
             return BlockRegistry.MAPLE_SAP_LOG.get().withPropertiesOf(state).setValue(MapleTreeSapLogBlock.EXHAUSTION,
                     false);
         }
-        return super.getToolModifiedState(state, world, pos, player, stack, toolAction);
+        return super.getToolModifiedState(state, context, toolAction, simulate);
     }
 }

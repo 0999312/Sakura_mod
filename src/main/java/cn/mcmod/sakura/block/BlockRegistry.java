@@ -3,7 +3,13 @@ package cn.mcmod.sakura.block;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.crops.RiceCrop;
 import cn.mcmod.sakura.block.crops.RiceCropRoot;
+import cn.mcmod.sakura.block.foods.NabeBlock;
+import cn.mcmod.sakura.block.foods.TeishokuBlock;
+import cn.mcmod.sakura.block.foods.TeishokuFinishedBlock;
+import cn.mcmod.sakura.block.machines.ChoppingBoardBlock;
 import cn.mcmod.sakura.block.machines.CookingPotBlock;
+import cn.mcmod.sakura.block.machines.DistillerBlock;
+import cn.mcmod.sakura.block.machines.FermenterBlock;
 import cn.mcmod.sakura.block.machines.StoneMortarBlock;
 import cn.mcmod.sakura.client.particle.ParticleRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
@@ -12,7 +18,10 @@ import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
 import cn.mcmod.sakura.level.tree.SakuraTreeGrower;
 import cn.mcmod_mmf.mmlib.block.Age3CropBlock;
 import cn.mcmod_mmf.mmlib.block.BaseCropBlock;
+import cn.mcmod_mmf.mmlib.block.BaseHorizonBlock;
+import cn.mcmod_mmf.mmlib.block.FacingSlab;
 import cn.mcmod_mmf.mmlib.block.HighCropBlock;
+import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -103,6 +112,18 @@ public class BlockRegistry {
             () -> plank(MaterialColor.SAND));
     public static final RegistryObject<Block> BAMBOO_PLANK = BLOCKS.register("plank_bamboo",
             () -> plank(MaterialColor.SAND));
+    
+    public static final RegistryObject<Block> STRAW_BLOCK = BLOCKS.register("straw_block",
+            () -> new Block(Block.Properties.copy(Blocks.HAY_BLOCK)));
+
+    public static final RegistryObject<Block> TATAMI = BLOCKS.register("tatami",
+            () -> new TatamiBlock(Block.Properties.copy(Blocks.HAY_BLOCK)));
+    public static final RegistryObject<Block> TATAMI_SUNBURNT = BLOCKS.register("tatami_sunburnt",
+            () -> new BaseHorizonBlock(Block.Properties.copy(Blocks.HAY_BLOCK)));
+    public static final RegistryObject<FacingSlab> TATAMI_SLAB = BLOCKS.register("tatami_slab",
+            () -> new TatamiSlabBlock(Block.Properties.copy(Blocks.HAY_BLOCK)));
+    public static final RegistryObject<FacingSlab> TATAMI_SLAB_SUNBURNT = BLOCKS.register("tatami_slab_sunburnt",
+            () -> new FacingSlab(Block.Properties.copy(Blocks.HAY_BLOCK)));
 
     public static final RegistryObject<Block> RICE_CROP_ROOT = BLOCKS.register("rice_crop_root",
             () -> new RiceCropRoot(Block.Properties.copy(Blocks.WHEAT).strength(0.2F)));
@@ -122,7 +143,7 @@ public class BlockRegistry {
             () -> new Age3CropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RED_BEAN));
     
     public static final RegistryObject<Block> SOYBEAN_CROP = BLOCKS.register("soybean_crop",
-            () -> new Age3CropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RED_BEAN));
+            () -> new Age3CropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.SOYBEAN));
 
     public static final RegistryObject<Block> RAPESEED_CROP = BLOCKS.register("rapeseed_crop",
             () -> new BaseCropBlock(Block.Properties.copy(Blocks.WHEAT).strength(0.2F), ItemRegistry.RAPESEEDS));
@@ -141,9 +162,27 @@ public class BlockRegistry {
 
     public static final RegistryObject<Block> STONE_MORTAR = BLOCKS.register("stone_mortar", StoneMortarBlock::new);
     public static final RegistryObject<Block> COOKING_POT = BLOCKS.register("cooking_pot", CookingPotBlock::new);
-    
+    public static final RegistryObject<Block> FERMENTER = BLOCKS.register("fermenter", FermenterBlock::new);
+    public static final RegistryObject<Block> DISTILLER = BLOCKS.register("distiller", DistillerBlock::new);
     public static final RegistryObject<Block> OBON = BLOCKS.register("obon", ObonBlock::new);
-
+    public static final RegistryObject<Block> CHOPPING_BOARD = BLOCKS.register("chopping_board", ChoppingBoardBlock::new);
+    public static final RegistryObject<Block> TEISHOUKU_FINISHED = BLOCKS.register("teishoku_finished", TeishokuFinishedBlock::new);
+    public static final RegistryObject<Block> TEISHOUKU_FISH_SALT = BLOCKS.register("teishoku_fish_salt", 
+            ()->new TeishokuBlock(FoodInfo.builder().amountAndCalories(8, 0.8f).build()));
+    public static final RegistryObject<Block> TEISHOUKU_FISH_COOKED = BLOCKS.register("teishoku_fish_cooked", 
+            ()->new TeishokuBlock(FoodInfo.builder().amountAndCalories(8, 0.8f).build()));
+    public static final RegistryObject<Block> TEISHOUKU_FISH_RAW = BLOCKS.register("teishoku_fish_raw", 
+            ()->new TeishokuBlock(FoodInfo.builder().amountAndCalories(6, 0.8f).build()));
+    public static final RegistryObject<Block> TEISHOKO_TAMAGOYAKI = BLOCKS.register("teishoku_tamagoyaki", 
+            ()->new TeishokuBlock(FoodInfo.builder().amountAndCalories(6, 0.8f).build()));
+    public static final RegistryObject<Block> TEISHOKO_YAKINIKU = BLOCKS.register("teishoku_yakiniku", 
+            ()->new TeishokuBlock(FoodInfo.builder().amountAndCalories(10, 0.8f).build()));
+    
+    public static final RegistryObject<Block> NABE_SUKIYAKI = BLOCKS.register("nabe_sukiyaki", 
+            ()->new NabeBlock(FoodInfo.builder().amountAndCalories(12, 1f).build()));
+    public static final RegistryObject<Block> NABE_ODEN = BLOCKS.register("nabe_oden", 
+            ()->new NabeBlock(FoodInfo.builder().amountAndCalories(12, 1f).build()));
+    
     private static RotatedPillarBlock log(MaterialColor top, MaterialColor bark) {
         return new RotatedPillarBlock(BlockBehaviour.Properties
                 .of(Material.WOOD, state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))

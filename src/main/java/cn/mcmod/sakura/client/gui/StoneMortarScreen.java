@@ -27,6 +27,7 @@ public class StoneMortarScreen extends AbstractContainerScreen<StoneMortarContai
     public void render(PoseStack ms, final int mouseX, final int mouseY, float partialTicks) {
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
+        this.renderTooltip(ms, mouseX, mouseY);
     }
 
     @Override

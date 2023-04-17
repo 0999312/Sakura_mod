@@ -2,6 +2,26 @@
   "replace": false,
   "values": [
     "sakura:food_oil",
-    "sakura:food_oil_flowing"
+    "sakura:food_oil_flowing",
+    "sakura:doburoku",
+    "sakura:doburoku_flowing",
+    "sakura:sake",
+    "sakura:sake_flowing",
+    "sakura:shouchu",
+    "sakura:shouchu_flowing",
+    "sakura:red_wine",
+    "sakura:red_wine_flowing",
+    "sakura:white_wine",
+    "sakura:white_wine_flowing",
+    "sakura:whiskey",
+    "sakura:whiskey_flowing",
+    "sakura:beer",
+    "sakura:beer_flowing",
+    "sakura:rum",
+    "sakura:rum",
+    "sakura:champagne",
+    "sakura:champagne_flowing",
+    "sakura:brandy",
+    "sakura:brandy"
   ]
 }

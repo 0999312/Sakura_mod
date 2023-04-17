@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:nabe_sukiyaki"
+    ]
+  },
+  "criteria": {
+    "has_pot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:cooking_pot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:nabe_sukiyaki"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_pot",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:tatami_slab_sunburnt"
+    ]
+  },
+  "criteria": {
+    "has_tatami_sunburnt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:tatami_sunburnt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:tatami_slab_sunburnt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tatami_sunburnt",
+      "has_the_recipe"
+    ]
+  ]
+}

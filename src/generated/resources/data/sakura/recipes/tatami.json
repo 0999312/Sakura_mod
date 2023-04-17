@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "L#L",
+    "LLL"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:lumber"
+    },
+    "L": {
+      "tag": "forge:straw"
+    }
+  },
+  "result": {
+    "item": "sakura:tatami",
+    "count": 6
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:bamboo_charcoal_from_smelt"
+    ]
+  },
+  "criteria": {
+    "has_sakura:bamboo": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:bamboo_charcoal_from_smelt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sakura:bamboo",
+      "has_the_recipe"
+    ]
+  ]
+}

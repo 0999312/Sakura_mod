@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "sakura:mochi"
+  },
+  "result": "sakura:mochi_toasted",
+  "experience": 0.5,
+  "cookingtime": 600
+}

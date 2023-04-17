@@ -27,7 +27,8 @@ public class SeedsDrop {
         protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
             List<Item> seeds = Lists.newArrayList(ItemRegistry.CABBAGE_SEEDS.get(), ItemRegistry.EGGPLANT_SEEDS.get(),
                     ItemRegistry.ONION_SEEDS.get(), ItemRegistry.RADISH_SEEDS.get(), ItemRegistry.TOMATO_SEEDS.get(),
-                    ItemRegistry.RICE_SEEDS.get(), ItemRegistry.RAPESEEDS.get(), ItemRegistry.TARO.get());
+                    ItemRegistry.RICE_SEEDS.get(), ItemRegistry.RAPESEEDS.get(), ItemRegistry.TARO.get(), ItemRegistry.BUCKWHEAT.get(),
+                    ItemRegistry.SOYBEAN.get(), ItemRegistry.RED_BEAN.get());
             generatedLoot.add(new ItemStack(seeds.get((int) (Math.random() * seeds.size()))));
             return generatedLoot;
         }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sakura:bamboo_charcoal_block"
+    }
+  ],
+  "result": {
+    "item": "sakura:bamboo_charcoal",
+    "count": 9
+  }
+}

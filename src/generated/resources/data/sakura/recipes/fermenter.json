@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "PPP",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:lumber"
+    },
+    "P": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "sakura:fermenter"
+  }
+}

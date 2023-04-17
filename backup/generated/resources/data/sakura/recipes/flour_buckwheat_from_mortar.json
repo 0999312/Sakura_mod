@@ -1,0 +1,14 @@
+{
+  "type": "sakura:stone_mortar",
+  "ingredients": [
+    {
+      "tag": "forge:grain/buckwheat"
+    }
+  ],
+  "results": [
+    {
+      "item": "sakura:flour_buckwheat"
+    }
+  ],
+  "recipeTime": 200
+}

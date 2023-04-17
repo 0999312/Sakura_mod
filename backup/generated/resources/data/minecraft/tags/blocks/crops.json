@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "sakura:rice_crop",
+    "sakura:buckwheat_crop",
+    "sakura:cabbage_crop",
+    "sakura:eggplant_crop",
+    "sakura:onion_crop",
+    "sakura:radish_crop",
+    "sakura:rapeseed_crop",
+    "sakura:redbean_crop",
+    "sakura:rice_crop_root",
+    "sakura:taro_crop",
+    "sakura:tomato_crop"
+  ]
+}

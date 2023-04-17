@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "sakura:cooking_pot"
+    },
+    {
+      "tag": "sakura:fishcake"
+    },
+    {
+      "tag": "sakura:fishcake"
+    },
+    {
+      "tag": "sakura:fishcake"
+    },
+    {
+      "tag": "sakura:fishcake"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:dashi"
+    },
+    {
+      "item": "sakura:mirin"
+    }
+  ],
+  "result": {
+    "item": "sakura:nabe_oden"
+  }
+}

@@ -9,7 +9,11 @@
     {
       "item": "minecraft:sugar",
       "count": 3
+    },
+    {
+      "item": "sakura:molasses"
     }
   ],
+  "experience": 0.0,
   "recipeTime": 200
 }

@@ -100,6 +100,7 @@ public class CookingPotBlock extends BaseEntityBlock {
                 .orElse(null);
         if (handler != null && handler instanceof FluidBucketWrapper) {
             FluidUtil.interactWithFluidHandler(player, handIn, cookingPot.getFluidTank().orElse(null));
+            cookingPot.inventoryChanged();
             return InteractionResult.SUCCESS;
         }
 

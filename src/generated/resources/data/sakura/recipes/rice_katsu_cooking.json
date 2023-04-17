@@ -1,0 +1,26 @@
+{
+  "type": "sakura:cooking",
+  "ingredients": [
+    {
+      "tag": "sakura:rice/rice"
+    },
+    {
+      "item": "sakura:katsu"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "tag": "forge:soysauce"
+    }
+  ],
+  "fluid": {
+    "fluidTag": "forge:water/water",
+    "amount": 125
+  },
+  "result": {
+    "item": "sakura:rice_pork_fried"
+  },
+  "experience": 0.0,
+  "recipeTime": 200
+}

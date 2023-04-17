@@ -1,15 +1,14 @@
 package cn.mcmod.sakura.data.builder;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Lists;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
+import cn.mcmod.sakura.recipes.StoneMortarRecipe;
+import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -18,15 +17,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class StoneMortarRecipeBuilder {
-    private final List<ItemStack> result = Lists.newArrayList();
-    private final List<Ingredient> ingredients = Lists.newArrayList();
+    private final NonNullList<ItemStack> result = NonNullList.create();
+    private final NonNullList<Ingredient> ingredients = NonNullList.create();
     private final float experience;
     private final int recipeTime;
 
-    public StoneMortarRecipeBuilder(ItemLike resultItem, int count, float exp, int time) {
+    private StoneMortarRecipeBuilder(ItemLike resultItem, int count, float exp, int time) {
         this.result.add(new ItemStack(resultItem.asItem(), count));
         this.experience = exp;
         this.recipeTime = time;
@@ -83,62 +81,30 @@ public class StoneMortarRecipeBuilder {
         return this;
     }
 
-    public Item getResult() {
-        return this.result.get(0).getItem();
-    }
-
     public void save(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         consumer.accept(new StoneMortarRecipeBuilder.Result(id, this.result, this.ingredients, this.experience,
                 this.recipeTime));
     }
 
-    public int getRecipeTime() {
-        return recipeTime;
-    }
-
-    public float getExperience() {
-        return experience;
-    }
-
     public static class Result implements FinishedRecipe {
-        private final ResourceLocation id;
-        private final List<ItemStack> result;
-        private final List<Ingredient> ingredients;
-        private final float experience;
-        private final int recipeTime;
 
-        public Result(ResourceLocation id, List<ItemStack> results, List<Ingredient> ingredients, float exp, int time) {
-            this.id = id;
-            this.result = results;
-            this.ingredients = ingredients;
-            this.experience = exp;
-            this.recipeTime = time;
+        private final StoneMortarRecipe recipe = new StoneMortarRecipe();
+
+        public Result(ResourceLocation id, NonNullList<ItemStack> results, NonNullList<Ingredient> ingredients, float exp, int time) {
+            recipe.setId(id);
+            recipe.output = results;
+            recipe.inputItems = ingredients;
+            recipe.experience = exp;
+            recipe.recipeTime = time;
         }
 
         @Override
         public void serializeRecipeData(JsonObject json) {
-
-            JsonArray jsonarray = new JsonArray();
-
-            for (Ingredient ingredient : this.ingredients) {
-                jsonarray.add(ingredient.toJson());
-            }
-
-            json.add("ingredients", jsonarray);
-            JsonArray arrayResults = new JsonArray();
-            for (ItemStack result : this.result) {
-                JsonObject jsonobject = new JsonObject();
-                jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(result.getItem()).toString());
-                if (result.getCount() > 1) {
-                    jsonobject.addProperty("count", result.getCount());
-                }
-                arrayResults.add(jsonobject);
-            }
-            json.add("results", arrayResults);
-            if (this.experience > 0) {
-                json.addProperty("experience", this.experience);
-            }
-            json.addProperty("recipeTime", this.recipeTime);
+            JsonObject recipeJson = RecipeTypeRegistry.STONE_MORTAR_RECIPE_SERIALIZER.get().toJson(recipe);
+            json.add("ingredients", recipeJson.get("ingredients"));
+            json.add("results", recipeJson.get("results"));
+            json.add("experience", recipeJson.get("experience"));
+            json.add("recipeTime", recipeJson.get("recipeTime"));
         }
 
         @Override
@@ -148,7 +114,7 @@ public class StoneMortarRecipeBuilder {
 
         @Override
         public ResourceLocation getId() {
-            return this.id;
+            return recipe.getId();
         }
 
         @Nullable

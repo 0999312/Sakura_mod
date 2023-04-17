@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "sakura:soups"
+    },
+    {
+      "item": "sakura:rice_cooked"
+    },
+    {
+      "item": "sakura:obon"
+    },
+    {
+      "item": "sakura:fish_bake"
+    }
+  ],
+  "result": {
+    "item": "sakura:teishoku_fish_cooked"
+  }
+}

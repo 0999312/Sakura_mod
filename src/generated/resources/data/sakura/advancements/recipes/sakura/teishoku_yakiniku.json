@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "sakura:teishoku_yakiniku"
+    ]
+  },
+  "criteria": {
+    "has_obon": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:obon"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "sakura:teishoku_yakiniku"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_obon",
+      "has_the_recipe"
+    ]
+  ]
+}
