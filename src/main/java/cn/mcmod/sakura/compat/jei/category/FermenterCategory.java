@@ -30,6 +30,7 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
 
     public static final ResourceLocation UID = new ResourceLocation(SakuraMod.MODID, "fermenting");
     protected final IDrawableAnimated arrow;
+    protected final IDrawableAnimated bubbles;
     private final Component title;
     private final IDrawable background;
     private final IDrawable icon;
@@ -40,6 +41,7 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
         background = helper.createDrawable(backgroundImage, 32, 10, 110, 66);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.FERMENTER.get()));
         arrow = helper.drawableBuilder(backgroundImage, 176, 0, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
+        bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
     @Override
@@ -103,6 +105,7 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
 
     @Override
     public void draw(FermenterRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-        arrow.draw(matrixStack, 44, 24);
+        bubbles.draw(matrixStack, 46, 16);
+        arrow.draw(matrixStack, 44, 34);
     }
 }

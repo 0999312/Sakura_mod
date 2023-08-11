@@ -552,6 +552,14 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .requires(SakuraItemTags.SALT).requires(SakuraItemTags.EGGS).requires(SakuraItemTags.CROPS_TARO)
                 .requires(FoodRegistry.FOODSET.get(SakuraFoodSet.SURIMI).get())
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "hanpen_taro_cooking"));
+        
+        CookingPotRecipeBuilder
+            .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 250),
+                    ItemRegistry.MATERIALS.get(SakuraNormalItemSet.KAESHI).get(), 4)
+            .requires(SakuraItemTags.SUGAR)
+            .requires(SakuraItemTags.SOYSAUCE)
+            .requires(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.MIRIN).get())
+            .save(consumer, new ResourceLocation(SakuraMod.MODID, "kaeshi_cooking"));
 
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
@@ -562,7 +570,7 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                                 new Ingredient.TagValue(SakuraItemTags.CROPS_TARO),
                                 new Ingredient.TagValue(Tags.Items.CROPS_POTATO)
                                 )
-                                )
+                            )
                         )
                 .requires(FoodRegistry.FOODSET.get(SakuraFoodSet.SURIMI).get())
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "hanpen_cooking"));
@@ -662,51 +670,47 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_BAMBOO).get())
-                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.SOYSAUCE)
-                
+                .requires(SakuraItemTags.RICE_RICE)
                 .requires(BlockRegistry.BAMBOOSHOOT.get())
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_bamboo_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_MUSHROOM).get())
-                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.MUSHROOMS).requires(SakuraItemTags.SOYSAUCE)
+                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.MUSHROOMS)
                 
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_mushrooms_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_BEEF).get())
-                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_BEEF).requires(SakuraItemTags.SOYSAUCE)
+                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_BEEF)
                 
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_beef_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_PORK).get())
-                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_PORK).requires(SakuraItemTags.SOYSAUCE)
+                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_PORK)
                 
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_pork_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_FISH).get())
                 .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_FISHES)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_fish_cooking"));
 
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_EGG).get())
-                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.EGGS).requires(SakuraItemTags.SOYSAUCE)
+                .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.EGGS)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_eggs_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_BEEF_EGG).get())
                 .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_BEEF).requires(SakuraItemTags.EGGS)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_beef_eggs_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_PORK_EGG).get())
                 .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_PORK).requires(SakuraItemTags.EGGS)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_pork_eggs_cooking"));
         
         CookingPotRecipeBuilder
@@ -715,20 +719,17 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .requires(SakuraItemTags.RICE_RICE)
                 .requires(FoodRegistry.FOODSET.get(SakuraFoodSet.KATSU).get())
                 .requires(SakuraItemTags.EGGS)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_katsu_cooking"));
         
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_OYAKO).get())
                 .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_CHICKEN).requires(SakuraItemTags.EGGS)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_oyako_cooking"));
         CookingPotRecipeBuilder
                 .cooking(FluidIngredient.fromTag(SakuraFluidTags.WATER_WATER, 125),
                         FoodRegistry.FOODSET.get(SakuraFoodSet.RICE_OYAKO_FISH).get())
                 .requires(SakuraItemTags.RICE_RICE).requires(SakuraItemTags.RAW_FISHES).requires(SakuraItemTags.EGGS)
-                .requires(SakuraItemTags.SOYSAUCE)
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "rice_oyako_fish_cooking"));
 
         CookingPotRecipeBuilder

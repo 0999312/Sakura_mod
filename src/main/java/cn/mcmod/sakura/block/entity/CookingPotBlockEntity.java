@@ -1,5 +1,6 @@
 package cn.mcmod.sakura.block.entity;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
@@ -119,12 +120,14 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         }
 
         if (checkNewRecipe) {
-            Optional<CookingPotRecipe> recipe = level.getRecipeManager().getRecipeFor(RecipeTypeRegistry.COOKING_RECIPE_TYPE.get(),
+            List<CookingPotRecipe> recipes = level.getRecipeManager().getRecipesFor(RecipeTypeRegistry.COOKING_RECIPE_TYPE.get(),
                     inventoryWrapper, level);
-            if (recipe.isPresent() && recipe.get().matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(),
-                    inventoryWrapper, level)) {
-                lastRecipeID = recipe.get().getId();
-                return recipe;
+            for(CookingPotRecipe recipe : recipes) {
+                if(recipe.matchesWithFluid(this.fluidTank.orElse(new FluidTank(0)).getFluid(),
+                        inventoryWrapper, level)) {
+                  lastRecipeID = recipe.getId();
+                  return Optional.of(recipe);
+                }
             }
         }
 
@@ -297,6 +300,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         return new FluidTank(TANK_CAPACITY) {
             @Override
             public void onContentsChanged() {
+                checkNewRecipe = true;
                 inventoryChanged();
                 super.onContentsChanged();
             }

@@ -40,6 +40,8 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import java.util.List;
 import java.util.Optional;
 
 public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvider, HeatableBlockEntity {
@@ -94,6 +96,7 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
         if(this.inputfluidTank.isPresent()) {
             return !this.inputfluidTank.orElse(new FluidTank(0)).isEmpty();
         }
+        
         for (int i = 0; i < 3; ++i) {
             if (!inventory.getStackInSlot(i).isEmpty()) {
                 return true;
@@ -120,12 +123,13 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
         }
 
         if (checkNewRecipe) {
-            Optional<DistillerRecipe> recipe = level.getRecipeManager()
-                    .getRecipeFor(RecipeTypeRegistry.DISTILLER_RECIPE_TYPE.get(), inventoryWrapper, level);
-            if (recipe.isPresent() && recipe.get().matchesWithFluid(
-                    this.inputfluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
-                lastRecipeID = recipe.get().getId();
-                return recipe;
+            List<DistillerRecipe> recipes = level.getRecipeManager()
+                    .getRecipesFor(RecipeTypeRegistry.DISTILLER_RECIPE_TYPE.get(), inventoryWrapper, level);
+            for(DistillerRecipe recipe : recipes) {
+                if (recipe.matchesWithFluid(this.inputfluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
+                    lastRecipeID = recipe.getId();
+                    return Optional.of(recipe);
+                }
             }
         }
 
@@ -139,35 +143,28 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
             boolean fluid_flag = !(recipe.getResultFluid().isEmpty());
             if (this.outputfluidTank.isPresent()) {
                 FluidTank outTank = this.outputfluidTank.orElse(null);
-                fluid_flag = (outTank.getFluid().isFluidEqual(recipe.getResultFluid())
-                        && outTank.getSpace() >= recipe.getResultFluid().getAmount())
-                        || outTank.isEmpty()
-                        || recipe.getResultFluid().isEmpty();
+                fluid_flag = outTank.isEmpty() || recipe.getResultFluid().isEmpty() ||
+                        (outTank.getFluid().isFluidEqual(recipe.getResultFluid()) && outTank.getSpace() >= recipe.getResultFluid().getAmount());
             }
-            if (resultStacks.size() <= 0) {
-                return fluid_flag && recipe.getRequiredFluid() != FluidIngredient.EMPTY;
-            } else {
-                boolean flag = true;
-                for (int i = 3; i < resultStacks.size() + 3; i++) {
-                    if (!flag)
-                        break;
-                    ItemStack resultStack = resultStacks.get(i - 3);
-                    ItemStack outputStack = inventory.getStackInSlot(i);
-                    if (outputStack.isEmpty()) {
-                        flag = true;
-                    } else if (!outputStack.sameItem(resultStack)) {
-                        flag = false;
-                    } else if (outputStack.getCount() + resultStack.getCount() <= inventory.getSlotLimit(i)) {
-                        flag = true;
-                    } else {
-                        flag = outputStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize();
-                    }
+            boolean flag = true;
+            for (int i = 3; i < resultStacks.size() + 3; i++) {
+                if (!flag)
+                    break;
+                ItemStack resultStack = resultStacks.get(i - 3);
+                ItemStack outputStack = inventory.getStackInSlot(i);
+                if (outputStack.isEmpty()) {
+                    flag = true;
+                } else if (!outputStack.sameItem(resultStack)) {
+                    flag = false;
+                } else if (outputStack.getCount() + resultStack.getCount() <= inventory.getSlotLimit(i)) {
+                    flag = true;
+                } else {
+                    flag = outputStack.getCount() + resultStack.getCount() <= resultStack.getMaxStackSize();
                 }
-                return fluid_flag && flag;
             }
-        } else {
-            return false;
+            return fluid_flag && flag;
         }
+        return false;    
     }
 
     private boolean processRecipe(DistillerRecipe recipe) {
@@ -340,7 +337,6 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
             @Override
             protected void onContentsChanged() {
                 inventoryChanged();
-                
                 super.onContentsChanged();
             }
 

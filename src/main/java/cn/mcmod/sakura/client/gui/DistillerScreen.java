@@ -47,10 +47,13 @@ public class DistillerScreen extends AbstractContainerScreen<DistillerContainer>
 
         // Render progress arrow
         int l = this.menu.getCookProgressionScaled();
-        this.blit(ms, this.leftPos + 75, this.topPos + 34, 176, 0, l + 1, 17);
+        this.blit(ms, this.leftPos + 75, this.topPos + 35, 176, 0, l + 1, 17);
+        
+        int m = this.menu.getWorking();
+        this.blit(ms, this.leftPos + 78, this.topPos + 34 - m, 176, 53 - m, 18, m);
         
         if (this.menu.isHeated()) {
-            this.blit(ms, this.leftPos + 78, this.topPos + 58, 176, 17, 18, 18);
+            this.blit(ms, this.leftPos + 78, this.topPos + 52, 176, 17, 18, 18);
         }
         
         this.menu.tileEntity.getInputFluidTank().ifPresent(fluidTank -> {

@@ -133,4 +133,9 @@ public class FermenterContainer extends AbstractContainerMenu {
         return j != 0 && i != 0 ? i * 24 / j : 0;
     }
 
+    @OnlyIn(Dist.CLIENT)
+    public int getWorking() {
+        int i = this.containerData.get(0);
+        return i != 0 ? i % 18 : 0;
+    }
 }

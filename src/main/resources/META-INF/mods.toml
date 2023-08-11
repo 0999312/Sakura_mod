@@ -1,11 +1,10 @@
 
-modLoader="javafml" #mandatory
-loaderVersion="[39,)" #mandatory 
+modLoader="javafml"
+loaderVersion="[40,)"
 license="MIT License"
-[[mods]] #mandatory
-# The modid of the mod
-modId="sakura" #mandatory
-version="${file.jarVersion}" #mandatory
+[[mods]]
+modId="sakura"
+version="${file.jarVersion}"
 displayName="Sakura Mod" 
 displayURL="https://www.curseforge.com/minecraft/mc-mods/sakura" 
 logoFile="logo.png"
@@ -19,10 +18,10 @@ New battle styles with your katana and kodachi, Cooking with campfire and cookin
 New illager with his katana spawn in Bamboo forest and maple forest!
 New dress: Kimono, yukata and Haori.
 '''
-[[dependencies.sakura]] #optional
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[39,)" #mandatory
+[[dependencies.sakura]]
+    modId="forge"
+    mandatory=true
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.sakura]]

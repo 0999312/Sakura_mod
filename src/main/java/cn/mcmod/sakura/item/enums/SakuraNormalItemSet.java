@@ -28,7 +28,9 @@ public enum SakuraNormalItemSet {
     SAKE_KASU("sake_kasu"),
     TEMPURA_BATTER("tempura_batter"),
     MOLASSES("molasses"),
-    YEAST("yeast"),;
+    YEAST("yeast"),
+    KAESHI("kaeshi"),
+    NOODLE_SOUP("noodle_soup"),;
     private final String name;
     private SakuraNormalItemSet(String name) {
         this.name = name;

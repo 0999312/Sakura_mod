@@ -47,8 +47,11 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterContainer>
 
         // Render progress arrow
         int l = this.menu.getCookProgressionScaled();
-        this.blit(ms, this.leftPos + 75, this.topPos + 34, 176, 0, l + 1, 17);
+        this.blit(ms, this.leftPos + 75, this.topPos + 45, 176, 0, l + 1, 17);
 
+        int m = this.menu.getWorking();
+        this.blit(ms, this.leftPos + 78, this.topPos + 44 - m, 176, 53 - m, 18, m);
+        
         this.menu.tileEntity.getInputFluidTank().ifPresent(fluidTank -> {
             int heightInd = (int) (64.0F * ((float)fluidTank.getFluidAmount() / (float)fluidTank.getCapacity()));
             if (heightInd > 0) {

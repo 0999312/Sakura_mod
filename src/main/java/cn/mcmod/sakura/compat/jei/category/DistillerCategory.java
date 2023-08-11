@@ -31,6 +31,7 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(SakuraMod.MODID, "distillation");
     protected final IDrawable heatIndicator;
     protected final IDrawableAnimated arrow;
+    protected final IDrawableAnimated bubbles;
     private final Component title;
     private final IDrawable background;
     private final IDrawable icon;
@@ -42,6 +43,7 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.DISTILLER.get()));
         heatIndicator = helper.createDrawable(backgroundImage, 176, 17, 18, 18);
         arrow = helper.drawableBuilder(backgroundImage, 176, 0, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
+        bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
     @Override
@@ -105,7 +107,8 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
 
     @Override
     public void draw(DistillerRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
+        bubbles.draw(matrixStack, 46, 6);
         arrow.draw(matrixStack, 44, 24);
-        heatIndicator.draw(matrixStack, 47, 49);
+        heatIndicator.draw(matrixStack, 47, 43);
     }
 }

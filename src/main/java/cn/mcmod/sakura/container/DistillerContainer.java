@@ -134,6 +134,12 @@ public class DistillerContainer extends AbstractContainerMenu {
     }
 
     @OnlyIn(Dist.CLIENT)
+    public int getWorking() {
+        int i = this.containerData.get(0);
+        return i != 0 ? i % 18 : 0;
+    }
+    
+    @OnlyIn(Dist.CLIENT)
     public boolean isHeated() {
         return this.tileEntity.isHeated();
     }

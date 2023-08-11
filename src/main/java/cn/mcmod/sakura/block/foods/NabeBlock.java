@@ -8,6 +8,7 @@ import cn.mcmod_mmf.mmlib.block.entity.HeatableBlockEntity;
 import cn.mcmod_mmf.mmlib.item.info.FoodInfo;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -55,6 +56,17 @@ public class NabeBlock extends Block implements HeatableBlockEntity{
         if(this.isHeated(level, pos) && rand.nextInt(10) == 0) {
             level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1F, 0.8F);
             level.setBlock(pos, state.setValue(IS_COOKED, true), UPDATE_ALL);
+        }
+    }
+    
+    @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random rand) {
+        if(state.getValue(IS_COOKED)) return;
+        if(this.isHeated(level, pos) && rand.nextInt(4) == 0) {
+            double x = (double) pos.getX() + 0.5D + (rand.nextDouble() * 0.6D - 0.3D);
+            double y = (double) pos.getY() + 0.75D;
+            double z = (double) pos.getZ() + 0.5D + (rand.nextDouble() * 0.6D - 0.3D);
+            level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
         }
     }
 

@@ -39,6 +39,8 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import java.util.List;
 import java.util.Optional;
 
 public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvider {
@@ -66,7 +68,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         this.inputHandler = LazyOptional.of(() -> new FermenterItemHandler(inventory, Direction.UP));
         this.outputHandler = LazyOptional.of(() -> new FermenterItemHandler(inventory, Direction.DOWN));
         this.tileData = createIntArray();
-        this.inputfluidTank = LazyOptional.of(this::createFluidHandler);
+        this.inputfluidTank = LazyOptional.of(this::createInputFluidHandler);
         this.outputfluidTank = LazyOptional.of(this::createFluidHandler);
         this.experienceTracker = new Object2IntOpenHashMap<>();
     }
@@ -90,6 +92,10 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
     }
 
     private boolean hasInput() {
+        if(this.inputfluidTank.isPresent()) {
+            return !this.inputfluidTank.orElse(new FluidTank(0)).isEmpty();
+        }
+        
         for (int i = 0; i < 3; ++i) {
             if (!inventory.getStackInSlot(i).isEmpty()) {
                 return true;
@@ -97,7 +103,6 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         }
         return false;
     }
-
     private Optional<FermenterRecipe> getMatchingRecipe(RecipeWrapper inventoryWrapper) {
         if (level == null) {
             return Optional.empty();
@@ -116,12 +121,14 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         }
 
         if (checkNewRecipe) {
-            Optional<FermenterRecipe> recipe = level.getRecipeManager()
-                    .getRecipeFor(RecipeTypeRegistry.FERMENTER_RECIPE_TYPE.get(), inventoryWrapper, level);
-            if (recipe.isPresent() && recipe.get().matchesWithFluid(
-                    this.inputfluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
-                lastRecipeID = recipe.get().getId();
-                return recipe;
+            List<FermenterRecipe> recipes = level.getRecipeManager()
+                    .getRecipesFor(RecipeTypeRegistry.FERMENTER_RECIPE_TYPE.get(), inventoryWrapper, level);
+            for(FermenterRecipe recipe : recipes) {
+                if (recipe.matchesWithFluid(
+                        this.inputfluidTank.orElse(new FluidTank(0)).getFluid(), inventoryWrapper, level)) {
+                    lastRecipeID = recipe.getId();
+                    return Optional.of(recipe);
+                }
             }
         }
 
@@ -364,6 +371,22 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         };
     }
 
+    private FluidTank createInputFluidHandler() {
+        return new FluidTank(TANK_CAPACITY) {
+            @Override
+            protected void onContentsChanged() {
+                inventoryChanged();
+                checkNewRecipe = true;
+                super.onContentsChanged();
+            }
+
+            @Override
+            public boolean isFluidValid(FluidStack stack) {
+                return !stack.getFluid().getAttributes().isLighterThanAir();
+            }
+        };
+    }
+    
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory player, Player entity) {
         return new FermenterContainer(id, player, this, this.tileData);
@@ -396,7 +419,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
         super.reviveCaps();
         inputHandler = LazyOptional.of(() -> new FermenterItemHandler(inventory, Direction.UP));
         outputHandler = LazyOptional.of(() -> new FermenterItemHandler(inventory, Direction.DOWN));
-        inputfluidTank = LazyOptional.of(this::createFluidHandler);
+        inputfluidTank = LazyOptional.of(this::createInputFluidHandler);
         outputfluidTank = LazyOptional.of(this::createFluidHandler);
     }
 
