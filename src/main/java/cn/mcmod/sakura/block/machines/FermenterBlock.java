@@ -76,7 +76,7 @@ public class FermenterBlock extends BaseEntityBlock {
                 .orElse(null);
         if (handler != null && handler instanceof FluidBucketWrapper) {
             if (cookingPot.getOutputFluidTank().isPresent()) {
-                FluidTank outTank = cookingPot.getOutputFluidTank().orElse(null);
+                FluidTank outTank = cookingPot.getInputFluidTank().orElse(null);
                 if(FermenterBlock.interactWithFluidHandler(player, handIn, outTank))
                     return InteractionResult.SUCCESS;
             }
