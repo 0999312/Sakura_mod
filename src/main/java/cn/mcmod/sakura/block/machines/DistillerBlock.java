@@ -92,8 +92,8 @@ public class DistillerBlock extends BaseEntityBlock {
         IFluidHandlerItem handler = FluidUtil.getFluidHandler(ItemHandlerHelper.copyStackWithSize(stack, 1))
                 .orElse(null);
         if (handler != null && handler instanceof FluidBucketWrapper) {
-            if (cookingPot.getOutputFluidTank().isPresent()) {
-                FluidTank outTank = cookingPot.getOutputFluidTank().orElse(null);
+            if (cookingPot.getInputFluidTank().isPresent()) {
+                FluidTank outTank = cookingPot.getinputFluidTank().orElse(null);
                 if(DistillerBlock.interactWithFluidHandler(player, handIn, outTank))
                     return InteractionResult.SUCCESS;
             }
